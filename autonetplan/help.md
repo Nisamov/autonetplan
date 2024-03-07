@@ -25,3 +25,7 @@ Paramteros:
     $3:_
         -f / --fluid    >> Configuracion DHCP (red fluida)
         -s / --static   >> Configuracion fija (red estatica)
+
+Exit Codes:
+    exit 0 > Codigo de salida por introduccion de valor inicial invalido "$1"
+    exit 1 > Codigo de salida por salida exitosa del programa
