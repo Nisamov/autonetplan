@@ -1,4 +1,4 @@
-# Auto Netplan - GNU/Linux Automate Net Config
+# Auto Netplan - GNU/Linux Automatic Net Config
 - Programa por [Nisamov](https://github.com/Nisamov)
 Programa configuracion automatica Netplan
 Este programa se centra en la automatización de configuración del programa netplan.
@@ -14,10 +14,10 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 INSTALL_DIR="/usr/local/bin"
 
 # Copiar el script principal y el archivo de ayuda al directorio de instalación
-cp "$SCRIPT_DIR/programa/tu_script.sh" "$INSTALL_DIR"
-cp "$SCRIPT_DIR/programa/help.md" "$INSTALL_DIR"
+cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR"
+cp "$SCRIPT_DIR/autonetplan/help.md" "$INSTALL_DIR"
 
 # Dar permisos de ejecución al script principal
-chmod +x "$INSTALL_DIR/tu_script.sh"
+chmod +x "$INSTALL_DIR/autonetplan.sh"
 ```
 <!--Boceto: Tras la isntalacion, se eliminara recursivamente los ficheros clonados, liberando espacio en el sistema-->
