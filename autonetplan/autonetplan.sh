@@ -22,6 +22,24 @@ elif [[ $1 == "-x" || $1 == "--execute" ]];
 
         # Codigo (por establecer parametros y valor de configuracion)
 
+        # Tras los parametros previos, se aplican los cambios
+        # Aplicacion de cambios de manera automatica en netplan
+        sudo netplan apply
+        echo "Configuracion de red aplicada exitosamente"
+        # Se pregunta si se desea ver el estado actual de la red
+        read -p "¿Desea ver el estado actual de la red? (s/n): " netstatus
+        # Condicional - muestra de red
+        # Si se permite
+        if [[ $netstatus == "s" ]]; then
+            sudo ip a
+        # Si se niega
+        elif [[ $netstatus == "n" ]]; then
+            echo "Se ha denegado la observacion preventiva del estado de red."
+        # Cualquier otro valor no registrado
+        else
+            echo "Se ha ingresado un valor no reconocido."
+        fi
+
         # Una vez terminada la configuracion preguntara si se desea guardar una copia de la configuracion
         read -p "¿Desea hacer una copia de la configuracion actual? (s/n): " bkconfig
         # Si se acepta la copia de seguridad
@@ -36,10 +54,12 @@ elif [[ $1 == "-x" || $1 == "--execute" ]];
             echo "Se ha introducido un valor no valido"
         fi
     exit 1
-elif [[ $1 == " " ||  ]]; then
+elif [[ $1 == " " ]]; then
 # Si el input se deja en blanco
     echo "No puedes dejar el valor a introducir en blanco"
 else
     echo "Valor incorrecto, asegurese de revisar la linea introducida."
 fi
+
+#Salida del programa
 exit 0
