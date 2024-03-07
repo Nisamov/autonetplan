@@ -25,7 +25,13 @@ Paramteros:
     $3:_
         -f / --fluid    >> Configuracion DHCP (red fluida)
         -s / --static   >> Configuracion fija (red estatica)
+    $4:_
+        -iface / --interface    >> Inidcar posteriormente la interfaz a usar
+    $5:_
+        -ip / --ipconfigure
+    $6:_
+        -ntmk / --netmask
 
 Exit Codes:
-    exit 0 > Codigo de salida por introduccion de valor inicial invalido "$1"
+    exit 0 > Codigo de salida por introduccion de valor erroneo
     exit 1 > Codigo de salida por salida exitosa del programa
