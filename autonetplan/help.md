@@ -32,7 +32,7 @@ Paramteros:
     $5:_
         -ip     / --ipconfigure
     $6:_
-        -ntmk / --netmask
+        -ntmk   / --netmask
 
 Exit Codes:
     exit 0 > Codigo de salida por introduccion de valor erroneo

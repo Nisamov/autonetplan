@@ -1,6 +1,9 @@
 #!/bin/bash
-#Programa configuracion red Linux - Automatica
 
+# Programa por github.com/Nisamov
+# Licencia Apache2.0
+
+#Programa configuracion red Linux - Automatica
 # Script de instalación de programa auto-netplan
 
 # Ruta del directorio donde se encuentra el script de instalación
@@ -19,6 +22,7 @@ echo "Se ha creado la ruta $PROGRAM_FILES exitosamente"
 
 # Copiar el script principal al directorio de instalación
 cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR"
+cp "$SCRIPT_DIR/autonetplan/autonetplan.conf" "$INSTALL_DIR"
 # Mensaje tras la copia del fichero en la ruta de instalacion
 echo "Se ha copiado exitosamente el programa en $INSTALL_DIR"
 
@@ -26,11 +30,18 @@ echo "Se ha copiado exitosamente el programa en $INSTALL_DIR"
 chmod +x "$INSTALL_DIR/autonetplan.sh"
 # Mensaje tras otorgar correctamente los permisos
 echo "Permisos necesarios otorgados correctamente"
+# Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
+# Clonacion de contenido /program-files/xample/* dentro de ruta $PROGRAM_FILES
+#Codigo con posible error
+cp "$SCRIPT_DIR/program-files/* -r" "$PROGRAM_FILES"
+
+# Mensaje tras la creacion de sub-ruta
+echo "Se ha creado la sub-ruta $PROGRAM_FILES/xample exitosamente"
 
 # Aviso instalacion completada
 echo "El programa se ha instalado correctamente en $INSTALL_DIR"
 # Mensaje automatico tras la isntalacion con la guia
-echo "El programa ha sido instalado correctamente, para ejecutarlo usa 'bash auto-netplan.sh <parametros>'"
+echo "El programa ha sido instalado correctamente, para ejecutarlo usa 'bash autonetplan.sh <parametros>'"
 
 # En decicion (no implementado)
 # Tras la isntalacion, el instalador, borrara el repositorio clonado para liberar espacio
