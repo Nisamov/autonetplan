@@ -28,11 +28,26 @@ Paramteros:
         -f      / --fluid           >> Configuracion DHCP (red fluida)
         -s      / --static          >> Configuracion fija (red estatica)
     $4:_
-        -iface  / --interface       >> Inidcar posteriormente la interfaz a usar
+        -iface  / --interface       >> Indicar posteriormente la interfaz a usar
     $5:_
-        -ip     / --ipconfigure
+        -ip     / --ipconfigure     >> indicar posteriormente la ip fija (solo tras haber indicado previamente '-s')
     $6:_
-        -ntmk   / --netmask
+        -ntmk   / --netmask         >> Establecer mascara de red posteriormente
+    $8:_
+        -gtw    / --gateway         >> Establecer gateway posteriormente
+
+
+[!] Ejemplo uso:
+    Apertura de soporte:
+        autonetplan.sh -h
+    Desinstalar programa:
+        autonetplan.sh -r
+    Establecer ip manualmente:
+        autonetplan.sh -x -m
+    Estalecer ip automaticamente y conexion por dhcp
+        autonetplan.sh -x -a -f
+    Establecer ip automaticamente con ip fija
+        autonetplan.sh -x -a -s -iface enp0s3 -ip 192.168.10.120 -ntmk 16 -gtw 192.168.10.1
 
 Exit Codes:
     exit 0 > Codigo de salida por introduccion de valor erroneo
