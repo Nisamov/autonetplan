@@ -10,8 +10,11 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 INSTALL_DIR="/usr/local/bin"
 
 # Copiar el script principal y el archivo de ayuda al directorio de instalación
-cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR"
-cp "$SCRIPT_DIR/autonetplan/help.md" "$INSTALL_DIR"
+#cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR"
+#cp "$SCRIPT_DIR/autonetplan/help.md" "$INSTALL_DIR"
+
+# Prueba, instalar todo dentro de la ruta $INSTALL_DIR
+cp "$SCRIPT_DIR/autonetplan/*" "$INSTALL_DIR"
 
 # Dar permisos de ejecución al script principal
 chmod +x "$INSTALL_DIR/autonetplan.sh"

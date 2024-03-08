@@ -11,7 +11,8 @@
 network_dir=/etc/netplan/01-network-manager-all.yml
 
 if [[ $1 == "-h" || $1 == "--help" ]]; then
-    cat help.md
+    # Mostrar contenido ayuda de la ruta del programa tras ser instalado
+    cat /usr/local/bin/help.md
 elif [[ $1 == "-v" || $1 == "--version" ]]; then
     cat version
 elif [[ $1 == "-r" || $1 == "--remove" ]]; then
