@@ -22,7 +22,9 @@ echo "Se ha creado la ruta $PROGRAM_FILES exitosamente"
 
 # Copiar el script principal al directorio de instalación
 cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR"
+# Copiar configuracion a la ruta del programa
 cp "$SCRIPT_DIR/autonetplan/autonetplan.conf" "$INSTALL_DIR"
+
 # Mensaje tras la copia del fichero en la ruta de instalacion
 echo "Se ha copiado exitosamente el programa en $INSTALL_DIR"
 
@@ -34,6 +36,9 @@ echo "Permisos necesarios otorgados correctamente"
 # Clonacion de contenido /program-files/xample/* dentro de ruta $PROGRAM_FILES
 #Codigo con posible error
 cp "$SCRIPT_DIR/program-files/* -r" "$PROGRAM_FILES"
+
+# Copiar la version en la ruta de los ficheros del programa
+cp "$SCRIPT_DIR/autonetplan/version" "$PROGRAM_FILES"
 
 # Mensaje tras la creacion de sub-ruta
 echo "Se ha creado la sub-ruta $PROGRAM_FILES/xample exitosamente"
