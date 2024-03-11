@@ -30,8 +30,8 @@ function aune-help(){
 
 function aune-remove(){
     # Funcion desinstalar programa
-    sudo rm -f /usr/local/bin/autonetplan*
-    sudo rm -rf /etc/auto-netplan/
+    sudo rm -f /usr/local/sbin/autonetplan
+    sudo rm -rf /usr/local/sbin/program-files/
 }
 
 case $1 in
