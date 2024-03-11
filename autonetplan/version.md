@@ -1,5 +1,5 @@
 <!--Version del programa-->
-Version Actual: 0.0.11
+Version Actual: 0.0.16
 <!--
 Esta version trae cambios como:
 - Correccion de errores
