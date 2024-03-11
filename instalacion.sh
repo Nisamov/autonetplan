@@ -38,7 +38,7 @@ echo "Permisos necesarios otorgados correctamente"
 cp "$SCRIPT_DIR/program-files/* -r" "$PROGRAM_FILES"
 
 # Copiar la version en la ruta de los ficheros del programa
-cp "$SCRIPT_DIR/autonetplan/version" "$PROGRAM_FILES"
+cp "$SCRIPT_DIR/autonetplan/version.md" "$PROGRAM_FILES"
 
 # Mensaje tras la creacion de sub-ruta
 echo "Se ha creado la sub-ruta $PROGRAM_FILES/xample exitosamente"
