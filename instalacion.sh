@@ -35,7 +35,7 @@ echo "Permisos necesarios otorgados correctamente"
 # Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
 # Clonacion de contenido /program-files/xample/* dentro de ruta $PROGRAM_FILES
 #Codigo con posible error
-sudo cp "$SCRIPT_DIR/program-files/* -r" "$PROGRAM_FILES"
+sudo cp "$SCRIPT_DIR/program-files/" "$PROGRAM_FILES"
 
 # Copiar la version en la ruta de los ficheros del programa
 sudo cp "$SCRIPT_DIR/autonetplan/version.md" "$PROGRAM_FILES"
@@ -47,6 +47,11 @@ echo "Se ha creado la sub-ruta $PROGRAM_FILES/xample exitosamente"
 echo "El programa se ha instalado correctamente en $INSTALL_DIR"
 # Mensaje automatico tras la isntalacion con la guia
 echo "El programa ha sido instalado correctamente, para ejecutarlo usa 'bash autonetplan.sh <parametros>'"
+# Mensaje vacio, espacio orden
+echo ""
+# Mensaje muestra de licencia
+echo "Licencia del programa |Apache2.0"
+sudo cat LICENSE.txt
 
 # En decicion (no implementado)
 # Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
