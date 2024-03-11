@@ -21,7 +21,7 @@ sudo mkdir $PROGRAM_FILES
 echo "Se ha creado la ruta $PROGRAM_FILES exitosamente"
 
 # Copiar el script principal al directorio de instalación
-sudo cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR"
+sudo cp "$SCRIPT_DIR/autonetplan/autonetplan" "$INSTALL_DIR"
 # Copiar configuracion a la ruta del programa
 sudo cp "$SCRIPT_DIR/autonetplan/autonetplan.conf" "$INSTALL_DIR"
 
@@ -29,7 +29,7 @@ sudo cp "$SCRIPT_DIR/autonetplan/autonetplan.conf" "$INSTALL_DIR"
 echo "Se ha copiado exitosamente el programa en $INSTALL_DIR"
 
 # Dar permisos de ejecución al script principal
-sudo chmod +x "$INSTALL_DIR/autonetplan.sh"
+sudo chmod +x "$INSTALL_DIR/autonetplan"
 # Mensaje tras otorgar correctamente los permisos
 echo "Permisos necesarios otorgados correctamente"
 # Copiar ficheros ejemplares en la ruta $PROGRAM_FILES

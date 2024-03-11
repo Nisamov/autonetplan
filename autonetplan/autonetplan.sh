@@ -11,26 +11,26 @@ function aune-help(){
     echo "Soporte AutoNetplan"
     echo ""
     echo "Principales valores '$.1':"
-    echo "-h | --help :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa"
-    echo "-v | --version :: Mostrar version del programa"
-    echo "-r | --remove :: Desinstalar programa"
-    echo "-l | --license :: Mostrar licencia del programa"
-    echo "-bk | --backup :: Creacion de copia de seguridad de configuracion de red"
-    echo "-x | --execute :: Continuacion con el programa"
+    echo "  -h | --help :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa"
+    echo "  -v | --version :: Mostrar version del programa"
+    echo "  -r | --remove :: Desinstalar programa"
+    echo "  -l | --license :: Mostrar licencia del programa"
+    echo " -bk | --backup :: Creacion de copia de seguridad de configuracion de red"
+    echo "  -x | --execute :: Continuacion con el programa"
     echo ""
     echo "Valores seunda '$.2'"
-    echo "-m | --manual :: Configuracion de red manual"
-    echo "-a | --automatic :: Configuracion de red automatica"
+    echo "  -m | --manual :: Configuracion de red manual"
+    echo "  -a | --automatic :: Configuracion de red automatica"
     echo ""
     echo "Valores tercera categoria '$.3'"
-    echo "-f | --fluid :: Configuracion DHCP (red fluida)"
-    echo "-s | --static :: Configuracion fija (red estatica)"
+    echo "  -f | --fluid :: Configuracion DHCP (red fluida)"
+    echo "  -s | --static :: Configuracion fija (red estatica)"
     # ...Mas contenido proximamente - (Boceto en help.md)
 }
 
 function aune-remove(){
     # Funcion desinstalar programa
-    sudo rm -rf /usr/local/bin/autonetplan/
+    sudo rm -f /usr/local/bin/autonetplan*
     sudo rm -rf /etc/auto-netplan/
 }
 
@@ -56,5 +56,6 @@ case $1 in
     ;;
     -x |--execute)
     # Continuacion de programa
+    echo "Continuacion de programa"
     ;;
 esac
