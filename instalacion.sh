@@ -9,11 +9,11 @@
 # Ruta del directorio donde se encuentra el script de instalación
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-# Ruta instalacion programa
-INSTALL_DIR="/usr/local/bin"
+# Ruta instalacion super usuario
+INSTALL_DIR="/usr/local/sbin"
 
-# Creacion ruta ficheros programa
-PROGRAM_FILES="/etc/auto-netplan/"
+# Ruta ficheros programa super usuario
+PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
 
 # Creacion directorio ficheros de programa
 sudo mkdir $PROGRAM_FILES
