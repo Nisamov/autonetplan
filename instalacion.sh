@@ -49,7 +49,7 @@ echo "El programa se ha instalado correctamente en $INSTALL_DIR"
 echo "El programa ha sido instalado correctamente, para ejecutarlo usa 'bash autonetplan.sh <parametros>'"
 
 # En decicion (no implementado)
-# Tras la isntalacion, el instalador, borrara el repositorio clonado para liberar espacio
+# Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
 # Funciones: Ubicar ruta actual, localizar ficheros de repositorio, borrar de forma recursiva el programa
 # Tras esto enviaria un "Isntalacion y limpieza exitosa", para posteriormente esperar x segundos y borrarse a si mismo
 # Al ser esto una version alfa, quedan ideas por implementar

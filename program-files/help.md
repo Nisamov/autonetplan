@@ -18,12 +18,10 @@ Paramteros:
         -h      / --help            >> Mostrar ayuda del programa
         -v      / --version         >> Mostrar version del programa
         -r      / --remove          >> Desinstalar el programa
-        -bk     / --backup          >> Crear copia de seguridad de la configuracion actual
         -x      / --execute         >> Continuar con la ejecucion del programa
     $2:_
         -m      / --manual          >> Configuracion manual
         -a      / --automatic       >> Configuracion automatica
-        -bkrt   / --backuproute     >> Direccion donde guardar la copia de seguridad (por defecto se guradar en /etc/auto-netplan/backups)
     $3:_
         -f      / --fluid           >> Configuracion DHCP (red fluida)
         -s      / --static          >> Configuracion fija (red estatica)
