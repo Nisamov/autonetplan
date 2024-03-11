@@ -20,6 +20,7 @@ Paramteros:
         -r      / --remove          >> Desinstalar el programa
         -x      / --execute         >> Continuar con la ejecucion del programa
         -l      / --license         >> Mostrar licencia del programa
+        -b      / --backup          >> Crear copia seguridad configuracion actual de red
     $2:_
         -m      / --manual          >> Configuracion manual
         -a      / --automatic       >> Configuracion automatica

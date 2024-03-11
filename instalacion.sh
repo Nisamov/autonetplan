@@ -20,10 +20,8 @@ sudo mkdir $PROGRAM_FILES
 # Mensaje tras la creacion de la ruta
 echo "Se ha creado la ruta $PROGRAM_FILES exitosamente"
 
-# Copiar el script principal al directorio de instalación
+# Copiar el script principal al directorio de instalación renombrando el programa como autonetplan
 sudo cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR/autonetplan"
-# Copiar configuracion a la ruta del programa
-sudo cp "$SCRIPT_DIR/autonetplan/autonetplan.conf" "$INSTALL_DIR"
 
 # Mensaje tras la copia del fichero en la ruta de instalacion
 echo "Se ha copiado exitosamente el programa en $INSTALL_DIR"
@@ -35,9 +33,6 @@ echo "Permisos necesarios otorgados correctamente"
 # Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
 # Clonacion de contenido /program-files/xample/* dentro de ruta $PROGRAM_FILES de forma recursiva
 sudo cp -r "$SCRIPT_DIR/program-files/" "$PROGRAM_FILES"
-
-# Mensaje tras la creacion de sub-ruta
-echo "Se ha creado la sub-ruta $PROGRAM_FILES/xample exitosamente"
 
 # Aviso instalacion completada
 echo "El programa se ha instalado correctamente en $INSTALL_DIR"
@@ -56,8 +51,6 @@ pause 'Presione cualquier tecla para continuar...'
 # Mensaje muestra de licencia
 sudo less LICENSE.txt
 
-# En decicion (no implementado)
 # Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
 # Funciones: Ubicar ruta actual, localizar ficheros de repositorio, borrar de forma recursiva el programa
-# Tras esto enviaria un "Isntalacion y limpieza exitosa", para posteriormente esperar x segundos y borrarse a si mismo
-# Al ser esto una version alfa, quedan ideas por implementar
+sudo rm -rf SCRIPT_DIR
