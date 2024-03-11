@@ -200,5 +200,4 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-
-Fichero mostrado con "less", puls "q" para salir de la previsualizacion.
+Licencia mostrada con programa 'less', pulse "Q" para salir del programa.

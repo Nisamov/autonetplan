@@ -43,8 +43,14 @@ echo "Se ha creado la sub-ruta $PROGRAM_FILES/xample exitosamente"
 echo "El programa se ha instalado correctamente en $INSTALL_DIR"
 # Mensaje automatico tras la isntalacion con la guia
 echo "El programa ha sido instalado correctamente, para ejecutarlo usa 'bash autonetplan.sh <parametros>'"
-# Mensaje vacio, espacio orden
-echo ""
+
+# Funcion pausa
+function pause(){
+   read -p "$*"
+}
+
+pause 'Presione cualquier tecla para continuar...'
+
 # Mensaje muestra de licencia
 echo "Licencia del programa | Apache2.0"
 sudo less LICENSE.txt
