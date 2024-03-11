@@ -34,7 +34,7 @@ sudo chmod +x "$INSTALL_DIR/autonetplan.sh"
 echo "Permisos necesarios otorgados correctamente"
 # Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
 # Clonacion de contenido /program-files/xample/* dentro de ruta $PROGRAM_FILES de forma recursiva
-sudo cp "$SCRIPT_DIR/program-files/ -r" "$PROGRAM_FILES"
+sudo cp -r "$SCRIPT_DIR/program-files/" "$PROGRAM_FILES"
 
 # Mensaje tras la creacion de sub-ruta
 echo "Se ha creado la sub-ruta $PROGRAM_FILES/xample exitosamente"
