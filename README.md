@@ -23,7 +23,6 @@ git clone https://github.com/Nisamov/auto-netplan
 Navega hasta el directorio del repositorio clonado:
 ```sh
 bash
-Copy code
 cd auto-netplan
 ```
 Ejecuta el instalador:
@@ -37,7 +36,6 @@ Uso
 Una vez instalado, puedes llamar al programa autonetplan.sh con los siguientes parámetros:
 ```
 -h / --help: Muestra la ayuda del programa.
--v / --version: Muestra la versión del programa.
 -r / --remove: Desinstala el programa.
 -x / --execute: Continúa con la ejecución del programa.
 Además, puedes especificar el modo de configuración (-m para manual, -a para automático), el tipo de configuración (-f para DHCP, -s para estática), la interfaz de red, la dirección IP, la máscara de red y la puerta de enlace.
@@ -46,6 +44,7 @@ Además, puedes especificar el modo de configuración (-m para manual, -a para a
 El programa devuelve los siguientes códigos de salida:
 
 `0`: Éxito.
+
 `1`: Error en la introducción de valores.
 Notas
 Se recomienda seguir la guía de configuración creada por Nisamov como apoyo durante la configuración manual.
@@ -57,16 +56,16 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 ## Ruta instalacion programa
 ```sh
-INSTALL_DIR="/usr/local/bin"
+# Ruta instalacion super usuario
+INSTALL_DIR="/usr/local/sbin"
+# Ruta ficheros programa super usuario
+PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
 ```
 
-## Copiar el script principal y el archivo de ayuda al directorio de instalación
-```sh
-cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR"
-cp "$SCRIPT_DIR/autonetplan/help.md" "$INSTALL_DIR"
+```bash
+# Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
+# Funciones: Ubicar ruta actual, localizar ficheros de repositorio, borrar de forma recursiva el programa
+sudo rm -rf $SCRIPT_DIR
 ```
 
-## Dar permisos de ejecución al script principal
-```sh
-chmod +x "$INSTALL_DIR/autonetplan.sh"
-```
+Tras ser ejecutado el script de instalacion, el repositorio es eliminado para liberar almacenamiento.
