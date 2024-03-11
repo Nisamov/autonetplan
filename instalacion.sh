@@ -48,11 +48,12 @@ echo "El programa ha sido instalado correctamente, para ejecutarlo usa 'bash aut
 function pause(){
    read -p "$*"
 }
-
+#Espacio diferencial de texto
+echo ""
+# Llamada a funcion previa
 pause 'Presione cualquier tecla para continuar...'
 
 # Mensaje muestra de licencia
-echo "Licencia del programa | Apache2.0"
 sudo less LICENSE.txt
 
 # En decicion (no implementado)
