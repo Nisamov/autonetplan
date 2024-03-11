@@ -53,4 +53,4 @@ sudo less LICENSE.txt
 
 # Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
 # Funciones: Ubicar ruta actual, localizar ficheros de repositorio, borrar de forma recursiva el programa
-sudo rm -rf SCRIPT_DIR
+sudo rm -rf $SCRIPT_DIR
