@@ -41,6 +41,11 @@ echo "[] El programa se ha instalado correctamente en $INSTALL_DIR"
 # Mensaje automatico tras la isntalacion con la guia
 echo "[] El programa ha sido instalado correctamente, para ejecutarlo usa 'autonetplan <parametros>'"
 
+# Clonar el fichero de licencia dentro del resto de los ficheros
+sudo cp -r "$SCRIPT_DIR/LICENSE.txt" "$PROGRAM_FILES"
+# Mensaje clonacion licencia
+echo "[] Licencia instalada correctamente 'autonetplan -l' para leerla."
+
 # Funcion pausa
 function pause(){
    read -p "$*"

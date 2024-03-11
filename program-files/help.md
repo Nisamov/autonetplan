@@ -16,7 +16,6 @@ Llamar al programa:
 Paramteros:
     $1:_
         -h      / --help            >> Mostrar ayuda del programa
-        -v      / --version         >> Mostrar version del programa
         -r      / --remove          >> Desinstalar el programa
         -x      / --execute         >> Continuar con la ejecucion del programa
         -l      / --license         >> Mostrar licencia del programa
