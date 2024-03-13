@@ -35,14 +35,6 @@ function aune-remove(){
     sudo rm -rf /usr/local/sbin/program-files/
 }
 
-# Declaracion inicio programa autonetplan
-function netplan(){
-    # Funcion autonetplan (no funcional por $1, $2, $3... sino por read -p)
-
-    # ... codigo por rellenar
-
-}
-
 case $1 in
     -h | --help)
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
