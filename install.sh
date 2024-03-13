@@ -89,7 +89,7 @@ done
 # Mientras no exista el fichero manual de autonetplan
 while [[ ! -f "$MANUAL1/autonetplan" ]]; do
     # Clonar el fichero sin la extension
-    sudo cp "$SCRIPT_DIR/autonetplan.1" "$MANUAL1/autonetplan"
+    sudo cp "$SCRIPT_DIR/autonetplan" "$MANUAL1/autonetplan"
     # Actualizar base de datos manuales en Unix
     sudo mandb
     # Verificacion de clonacion exitosa
