@@ -96,6 +96,20 @@ while [[ ! -f "$MANUAL1/autonetplan" ]]; do
     if [[ -f "$MANUAL1/autonetplan" ]]; then
         # Mensaje de clonación exitosa de manual
         echo "[#] Clonacion de manual exitosa 'man autonetplan' para leerla."
+        # Comporbacion de mandb en sistema
+        # Si mandb existe, actualizar base de datos
+        if command -v mandb &>/dev/null; then
+            # Actualizar base de datos
+            sudo mandb
+        else
+            echo -e "[\e[31m#\e[0m] Advertencia: No se puede actualizar la base de datos de manuales porque 'mandb' no está instalado."
+            read -p "[#] ¿Desea instalar 'mandb'? (s/n): " mandbinstall
+                if [[ $mandbinstall == "s" ]]; then
+                    sudo apt-get install man-db
+                else
+                    echo "Se ha rechazado la instalación de 'mandb'. Los cambios pueden no estar disponibles en el comando 'man' hasta que se actualice la base de datos de manuales."
+                fi
+        fi
     else
         # Mensaje si la clonación no se realizó correctamente
         echo -e "[\e[31m#\e[0m] No se ha clonado el manual correctamente, intentando de nuevo..."
