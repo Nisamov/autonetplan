@@ -54,15 +54,17 @@ function pause(){
 echo ""
 # Llamada a funcion previa
 pause 'Presione cualquier tecla para continuar...'
-
+# Limpiar consola
+clear
 # Mensaje muestra de licencia
 sudo less LICENSE.txt
-
+# Limpiar consola
+clear
 # Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
 # Funciones: Ubicar ruta actual, localizar ficheros de repositorio, borrar de forma recursiva el programa
 sudo rm -rf $SCRIPT_DIR
 # Mensaje aviso eliminacion repositorio
 echo -e "[#] Se ha eliminado de forma recursiva el repositorio clonado."
-echo "Las rutas del programa son: '\e[32m$INSTALL_DIR/autonetplan\e[0m' y '\e[32m$PROGRAM_FILES\e[0m'"
+echo "Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '$PROGRAM_FILES'"
 echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
 echo "[#] Para mostrar la lista de ayuda del programa autonetplan, ejecute el siguiente comando: 'autonetplan -h'"
