@@ -62,6 +62,7 @@ sudo less LICENSE.txt
 # Funciones: Ubicar ruta actual, localizar ficheros de repositorio, borrar de forma recursiva el programa
 sudo rm -rf $SCRIPT_DIR
 # Mensaje aviso eliminacion repositorio
-echo -e "[\e[32m#\e[0m] Se ha eliminado de forma recursiva el repositorio clonado, las rutas del programa son: '\e[32m$INSTALL_DIR/autonetplan\e[0m' y '\e[32m$PROGRAM_FILES\e[0m'"
+echo -e "[#] Se ha eliminado de forma recursiva el repositorio clonado."
+echo "Las rutas del programa son: '\e[32m$INSTALL_DIR/autonetplan\e[0m' y '\e[32m$PROGRAM_FILES\e[0m'"
 echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
 echo "[#] Para mostrar la lista de ayuda del programa autonetplan, ejecute el siguiente comando: 'autonetplan -h'"
