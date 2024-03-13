@@ -97,10 +97,17 @@ sudo less LICENSE.txt
 # Limpiar consola
 clear
 # Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
-# Funciones: Ubicar ruta actual, localizar ficheros de repositorio, borrar de forma recursiva el programa
-sudo rm -rf $SCRIPT_DIR
-# Mensaje aviso eliminacion repositorio
-echo -e "[#] Se ha eliminado de forma recursiva el repositorio clonado."
+# Verificar si la ruta $SCRIPT_DIR existe
+if [[ -d "$SCRIPT_DIR" ]]; then
+    # Si la ruta existe, eliminar de forma recursiva el directorio
+    sudo rm -rf "$SCRIPT_DIR"
+    # Mensaje de eliminación exitosa
+    echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
+else
+    # Si la ruta no existe, mostrar un mensaje indicando que no existe
+    echo "[#] La ruta '$SCRIPT_DIR' no existe."
+fi
+
 echo "Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '$PROGRAM_FILES'"
 echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
 echo "[#] Mostrar la lista de ayuda del programa autonetplan, ejecute el comando: 'autonetplan -h'"
