@@ -15,7 +15,7 @@ Para instalar Auto Netplan, sigue estos pasos:
 Clona el repositorio:
 ```sh
 sudo apt install git
-git clone https://github.com/Nisamov/auto-netplan.git
+git clone https://github.com/Nisamov/auto-netplan
 ```
 
 Navega hasta el directorio del repositorio clonado:

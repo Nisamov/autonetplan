@@ -1,16 +1,112 @@
-.TH AUTONETPLAN 1 "13 Marzo 2024"
-.SH NOMBRE
-autonetplan \- Un programa para gestionar la configuración de redes
+.TH AUTONETPLAN 1 "13 March 2024"
+.SH NAME
+autonetplan \- A program to manage network configuration
 
-.SH SINOPSIS
+.SH SYNOPSIS
 .B autonetplan
-[\fIOPCIONES\fR]
-[\fIARGUMENTOS\fR]
+[\fIOPTIONS\fR]
+[\fIARGUMENTS\fR]
 
-.SH DESCRIPCIÓN
-autonetplan es un programa que permite gestionar la configuración de redes de forma automatizada.
+.SH DESCRIPTION
+autonetplan is a program that allows you to manage network configuration in an automated manner.
 
-.SH OPCIONES
+.SH OPTIONS
 .TP
 .B \-h, \-\-help
-Muestra la ayuda del programa.
+Display program help.
+
+.SH INSTALLATION
+Clone the repository:
+.RS
+.B
+sudo apt install git
+.B
+git clone https://github.com/Nisamov/auto-netplan /path/to/clone
+.B
+cd /path/to/clone
+.B
+sudo bash installation.sh
+.RE
+
+.SH USAGE
+Call the program:
+.RS
+.B
+autonetplan.sh (enter parameters)
+.RE
+
+.TP
+.B Parameters
+.RS
+.LP
+\fB$1:\fR
+.PP
+  \fB-h\fR, \fB--help\fR: Display program help
+.PP
+  \fB-r\fR, \fB--remove\fR: Uninstall the program
+.PP
+  \fB-x\fR, \fB--execute\fR: Continue with program execution
+.PP
+  \fB-l\fR, \fB--license\fR: Display program license
+.PP
+  \fB-b\fR, \fB--backup\fR: Create backup of current network configuration
+.LP
+\fB$2:\fR
+.PP
+  \fB-m\fR, \fB--manual\fR: Manual configuration
+.PP
+  \fB-a\fR, \fB--automatic\fR: Automatic configuration
+.LP
+\fB$3:\fR
+.PP
+  \fB-f\fR, \fB--fluid\fR: DHCP configuration (fluid network)
+.PP
+  \fB-s\fR, \fB--static\fR: Fixed configuration (static network)
+.LP
+\fB$4:\fR
+.PP
+  \fB-iface\fR, \fB--interface\fR: Specify interface to use
+.LP
+\fB$5:\fR
+.PP
+  \fB-ip\fR, \fB--ipconfigure\fR: Specify fixed IP (only after specifying \fB-s\fR)
+.LP
+\fB$6:\fR
+.PP
+  \fB-ntmk\fR, \fB--netmask\fR: Set netmask later
+.LP
+\fB$8:\fR
+.PP
+  \fB-gtw\fR, \fB--gateway\fR: Set gateway later
+
+.SH EXAMPLE USAGE
+.RS
+.LP
+Open support:
+.B
+autonetplan.sh -h
+.LP
+Uninstall program:
+.B
+autonetplan.sh -r
+.LP
+Set IP manually:
+.B
+autonetplan.sh -x -m
+.LP
+Set IP automatically with DHCP:
+.B
+autonetplan.sh -x -a -f
+.LP
+Set IP automatically with fixed IP:
+.B
+autonetplan.sh -x -a -s -iface enp0s3 -ip 192.168.10.120 -ntmk 16 -gtw 192.168.10.1
+.RE
+
+.SH EXIT CODES
+.TP
+.B exit 0
+Exit code for incorrect input value.
+.TP
+.B exit 1
+Exit code for successful program termination.
