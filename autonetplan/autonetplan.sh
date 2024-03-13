@@ -41,7 +41,6 @@ case $1 in
     # Llamada de funcion ayuda
         aune-help
     ;;
-    ;;
     -r | --remove)
     # Llamada de funcion aune-remove
         aune-remove
