@@ -14,6 +14,9 @@ INSTALL_DIR="/usr/local/sbin"
 # Ruta ficheros programa super usuario
 PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
 
+# Ruta manuales man1
+MANUAL1="/usr/share/man/man1/"
+
 while [[ ! -d $PROGRAM_FILES ]]; do
    # Creacion directorio $PROGRAM_FILES
     sudo mkdir -p $PROGRAM_FILES
@@ -77,6 +80,25 @@ while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
     else
         # Mensaje si la clonación no se realizó correctamente
         echo -e "[\e[31m#\e[0m] No se ha clonado la licencia correctamente, intentando de nuevo..."
+        # Espera 1 segundo antes de intentar de nuevo
+        sleep 1
+    fi
+done
+
+# Clonar manual a ruta manual
+# Mientras no exista el fichero manual de autonetplan
+while [[ ! -f "$MANUAL1/autonetplan" ]]; do
+    # Clonar el fichero sin la extension
+    sudo cp "$SCRIPT_DIR/autonetplan.1" "$MANUAL1/autonetplan"
+    # Actualizar base de datos manuales en Unix
+    sudo mandb
+    # Verificacion de clonacion exitosa
+    if [[ -f "$MANUAL1/autonetplan" ]]; then
+        # Mensaje de clonación exitosa de manual
+        echo "[#] Clonacion de manual exitosa 'man autonetplan' para leerla."
+    else
+        # Mensaje si la clonación no se realizó correctamente
+        echo -e "[\e[31m#\e[0m] No se ha clonado el manual correctamente, intentando de nuevo..."
         # Espera 1 segundo antes de intentar de nuevo
         sleep 1
     fi
