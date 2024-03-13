@@ -113,4 +113,4 @@ echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
 echo "[#] Mostrar la lista de ayuda del programa autonetplan, ejecute el comando: 'autonetplan -h'"
 
 # Ubicar al usuario en la ruta principal /home/user
-cd
+cd $HOME
