@@ -82,33 +82,25 @@ while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
     fi
 done
 
-#!/bin/bash
-
-# Función para pausar con mensaje opcional
-function pause() {
-    read -p "${1:-Presione cualquier tecla para continuar...}" -n1 -s
-    echo ""
+# Funcion pausa
+function pause(){
+   read -p "$*"
 }
-
-# Espacio diferencial de texto
-echo
-
-# Mostrar la licencia
+#Espacio diferencial de texto
+echo ""
+# Llamada a funcion previa
+pause 'Presione cualquier tecla para continuar...'
+# Limpiar consola
+clear
+# Mensaje muestra de licencia
 sudo less LICENSE.txt
-
-# Mensaje informativo
-echo -e "[#] El repositorio clonado será eliminado para liberar espacio."
-
-# Confirmación de eliminación del repositorio clonado
-pause "Presione cualquier tecla para continuar con la eliminación del repositorio clonado..."
-
-# Eliminar el repositorio clonado de forma recursiva
-sudo rm -rf "$SCRIPT_DIR"
-
-# Mensaje de eliminación del repositorio clonado
-echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
-
-# Mensaje de instalación exitosa
+# Limpiar consola
+clear
+# Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
+# Funciones: Ubicar ruta actual, localizar ficheros de repositorio, borrar de forma recursiva el programa
+sudo rm -rf $SCRIPT_DIR
+# Mensaje aviso eliminacion repositorio
+echo -e "[#] Se ha eliminado de forma recursiva el repositorio clonado."
+echo "Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '$PROGRAM_FILES'"
 echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
-echo "[#] Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '$PROGRAM_FILES'"
-echo "[#] Para obtener ayuda sobre el programa autonetplan, ejecute el comando: 'autonetplan -h'"
+echo "[#] Mostrar la lista de ayuda del programa autonetplan, ejecute el comando: 'autonetplan -h'"
