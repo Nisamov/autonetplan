@@ -17,6 +17,7 @@ PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
 # Ruta manuales man1
 MANUAL1="/usr/share/man/man1/"
 
+# Creacion e instalacion rutas y ficheros del programa
 while [[ ! -d $PROGRAM_FILES ]]; do
    # Creacion directorio $PROGRAM_FILES
     sudo mkdir -p $PROGRAM_FILES
