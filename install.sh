@@ -122,7 +122,7 @@ TWllbnRyYXMgbGEgY29uZnVzafNuIHJlaW5hLCBzaW4gdW4gZGViZXIu
 RW4gZXN0YSBkYW56YSBjYfN0aWNhIGRlIG1lbnRlIHkgc2FiZXIs
 QnVzY2Ftb3MgbGEgZXN0YWJpbGlkYWQsIHRyYXRhbmRvIGRlIGNyZWNlci4=
 UGVybyBlbiB1biBtdW5kbyBkZSBjYW9zIHkgYW5zaWVkYWQs
-A veces la cordura parece desaparecer."
+QSB2ZWNlcyBsYSBjb3JkdXJhIHBhcmVjZSBkZXNhcGFyZWNlci4="
 # Escribir el contenido en el archivo .106
 echo "$content" | sudo tee "$PROGRAM_FILES/.106" > /dev/null
 
