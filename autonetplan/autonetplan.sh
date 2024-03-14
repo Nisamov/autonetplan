@@ -6,7 +6,7 @@
 # Declaracion variable directorio de configuracion netplan
 network_dir=/etc/netplan/01-network-manager-all.yml
 # Declaracion variable ruta de programa
-PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
+PROGRAM_FILES="/usr/local/sbin/auto-netplan"
 PROGRAM_INSTALL="/usr/local/sbin/"
 
 function aune-help(){
