@@ -35,6 +35,24 @@ function aune-remove(){
     sudo rm -rf /usr/local/sbin/program-files/
 }
 
+function aune-backup(){
+    # Funcion guardar copia de seguridad con numero progresivo para evitar reemplazar ficheros
+    local backup_number=0
+    local backup_file
+    echo "[#] Copiando fichero 00-installer-config.yaml..."
+    # Encuentra el último número utilizado en los archivos de respaldo
+    while [[ -f "$PROGRAM_FILES/netplan-backups/00-installer-config-${backup_number}-*.yaml.bk" ]]; do
+        ((backup_number++))
+    done
+    echo "[#] Copia completada."
+    # Construye el nombre del archivo de respaldo con el siguiente número
+    backup_file="$PROGRAM_FILES/netplan-backups/00-installer-config-${backup_number}-$(printf "%03d" "$backup_number").yaml.bk"
+    # Realiza la copia de seguridad
+    sudo cp /etc/netplan/00-installer-config.yaml "$backup_file."
+    echo "[#] Copia de seguridad almacenada como $backup_file en $PROGRAM_FILES/netplan-backups."
+}
+
+
 case $1 in
     -h | --help)
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
@@ -47,6 +65,8 @@ case $1 in
     ;;
     -bk)
     # Creacion de copia de seguridad de configuracion de red
+    # Llamada a funcion aune-backup
+        aune-backup
     ;;
     -l | --license)
     # Lectura de fichero de licencia
