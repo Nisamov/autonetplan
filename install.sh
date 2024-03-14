@@ -86,6 +86,23 @@ while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
     fi
 done
 
+
+# Crear ruta copias de seguridad
+while [[ ! -d "$PROGRAM_FILES/netplan-backups" ]]; do
+    # Clonar el archivo de licencia
+    sudo mkdir "$PROGRAM_FILES/netplan-backups"
+    # Verificacion de creacion
+    if [[ -d "$PROGRAM_FILES/netplan-backups" ]]; then
+        # Mensaje creacion almacenamiento copias de seguridad
+        echo "[#] Ruta clonacion copias de seguridad, creada exitosamente"
+    else
+        # Mensaje si la creacion no se realizó correctamente
+        echo -e "[\e[31m#\e[0m] Ha ocurrido un error en la creacion, intentando de nuevo..."
+        # Espera 1 segundo antes de intentar de nuevo
+        sleep 1
+    fi
+done
+
 # Clonar manual a ruta manual
 # Mientras no exista el fichero manual de autonetplan
 while [[ ! -f "$MANUAL1/autonetplan" ]]; do
