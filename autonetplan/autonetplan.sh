@@ -68,6 +68,8 @@ function aune-full-config() {
         # Continuacion de programa
         if [[ $3 == "-f" || $3 == "--fluid" ]]; then
             # Configuracion de red por DHCP
+            echo "Configuración de red por DHCP..."
+            # Configuracion dhcp
         elif [[ $3 == "-s" || $3 == "--static" ]]; then
             # Configuracion de red por ip estatica
             # Continuacion de programa
