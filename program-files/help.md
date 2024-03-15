@@ -32,9 +32,8 @@ Paramteros:
         -ip     / --ipconfigure     >> indicar posteriormente la ip fija (solo tras haber indicado previamente '-s')
     $6:_
         -ntmk   / --netmask         >> Establecer mascara de red posteriormente
-    $8:_
-        -gtw    / --gateway         >> Establecer gateway posteriormente
-
+    $7:_
+        (Implementacion de mas interfaces de red usar, en futuras version irá una nueva version del programa con dicha implementacion)
 
 [!] Ejemplo uso:
     Apertura de soporte:

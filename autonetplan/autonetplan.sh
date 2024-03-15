@@ -52,6 +52,10 @@ function aune-backup(){
     echo "[#] Copia de seguridad almacenada como $backup_file en $PROGRAM_FILES/netplan-backups."
 }
 
+function aune-man-config(){
+    # Configuracion manual netplan
+    sudo nano network_dir
+}
 
 case $1 in
     -h | --help)
@@ -70,10 +74,85 @@ case $1 in
     ;;
     -l | --license)
     # Lectura de fichero de licencia
-    sudo less $PROGRAM_FILES/LICENSE.txt
+        sudo less $PROGRAM_FILES/LICENSE.txt
     ;;
-    -x |--execute)
+    -x | --execute)
     # Continuacion de programa
-    # Llamada funcion programa
+        if [[ $2 == "-m" || $2 == "--manual"]]; then
+            # Llamada a configuracion manual
+            aune-man-config
+            # Salida del programa
+            exit 1
+        elif [[ $2 == "-a" || $2 == "--automatic"]]; then
+            # Configuracion automatica
+            # Continuacion de programa
+            if [[ $3 == "-f" || $3 == "--fluid" ]]; then
+                # Configuracion de red por DHCP
+            elif [[ $3 == "-s" || $3 == "--static" ]]; then
+                # Configuracion de red por ip estatica
+                # Continuacion de programa
+                if [[ $4 == "-iface" || $4 == "--interface"]]; then
+                    # Ingreso interfaz deseada - almacenada en variable "iface"
+                    # Continuacion de programa
+                    read -p "Ingrese la interfaz a trabajar: " iface
+                    if [[ $5 == "-ip" || $5 == "--ipconfigure"]]; then
+                        # Ingreso direccion ip deseada - almacenada en variable "ipconfigure"
+                        # Continuacion de programa
+                        # Direccion ip (ej: 192.168.10.165)
+                        read -p "Ingrese la direccion ip a trabajar: " ipconfigure
+                        if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
+                            # Ingreso mascara subred y puerta de enlace - almacenada en variables "masked" y "linkeddoor"
+                            # Fin programa - continuacion de codigo - linea 143
+                            # Mascara subred (ej: /16)
+                            read -p "Ingrese la mascara de subred: " masked
+                            # Puerta de enlace (ej: 192.168.10.1)
+                            read -p "Ingrese la puerta de enlace a trabajar: " linkeddoor
+                        else
+                            # Mensaje por error de valores
+                            echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk', valor ingresado: '$6'."
+                            # Error por ingreso de valores erroneos
+                            exit 0
+                        fi
+                    else
+                        # Mensaje por error de valores
+                        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ip', valor ingresado: '$5'."
+                        # Error por ingreso de valores erroneos
+                        exit 0
+                    fi
+                else
+                    # Mensaje por error de valores
+                    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-iface', valor ingresado: '$4'."
+                    # Error por ingreso de valores erroneos
+                    exit 0
+                fi
+            else
+                # Mensaje por error de valores
+                echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-f' o '-s', valor ingresado: '$3'."
+                # Error por ingreso de valores erroneos
+                exit 0
+            fi
+        else
+            # Mensaje por error de valores
+            echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-m' o '-a', valor ingresado: '$2'."
+            # Error por ingreso de valores erroneos
+            exit 0
+        fi
     ;;
 esac
+
+# Crear funcion de fichero con vairbles modificables, contenido ejecutado desde el siguiente codigo
+# Programa sin terminar
+
+# Con los valores almacenados, se solicita hacer una copia de seguridad del fichero de configuracion ip actual, para almacenarlo  como .bk en la misma ruta
+read -p "¿Desea crear una copia de seguridad del fichero de configuracion red actual? (s/n): " ntwbk
+# Si se deniega la copia, se procede con el programa
+# Si se acepta, se guarda el fichero
+if [[ $ntwbk == "s" ]]; then
+    # Almacenar configuracion red actual como backup
+    sudo cp $network_dir $network_dir.bk
+elif [[ $ntwbk == "n" ]]; then
+    # Se ha denegado la copia de seguridad
+    echo -e "[\e[31m#\e[0m] Has rechazado la copia de seguridad, se procedera con el programa."
+else
+    echo -e "[\e[31m#\e[0m] Se ha ingresado un valor invalido ('$ntwbk'), se procede a omitir la copia de seguridad."
+fi
