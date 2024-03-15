@@ -58,7 +58,7 @@ function aune-man-config(){
 }
 
 function aune-full-config(){
-    if [[ $2 == "-m" || $2 == "--manual"]]; then
+    if [[ $2 == "-m" || $2 == "--manual" ]]; then
         # Llamada a configuracion manual
         aune-man-config
         # Salida del programa
