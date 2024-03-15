@@ -63,7 +63,7 @@ function aune-full-config(){
         aune-man-config
         # Salida del programa
         exit 1
-    elif [[ $2 == "-a" || $2 == "--automatic"]]; then
+    elif [[ $2 == "-a" || $2 == "--automatic" ]]; then
         # Configuracion automatica
         # Continuacion de programa
         if [[ $3 == "-f" || $3 == "--fluid" ]]; then
@@ -71,11 +71,11 @@ function aune-full-config(){
         elif [[ $3 == "-s" || $3 == "--static" ]]; then
             # Configuracion de red por ip estatica
             # Continuacion de programa
-            if [[ $4 == "-iface" || $4 == "--interface"]]; then
+            if [[ $4 == "-iface" || $4 == "--interface" ]]; then
                 # Ingreso interfaz deseada - almacenada en variable "iface"
                 # Continuacion de programa
                 read -p "Ingrese la interfaz a trabajar: " iface
-                if [[ $5 == "-ip" || $5 == "--ipconfigure"]]; then
+                if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
                     # Ingreso direccion ip deseada - almacenada en variable "ipconfigure"
                     # Continuacion de programa
                     # Direccion ip (ej: 192.168.10.165)
