@@ -57,28 +57,8 @@ function aune-man-config(){
     sudo nano network_dir
 }
 
-case $1 in
-    -h | --help)
-    # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
-    # Llamada de funcion ayuda
-        aune-help
-    ;;
-    -r | --remove)
-    # Llamada de funcion aune-remove
-        aune-remove
-    ;;
-    -bk)
-    # Creacion de copia de seguridad de configuracion de red
-    # Llamada a funcion aune-backup
-        aune-backup
-    ;;
-    -l | --license)
-    # Lectura de fichero de licencia
-        sudo less $PROGRAM_FILES/LICENSE.txt
-    ;;
-    -x | --execute)
-    # Continuacion de programa
-        if [[ $2 == "-m" || $2 == "--manual"]]; then
+function aune-full-config(){
+    if [[ $2 == "-m" || $2 == "--manual"]]; then
             # Llamada a configuracion manual
             aune-man-config
             # Salida del programa
@@ -102,7 +82,7 @@ case $1 in
                         read -p "Ingrese la direccion ip a trabajar: " ipconfigure
                         if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
                             # Ingreso mascara subred y puerta de enlace - almacenada en variables "masked" y "linkeddoor"
-                            # Fin programa - continuacion de codigo - linea 143
+                            # Fin programa - continuacion de codigo
                             # Mascara subred (ej: /16)
                             read -p "Ingrese la mascara de subred: " masked
                             # Puerta de enlace (ej: 192.168.10.1)
@@ -137,6 +117,31 @@ case $1 in
             # Error por ingreso de valores erroneos
             exit 0
         fi
+}
+
+case $1 in
+    -h | --help)
+    # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
+    # Llamada de funcion ayuda
+        aune-help
+    ;;
+    -r | --remove)
+    # Llamada de funcion aune-remove
+        aune-remove
+    ;;
+    -bk)
+    # Creacion de copia de seguridad de configuracion de red
+    # Llamada a funcion aune-backup
+        aune-backup
+    ;;
+    -l | --license)
+    # Lectura de fichero de licencia
+        sudo less $PROGRAM_FILES/LICENSE.txt
+    ;;
+    -x | --execute)
+    # Continuacion de programa
+    # Llamada al programa completo
+        aune-full-config
     ;;
 esac
 
