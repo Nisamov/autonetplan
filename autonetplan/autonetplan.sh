@@ -59,64 +59,64 @@ function aune-man-config(){
 
 function aune-full-config(){
     if [[ $2 == "-m" || $2 == "--manual"]]; then
-            # Llamada a configuracion manual
-            aune-man-config
-            # Salida del programa
-            exit 1
-        elif [[ $2 == "-a" || $2 == "--automatic"]]; then
-            # Configuracion automatica
+        # Llamada a configuracion manual
+        aune-man-config
+        # Salida del programa
+        exit 1
+    elif [[ $2 == "-a" || $2 == "--automatic"]]; then
+        # Configuracion automatica
+        # Continuacion de programa
+        if [[ $3 == "-f" || $3 == "--fluid" ]]; then
+            # Configuracion de red por DHCP
+        elif [[ $3 == "-s" || $3 == "--static" ]]; then
+            # Configuracion de red por ip estatica
             # Continuacion de programa
-            if [[ $3 == "-f" || $3 == "--fluid" ]]; then
-                # Configuracion de red por DHCP
-            elif [[ $3 == "-s" || $3 == "--static" ]]; then
-                # Configuracion de red por ip estatica
+            if [[ $4 == "-iface" || $4 == "--interface"]]; then
+                # Ingreso interfaz deseada - almacenada en variable "iface"
                 # Continuacion de programa
-                if [[ $4 == "-iface" || $4 == "--interface"]]; then
-                    # Ingreso interfaz deseada - almacenada en variable "iface"
+                read -p "Ingrese la interfaz a trabajar: " iface
+                if [[ $5 == "-ip" || $5 == "--ipconfigure"]]; then
+                    # Ingreso direccion ip deseada - almacenada en variable "ipconfigure"
                     # Continuacion de programa
-                    read -p "Ingrese la interfaz a trabajar: " iface
-                    if [[ $5 == "-ip" || $5 == "--ipconfigure"]]; then
-                        # Ingreso direccion ip deseada - almacenada en variable "ipconfigure"
-                        # Continuacion de programa
-                        # Direccion ip (ej: 192.168.10.165)
-                        read -p "Ingrese la direccion ip a trabajar: " ipconfigure
-                        if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
-                            # Ingreso mascara subred y puerta de enlace - almacenada en variables "masked" y "linkeddoor"
-                            # Fin programa - continuacion de codigo
-                            # Mascara subred (ej: /16)
-                            read -p "Ingrese la mascara de subred: " masked
-                            # Puerta de enlace (ej: 192.168.10.1)
-                            read -p "Ingrese la puerta de enlace a trabajar: " linkeddoor
-                        else
-                            # Mensaje por error de valores
-                            echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk', valor ingresado: '$6'."
-                            # Error por ingreso de valores erroneos
-                            exit 0
-                        fi
+                    # Direccion ip (ej: 192.168.10.165)
+                    read -p "Ingrese la direccion ip a trabajar: " ipconfigure
+                    if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
+                        # Ingreso mascara subred y puerta de enlace - almacenada en variables "masked" y "linkeddoor"
+                        # Fin programa - continuacion de codigo
+                        # Mascara subred (ej: /16)
+                        read -p "Ingrese la mascara de subred: " masked
+                        # Puerta de enlace (ej: 192.168.10.1)
+                        read -p "Ingrese la puerta de enlace a trabajar: " linkeddoor
                     else
                         # Mensaje por error de valores
-                        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ip', valor ingresado: '$5'."
+                        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk', valor ingresado: '$6'."
                         # Error por ingreso de valores erroneos
                         exit 0
                     fi
                 else
                     # Mensaje por error de valores
-                    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-iface', valor ingresado: '$4'."
+                    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ip', valor ingresado: '$5'."
                     # Error por ingreso de valores erroneos
                     exit 0
                 fi
             else
                 # Mensaje por error de valores
-                echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-f' o '-s', valor ingresado: '$3'."
+                echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-iface', valor ingresado: '$4'."
                 # Error por ingreso de valores erroneos
                 exit 0
             fi
         else
             # Mensaje por error de valores
-            echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-m' o '-a', valor ingresado: '$2'."
+            echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-f' o '-s', valor ingresado: '$3'."
             # Error por ingreso de valores erroneos
             exit 0
         fi
+    else
+        # Mensaje por error de valores
+        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-m' o '-a', valor ingresado: '$2'."
+        # Error por ingreso de valores erroneos
+        exit 0
+    fi
 }
 
 case $1 in
