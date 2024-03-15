@@ -141,9 +141,8 @@ case $1 in
         sudo less $PROGRAM_FILES/LICENSE.txt
     ;;
     -x | --execute)
-    # Continuacion de programa
-    # Llamada al programa completo
-        aune-full-config
+        # Llamada a la función aune-full-config con los argumentos adecuados
+        aune-full-config "$2" "$3" "$4" "$5" "$6" "$7"
     ;;
 esac
 
