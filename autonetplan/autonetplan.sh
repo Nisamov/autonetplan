@@ -57,7 +57,7 @@ function aune-man-config(){
     sudo nano network_dir
 }
 
-function aune-full-config(){
+function aune-full-config() {
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
         # Llamada a configuracion manual
         aune-man-config
