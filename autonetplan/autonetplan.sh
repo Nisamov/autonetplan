@@ -26,7 +26,6 @@ function aune-help(){
     echo "Valores tercera categoria '$.3'"
     echo "  -f | --fluid :: Configuracion DHCP (red fluida)"
     echo "  -s | --static :: Configuracion fija (red estatica)"
-    # ...Mas contenido proximamente - (Boceto en help.md)
 }
 
 function aune-remove(){
@@ -71,6 +70,7 @@ elif [[ $1 == "-bk" || $1 == "--backup" ]]; then
 elif [[ $1 == "-l" || $1 == "--license" ]]; then
     # Lectura de fichero de licencia
         sudo less $PROGRAM_FILES/LICENSE.txt
+        echo "Licencia mostrada con programa 'less', pulse "Q" para salir del programa."
 elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     # Continuacion de programa
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
