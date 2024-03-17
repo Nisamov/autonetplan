@@ -58,6 +58,22 @@ function aune-man-config(){
 }
 
 function aune-full-config() {
+if [[ $1 == "-h" || $1 == "--help" ]]; then
+    # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
+    # Llamada de funcion ayuda
+        aune-help
+elif [[ $1 == "-r" || $1 == "--remove" ]]; then
+    # Llamada de funcion aune-remove
+        aune-remove
+elif [[ $1 == "-bk" || $1 == "--backup" ]]; then
+    # Creacion de copia de seguridad de configuracion de red
+    # Llamada a funcion aune-backup
+        aune-backup
+elif [[ $1 == "-l" || $1 == "--license" ]]; then
+    # Lectura de fichero de licencia
+        sudo less $PROGRAM_FILES/LICENSE.txt
+elif [[ $1 == "-x" || $1 == "--execute" ]]; then
+    # Continuacion de programa
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
         # Llamada a configuracion manual
         aune-man-config
@@ -119,33 +135,16 @@ function aune-full-config() {
         # Error por ingreso de valores erroneos
         exit 0
     fi
+else
+    # Mensaje por error de valores
+    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h', '-r', '-bk', '-l' o '-x', valor ingresado: '$1'."
+    # Error por ingreso de valores erroneos
+    exit 0
 }
 
-case $1 in
-    -h | --help)
-    # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
-    # Llamada de funcion ayuda
-        aune-help
-    ;;
-    -r | --remove)
-    # Llamada de funcion aune-remove
-        aune-remove
-    ;;
-    -bk)
-    # Creacion de copia de seguridad de configuracion de red
-    # Llamada a funcion aune-backup
-        aune-backup
-    ;;
-    -l | --license)
-    # Lectura de fichero de licencia
-        sudo less $PROGRAM_FILES/LICENSE.txt
-    ;;
-    -x | --execute)
-    # Continuacion de programa
-    # Llamada al programa completo
-        aune-full-config "${@:2}"
-    ;;
-esac
+# Llamada al programa
+    aune-full-config
+
 
 # Crear funcion de fichero con vairbles modificables, contenido ejecutado desde el siguiente codigo
 # Programa sin terminar
