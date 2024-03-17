@@ -140,6 +140,7 @@ else
     echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h', '-r', '-bk', '-l' o '-x', valor ingresado: '$1'."
     # Error por ingreso de valores erroneos
     exit 0
+fi
 }
 
 # Llamada al programa
