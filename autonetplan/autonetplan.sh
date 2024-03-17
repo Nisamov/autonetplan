@@ -57,7 +57,6 @@ function aune-man-config(){
     sudo nano network_dir
 }
 
-function aune-full-config() {
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
@@ -141,11 +140,6 @@ else
     # Error por ingreso de valores erroneos
     exit 0
 fi
-}
-
-# Llamada al programa
-    aune-full-config
-
 
 # Crear funcion de fichero con vairbles modificables, contenido ejecutado desde el siguiente codigo
 # Programa sin terminar
