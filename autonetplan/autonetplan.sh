@@ -4,7 +4,7 @@
 # Licencia Apache2.0
 
 # Declaracion variable directorio de configuracion netplan
-network_dir="/etc/netplan/00-network-manager-all.yml"
+network_dir="/etc/netplan/00-installer-config.yml"
 
 function aune-help(){
     echo "Soporte AutoNetplan"
