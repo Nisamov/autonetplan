@@ -115,6 +115,10 @@ EOF
                         else
                             # Mensaje por error de valores
                             echo -e "[\e[31m#\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
+                            # Llamada del programa configuracion completa
+                            aune-networked
+                            # Aplicar configuracion
+                            sudo netplan apply
                         fi
                     else
                         # Mensaje por error de valores
