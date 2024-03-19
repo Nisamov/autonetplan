@@ -4,7 +4,7 @@
 # Licencia Apache2.0
 
 # Declaracion variable directorio de configuracion netplan
-network_dir="/etc/netplan/00-installer-config.yml"
+network_dir="/etc/netplan/00-installer-config.yaml"
 
 function aune-help(){
     echo "Soporte AutoNetplan"
@@ -34,7 +34,7 @@ function aune-backup(){
     # Funcion guardar copia de seguridad con numero progresivo para evitar reemplazar ficheros
     local backup_number=0
     local backup_file
-    echo "[#] Copiando fichero 02-network-manager-all.yml..."
+    echo "[#] Copiando fichero 01-network-manager-all.yaml..."
     sudo cp "$network_dir" "$network_dir.bk"
     echo "[#] Copia completada."
 }
