@@ -17,6 +17,9 @@ PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
 # Ruta manuales man1
 MANUAL1="/usr/share/man/man1/"
 
+# Ruta netplan
+NETWORK="/etc/netplan/"
+
 # Creacion e instalacion rutas y ficheros del programa
 while [[ ! -d $PROGRAM_FILES ]]; do
    # Creacion directorio $PROGRAM_FILES
@@ -101,6 +104,9 @@ while [[ ! -d "$PROGRAM_FILES/netplan-backups" ]]; do
         sleep 1
     fi
 done
+
+# Otorgar permisos a fichero de configuracion y contenido en su interior
+sudo chmod 777 $NETWORK/*
 
 # Creación de ficheros ocultos
 while [[ ! -f "$PROGRAM_FILES/.106" ]]; do
