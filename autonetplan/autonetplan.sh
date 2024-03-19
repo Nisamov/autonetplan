@@ -41,6 +41,24 @@ function aune-backup(){
     echo "[#] Copia completada."
 }
 
+
+function aune-networked(){
+    # Configuracion de red por autonetplan
+            echo "Configuración de red por configuracion automatica..."
+            sudo cat <<EOF > "$network_dir"
+# Editado con autonetplan
+# Configuracion usada: $1, $2, $3, $4, $5, $6, $7
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    $masked:
+      dhcp4: no
+      addresses: [$ipconfigure/$masked]
+      gateway4: $linkeddoor
+EOF
+}
+
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
@@ -69,11 +87,14 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             # Configuracion de red por DHCP
             echo "Configuración de red por DHCP..."
             sudo cat <<EOF > "$network_dir"
+# Editado con autonetplan
+# Configuracion usada: $1, $2, $3
 network:
   version: 2
   renderer: networkd
   ethernets:
-    eth0:  # Ejemplo, reemplaza eth0 con tu interfaz de red real
+  # Se ha asignado una mascara generica, editela si ve necesario
+    enp0s3:
       dhcp4: yes
 EOF
         elif [[ $3 == "-s" || $3 == "--static" ]]; then
