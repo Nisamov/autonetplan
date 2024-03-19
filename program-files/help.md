@@ -17,9 +17,9 @@ Paramteros:
     $1:_
         -h      / --help            >> Mostrar ayuda del programa
         -r      / --remove          >> Desinstalar el programa
-        -x      / --execute         >> Continuar con la ejecucion del programa
         -l      / --license         >> Mostrar licencia del programa
         -b      / --backup          >> Crear copia seguridad configuracion actual red
+        -x      / --execute         >> Continuar con la ejecucion del programa
     $2:_
         -m      / --manual          >> Configuracion manual
         -a      / --automatic       >> Configuracion automatica
@@ -32,6 +32,9 @@ Paramteros:
         -ip     / --ipconfigure     >> indicar posteriormente la ip fija (solo tras haber indicado previamente '-s')
     $6:_
         -ntmk   / --netmask         >> Establecer mascara de red posteriormente
+
+
+        linkeddoor
     $7:_
         (Implementacion de mas interfaces de red usar, en futuras version irá una nueva version del programa con dicha implementacion)
 
@@ -50,3 +53,14 @@ Paramteros:
 Exit Codes:
     exit 0 > Codigo de salida por introduccion de valor erroneo
     exit 1 > Codigo de salida por salida exitosa del programa
+
+// Ejemplo estructura programa
+-x
+└── -m
+└── -a
+     └── -f
+     └── -s
+          └── -iface
+                 └── -ip
+                      └── -ntmk
+                            └── -pintf (plus interfaces) - dentro de un while que ira añadiendo interfaces

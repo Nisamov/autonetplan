@@ -1,0 +1,18 @@
+# Ingreso direccion ip deseada - almacenada en variable "ipconfigure"
+                ipconfigure="$6"
+                # Ingreso mascara subred y puerta de enlace - almacenada en variables "masked" y "linkeddoor"
+                masked="$7"
+                linkeddoor="$8"
+                # Generar el archivo YAML de configuración
+                sudo cat <<EOF > "$network_dir"
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    $iface:
+      dhcp4: no
+      addresses: [$ipconfigure/$masked]
+      gateway4: $linkeddoor
+EOF
+
+echo "Configuración estática de red generada en $network_dir"

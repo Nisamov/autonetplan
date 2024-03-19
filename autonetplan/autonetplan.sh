@@ -41,11 +41,6 @@ function aune-backup(){
     echo "[#] Copia completada."
 }
 
-function aune-man-config(){
-    # Configuracion manual netplan
-    sudo nano "$network_dir"
-}
-
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
@@ -60,18 +55,19 @@ elif [[ $1 == "-b" || $1 == "--backup" ]]; then
 elif [[ $1 == "-l" || $1 == "--license" ]]; then
     # Lectura de fichero de licencia
         sudo less "$program_files/LICENSE.txt"
+
+# Continuacion con el programa
+
 elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     # Continuacion de programa
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
-        # Llamada a configuracion manual
-        aune-man-config
+        sudo nano "$network_dir"
     elif [[ $2 == "-a" || $2 == "--automatic" ]]; then
         # Configuracion automatica
         # Continuacion de programa
         if [[ $3 == "-f" || $3 == "--fluid" ]]; then
             # Configuracion de red por DHCP
             echo "Configuración de red por DHCP..."
-            # Aquí puedes agregar la lógica para configurar la red por DHCP
             sudo cat <<EOF > "$network_dir"
 network:
   version: 2
@@ -84,25 +80,33 @@ EOF
             # Configuracion de red por ip estatica
             # Continuacion de programa
             if [[ $4 == "-iface" || $4 == "--interface" ]]; then
-                # Ingreso interfaz deseada - almacenada en variable "iface"
-                iface="$5"
-                # Ingreso direccion ip deseada - almacenada en variable "ipconfigure"
-                ipconfigure="$6"
-                # Ingreso mascara subred y puerta de enlace - almacenada en variables "masked" y "linkeddoor"
-                masked="$7"
-                linkeddoor="$8"
-                # Generar el archivo YAML de configuración
-                sudo cat <<EOF > "$network_dir"
-network:
-  version: 2
-  renderer: networkd
-  ethernets:
-    $iface:
-      dhcp4: no
-      addresses: [$ipconfigure/$masked]
-      gateway4: $linkeddoor
-EOF
-                echo "Configuración estática de red generada en $network_dir"
+                # Preguntar por interfaz de red a usar
+                read -p "Ingrese la interfaz de red a usar: " iface
+                if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
+                    # Preguntar por ip a almacenar
+                    read -p "Ingrese la direccion IP a usar: " ipconfigure
+                    if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
+                        # Preugntar por mascara de red a agregar
+                        read -p "Ingrese la mascara de red a agregar: " masked
+                        if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
+                            # Preguntar por puerta de enlace
+                            read -p "Ingrese una puerta de enlace: " linkeddoor
+                        else
+                            # Mensaje por error de valores
+                            echo -e "[\e[31m#\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
+                        fi
+                    else
+                        # Mensaje por error de valores
+                        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk', valor ingresado: '$6'."
+                        # Error por ingreso de valores erroneos
+                        exit 1
+                    fi
+                else
+                    # Mensaje por error de valores
+                    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ip', valor ingresado: '$5'."
+                    # Error por ingreso de valores erroneos
+                    exit 1
+                fi
             else
                 # Mensaje por error de valores
                 echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-iface', valor ingresado: '$4'."
