@@ -41,13 +41,27 @@ function aune-backup(){
     echo "[#] Copia completada."
 }
 
+function netplanapply(){
+    # Preguntar si aplicar cambios de red
+    read -p "Desea aplicar los cambios antes de continuar? (s/n): " netwapply
+    if [[ $netwapply == "s" ]]; then
+        sudo netplan apply
+    elif [[ $netwapply == "n" ]]; then
+        echo -e "[\e[31m#\e[0m] Se ha denegado la aplicacion de cambios."
+    else
+        # Mensaje rojo - referencia
+        echo -e "[\e[31m#\e[0m] Se ha introducido un valor no registrado."
+        # Mensaje verde - referencia
+        echo -e "[\e[32m#\e[0m] Se han aplicado los cambios por seguridad."
+        sudo netplan apply
+    fi
+}
 
 function aune-networked(){
     # Configuracion de red por autonetplan
             echo "Configuración de red por configuracion automatica..."
             sudo cat <<EOF > "$network_dir"
 # Editado con autonetplan
-# Configuracion usada: $1, $2, $3, $4, $5, $6, $7
 network:
   version: 2
   renderer: networkd
@@ -88,7 +102,6 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             echo "Configuración de red por DHCP..."
             sudo cat <<EOF > "$network_dir"
 # Editado con autonetplan
-# Configuracion usada: $1, $2, $3
 network:
   version: 2
   renderer: networkd
@@ -115,11 +128,12 @@ EOF
                         else
                             # Mensaje por error de valores
                             echo -e "[\e[31m#\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
-                            # Llamada del programa configuracion completa
-                            aune-networked
-                            # Aplicar configuracion
-                            sudo netplan apply
                         fi
+                        # Llamada del programa configuracion completa
+                        aune-networked
+                        # Tras la configuracion, preguntar si guardar cambios
+                        # Llamada a la funcion de aplicacion de cambios en fichero netplan
+                        netplanapply
                     else
                         # Mensaje por error de valores
                         echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk', valor ingresado: '$6'."
