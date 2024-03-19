@@ -66,7 +66,7 @@ network:
   version: 2
   renderer: networkd
   ethernets:
-    $masked:
+    $iface:
       dhcp4: no
       addresses: [$ipconfigure/$masked]
       gateway4: $linkeddoor
