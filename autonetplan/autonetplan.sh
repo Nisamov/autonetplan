@@ -4,7 +4,7 @@
 # Licencia Apache2.0
 
 # Declaracion variable directorio de configuracion netplan
-network_dir="/etc/netplan/02-network-manager-all.yml"
+network_dir="/etc/netplan/00-network-manager-all.yml"
 
 function aune-help(){
     echo "Soporte AutoNetplan"
@@ -71,7 +71,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             # Configuracion de red por DHCP
             echo "Configuración de red por DHCP..."
             # Aquí puedes agregar la lógica para configurar la red por DHCP
-            cat <<EOF > "$network_dir"
+            sudo cat <<EOF > "$network_dir"
 network:
   version: 2
   renderer: networkd
@@ -91,7 +91,7 @@ EOF
                 masked="$7"
                 linkeddoor="$8"
                 # Generar el archivo YAML de configuración
-                cat <<EOF > "$network_dir"
+                sudo cat <<EOF > "$network_dir"
 network:
   version: 2
   renderer: networkd
