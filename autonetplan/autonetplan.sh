@@ -7,6 +7,8 @@
 network_dir="/etc/netplan/00-installer-config.yaml"
 work_dir="/usr/local/sbin"
 program_files="/usr/local/sbin/auto-netplan/"
+INSTALL_DIR="/usr/local/sbin"
+MANUAL="/usr/share/man/man1/autonetplan"
 
 function aune-help(){
     echo "Soporte AutoNetplan"
@@ -29,7 +31,9 @@ function aune-help(){
 
 function aune-remove(){
     # Funcion desinstalar programa
-    sudo rm -f $program_files
+    sudo rm -rf $program_files
+    sudo rm -f $INSTALL_DIR/autonetplan
+    sudo rm -f $MANUAL
 }
 
 function aune-backup(){
