@@ -5,6 +5,8 @@
 
 # Declaracion variable directorio de configuracion netplan
 network_dir="/etc/netplan/00-installer-config.yaml"
+work_dir="/usr/local/sbin"
+program_files="/usr/local/sbin/auto-netplan/"
 
 function aune-help(){
     echo "Soporte AutoNetplan"
@@ -27,14 +29,14 @@ function aune-help(){
 
 function aune-remove(){
     # Funcion desinstalar programa
-    sudo rm -f /usr/local/sbin/autonetplan
+    sudo rm -f $program_files
 }
 
 function aune-backup(){
     # Funcion guardar copia de seguridad con numero progresivo para evitar reemplazar ficheros
     local backup_number=0
     local backup_file
-    echo "[#] Copiando fichero 01-network-manager-all.yaml..."
+    echo "[#] Copiando fichero $network_dir..."
     sudo cp "$network_dir" "$network_dir.bk"
     echo "[#] Copia completada."
 }
@@ -57,8 +59,7 @@ elif [[ $1 == "-b" || $1 == "--backup" ]]; then
         aune-backup
 elif [[ $1 == "-l" || $1 == "--license" ]]; then
     # Lectura de fichero de licencia
-        sudo less "$network_dir"
-        echo "Licencia mostrada con programa 'less', pulse 'q' para salir del programa."
+        sudo less "$program_files/LICENSE.txt"
 elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     # Continuacion de programa
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
