@@ -45,6 +45,67 @@ function aune-backup(){
     echo "[#] Copia completada."
 }
 
+# Funcion nueva interfaz de red
+function newiface(){
+    if [[ $4 == "-iface" || $4 == "--interface" ]]; then
+        # Preguntar por interfaz de red a usar
+        read -p "Ingrese la interfaz de red a usar: " iface
+        if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
+            # Preguntar por ip a almacenar
+            read -p "Ingrese la direccion IP a usar: " ipconfigure
+            # Preguntar si la configuración será estática o dinámica
+            read -p "¿Quiere configurar esta interfaz con una IP estática? (s/n): " static_config
+            if [[ $static_config == "s" ]]; then
+                # Preguntar por la máscara de red
+                read -p "Ingrese la mascara de red a agregar: " masked
+                # Preguntar por la puerta de enlace
+                read -p "Ingrese una puerta de enlace: " linkeddoor
+                # Agregar la configuración de IP estática al final del archivo
+                sudo tee -a "$network_dir" > /dev/null <<EOF
+  $iface:
+    dhcp4: no
+    addresses: [$ipconfigure/$masked]
+    gateway4: $linkeddoor
+EOF
+            elif [[ $static_config == "n" ]]; then
+                # Agregar la configuración de IP dinámica al final del archivo
+                sudo tee -a "$network_dir" > /dev/null <<EOF
+  $iface:
+    dhcp4: yes
+EOF
+            else
+                # Mensaje de error en caso de una respuesta no válida
+                echo "Respuesta no válida. Saliendo."
+                exit 1
+            fi
+            # Llamada del programa configuracion completa
+            # Tras la configuracion, preguntar si guardar cambios
+            # Llamada a la funcion de aplicacion de cambios en fichero netplan
+            netplanapply
+        else
+            # Mensaje por error de valores
+            echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ip', valor ingresado: '$5'."
+            # Error por ingreso de valores erroneos
+            exit 1
+        fi
+    else
+        # Mensaje por error de valores
+        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-iface', valor ingresado: '$4'."
+        # Error por ingreso de valores erroneos
+        exit 1
+    fi
+}
+
+
+# Funcion - preguntar por nueva interfaz
+function ask4newinterface(){
+    read -p "Desea agregar una nueva interfaz? (s/n): " newinterface
+    # mientras el usuario indique "si", se iran creando interfaces con el codigo indicado
+    while [ $newinterface == "s" ]; do
+        newiface
+    done
+}
+
 function netplanapply(){
     # Preguntar si aplicar cambios de red
     read -p "Desea aplicar los cambios antes de continuar? (s/n): " netwapply
@@ -117,45 +178,10 @@ EOF
         elif [[ $3 == "-s" || $3 == "--static" ]]; then
             # Configuracion de red por ip estatica
             # Continuacion de programa
-            if [[ $4 == "-iface" || $4 == "--interface" ]]; then
-                # Preguntar por interfaz de red a usar
-                read -p "Ingrese la interfaz de red a usar: " iface
-                if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
-                    # Preguntar por ip a almacenar
-                    read -p "Ingrese la direccion IP a usar: " ipconfigure
-                    if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
-                        # Preugntar por mascara de red a agregar
-                        read -p "Ingrese la mascara de red a agregar: " masked
-                        if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
-                            # Preguntar por puerta de enlace
-                            read -p "Ingrese una puerta de enlace: " linkeddoor
-                        else
-                            # Mensaje por error de valores
-                            echo -e "[\e[31m#\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
-                        fi
-                        # Llamada del programa configuracion completa
-                        aune-networked
-                        # Tras la configuracion, preguntar si guardar cambios
-                        # Llamada a la funcion de aplicacion de cambios en fichero netplan
-                        netplanapply
-                    else
-                        # Mensaje por error de valores
-                        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk', valor ingresado: '$6'."
-                        # Error por ingreso de valores erroneos
-                        exit 1
-                    fi
-                else
-                    # Mensaje por error de valores
-                    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ip', valor ingresado: '$5'."
-                    # Error por ingreso de valores erroneos
-                    exit 1
-                fi
-            else
-                # Mensaje por error de valores
-                echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-iface', valor ingresado: '$4'."
-                # Error por ingreso de valores erroneos
-                exit 1
-            fi
+            # Llamar a la funcion de creacion de interfaz, (primera interfaz por defecto)
+            newiface
+            # Llamar a la funcion por creacion de nueva interfaz (opcional)
+            ask4newinterface
         else
             # Mensaje por error de valores
             echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-f' o '-s', valor ingresado: '$3'."
