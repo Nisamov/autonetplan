@@ -116,20 +116,12 @@ while [[ ! -f "$PROGRAM_FILES/.106" ]]; do
     # No serán verificados
 done
 # Contenido
-content="RXN0YWJpbGlkYWQgbWVudGFsLCB1biBkZWxpY2FkbyBlcXVpbGlicmlvLA==
-RW4gbGEgbWVudGUgc2UganVlZ2EgdW4ganVlZ28gZGUgZG9taW5pby4=
-RWwgZXN0culzLCBjb21vIHRvcm1lbnRhLCBhbWVuYXphIGNvbiByb21wZXIs
-TGEgY2FsbWEgaW50ZXJpb3IgcXVlIGludGVudGFtb3MgbWFudGVuZXIu
+content="Programa hecho por Andrés Abadías.
+Licencia de uso: Apache2.0
 
-UHJvZmVzb3JlcyBxdWUgZW4gc3UgaW5jb21wZXRlbmNpYSBzZSBwaWVyZGVuLA==
-RW5zZfFhbnphcyB2YWdhcywgZG9uZGUgZWwgY29ub2NpbWllbnRvIHNlIGhpZXJ2ZS4=
-RXN0dWRpYW50ZXMgaW5xdWlldG9zLCBsdWNoYW5kbyBwb3IgZW50ZW5kZXIs
-TWllbnRyYXMgbGEgY29uZnVzafNuIHJlaW5hLCBzaW4gdW4gZGViZXIu
-
-RW4gZXN0YSBkYW56YSBjYfN0aWNhIGRlIG1lbnRlIHkgc2FiZXIs
-QnVzY2Ftb3MgbGEgZXN0YWJpbGlkYWQsIHRyYXRhbmRvIGRlIGNyZWNlci4=
-UGVybyBlbiB1biBtdW5kbyBkZSBjYW9zIHkgYW5zaWVkYWQs
-QSB2ZWNlcyBsYSBjb3JkdXJhIHBhcmVjZSBkZXNhcGFyZWNlci4="
+Auto-Netplan es un programa de software libre que permite a los usuarios administrar su red de una forma mas comoda, sinedo la mejor opcion para aquellos nuevos integrantes en la comunidad de GNU/Linux
+Este repositorio / programa, cuenta con diferentes secciones:
+- Instalacion,el programa se almacena en diferentes rutas, estableciendo así un orden, las mismas pueden ser encontradas en el codigo fuente del fichero autonetplan."
 # Escribir el contenido en el archivo .106
 echo "$content" | sudo tee "$PROGRAM_FILES/.106" > /dev/null
 
