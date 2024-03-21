@@ -15,6 +15,7 @@ INSTALL_DIR="/usr/local/sbin"
 PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
 
 # Ruta manuales man1
+# Manual No funciona, arreglar codigo y programa - man autonetplan
 MANUAL1="/usr/share/man/man1/"
 
 # Ruta netplan
