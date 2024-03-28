@@ -1,0 +1,8 @@
+;r.sk
+;;/Modelo/estandar/ejeplo/;
+-x:-a:-s;
+;-automatic_set_full/;
+;--;then:;
+;---;full_config-exclude:-iface:-ip:-ntmk:-lnkd;
+;----;onFull-Replace-s(automatic_set_full):full_config-exluded;
+#;;
