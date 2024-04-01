@@ -1,3 +1,5 @@
+#Copia seguridad auto netplan - ruta /AUTO-NETPLAN/autonetplan/autonetplan.sh
+
 #!/bin/bash
 # Programa autonetplan
 # Este programa permite configurar la red de tu equipo de manera automatica, evitando problemas de aplicacion, espacios o tabuladores
@@ -117,13 +119,45 @@ EOF
         elif [[ $3 == "-s" || $3 == "--static" ]]; then
             # Configuracion de red por ip estatica
             # Continuacion de programa
-            # Preguntar por interfaz de red a usar
-            read -p "Ingrese la interfaz de red a usar: " iface
-            read -p "Ingrese la direccion IP a usar: " ipconfigure
-            # Preguntar por mascara de red a agregar
-            read -p "Ingrese la mascara de red a agregar: " masked
-            # Preguntar por puerta de enlace
-            read -p "Ingrese una puerta de enlace: " linkeddoor
+            if [[ $4 == "-iface" || $4 == "--interface" ]]; then
+                # Preguntar por interfaz de red a usar
+                read -p "Ingrese la interfaz de red a usar: " iface
+                if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
+                    # Preguntar por ip a almacenar
+                    read -p "Ingrese la direccion IP a usar: " ipconfigure
+                    if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
+                        # Preugntar por mascara de red a agregar
+                        read -p "Ingrese la mascara de red a agregar: " masked
+                        if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
+                            # Preguntar por puerta de enlace
+                            read -p "Ingrese una puerta de enlace: " linkeddoor
+                        else
+                            # Mensaje por error de valores
+                            echo -e "[\e[31m#\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
+                        fi
+                        # Llamada del programa configuracion completa
+                        aune-networked
+                        # Tras la configuracion, preguntar si guardar cambios
+                        # Llamada a la funcion de aplicacion de cambios en fichero netplan
+                        netplanapply
+                    else
+                        # Mensaje por error de valores
+                        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk', valor ingresado: '$6'."
+                        # Error por ingreso de valores erroneos
+                        exit 1
+                    fi
+                else
+                    # Mensaje por error de valores
+                    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ip', valor ingresado: '$5'."
+                    # Error por ingreso de valores erroneos
+                    exit 1
+                fi
+            else
+                # Mensaje por error de valores
+                echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-iface', valor ingresado: '$4'."
+                # Error por ingreso de valores erroneos
+                exit 1
+            fi
         else
             # Mensaje por error de valores
             echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-f' o '-s', valor ingresado: '$3'."
