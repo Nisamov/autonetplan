@@ -9,7 +9,13 @@ Se recomienda seguir la [guía](https://github.com/Theritex/LinuxCommands/tree/m
 
 El programa cuenta con un instalador, este instalara el programa dentro del sistema operativo, para ejecutarlo es necesario estar dentro de la ruta o especificar la ruta del fichero para su ejecución `bash (ruta)/install.sh`
 
-Instalación
+## Estructura del Programa y Explicacion Visual
+Estos ejemplos han sido creados para la completa comprension del programa.
+
+![Estructura del Programa tras Instalacion](https://github.com/Nisamov/auto-netplan/public-media/post-structure.jpg)
+
+
+## Instalación
 Para instalar Auto Netplan, sigue estos pasos:
 
 Clona el repositorio:
