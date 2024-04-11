@@ -1,6 +1,6 @@
 # Auto Netplan - GNU/Linux Automatic Net Config
 - Programa por [Nisamov](https://github.com/Nisamov)
-Programa configuracion automatica Netplan
+Programa configuración automatica Netplan
 Este programa se centra en la automatización de configuración del programa netplan.
 
 Auto Netplan es una herramienta diseñada para automatizar la configuración de redes en sistemas GNU/Linux utilizando Netplan. Simplifica el proceso de configuración y evita problemas comunes como errores de sintaxis o la introducción de configuraciones incorrectas.
@@ -17,13 +17,13 @@ Esta es la estructura correspondiente tras la ejecucion del script `install.sh`,
 ![Estructura del Programa tras Instalacion](public-media/post-structure.jpg)
 ### Estructura durante la creacion
 Esta es la ruta de los ficheros del repositorio, con este esquema es posible trazar la ruta completa de cada fichero, asi como observar la creacion de nuevos, este esquema esta simplificado, para comprender la estructura completa del programa,s e recomienda ejecutar el siguiente comando:
-```bash
+```sh
 # Abrir el fichero en texto plano para su compresion con permisos de super usuario
 sudo nano ./install.sh
 ```
 ![Estructura del Programa durante Instalacion](public-media/full-structure-post-install.jpg)
 Mediante la imagen mostrada previamente, es posible comprender el funcionamiento y clonacion de los ficheros del repositorio, tras la ejecucion del fichero `install.sh`, este cuenta con una seccion del fichero de isntalacion que borra el repositorio clonado, limpiando asi espacio ya no necesario en el sistema, siendo esta escript el siguiente:
-```bash
+```sh
 # Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
 # Verificar si la ruta $SCRIPT_DIR existe
 if [[ -d "$SCRIPT_DIR" ]]; then
