@@ -56,42 +56,31 @@ Ejecuta el instalador:
 sudo bash install.sh
 ```
 
-El instalador copiará los archivos necesarios y configurará los permisos adecuados para que el programa funcione correctamente.
-
-Uso
-Una vez instalado, puedes llamar al programa autonetplan.sh con los siguientes parámetros:
-```
--h / --help: Muestra la ayuda del programa.
--r / --remove: Desinstala el programa.
--x / --execute: Continúa con la ejecución del programa.
-Además, puedes especificar el modo de configuración (-m para manual, -a para automático), el tipo de configuración (-f para DHCP, -s para estática), la interfaz de red, la dirección IP, la máscara de red y la puerta de enlace.
-```
-
-El programa devuelve los siguientes códigos de salida:
-
-`0`: Éxito.
-
-`1`: Error en la introducción de valores.
-Notas
-Se recomienda seguir la guía de configuración creada por Nisamov como apoyo durante la configuración manual.
-
-Después de la instalación, los archivos clonados se eliminarán recursivamente, liberando espacio en el sistema. de instalación:
-```sh
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-```
-
-## Ruta instalacion programa
-```sh
-# Ruta instalacion super usuario
-INSTALL_DIR="/usr/local/sbin"
-# Ruta ficheros programa super usuario
-PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
-```
-
+## Operaciones
+Las operaciones y posibilidades de ejecucion tras la instalacion son las siguientes:
 ```bash
-# Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
-# Funciones: Ubicar ruta actual, localizar ficheros de repositorio, borrar de forma recursiva el programa
-sudo rm -rf $SCRIPT_DIR
+# Para llamar al programa es necesario escribir el nombre del programa + parametros
+autonetplan -x -a -s -iface -ip -ntmk
+# llamada al programa + coninuacion con el programa + configuracion automatica + ip estatica + agregar interfaz + ingreso de ip fija + agregar mascara de red
 ```
-
-Tras ser ejecutado el script de instalacion, el repositorio es eliminado para liberar almacenamiento.
+Para comprender los parametros disponibles, se recomienda leer el siguiente cuadro:
+```
+    $1:_
+        -h      / --help            >> Mostrar ayuda del programa
+        -r      / --remove          >> Desinstalar el programa
+        -l      / --license         >> Mostrar licencia del programa
+        -b      / --backup          >> Crear copia seguridad configuracion actual red
+        -x      / --execute         >> Continuar con la ejecucion del programa
+    $2:_
+        -m      / --manual          >> Configuracion manual
+        -a      / --automatic       >> Configuracion automatica
+    $3:_
+        -f      / --fluid           >> Configuracion DHCP (red fluida)
+        -s      / --static          >> Configuracion fija (red estatica)
+    $4:_
+        -iface  / --interface       >> Indicar posteriormente la interfaz a usar
+    $5:_
+        -ip     / --ipconfigure     >> indicar posteriormente la ip fija (solo tras haber indicado previamente '-s')
+    $6:_
+        -ntmk   / --netmask         >> Establecer mascara de red posteriormente
+```
