@@ -12,8 +12,16 @@ El programa cuenta con un instalador, este instalara el programa dentro del sist
 ## Estructura del Programa y Explicacion Visual
 Estos ejemplos han sido creados para la completa comprension del programa.
 
-![Estructura del Programa tras Instalacion](https://github.com/Nisamov/auto-netplan/public-media/post-structure.jpg)
-
+### Estructura tras la instalacion
+Esta es la estructura correspondiente tras la ejecucion del script `install.sh`, el cual clona y crea rutas dentro del sistema con el objetivo de repartir el programa de una forma completa dentro del mismo.
+![Estructura del Programa tras Instalacion](https://github.com/Nisamov/auto-netplan/tree/main/public-media/post-structure.jpg)
+### Estructura durante la creacion
+Esta es la ruta de los ficheros del repositorio, con este esquema es posible trazar la ruta completa de cada fichero, asi como observar la creacion de nuevos, este esquema esta simplificado, para comprender la estructura completa del programa,s e recomienda ejecutar el siguiente comando:
+```bash
+# Abrir el fichero en texto plano para su compresion con permisos de super usuario
+sudo nano ./install.sh
+```
+![Estructura del Programa durante Instalacion](https://github.com/Nisamov/auto-netplan/tree/main/public-media/full-structure-post-install.jpg)
 
 ## Instalación
 Para instalar Auto Netplan, sigue estos pasos:
