@@ -22,6 +22,21 @@ Esta es la ruta de los ficheros del repositorio, con este esquema es posible tra
 sudo nano ./install.sh
 ```
 ![Estructura del Programa durante Instalacion](public-media/full-structure-post-install.jpg)
+Mediante la imagen mostrada previamente, es posible comprender el funcionamiento y clonacion de los ficheros del repositorio, tras la ejecucion del fichero `install.sh`, este cuenta con una seccion del fichero de isntalacion que borra el repositorio clonado, limpiando asi espacio ya no necesario en el sistema, siendo esta escript el siguiente:
+```bash
+# Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
+# Verificar si la ruta $SCRIPT_DIR existe
+if [[ -d "$SCRIPT_DIR" ]]; then
+    # Si la ruta existe, eliminar de forma recursiva el directorio
+    sudo rm -rf "$SCRIPT_DIR"
+    # Mensaje de eliminación exitosa
+    echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
+else
+    # Si la ruta no existe, mostrar un mensaje indicando que no existe
+    echo "[#] La ruta '$SCRIPT_DIR' no existe."
+fi
+```
+
 
 ## Instalación
 Para instalar Auto Netplan, sigue estos pasos:
