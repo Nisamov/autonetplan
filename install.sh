@@ -128,36 +128,39 @@ echo "$content" | sudo tee "$PROGRAM_FILES/.106" > /dev/null
 
 # Clonar manual a ruta manual
 # Mientras no exista el fichero manual de autonetplan
-while [[ ! -f "$MANUAL1/autonetplan" ]]; do
+
+# Comentado > problemas en el codigo
+
+#while [[ ! -f "$MANUAL1/autonetplan" ]]; do
     # Clonar el fichero sin la extension
-    sudo cp "$SCRIPT_DIR/autonetplan/autonetplan" "$MANUAL1/autonetplan"
+#    sudo cp "$SCRIPT_DIR/autonetplan/autonetplan" "$MANUAL1/autonetplan"
     # Actualizar base de datos manuales en Unix
-    sudo mandb
+#    sudo mandb
     # Verificacion de clonacion exitosa
-    if [[ -f "$MANUAL1/autonetplan" ]]; then
+#    if [[ -f "$MANUAL1/autonetplan" ]]; then
         # Mensaje de clonación exitosa de manual
-        echo "[#] Clonacion de manual exitosa 'man autonetplan' para leerla."
+#        echo "[#] Clonacion de manual exitosa 'man autonetplan' para leerla."
         # Comporbacion de mandb en sistema
         # Si mandb existe, actualizar base de datos
-        if command -v mandb &>/dev/null; then
+#        if command -v mandb &>/dev/null; then
             # Actualizar base de datos
-            sudo mandb
-        else
-            echo -e "[\e[31m#\e[0m] Advertencia: No se puede actualizar la base de datos de manuales porque 'mandb' no está instalado."
-            read -p "[#] ¿Desea instalar 'mandb'? (s/n): " mandbinstall
-                if [[ $mandbinstall == "s" ]]; then
-                    sudo apt-get install man-db
-                else
-                    echo "Se ha rechazado la instalación de 'mandb'. Los cambios pueden no estar disponibles en el comando 'man' hasta que se actualice la base de datos de manuales."
-                fi
-        fi
-    else
+#            sudo mandb
+#        else
+#            echo -e "[\e[31m#\e[0m] Advertencia: No se puede actualizar la base de datos de manuales porque 'mandb' no está instalado."
+#            read -p "[#] ¿Desea instalar 'mandb'? (s/n): " mandbinstall
+#                if [[ $mandbinstall == "s" ]]; then
+#                    sudo apt-get install man-db
+#                else
+#                    echo "Se ha rechazado la instalación de 'mandb'. Los cambios pueden no estar disponibles en el comando 'man' hasta que se actualice la base de datos de manuales."
+#                fi
+#        fi
+#    else
         # Mensaje si la clonación no se realizó correctamente
-        echo -e "[\e[31m#\e[0m] No se ha clonado el manual correctamente, intentando de nuevo..."
+#        echo -e "[\e[31m#\e[0m] No se ha clonado el manual correctamente, intentando de nuevo..."
         # Espera 1 segundo antes de intentar de nuevo
-        sleep 1
-    fi
-done
+#        sleep 1
+#    fi
+#done
 
 # Funcion pausa
 function pause(){
