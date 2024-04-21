@@ -44,12 +44,16 @@ Para instalar Auto Netplan, sigue estos pasos:
 Clona el repositorio:
 ```sh
 sudo apt install git
-git clone https://github.com/Nisamov/auto-netplan
+git clone https://github.com/Nisamov/auto-netplan /ruta/de/instalacion
+# Ejemplo de instalacion practica
+# git clone https://github.com/Nisamov/auto-netplan /home/user/Github/cloned/
 ```
 
 Navega hasta el directorio del repositorio clonado:
 ```sh
 cd auto-netplan
+# Ejemplo de acceso a la ruta de instalacion
+# cd /home/user/Github/cloned/auto-netplan
 ```
 Ejecuta el instalador:
 ```sh
@@ -60,7 +64,7 @@ sudo bash install.sh
 Las operaciones y posibilidades de ejecucion tras la instalacion son las siguientes:
 ```bash
 # Para llamar al programa es necesario escribir el nombre del programa + parametros
-autonetplan -x -a -s -iface -ip -ntmk
+autonetplan -x -a -iface -s -ip -ntmk
 # llamada al programa + coninuacion con el programa + configuracion automatica + ip estatica + agregar interfaz + ingreso de ip fija + agregar mascara de red
 ```
 Para comprender los parametros disponibles, se recomienda leer el siguiente cuadro:
@@ -75,10 +79,10 @@ Para comprender los parametros disponibles, se recomienda leer el siguiente cuad
         -m      / --manual          >> Configuracion manual
         -a      / --automatic       >> Configuracion automatica
     $3:_
+        -iface  / --interface       >> Indicar posteriormente la interfaz a usar
+    $4:_
         -f      / --fluid           >> Configuracion DHCP (red fluida)
         -s      / --static          >> Configuracion fija (red estatica)
-    $4:_
-        -iface  / --interface       >> Indicar posteriormente la interfaz a usar
     $5:_
         -ip     / --ipconfigure     >> indicar posteriormente la ip fija (solo tras haber indicado previamente '-s')
     $6:_
