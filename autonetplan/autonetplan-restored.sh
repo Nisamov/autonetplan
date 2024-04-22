@@ -9,6 +9,8 @@ program_files="/usr/local/sbin/auto-netplan/"
 INSTALL_DIR="/usr/local/sbin"
 MANUAL="/usr/share/man/man1/autonetplan"
 
+# Proxima actualizacion -> este "help" ubicar en ruta /usr/local/sbin/auto-netplan/autonetplan.help
+# Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
     echo "Soporte AutoNetplan"
     echo ""
