@@ -19,28 +19,27 @@ EOF
 }
 
 function comment-network(){
-file_route="/usr/local/sbin/autonetplan"
-    # Esta funcion solo se ejecutara si se ha establcido una ip dinamica
-    # la funcion sirve para comentar:
-        # addresses: [$ipconfigure/$masked]
-        # gateway4: $linkeddoor
-    # Esto permite posibles problemas de conexion por parte de netplan
+    file_route="/usr/local/sbin/autonetplan"
+    # Esta función solo se ejecutará si se ha establecido una IP dinámica.
+    # La función sirve para comentar:
+    #   - addresses: [$ipconfigure/$masked]
+    #   - gateway4: $linkeddoor
+    # Esto permite posibles problemas de conexión por parte de netplan.
 
-    # Lee el fichero de configuracion hasta encontrar las lineas y les agrega un "#" delante de las mismas
-    # ruta del fichero autonetplan /usr/local/sbin/autonetplan -> fichero .sh sin extension
     # Leer el archivo línea por línea
     while IFS= read -r linea; do
-        # Verificar si la línea contiene "addresses:"
-        if [[ $linea == *"addresses:"* ]]; then
-            # Si lo tiene, agregar un "#" delante de la liena entera
-            echo "# $linea"
-        fi
-        if [[ $linea == *"gateway4:"* ]]; then
-            # Si lo tiene, agregar un "#" delante de la liena entera
-            echo "# $linea"
-        fi
+        # Imprimir todas las líneas del archivo
+        echo "$linea"
+
+        # Verificar si la línea contiene "addresses:" o "gateway4:"
+    if [[ $linea == *"addresses:"* || $linea == *"gateway4:"* ]]; then
+        # Si lo tiene, agregar un "#" delante de la línea entera
+        echo "# $linea"
+    fi
+
     done < "$file_route"
 }
+
 
 
 if [[ $1 == "-h" || $1 == "--help" ]]; then
