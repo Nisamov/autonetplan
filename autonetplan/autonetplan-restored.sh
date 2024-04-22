@@ -30,13 +30,11 @@ function comment-network(){
     while IFS= read -r linea; do
         # Imprimir todas las líneas del archivo
         echo "$linea"
-
         # Verificar si la línea contiene "addresses:" o "gateway4:"
     if [[ $linea == *"addresses:"* || $linea == *"gateway4:"* ]]; then
         # Si lo tiene, agregar un "#" delante de la línea entera
         echo "# $linea"
     fi
-
     done < "$file_route"
 }
 
