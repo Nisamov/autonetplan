@@ -97,7 +97,9 @@ function comment-network(){
 }
 
 # Si es de color rojo el aviso = importante revisar
+#   [\e[31m#\e[0m] >> # rojo
 # Si es de color amarillo el aviso = sugerencia o no obligatorio
+#   [\e[33m!!\e[0m] >> !! amarillo
 # Si es de color verde el aviso = todo realizado correctamente
 
 if [[ $1 == "-h" || $1 == "--help" ]]; then
