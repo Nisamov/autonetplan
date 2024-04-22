@@ -2,6 +2,64 @@
 # Este codigo es la correcion de autonetplan.sh debido a fallos catastroficos en el programa
 # Por Andres Abadias
 
+# Declaracion variable directorio de configuracion netplan
+network_dir="/etc/netplan/00-installer-config.yaml"
+work_dir="/usr/local/sbin"
+program_files="/usr/local/sbin/auto-netplan/"
+INSTALL_DIR="/usr/local/sbin"
+MANUAL="/usr/share/man/man1/autonetplan"
+
+function aune-help(){
+    echo "Soporte AutoNetplan"
+    echo ""
+    echo "Principales valores '$.1':"
+    echo "  -h | --help :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa"
+    echo "  -r | --remove :: Desinstalar programa"
+    echo "  -l | --license :: Mostrar licencia del programa"
+    echo "  -b | --backup :: Creacion de copia de seguridad de configuracion de red"
+    echo "  -x | --execute :: Continuacion con el programa"
+    echo ""
+    echo "Valores segunda categoría '$.2'"
+    echo "  -m | --manual :: Configuracion de red manual"
+    echo "  -a | --automatic :: Configuracion de red automatica"
+    echo ""
+    echo "Valores tercera categoria '$.3'"
+    echo "  -f | --fluid :: Configuracion DHCP (red fluida)"
+    echo "  -s | --static :: Configuracion fija (red estatica)"
+}
+
+function aune-remove(){
+    # Funcion desinstalar programa
+    sudo rm -rf $program_files
+    sudo rm -f $INSTALL_DIR/autonetplan
+    sudo rm -f $MANUAL
+}
+
+function aune-backup(){
+    # Funcion guardar copia de seguridad con numero progresivo para evitar reemplazar ficheros
+    local backup_number=0
+    local backup_file
+    echo "[#] Copiando fichero $network_dir..."
+    sudo cp "$network_dir" "$network_dir.bk"
+    echo "[#] Copia completada."
+}
+
+function netplanapply(){
+    # Preguntar si aplicar cambios de red
+    read -p "Desea aplicar los cambios antes de continuar? (s/n): " netwapply
+    if [[ $netwapply == "s" ]]; then
+        sudo netplan apply
+    elif [[ $netwapply == "n" ]]; then
+        echo -e "[\e[31m#\e[0m] Se ha denegado la aplicacion de cambios."
+    else
+        # Mensaje rojo - referencia
+        echo -e "[\e[31m#\e[0m] Se ha introducido un valor no registrado."
+        # Mensaje verde - referencia
+        echo -e "[\e[32m#\e[0m] Se han aplicado los cambios por seguridad."
+        sudo netplan apply
+    fi
+}
+
 function aune-networked(){
     # Configuracion de red por autonetplan
             echo "Configuración de red por configuracion automatica..."
@@ -68,11 +126,11 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             if [[ $3 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
                 echo "Configuración de red seleccionada con conexion por DHCP"
-                ipfigured="no"
+                ipfigured="yes"
             elif [[ $3 == "-s" || $3 == "--static" ]]; then
                 # Configuracion de red por ip estatica
                 echo "Configuración de red seleccionada con conexion por ip estatica"
-                ipfigured="false"
+                ipfigured="no"
                 # Continuacion de programa
                     if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
                         # Preguntar por ip a almacenar
@@ -89,6 +147,21 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                             fi
                             # Llamada del programa configuracion completa
                             aune-networked
+
+                            # Si "ipfigured" = yes = configuracion por dhcp activada, segun eso se aplicara o no la funcion "comment-network"
+                            if [[ $ipfigured == "yes" ]]; then
+                            # Configuracion por DHCP activada
+                                # Llamada a la funcion "comment-network"
+                                comment-network
+
+                            elif [[ $ipfigured == "no" ]]; then
+                            # Configuracion por DHCP no activada, red estatica - color amarillo
+                                echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
+                            else
+                            # No se ha aplicado configuracion, aviso importante
+                                echo -e "[\e[31m#\e[0m] [\e[33m!!\e[0m] - Configuracion de red no aplicada, importante revisar"
+                            fi
+
                             # Tras la configuracion, preguntar si guardar cambios
                             # Llamada a la funcion de aplicacion de cambios en fichero netplan
                             netplanapply
