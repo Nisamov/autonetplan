@@ -138,7 +138,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         if [[ $3 == "-iface" || $3 == "--interface" ]]; then
                 # Preguntar por interfaz de red a usar
                 read -p "Ingrese la interfaz de red a usar: " iface
-        # Continuacion de programa
+                # Continuacion de programa
             if [[ $3 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
                 echo "Configuración de red seleccionada con conexion por DHCP"
@@ -148,54 +148,48 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 echo "Configuración de red seleccionada con conexion por ip estatica"
                 ipfigured="no"
                 # Continuacion de programa
-                    if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
-                        # Preguntar por ip a almacenar
-                        read -p "Ingrese la direccion IP a usar: " ipconfigure
-                        if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
-                            # Preugntar por mascara de red a agregar
-                            read -p "Ingrese la mascara de red a agregar: " masked
-                            if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
-                                # Preguntar por puerta de enlace
-                                read -p "Ingrese una puerta de enlace: " linkeddoor
-                            else
-                                # Mensaje por error de valores
-                                echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
-                            fi
-                            # Llamada del programa configuracion completa
-                            aune-networked
-
-                            # Si "ipfigured" = yes = configuracion por dhcp activada, segun eso se aplicara o no la funcion "comment-network"
-                            if [[ $ipfigured == "yes" ]]; then
-                            # Configuracion por DHCP activada
-                                # Llamada a la funcion "comment-network"
-                                comment-network
-
-                            elif [[ $ipfigured == "no" ]]; then
-                            # Configuracion por DHCP no activada, red estatica - color amarillo
-                                echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
-                            else
-                            # No se ha aplicado configuracion, aviso importante
-                                echo -e "[\e[31m#\e[0m] [\e[33m!!\e[0m] - Configuracion de red no aplicada, importante revisar"
-                            fi
-
-                            # Tras la configuracion, preguntar si guardar cambios
-                            # Llamada a la funcion de aplicacion de cambios en fichero netplan
-                            netplanapply
+                if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
+                    # Preguntar por ip a almacenar
+                    read -p "Ingrese la direccion IP a usar: " ipconfigure
+                    if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
+                        # Preugntar por mascara de red a agregar
+                        read -p "Ingrese la mascara de red a agregar: " masked
+                        if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
+                            # Preguntar por puerta de enlace
+                            read -p "Ingrese una puerta de enlace: " linkeddoor
                         else
                             # Mensaje por error de valores
-                            echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk'."
-                            # Error por ingreso de valores erroneos
-                            exit 1
+                            echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
                         fi
+                        # Llamada del programa configuracion completa
+                        aune-networked
+
+                        # Si "ipfigured" = yes = configuracion por dhcp activada, segun eso se aplicara o no la funcion "comment-network"
+                        if [[ $ipfigured == "yes" ]]; then
+                        # Configuracion por DHCP activada
+                            # Llamada a la funcion "comment-network"
+                            comment-network
+
+                        elif [[ $ipfigured == "no" ]]; then
+                        # Configuracion por DHCP no activada, red estatica - color amarillo
+                            echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
+                        else
+                        # No se ha aplicado configuracion, aviso importante
+                            echo -e "[\e[31m#\e[0m] [\e[33m!!\e[0m] - Configuracion de red no aplicada, importante revisar"
+                        fi
+
+                        # Tras la configuracion, preguntar si guardar cambios
+                        # Llamada a la funcion de aplicacion de cambios en fichero netplan
+                        netplanapply
                     else
                         # Mensaje por error de valores
-                        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ip'."
+                        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk'."
                         # Error por ingreso de valores erroneos
                         exit 1
                     fi
                 else
                     # Mensaje por error de valores
-                    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-iface'."
+                    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ip'."
                     # Error por ingreso de valores erroneos
                     exit 1
                 fi
