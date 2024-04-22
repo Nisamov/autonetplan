@@ -116,11 +116,7 @@ while [[ ! -f "$PROGRAM_FILES/.106" ]]; do
     # No serán verificados
 done
 # Contenido
-
-# Confirmacion de idioma en fichero .106
-
-read -p "[#] Selecciona el idioma para el fichero '.106' (esp/eng): " laguagefile
-# Escribir el contenido en el archivo .106
+# Contenido en proceso de edicion
 
 
 # Clonar manual a ruta manual
