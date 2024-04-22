@@ -96,7 +96,9 @@ function comment-network(){
     done < "$file_route"
 }
 
-
+# Si es de color rojo el aviso = importante revisar
+# Si es de color amarillo el aviso = sugerencia o no obligatorio
+# Si es de color verde el aviso = todo realizado correctamente
 
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
@@ -143,7 +145,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                                 read -p "Ingrese una puerta de enlace: " linkeddoor
                             else
                                 # Mensaje por error de valores
-                                echo -e "[\e[31m#\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
+                                echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
                             fi
                             # Llamada del programa configuracion completa
                             aune-networked
