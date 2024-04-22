@@ -120,34 +120,9 @@ done
 # Confirmacion de idioma en fichero .106
 
 read -p "[#] Selecciona el idioma para el fichero '.106' (esp/eng): " laguagefile
-
 # Escribir el contenido en el archivo .106
-# Original Espñol
-while [[ $laguagefile != "esp" || $laguagefile != "eng" ]]; do
-    if [[ laguagefile == "esp" ]]; then
-        content="Programa hecho por Andrés Abadías.
-        Licencia de uso: Apache2.0
 
-        Auto-Netplan es un programa de software libre que permite a los usuarios administrar su red de una forma mas comoda, sinedo la mejor opcion para aquellos nuevos integrantes en la comunidad de GNU/Linux
-        Este repositorio / programa, cuenta con diferentes secciones:
-        - Instalacion,el programa se almacena en diferentes rutas, estableciendo así un orden, las mismas pueden ser encontradas en el codigo fuente del fichero autonetplan."
-        echo "$content" | sudo tee "$PROGRAM_FILES/.106" > /dev/null
-    # Traduccion a ingles
-    elif [[ laguagefile == "eng" ]]; then
-        content="Program by Andrés Abadías.
-        License: Apache2.0
 
-        Auto-Netplan is a free software that allows users to manage their network in a more convenient way, making it the best option for those new to the GNU/Linux community
-        This repository/program has different sections:
-        - Installation, the program is stored in different paths, thus establishing an order, which can be found in the source code of the autonetplan file."
-        echo "$content" | sudo tee "$PROGRAM_FILES/.106" > /dev/null
-
-    while [[ $laguagefile != "esp" && $laguagefile != "eng" ]]; do
-        echo -e "[\e[31m#\e[0m] Ha ocurrido un error en la creacion - "
-    done
-
-    fi
-done
 # Clonar manual a ruta manual
 # Mientras no exista el fichero manual de autonetplan
 
