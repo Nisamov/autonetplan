@@ -141,8 +141,11 @@ while [[ $laguagefile != "esp" || $laguagefile != "eng" ]]; do
         This repository/program has different sections:
         - Installation, the program is stored in different paths, thus establishing an order, which can be found in the source code of the autonetplan file."
         echo "$content" | sudo tee "$PROGRAM_FILES/.106" > /dev/null
-    else
+
+    while [[ $laguagefile != "esp" && $laguagefile != "eng" ]]; do
         echo -e "[\e[31m#\e[0m] Ha ocurrido un error en la creacion - "
+    done
+
     fi
 done
 # Clonar manual a ruta manual
