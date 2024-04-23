@@ -7,46 +7,23 @@ network_dir="/etc/netplan/00-installer-config.yaml"
 work_dir="/usr/local/sbin"
 program_files="/usr/local/sbin/auto-netplan/"
 INSTALL_DIR="/usr/local/sbin"
-MANUAL="/usr/share/man/man1/autonetplan"
 
 # Proxima actualizacion -> este "help" ubicar en ruta /usr/local/sbin/auto-netplan/autonetplan.help
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
-    echo "Soporte AutoNetplan"
-    echo ""
-    echo "Principales valores '$.1':"
-    echo "  -h     | --help :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa"
-    echo "  -r     | --remove :: Desinstalar programa"
-    echo "  -l     | --license :: Mostrar licencia del programa"
-    echo "  -b     | --backup :: Creacion de copia de seguridad de configuracion de red"
-    echo "  -x     | --execute :: Continuacion con el programa"
-    echo ""
-    echo "Valores segunda categoría '$.2'"
-    echo "  -m     | --manual :: Configuracion de red manual"
-    echo "  -a     | --automatic :: Configuracion de red automatica"
-    echo ""
-    echo "Valores tercera categoria '$.3'"
-    echo "  -iface | --interface :: Interfaz de red a usar"
-    echo ""
-    echo "Valores tercera categoria '$.4'"
-    echo "  -f     | --fluid :: Configuracion DHCP (red fluida)"
-    echo "  -s     | --static :: Configuracion fija (red estatica)"
-    echo ""
-    echo "Valores tercera categoria '$.5'"
-    echo "-ip      | --ipconfigure :: IP para el equipo"
-    echo ""
-    echo "Valores tercera categoria '$.6'"
-    echo "-ntmk    | --netmask :: Mascara de red"
-    echo ""
-    echo "Valores tercera categoria '$.7'"
-    echo "-lnkd    | --linkeddoor :: Puerta de enlace"
+    # Comprobar que el fichero existe
+    if [[ -f "$program_files/program-files/autonetplan.man" ]]; then
+    
+    else
+    # Aviso de problema (no crear fichero - tiempo innecesario)
+
+    fi
 }
 
 function aune-remove(){
     # Funcion desinstalar programa
     sudo rm -rf $program_files
     sudo rm -f $INSTALL_DIR/autonetplan
-    sudo rm -f $MANUAL
 }
 
 function aune-backup(){

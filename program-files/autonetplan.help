@@ -1,0 +1,31 @@
+Soporte AutoNetplan
+
+Principales valores '$.1':
+    -h     | --help        :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa
+    -r     | --remove      :: Desinstalar programa
+    -l     | --license     :: Mostrar licencia del programa
+    -b     | --backup      :: Creacion de copia de seguridad de configuracion de red
+    -x     | --execute     :: Continuacion con el programa
+    -m     | --manual      :: Mostrar instrucciones y configuracion avanzada
+
+Valores segunda categoría '$.2'
+    -m     | --manual      :: Configuracion de red manual
+    -a     | --automatic   :: Configuracion de red automatica
+
+Valores tercera categoria '$.3'
+    -iface | --interface   :: Interfaz de red a usar
+
+Valores tercera categoria '$.4'
+    -f     | --fluid       :: Configuracion DHCP (red fluida)
+    -s     | --static      :: Configuracion fija (red estatica)
+
+Valores tercera categoria '$.5'
+    -ip    | --ipconfigure :: IP para el equipo
+
+Valores tercera categoria '$.6'
+    -ntmk  | --netmask     :: Mascara de red
+
+Valores tercera categoria '$.7'
+    -lnkd  | --linkeddoor  :: Puerta de enlace
+
+Para mas infromacion use: autonetplan -m

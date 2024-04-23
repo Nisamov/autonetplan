@@ -14,10 +14,6 @@ INSTALL_DIR="/usr/local/sbin"
 # Ruta ficheros programa super usuario
 PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
 
-# Ruta manuales man1
-# Manual No funciona, arreglar codigo y programa - man autonetplan
-MANUAL1="/usr/share/man/man1/"
-
 # Ruta netplan
 NETWORK="/etc/netplan/"
 
@@ -118,43 +114,6 @@ done
 # Contenido
 # Contenido en proceso de edicion
 
-
-# Clonar manual a ruta manual
-# Mientras no exista el fichero manual de autonetplan
-
-# Comentado > problemas en el codigo
-
-#while [[ ! -f "$MANUAL1/autonetplan" ]]; do
-    # Clonar el fichero sin la extension
-#    sudo cp "$SCRIPT_DIR/autonetplan/autonetplan" "$MANUAL1/autonetplan"
-    # Actualizar base de datos manuales en Unix
-#    sudo mandb
-    # Verificacion de clonacion exitosa
-#    if [[ -f "$MANUAL1/autonetplan" ]]; then
-        # Mensaje de clonación exitosa de manual
-#        echo "[#] Clonacion de manual exitosa 'man autonetplan' para leerla."
-        # Comporbacion de mandb en sistema
-        # Si mandb existe, actualizar base de datos
-#        if command -v mandb &>/dev/null; then
-            # Actualizar base de datos
-#            sudo mandb
-#        else
-#            echo -e "[\e[31m#\e[0m] Advertencia: No se puede actualizar la base de datos de manuales porque 'mandb' no está instalado."
-#            read -p "[#] ¿Desea instalar 'mandb'? (s/n): " mandbinstall
-#                if [[ $mandbinstall == "s" ]]; then
-#                    sudo apt-get install man-db
-#                else
-#                    echo "Se ha rechazado la instalación de 'mandb'. Los cambios pueden no estar disponibles en el comando 'man' hasta que se actualice la base de datos de manuales."
-#                fi
-#        fi
-#    else
-        # Mensaje si la clonación no se realizó correctamente
-#        echo -e "[\e[31m#\e[0m] No se ha clonado el manual correctamente, intentando de nuevo..."
-        # Espera 1 segundo antes de intentar de nuevo
-#        sleep 1
-#    fi
-#done
-
 # Funcion pausa
 function pause(){
    read -p "$*"
@@ -184,3 +143,11 @@ fi
 echo "Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '$PROGRAM_FILES'"
 echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
 echo "[#] Mostrar la lista de ayuda del programa autonetplan, ejecute el comando: 'autonetplan -h'"
+sleep 3
+
+# Limpiar consola
+read -p "¿Desea limpiar la consola? (s/n): " clrcnsl
+if [[ $clrcnsl != "s" || $clrcnsl != "S" ]]; then
+    # Limpia consola
+    clear
+fi
