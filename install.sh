@@ -161,4 +161,6 @@ read -p "¿Desea limpiar la consola? (s/n): " clrcnsl
 if [[ $clrcnsl != "s" || $clrcnsl != "S" ]]; then
     # Limpia consola
     clear
+else
+    # No limpiar consola
 fi
