@@ -20,7 +20,7 @@ function aune-help(){
     fi
 }
 
-function aune-man(){
+function aune-manual(){
     # Comprobar que el fichero existe
     if [[ -f "$program_files/program-files/autonetplan.man" ]]; then
         cat $program_files/program-files/autonetplan.man
@@ -29,7 +29,6 @@ function aune-man(){
         echo -e "[\e[31m#\e[0m] Error, manual no encontrado"
     fi
 }
-
 
 
 function aune-remove(){
@@ -108,6 +107,9 @@ if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
         aune-help
+elif [[ $1 == "-m" || $1 == "--manual" ]]; then
+    # Llamada de funcion aune-manual
+        aune-manual
 elif [[ $1 == "-r" || $1 == "--remove" ]]; then
     # Llamada de funcion aune-remove
         aune-remove
