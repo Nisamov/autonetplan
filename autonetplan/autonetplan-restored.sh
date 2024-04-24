@@ -68,7 +68,6 @@ EOF
 }
 
 function comment-network(){
-    file_route="/usr/local/sbin/autonetplan"
     # Esta función solo se ejecutará si se ha establecido una IP dinámica.
     # La función sirve para comentar:
     #   - addresses: [$ipconfigure/$masked]
@@ -84,7 +83,7 @@ function comment-network(){
         # Si lo tiene, agregar un "#" delante de la línea entera
         echo "# $linea"
     fi
-    done < "$file_route"
+    done < "$network_dir"
 }
 
 # Si es de color rojo el aviso = importante revisar
@@ -141,6 +140,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                             echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
                         fi
                         # Llamada del programa configuracion completa
+                        # Comentar gateway y addresses
                         aune-networked
 
                         # Si "ipfigured" = yes = configuracion por dhcp activada, segun eso se aplicara o no la funcion "comment-network"
