@@ -33,6 +33,8 @@ while [[ ! -d $PROGRAM_FILES ]]; do
     fi
 done
 
+
+# Problemas copia de script - revisar
 # Copiar el script principal al directorio de instalación renombrando el programa como autonetplan
 while [[ ! -f "$INSTALL_DIR/autonetplan" ]]; do
     # Copiar el archivo
@@ -52,7 +54,6 @@ while [[ ! -f "$INSTALL_DIR/autonetplan" ]]; do
         sleep 1
     fi
 done
-
 
 # Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
 while [[ ! -d "$PROGRAM_FILES" ]]; do
