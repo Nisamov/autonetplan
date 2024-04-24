@@ -65,7 +65,7 @@ while [[ ! -d "$PROGRAM_FILES" ]]; do
         echo "[#] Se ha copiado exitosamente $SCRIPT_DIR/program-files/ en $PROGRAM_FILES"
         # Mostrar contenido clonado
             read -p "¿Desea ver el contenido actual de la ruta '$PROGRAM_FILES?' (s/n): " rute_show
-            if [[ $rute_show == "s" ]]; do
+            if [[ $rute_show == "s" ]]; then
                 # Mostrar contenido
                 echo "[#] Mostrando contenido de ruta..."
                 ls -al "$PROGRAM_FILES"
