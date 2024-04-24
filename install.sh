@@ -144,8 +144,8 @@ fi
 echo "Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '$PROGRAM_FILES'"
 echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
 echo "[#] Mostrar la lista de ayuda del programa autonetplan, ejecute el comando: 'autonetplan -h'"
-sleep 3
 
+echo ""
 # Limpiar consola
 read -p "¿Desea limpiar la consola? (s/n): " clrcnsl
 if [[ $clrcnsl != "s" || $clrcnsl != "S" ]]; then

@@ -13,10 +13,10 @@ INSTALL_DIR="/usr/local/sbin"
 function aune-help(){
     # Comprobar que el fichero existe
     if [[ -f "$program_files/program-files/autonetplan.man" ]]; then
-    
+        cat $program_files/program-files/autonetplan.man
     else
     # Aviso de problema (no crear fichero - tiempo innecesario)
-
+        echo -e "[\e[31m#\e[0m] Error, fichero no encontrado"
     fi
 }
 
