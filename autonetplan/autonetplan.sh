@@ -117,11 +117,11 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # Preguntar por interfaz de red a usar
                 read -p "Ingrese la interfaz de red a usar: " iface
                 # Continuacion de programa
-            if [[ $3 == "-f" || $3 == "--fluid" ]]; then
+            if [[ $4 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
                 echo "Configuración de red seleccionada con conexion por DHCP"
                 ipfigured="yes"
-            elif [[ $3 == "-s" || $3 == "--static" ]]; then
+            elif [[ $4 == "-s" || $3 == "--static" ]]; then
                 # Configuracion de red por ip estatica
                 echo "Configuración de red seleccionada con conexion por ip estatica"
                 ipfigured="no"
