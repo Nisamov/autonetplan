@@ -12,13 +12,25 @@ INSTALL_DIR="/usr/local/sbin"
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
     # Comprobar que el fichero existe
+    if [[ -f "$program_files/program-files/autonetplan.help" ]]; then
+        cat $program_files/program-files/autonetplan.help
+    else
+    # Aviso de problema (no crear fichero - tiempo innecesario)
+        echo -e "[\e[31m#\e[0m] Error, fichero de soporte no encontrado"
+    fi
+}
+
+function aune-man(){
+    # Comprobar que el fichero existe
     if [[ -f "$program_files/program-files/autonetplan.man" ]]; then
         cat $program_files/program-files/autonetplan.man
     else
     # Aviso de problema (no crear fichero - tiempo innecesario)
-        echo -e "[\e[31m#\e[0m] Error, fichero no encontrado"
+        echo -e "[\e[31m#\e[0m] Error, manual no encontrado"
     fi
 }
+
+
 
 function aune-remove(){
     # Funcion desinstalar programa
