@@ -139,16 +139,21 @@ clear
 sudo less LICENSE.txt
 # Limpiar consola
 clear
-# Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
+# Tras la instalacion, el instalador, preguntara si borrar el repositorio clonado para liberar espacio
+read -p "¿Desea borrar el repositorio clonado? (s/n): " deleteRepos
+if [[ $deleteRepos == "s" || $deleteRepos == "S" ]]; then
 # Verificar si la ruta $SCRIPT_DIR existe
-if [[ -d "$SCRIPT_DIR" ]]; then
-    # Si la ruta existe, eliminar de forma recursiva el directorio
-    sudo rm -rf "$SCRIPT_DIR"
-    # Mensaje de eliminación exitosa
-    echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
+    if [[ -d "$SCRIPT_DIR" ]]; then
+        # Si la ruta existe, eliminar de forma recursiva el directorio
+        sudo rm -rf "$SCRIPT_DIR"
+        # Mensaje de eliminación exitosa
+        echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
+    else
+        # Si la ruta no existe, mostrar un mensaje indicando que no existe
+        echo "[#] La ruta '$SCRIPT_DIR' no existe."
+    fi
 else
-    # Si la ruta no existe, mostrar un mensaje indicando que no existe
-    echo "[#] La ruta '$SCRIPT_DIR' no existe."
+    echo "El repositorio no se eliminara del sistema"
 fi
 
 echo "Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '$PROGRAM_FILES'"
