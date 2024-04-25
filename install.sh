@@ -56,20 +56,19 @@ while [[ ! -f "$INSTALL_DIR/autonetplan" ]]; do
 done
 
 # Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
-while [[ ! -d "$PROGRAM_FILES" ]]; do
-    # Clonacion de contenido /program-files/ dentro de ruta $PROGRAM_FILES de forma recursiva
-    sudo cp "$SCRIPT_DIR/program-files/*" "$PROGRAM_FILES"
-    # Verificar si la copia se realizó correctamente
-    if [[ -d "$PROGRAM_FILES" ]]; then
-        # Mensaje de copia exitosa
-        echo "[#] Se ha copiado exitosamente $SCRIPT_DIR/program-files/* en $PROGRAM_FILES"
-    else
-        # Mensaje si la copia no se realizó correctamente
-        echo -e "[\e[31m#\e[0m] No se ha copiado el contenido de $SCRIPT_DIR/program-files/ correctamente, intentando de nuevo..."
-        # Espera 1 segundo antes de intentar de nuevo
-        sleep 1
-    fi
-done
+
+# Clonacion de contenido /program-files/ dentro de ruta $PROGRAM_FILES de forma recursiva
+sudo cp "$SCRIPT_DIR/program-files/*" "$PROGRAM_FILES"
+# Verificar si la copia se realizó correctamente
+if [[ -d "$PROGRAM_FILES/program-files/" ]]; then
+    # Mensaje de copia exitosa
+    echo "[#] Se ha copiado exitosamente $SCRIPT_DIR/program-files/* en $PROGRAM_FILES"
+else
+    # Mensaje si la copia no se realizó correctamente
+    echo -e "[\e[31m#\e[0m] No se ha copiado el contenido de $SCRIPT_DIR/program-files/ correctamente, intentando de nuevo..."
+    # Espera 1 segundo antes de intentar de nuevo
+    sleep 1
+fi
 
 # Clonar el fichero de licencia dentro del resto de los ficheros
 while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
