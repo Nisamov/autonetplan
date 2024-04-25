@@ -63,16 +63,6 @@ while [[ ! -d "$PROGRAM_FILES" ]]; do
     if [[ -d "$PROGRAM_FILES" ]]; then
         # Mensaje de copia exitosa
         echo "[#] Se ha copiado exitosamente $SCRIPT_DIR/program-files/ en $PROGRAM_FILES"
-        # Mostrar contenido clonado
-            read -p "¿Desea ver el contenido actual de la ruta '$PROGRAM_FILES?' (s/n): " rute_show
-            if [[ $rute_show == "s" ]]; then
-                # Mostrar contenido
-                echo "[#] Mostrando contenido de ruta..."
-                ls -al "$PROGRAM_FILES"
-            else
-                # Se ha cancelado la operacion
-                echo -e "[\e[31m#\e[0m] Se ha cancelado la operacion"
-            fi
     else
         # Mensaje si la copia no se realizó correctamente
         echo -e "[\e[31m#\e[0m] No se ha copiado el contenido de $SCRIPT_DIR/program-files/ correctamente, intentando de nuevo..."
