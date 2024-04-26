@@ -1,2 +1,79 @@
-Manual AutoNetplan
+[Manual AutoNetplan]
 
+[Introduccion al programa]:
+AutoNetplan es un programa que permite configurar de manera rapida y segura la red del equipo por medio de netplan.
+Este programa cuenta con varios procesos:
+    Proceso1: Instalacion
+        Durante la instalacion, este programa clona ficheros dentro del equipo, bien sea creando rutas o usando rutas ya existentes.
+        Esta hecho para ser usado mediante ingreso directo de los valores, para posteriormente solicitar el valor a trabajar.
+    Proceso2: Limpieza de clonacion
+        Para limpiar el equipo, el programa trae consigo un pequeño script que elimina el contenido clonado del repositorio publico, es posible cancelar este proceso.
+    Proceso3: Utilizacion de programa
+        Para llamar al program es necesario usar el comando "autonetplan" seguido de varios valores, siendo algunos de estos innecesarios a la hora de su ejecicion.
+
+Tras usar el programa, es posible que pueda dar problemas siempre y cuando no se haya leido con antelacion la documentacion ofrecida.
+
+[Valores del programa]:
+Valores $1:
+    -h     | --help        :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa
+    -r     | --remove      :: Desinstalar programa
+    -l     | --license     :: Mostrar licencia del programa
+    -b     | --backup      :: Creacion de copia de seguridad de configuracion de red
+    -x     | --execute     :: Continuacion con el programa
+    -m     | --manual      :: Mostrar instrucciones y configuracion avanzada
+
+Valores $2:
+    -m     | --manual      :: Configuracion de red manual
+    -a     | --automatic   :: Configuracion de red automatica
+
+Valores $3:
+    -iface | --interface   :: Interfaz de red a usar
+
+Valores $4:
+    -f     | --fluid       :: Configuracion DHCP (red fluida)
+    -s     | --static      :: Configuracion fija (red estatica)
+
+Valores $5:
+    -ip    | --ipconfigure :: IP para el equipo
+
+Valores $6:
+    -ntmk  | --netmask     :: Mascara de red
+
+Valores $7:
+    -lnkd  | --linkeddoor  :: Puerta de enlace
+
+[Ejemplo de uso en valores]:
+    Ejemplo1 - Ejecucion de programa y configuracion de red manual:
+        Opcion1:
+            autonetplan -x -m
+        opcion2:
+            autonetplan --execute --manual
+    Ejemplo2 - Ejecucion de programa y llamada a funcion de soporte:
+        Opcion1:    
+            autonetplan -h
+        Opcion2:
+            autonetplan --help
+    Ejemplo3 - Ejecucion de programa y muestra de licencia:
+        Opcion1:
+            autonetplan -l
+        Opcion2:
+            autonetplan --license
+    Ejemplo4 - Ejecucion de programa, configuracion automatica, ingreso de interfaz y red dinamica:
+        Opcion1:
+            autonetplan -x -a -iface -f
+        Opcion2:
+            autonetplan --execute --automatica --interface --fluid
+    Ejemplo5 - Ejecucion de programa, configuracion automatica, ingreso de interfaz, red estatica, ingreso de ip, ingreso de mascara de red:
+        Opcion1:
+            autonetplan -x -a -iface -s -ip -ntmk
+        Opcion2:
+            autonetplan --execute --automatic --interface --static --ipconfigure --netmask
+    Ejemplo6 - Ejecicion de programa, configuracion automaticam, ingreso de interfaz, red estatica, ingreso de ip, ingreso de mascara de red y puerta de enlace:
+        Opcion1:
+            autonetplan -x -a -iface -s -ip -ntmk -lnkd
+        Opcion2:
+            autonetplan --execute --automatic --interface --static --ipconfigure --netmask --linkeddoor
+
+[Ubicaciones de ficheros del programa]:
+Ubicacion de llamada al programa: /usr/local/sbin/autonetplan (codigo .sh sin extension).
+Ubicacion de fichero del programa: /usr/local/sbin/auto-netplan/*
