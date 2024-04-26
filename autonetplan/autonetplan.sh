@@ -97,11 +97,6 @@ function comment-network(){
         echo "# $linea"
     fi
 
-        # Comprobar si la puerta de enlace se ha indicado o no, segun eso se comenta o se deja sin comentar
-    if [[ $linea == *"gateway4:"* && $linkeddoored=="no" ]]; then
-        # Si no se solicita puerta de enlace (puede ser para un servidor), agregar un "#" delante de la línea entera
-        echo "# $linea"
-    fi
     done < "$network_dir"
 }
 
@@ -157,14 +152,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
                             # Preguntar por puerta de enlace
                             read -p "Ingrese una puerta de enlace: " linkeddoor
-                            # Creacion variable para comentar o no comentar puerta de enlace:
-                            linkeddoored="yes"
-
                         else
                             # Mensaje por error de valores
                             echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
-                            # Creacion variable para comentar o no comentar puerta de enlace:
-                            linkeddoored="no"
                         fi
                         # Llamada del programa configuracion completa
                         # Comentar gateway y addresses
@@ -183,9 +173,6 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         # No se ha aplicado configuracion, aviso importante
                             echo -e "[\e[31m#\e[0m] [\e[33m!!\e[0m] - Configuracion de red no aplicada, importante revisar"
                         fi
-
-                        # LLamada a la funcion "comment-network" - Correccion de problema con gateway4 en servidores
-                            comment-network
 
                         # Tras la configuracion, preguntar si guardar cambios
                         # Llamada a la funcion de aplicacion de cambios en fichero netplan
