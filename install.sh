@@ -17,6 +17,9 @@ PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
 # Ruta netplan
 NETWORK="/etc/netplan/"
 
+# Limpiar consola para mejor lectura
+clear
+
 # Creacion e instalacion rutas y ficheros del programa
 while [[ ! -d $PROGRAM_FILES ]]; do
    # Creacion directorio $PROGRAM_FILES
