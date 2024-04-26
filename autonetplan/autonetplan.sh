@@ -96,6 +96,12 @@ function comment-network(){
         # Si lo tiene, agregar un "#" delante de la línea entera
         echo "# $linea"
     fi
+
+        # Comprobar si la puerta de enlace se ha indicado o no, segun eso se comenta o se deja sin comentar
+    if [[ $linea == *"gateway4:"* && $linkeddoored=="no" ]]; then
+        # Si no se solicita puerta de enlace (puede ser para un servidor), agregar un "#" delante de la línea entera
+        echo "# $linea"
+    fi
     done < "$network_dir"
 }
 
@@ -151,13 +157,17 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
                             # Preguntar por puerta de enlace
                             read -p "Ingrese una puerta de enlace: " linkeddoor
+                            # Creacion variable para comentar o no comentar puerta de enlace:
+                            linkeddoored="yes"
                         else
                             # Mensaje por error de valores
-                            echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-ntmk'."
+                            echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
+                            # Creacion variable para comentar o no comentar puerta de enlace:
+                            linkeddoored="no"
                         fi
                         # Llamada del programa configuracion completa
                         # Comentar gateway y addresses
-                        aune-networked
+                            aune-networked
 
                         # Si "ipfigured" = yes = configuracion por dhcp activada, segun eso se aplicara o no la funcion "comment-network"
                         if [[ $ipfigured == "yes" ]]; then
@@ -208,7 +218,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     fi
 else
     # Mensaje por error de valores
-    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h', '-r', '-b', '-l' o '-x'."
+    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h', '-r', '-b', '-l', '-m' '-x'."
     # Error por ingreso de valores erroneos
     exit 1
 fi
