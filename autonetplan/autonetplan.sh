@@ -159,6 +159,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                             read -p "Ingrese una puerta de enlace: " linkeddoor
                             # Creacion variable para comentar o no comentar puerta de enlace:
                             linkeddoored="yes"
+
                         else
                             # Mensaje por error de valores
                             echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
@@ -182,6 +183,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         # No se ha aplicado configuracion, aviso importante
                             echo -e "[\e[31m#\e[0m] [\e[33m!!\e[0m] - Configuracion de red no aplicada, importante revisar"
                         fi
+
+                        # LLamada a la funcion "comment-network" - Correccion de problema con gateway4 en servidores
+                            comment-network
 
                         # Tras la configuracion, preguntar si guardar cambios
                         # Llamada a la funcion de aplicacion de cambios en fichero netplan
