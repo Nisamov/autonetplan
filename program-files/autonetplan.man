@@ -77,3 +77,5 @@ Valores $7:
 [Ubicaciones de ficheros del programa]:
 Ubicacion de llamada al programa: /usr/local/sbin/autonetplan (codigo .sh sin extension).
 Ubicacion de fichero del programa: /usr/local/sbin/auto-netplan/*
+
+[(Para salir de la previsualizacion, presione "q")]
