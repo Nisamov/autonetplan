@@ -13,7 +13,8 @@ INSTALL_DIR="/usr/local/sbin"
 function aune-help(){
     # Comprobar que el fichero existe
     if [[ -f "$program_files/program-files/autonetplan.help" ]]; then
-        cat $program_files/program-files/autonetplan.help
+        # Mostrar fichero con posibilidad de subir o bajar en la lectura
+        sudo less $program_files/program-files/autonetplan.help
     else
     # Aviso de problema (no crear fichero - tiempo innecesario)
         echo -e "[\e[31m#\e[0m] Error, fichero de soporte no encontrado"
@@ -23,7 +24,8 @@ function aune-help(){
 function aune-manual(){
     # Comprobar que el fichero existe
     if [[ -f "$program_files/program-files/autonetplan.man" ]]; then
-        cat $program_files/program-files/autonetplan.man
+        # Mostrar fichero con posibilidad de subir o bajar en la lectura
+        sudo less $program_files/program-files/autonetplan.man
     else
     # Aviso de problema (no crear fichero - tiempo innecesario)
         echo -e "[\e[31m#\e[0m] Error, manual no encontrado"
