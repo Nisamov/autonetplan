@@ -58,7 +58,7 @@ done
 # Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
 
 # Clonacion de contenido /program-files/ dentro de ruta $PROGRAM_FILES de forma recursiva
-sudo cp "$SCRIPT_DIR/program-files/*" "$PROGRAM_FILES"
+sudo cp -r "$SCRIPT_DIR/program-files" "$PROGRAM_FILES"
 # Verificar si la copia se realizó correctamente
 if [[ -d "$PROGRAM_FILES/program-files/" ]]; then
     # Mensaje de copia exitosa
