@@ -88,3 +88,6 @@ Para comprender los parametros disponibles, se recomienda leer el siguiente cuad
     $6:_
         -ntmk   / --netmask         >> Establecer mascara de red posteriormente
 ```
+
+Ejemplo esquemático en el uso y funcionamiento de autonetplan:
+![Estructura del Programa tras Instalacion](public-media/function-structure.jpg)
