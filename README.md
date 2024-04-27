@@ -78,6 +78,7 @@ Para comprender los parametros disponibles, se recomienda leer el siguiente cuad
         -l      / --license         >> Mostrar licencia del programa
         -b      / --backup          >> Crear copia seguridad configuracion actual red
         -x      / --execute         >> Continuar con la ejecucion del programa
+        -m      / --manual
     $2:_
         -m      / --manual          >> Configuracion manual
         -a      / --automatic       >> Configuracion automatica
