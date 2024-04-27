@@ -131,11 +131,8 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     elif [[ $2 == "-a" || $2 == "--automatic" ]]; then
         # Configuracion automatica
         if [[ $3 == "-iface" || $3 == "--interface" ]]; then
-            while [[ $ifaceconfirmation == "n" || $ifaceconfirmation == "N" ]]; do
                 # Preguntar por interfaz de red a usar
                 read -p "Ingrese la interfaz de red a usar: " iface
-                read -p "¿Estas seguro que deseas usar la interfaz de red '$iface'? [s/n]: " ifaceconfirmation
-            done
                 # Continuacion de programa
             if [[ $4 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
@@ -147,13 +144,10 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 ipfigured="no"
                 # Continuacion de programa
                 if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
-                    while [[ $ipconfirmation == "n" || $ipconfirmation == "N" ]]; do
-                        # Preguntar por ip a almacenar
-                        read -p "Ingrese la direccion IP a usar: " ipconfigure
-                        read -p "¿Estas seguro que deseas usar la ip $ipconfigure? [s/n]: " ipconfirmation
-                    done
+                    # Preguntar por ip a almacenar
+                    read -p "Ingrese la direccion IP a usar: " ipconfigure
                     if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
-                        # Preguntar por mascara de red a agregar
+                        # Preugntar por mascara de red a agregar
                         read -p "Ingrese la mascara de red a agregar: " masked
                         if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
                             # Preguntar por puerta de enlace
