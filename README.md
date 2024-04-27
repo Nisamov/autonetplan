@@ -67,6 +67,9 @@ Las operaciones y posibilidades de ejecucion tras la instalacion son las siguien
 autonetplan -x -a -iface -s -ip -ntmk
 # llamada al programa + coninuacion con el programa + configuracion automatica + ip estatica + agregar interfaz + ingreso de ip fija + agregar mascara de red
 ```
+Ejemplo esquemático en el uso y funcionamiento de autonetplan:
+![Estructura del Programa tras Instalacion](public-media/function-structure.jpg)
+
 Para comprender los parametros disponibles, se recomienda leer el siguiente cuadro:
 ```
     $1:_
@@ -84,10 +87,8 @@ Para comprender los parametros disponibles, se recomienda leer el siguiente cuad
         -f      / --fluid           >> Configuracion DHCP (red fluida)
         -s      / --static          >> Configuracion fija (red estatica)
     $5:_
-        -ip     / --ipconfigure     >> indicar posteriormente la ip fija (solo tras haber indicado previamente '-s')
+        -ip     / --ipconfigure     >> indicar posteriormente la ip fija
+                                        (solo tras haber indicado previamente '-s')
     $6:_
         -ntmk   / --netmask         >> Establecer mascara de red posteriormente
 ```
-
-Ejemplo esquemático en el uso y funcionamiento de autonetplan:
-![Estructura del Programa tras Instalacion](public-media/function-structure.jpg)
