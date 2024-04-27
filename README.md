@@ -14,7 +14,7 @@ Estos ejemplos han sido creados para la completa comprension del programa.
 
 ### Estructura tras la instalacion
 Esta es la estructura correspondiente tras la ejecucion del script `install.sh`, el cual clona y crea rutas dentro del sistema con el objetivo de repartir el programa de una forma completa dentro del mismo.
-![Estructura del Programa tras Instalacion](public-media/post-structure.jpg)
+![Estructura del Programa tras Instalacion](public-media/post-structured.jpg)
 ### Estructura durante la creacion
 Esta es la ruta de los ficheros del repositorio, con este esquema es posible trazar la ruta completa de cada fichero, asi como observar la creacion de nuevos, este esquema esta simplificado, para comprender la estructura completa del programa,s e recomienda ejecutar el siguiente comando:
 ```sh
