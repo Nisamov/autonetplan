@@ -92,11 +92,23 @@ function comment-network(){
         # Imprimir todas las líneas del archivo
         echo "$linea"
         # Verificar si la línea contiene "addresses:" o "gateway4:"
-    if [[ $linea == *"addresses:"* || $linea == *"gateway4:"* ]]; then
+    if [[ $linea == *"addresses:"* ]]; then
         # Si lo tiene, agregar un "#" delante de la línea entera
         echo "# $linea"
     fi
+    done < "$network_dir"
+}
 
+function comment-gateway4-network(){
+    # Leer el archivo línea por línea
+    while IFS= read -r linea; do
+        # Imprimir todas las líneas del archivo
+        echo "$linea"
+    # Verificar si la línea contiene gateway4
+    if [[ $linea == *"gateway4:"* ]]; then
+    # Si lo tiene, agregar un "#" delante de la línea entera
+        echo "# $linea"
+    fi
     done < "$network_dir"
 }
 
@@ -155,6 +167,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         else
                             # Mensaje por error de valores
                             echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
+                            # Llamada a la funcion comment-gateway4-network
+                            # Comentar gateway4
+                            comment-gateway4-network
                         fi
                         # Llamada del programa configuracion completa
                         # Comentar gateway y addresses
