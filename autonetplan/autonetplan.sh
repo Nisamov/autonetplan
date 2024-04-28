@@ -80,10 +80,19 @@ network:
 EOF
 }
 
+comment_line_dhcp_true() {
+    # Configuracion de red para ip dinamica (dhcp4: true)
+    # Usa sed para comentar la línea que contiene "gateway4: y addresses"
+    sed -i '/^\s*addresses:/ s/^/# /' "$network_dir"
+    sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
+}
+
 comment_line_gateway4() {
+    # Configuracion de red para servidores
     # Usa sed para comentar la línea que contiene "gateway4:"
     sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
+
 
 # Si es de color rojo el aviso = importante revisar
 #   [\e[31m#\e[0m] >> # rojo
@@ -125,11 +134,11 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # DHCP4 ==  true >> Aplicar cambios en configuracion de red
                 ipfigured=true
                 #¿ Aplicar directamente la configuracion (posteriormente, comentar las lineas gateway, ip, etc)
-                sudo aune-networked
+                aune-networked
                 # Comentar secciones (al ser ip dinamica)
-                sudo comment_line_gateway4
+                comment_line_dhcp_true
                 # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
-                sudo netplanapply           
+                netplanapply           
 
             elif [[ $4 == "-s" || $3 == "--static" ]]; then
                 # Configuracion de red por ip estatica
@@ -144,19 +153,25 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
                             # Preguntar por puerta de enlace
                             read -p "Ingrese una puerta de enlace: " linkeddoor
+                            # Llamar a funcion aune-networked
+                            # Sustituir valores
+                            aune-networked
+                            # Aplicar red
+                            netplanapply
                         else
                             # Mensaje por error de valores
                             echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
+
+                            # LLamar a funcion comment_line_gateway4 por saltarse -lnkd
+                            comment_line_gateway4
+                            # Aplicar red
+                            netplanapply
                         fi
                     else
                         # Mensaje por error de valores
                         echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk'."
-                        
-                        # Comentar gateway4:
-                        # Llamar a la funcio comment-network-gateway
-                            sudo comment-network-gateway
                         # Aplicar cambios:
-                            sudo netplanapply
+                            netplanapply
                         
                         # Error por ingreso de valores erroneos
                         exit 1
