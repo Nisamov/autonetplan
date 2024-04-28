@@ -84,20 +84,39 @@ function comment-network(){
     # Esta función solo se ejecutará si se ha establecido una IP dinámica.
     # La función sirve para comentar:
     #   - addresses: [$ipconfigure/$masked]
-    #   - gateway4: $linkeddoor
     # Esto permite posibles problemas de conexión por parte de netplan.
 
     # Leer el archivo línea por línea
     while IFS= read -r linea; do
         # Imprimir todas las líneas del archivo
         echo "$linea"
-        # Verificar si la línea contiene "addresses:" o "gateway4:"
+        # Verificar si la línea contiene "addresses:":"
     if [[ $linea == *"addresses:"* ]]; then
         # Si lo tiene, agregar un "#" delante de la línea entera
         echo "# $linea"
     fi
     done < "$network_dir"
 }
+
+function comment-network-gateway(){
+    # Esta función solo se ejecutará si se ha establecido una IP dinámica.
+    # La función sirve para comentar:
+    #   - gateway4: $linkeddoor
+    # Esto permite posibles problemas de conexión por parte de netplan.
+
+    # Leer el archivo línea por línea
+    while IFS= read -r linead; do
+        # Imprimir todas las líneas del archivo
+        echo "$linead"
+        # Verificar si la línea contiene "gateway4:"
+    if [[ $linead == *"gateway4:"* ]]; then
+        # Si lo tiene, agregar un "#" delante de la línea entera
+        echo "# $linead"
+    fi
+    done < "$network_dir"
+}
+
+
 
 # Si es de color rojo el aviso = importante revisar
 #   [\e[31m#\e[0m] >> # rojo
@@ -154,6 +173,8 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         else
                             # Mensaje por error de valores
                             echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
+                            comment-network-gateway
+                            netplan apply
                         fi
                         # Llamada del programa configuracion completa
                         # Comentar gateway y addresses
