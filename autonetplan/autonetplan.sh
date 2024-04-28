@@ -80,6 +80,11 @@ network:
 EOF
 }
 
+comment_line_gateway4() {
+    # Usa sed para comentar la línea que contiene "gateway4:"
+    sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
+}
+
 # Si es de color rojo el aviso = importante revisar
 #   [\e[31m#\e[0m] >> # rojo
 # Si es de color amarillo el aviso = sugerencia o no obligatorio
@@ -120,11 +125,11 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # DHCP4 ==  true >> Aplicar cambios en configuracion de red
                 ipfigured=true
                 #¿ Aplicar directamente la configuracion (posteriormente, comentar las lineas gateway, ip, etc)
-                aune-networked
+                sudo aune-networked
                 # Comentar secciones (al ser ip dinamica)
-                    #Codigo sin contenido
+                sudo comment_line_gateway4
                 # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
-                netplanapply           
+                sudo netplanapply           
 
             elif [[ $4 == "-s" || $3 == "--static" ]]; then
                 # Configuracion de red por ip estatica
