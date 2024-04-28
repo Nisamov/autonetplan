@@ -164,15 +164,18 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         # Preugntar por mascara de red a agregar
                         read -p "Ingrese la mascara de red a agregar: " masked
                         if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
-                            # Preguntar por puerta de enlace
-                            read -p "Ingrese una puerta de enlace: " linkeddoor
-                        else
+                        # Preguntar por puerta de enlace
+                        read -p "Ingrese una puerta de enlace: " linkeddoor
+                        fi
+                        # Verificar si se proporcionó una puerta de enlace
+                        # -z para revisar si no se proporciona contenido en esa variable
+                        if [[ -z "$linkeddoor" ]]; then
                             # Mensaje por error de valores
-                            echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
-                            # Llamada a la funcion comment-gateway4-network
-                            # Comentar gateway4
+                            echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace."
+                            # Comentar gateway4 si no se proporciona una puerta de enlace
                             comment-gateway4-network
                         fi
+
                         # Llamada del programa configuracion completa
                         # Comentar gateway y addresses
                             aune-networked
