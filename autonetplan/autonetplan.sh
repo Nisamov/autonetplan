@@ -89,11 +89,11 @@ function comment-network(){
     # Leer el archivo línea por línea
     while IFS= read -r linea; do
         # Imprimir todas las líneas del archivo
-        echo "$linea"
+        sudo echo "$linea"
         # Verificar si la línea contiene "addresses:":"
     if [[ $linea == *"addresses:"* ]]; then
         # Si lo tiene, agregar un "#" delante de la línea entera
-        echo "# $linea"
+        sudo echo "# $linea"
     fi
     done < "$network_dir"
 }
@@ -107,11 +107,11 @@ function comment-network-gateway(){
     # Leer el archivo línea por línea
     while IFS= read -r linead; do
         # Imprimir todas las líneas del archivo
-        echo "$linead"
+        sudo echo "$linead"
         # Verificar si la línea contiene "gateway4:"
     if [[ $linead == *"gateway4:"* ]]; then
         # Si lo tiene, agregar un "#" delante de la línea entera
-        echo "# $linead"
+        sudo echo "# $linead"
     fi
     done < "$network_dir"
 }
