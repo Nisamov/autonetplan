@@ -119,12 +119,11 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 echo "Configuración de red seleccionada con conexion por DHCP"
                 # DHCP4 ==  true >> Aplicar cambios en configuracion de red
                 ipfigured=true
-
-                #¿ Aplicar directamente la configuracion (posteriormente, comentar las lienas gateway, ip, etc)
-                aune-networked     
+                #¿ Aplicar directamente la configuracion (posteriormente, comentar las lineas gateway, ip, etc)
+                aune-networked
                 # Comentar secciones (al ser ip dinamica)
                     #Codigo sin contenido
-                # Aplicar cambios al programa netplan
+                # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
                 netplanapply           
 
             elif [[ $4 == "-s" || $3 == "--static" ]]; then
