@@ -94,7 +94,7 @@ Para comprender los parametros disponibles, se recomienda leer el siguiente cuad
         -ntmk   / --netmask         >> Establecer mascara de red posteriormente
 ```
 
-# Configuracion
+## Configuracion
 El programa autonetplan cuenta con un fichero de configuracion ubicado en la ruta:
 `/usr/local/sbin/autonetplan/program-files/netplan-config/autonetplan.conf`
 Este fichero cuenta con dos estados `true` o `false`, estos estados permiten activar o desactivar diferentes funciones del programa que puedan poner en peligro su uso.
