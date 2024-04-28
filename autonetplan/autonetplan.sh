@@ -117,6 +117,8 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             if [[ $4 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
                 echo "Configuración de red seleccionada con conexion por DHCP"
+                # DHCP4 ==  true >> Aplicar cambios en configuracion de red
+                ipfigured=true
 
                 #¿ Aplicar directamente la configuracion (posteriormente, comentar las lienas gateway, ip, etc)
                 aune-networked     
