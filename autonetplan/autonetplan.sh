@@ -99,21 +99,6 @@ function comment-network(){
     done < "$network_dir"
 }
 
-function comment-gateway4-network(){
-    # Leer el archivo línea por línea
-    while IFS= read -r linea; do
-        # Verificar si la línea contiene gateway4
-        if [[ $linea == *"gateway4:"* ]]; then
-            # Si lo tiene, agregar un "#" delante de la línea entera
-            echo "# $linea"
-        else
-            # Imprimir todas las líneas del archivo que no contienen gateway4
-            echo "$linea"
-        fi
-    done < "$network_dir"
-}
-
-
 # Si es de color rojo el aviso = importante revisar
 #   [\e[31m#\e[0m] >> # rojo
 # Si es de color amarillo el aviso = sugerencia o no obligatorio
@@ -164,24 +149,12 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         # Preugntar por mascara de red a agregar
                         read -p "Ingrese la mascara de red a agregar: " masked
                         if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
-                        # Preguntar por puerta de enlace
-                        read -p "Ingrese una puerta de enlace: " linkeddoor
-                            # Verificar si se proporcionó una puerta de enlace
-                            # -z para revisar si no se proporciona contenido en esa variable
-                            if [[ -z "$linkeddoor" ]]; then
-                                # Mensaje por error de valores
-                                echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace."
-                                # Comentar gateway4 si no se proporciona una puerta de enlace
-                                comment-gateway4-network
-                            fi
+                            # Preguntar por puerta de enlace
+                            read -p "Ingrese una puerta de enlace: " linkeddoor
                         else
                             # Mensaje por error de valores
                             echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
-                            # Comentar gateway4 ya que no se proporcionó una puerta de enlace
-                            comment-gateway4-network
-                            exit 1  # Salir del script para evitar que continúe con la configuración de red
                         fi
-
                         # Llamada del programa configuracion completa
                         # Comentar gateway y addresses
                             aune-networked
