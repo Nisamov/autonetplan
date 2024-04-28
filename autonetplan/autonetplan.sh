@@ -83,14 +83,14 @@ EOF
 comment_line_dhcp_true() {
     # Configuracion de red para ip dinamica (dhcp4: true)
     # Usa sed para comentar la línea que contiene "gateway4: y addresses"
-    sed -i '/^\s*addresses:/ s/^/# /' "$network_dir"
-    sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
+    sudo sed -i '/^\s*addresses:/ s/^/# /' "$network_dir"
+    sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
 
 comment_line_gateway4() {
     # Configuracion de red para servidores
     # Usa sed para comentar la línea que contiene "gateway4:"
-    sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
+    sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
 
 
