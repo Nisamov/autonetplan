@@ -102,15 +102,17 @@ function comment-network(){
 function comment-gateway4-network(){
     # Leer el archivo línea por línea
     while IFS= read -r linea; do
-        # Imprimir todas las líneas del archivo
-        echo "$linea"
-    # Verificar si la línea contiene gateway4
-    if [[ $linea == *"gateway4:"* ]]; then
-    # Si lo tiene, agregar un "#" delante de la línea entera
-        echo "# $linea"
-    fi
+        # Verificar si la línea contiene gateway4
+        if [[ $linea == *"gateway4:"* ]]; then
+            # Si lo tiene, agregar un "#" delante de la línea entera
+            echo "# $linea"
+        else
+            # Imprimir todas las líneas del archivo que no contienen gateway4
+            echo "$linea"
+        fi
     done < "$network_dir"
 }
+
 
 # Si es de color rojo el aviso = importante revisar
 #   [\e[31m#\e[0m] >> # rojo
