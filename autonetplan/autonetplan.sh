@@ -98,6 +98,20 @@ function comment-network(){
     done < "$network_dir"
 }
 
+
+function comment-network-gateway(){
+    # Leer el archivo línea por línea
+    while IFS= read -r linead; do
+        # Imprimir todas las líneas del archivo
+        sudo echo "$linead"
+        # Verificar si la línea contiene "gateway4:":"
+    if [[ $linead == *"gateway4:"* ]]; then
+        # Si lo tiene, agregar un "#" delante de la línea entera
+        sudo echo "# $linead"
+    fi
+    done < "$network_dir"
+}
+
 # Si es de color rojo el aviso = importante revisar
 #   [\e[31m#\e[0m] >> # rojo
 # Si es de color amarillo el aviso = sugerencia o no obligatorio
@@ -174,10 +188,17 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
 
                         # Tras la configuracion, preguntar si guardar cambios
                         # Llamada a la funcion de aplicacion de cambios en fichero netplan
-                        netplanapply
+                            netplanapply
                     else
                         # Mensaje por error de valores
                         echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk'."
+                        
+                        # Comentar gateway4:
+                        # Llamar a la funcio comment-network-gateway
+                            comment-network-gateway
+                        # Aplicar cambios:
+                            netplanapply
+                        
                         # Error por ingreso de valores erroneos
                         exit 1
                     fi
