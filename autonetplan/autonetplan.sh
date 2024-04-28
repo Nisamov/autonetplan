@@ -80,38 +80,6 @@ network:
 EOF
 }
 
-function comment-network(){
-    # Esta función solo se ejecutará si se ha establecido una IP dinámica.
-    # La función sirve para comentar:
-    #   - addresses: [$ipconfigure/$masked]
-    # Esto permite posibles problemas de conexión por parte de netplan.
-
-    # Leer el archivo línea por línea
-    while IFS= read -r linea; do
-        # Imprimir todas las líneas del archivo
-        sudo echo "$linea"
-        # Verificar si la línea contiene "addresses:":"
-    if [[ $linea == *"addresses:"* ]]; then
-        # Si lo tiene, agregar un "#" delante de la línea entera
-        sudo echo "# $linea"
-    fi
-    done < "$network_dir"
-}
-
-
-function comment-network-gateway(){
-    # Leer el archivo línea por línea
-    while IFS= read -r linead; do
-        # Imprimir todas las líneas del archivo
-        sudo echo "$linead"
-        # Verificar si la línea contiene "gateway4:":"
-    if [[ $linead == *"gateway4:"* ]]; then
-        # Si lo tiene, agregar un "#" delante de la línea entera
-        sudo echo "# $linead"
-    fi
-    done < "$network_dir"
-}
-
 # Si es de color rojo el aviso = importante revisar
 #   [\e[31m#\e[0m] >> # rojo
 # Si es de color amarillo el aviso = sugerencia o no obligatorio
@@ -149,11 +117,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             if [[ $4 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
                 echo "Configuración de red seleccionada con conexion por DHCP"
-                ipfigured="yes"
             elif [[ $4 == "-s" || $3 == "--static" ]]; then
                 # Configuracion de red por ip estatica
-                echo "Configuración de red seleccionada con conexion por ip estatica"
-                ipfigured="no"
+                echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
                 # Continuacion de programa
                 if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
                     # Preguntar por ip a almacenar
@@ -168,36 +134,15 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                             # Mensaje por error de valores
                             echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
                         fi
-                        # Llamada del programa configuracion completa
-                        # Comentar gateway y addresses
-                            aune-networked
-
-                        # Si "ipfigured" = yes = configuracion por dhcp activada, segun eso se aplicara o no la funcion "comment-network"
-                        if [[ $ipfigured == "yes" ]]; then
-                        # Configuracion por DHCP activada
-                            # Llamada a la funcion "comment-network"
-                            comment-network
-
-                        elif [[ $ipfigured == "no" ]]; then
-                        # Configuracion por DHCP no activada, red estatica - color amarillo
-                            echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
-                        else
-                        # No se ha aplicado configuracion, aviso importante
-                            echo -e "[\e[31m#\e[0m] [\e[33m!!\e[0m] - Configuracion de red no aplicada, importante revisar"
-                        fi
-
-                        # Tras la configuracion, preguntar si guardar cambios
-                        # Llamada a la funcion de aplicacion de cambios en fichero netplan
-                            netplanapply
                     else
                         # Mensaje por error de valores
                         echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk'."
                         
                         # Comentar gateway4:
                         # Llamar a la funcio comment-network-gateway
-                            comment-network-gateway
+                            sudo comment-network-gateway
                         # Aplicar cambios:
-                            netplanapply
+                            sudo netplanapply
                         
                         # Error por ingreso de valores erroneos
                         exit 1
