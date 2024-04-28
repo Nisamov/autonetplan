@@ -66,7 +66,7 @@ function netplanapply(){
 
 function aune-networked(){
     # Configuracion de red por autonetplan
-            echo "Configuración de red por configuracion automatica..."
+            echo -e "[\e[33m#\e[0m] Configuración de red por configuracion automatica..."
             sudo cat <<EOF > "$network_dir"
 # Editado con autonetplan
 network:
@@ -117,6 +117,14 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             if [[ $4 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
                 echo "Configuración de red seleccionada con conexion por DHCP"
+
+                #¿ Aplicar directamente la configuracion (posteriormente, comentar las lienas gateway, ip, etc)
+                aune-networked     
+                # Comentar secciones (al ser ip dinamica)
+                    #Codigo sin contenido
+                # Aplicar cambios al programa netplan
+                netplanapply           
+
             elif [[ $4 == "-s" || $3 == "--static" ]]; then
                 # Configuracion de red por ip estatica
                 echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
