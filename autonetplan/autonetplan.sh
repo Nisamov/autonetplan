@@ -166,14 +166,20 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
                         # Preguntar por puerta de enlace
                         read -p "Ingrese una puerta de enlace: " linkeddoor
-                        fi
-                        # Verificar si se proporcionó una puerta de enlace
-                        # -z para revisar si no se proporciona contenido en esa variable
-                        if [[ -z "$linkeddoor" ]]; then
+                            # Verificar si se proporcionó una puerta de enlace
+                            # -z para revisar si no se proporciona contenido en esa variable
+                            if [[ -z "$linkeddoor" ]]; then
+                                # Mensaje por error de valores
+                                echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace."
+                                # Comentar gateway4 si no se proporciona una puerta de enlace
+                                comment-gateway4-network
+                            fi
+                        else
                             # Mensaje por error de valores
-                            echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace."
-                            # Comentar gateway4 si no se proporciona una puerta de enlace
+                            echo -e "[\e[33m!!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
+                            # Comentar gateway4 ya que no se proporcionó una puerta de enlace
                             comment-gateway4-network
+                            exit 1  # Salir del script para evitar que continúe con la configuración de red
                         fi
 
                         # Llamada del programa configuracion completa
