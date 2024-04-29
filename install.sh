@@ -10,7 +10,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 # Ruta instalacion super usuario
 INSTALL_DIR="/usr/local/sbin"
 # Ruta ficheros programa super usuario
-PROGRAM_FILES="/usr/local/sbin/autonetplan"
+PROGRAM_FILES="/usr/local/sbin/auto-netplan"
 # Ruta netplan
 NETWORK="/etc/netplan/"
 # Ruta fichero de configuracion guardar dentro de /etc/autonetplan/autonetplan.conf
