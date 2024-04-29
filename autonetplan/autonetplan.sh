@@ -66,6 +66,9 @@ function aune-remove(){
 }
 
 function aune-backup(){
+    # Variables
+    newtwork_name=00-installer-config.yaml
+    network_dired="/etc/netplan"
     # Funcion guardar copia de seguridad con numero progresivo para evitar reemplazar ficheros
     # Comprobar exitencia de ruta de backups
     echo "[#] Revisando existencia de ruta $program_files/program-files/autonetplan-backups"
@@ -77,12 +80,14 @@ function aune-backup(){
     done
     # Si existe previamente la ruta...
     if [[ -d $program_files/program-files/autonetplan-backups ]]; then
-        local backup_number=0
-        local backup_file
-        echo "[#] Copiando fichero $network_dir..."
-        sudo cp "$network_dir" "$program_files/program-files/autonetplan-backups.bk"
+        echo -e "[\e[32m#\e[0m] Ruta creada existente"
+        # Digitos random simplificados
+        digited=$(($RANDOM%100))
+        echo "[#] Copiando fichero $network_name..."
+        # Almacenamos la copia de seguridad con un valor aleatorio para identificar correctamente la copia de seguridad
+        sudo cp "$network_dired/$network_name" "$program_files/program-files/$network_name-$digited.bk"
         echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
-        echo "[#] La copia de seguridad se ha guardado en $program_files/program-files/autonetplan-backups como $network_dir.bk"
+        echo "[#] La copia de seguridad se ha guardado como $network_name-$digited.bk"
     else
         echo -e "[\e[31m#\e[0m] Ha ocurrido un error inesperado."
     fi
@@ -90,7 +95,7 @@ function aune-backup(){
 
 function netplanapply(){
     # Preguntar si aplicar cambios de red
-    read -p "¿Desea aplicar los cambios antes de continuar? (s/n): " netwapply
+    read -p "¿Desea aplicar los cambios antes de continuar? [s/n]: " netwapply
     if [[ $netwapply == "s" ]]; then
         sudo netplan apply
     elif [[ $netwapply == "n" ]]; then

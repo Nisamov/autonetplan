@@ -146,7 +146,7 @@ sudo less LICENSE.txt
 # Limpiar consola
 clear
 # Tras la instalacion, el instalador, preguntara si borrar el repositorio clonado para liberar espacio
-read -p "¿Desea borrar el repositorio clonado? (s/n): " deleteRepos
+read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
 if [[ $deleteRepos == "s" || $deleteRepos == "S" ]]; then
 # Verificar si la ruta $SCRIPT_DIR existe
     if [[ -d "$SCRIPT_DIR" ]]; then
