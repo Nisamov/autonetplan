@@ -5,7 +5,7 @@
 # Declaracion variable directorio de configuracion netplan
 network_dir="/etc/netplan/00-installer-config.yaml"
 work_dir="/usr/local/sbin"
-program_files="/usr/local/sbin/auto-netplan/"
+program_files="/usr/local/sbin/auto-netplan"
 INSTALL_DIR="/usr/local/sbin"
 # Fichero autonetplan del directorio autoneconf renombrado como autonetplan
 program_config="/etc/autonetplan/autonetplan.conf"
