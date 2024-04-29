@@ -37,15 +37,15 @@ function aune-manual(){
 
 function aune-remove(){
     # Revisar en el fichero de configuracion si la opcion autonetplan-prevent-purge-on-mistake es true o false
-    # Buscar la opcion autonetplan-formatted-on-call en el archivo de configuracion
-    opcion=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
+    # Buscar la opcion autonetplan-prevent-purge-on-mistake en el archivo de configuracion
+    opcion=$(grep "^autonetplan-prevent-purge-on-mistake" "$program_config" | cut -d "=" -f2)
     # Comprobar si la opcion esta establecida en true o false
     if [ "$opcion" == "true" ]; then
         # Accion si la opcion es true
-        echo "La opcion autonetplan-formatted-on-call esta configurada como true."
+        echo "La opcion autonetplan-prevent-purge-on-mistake esta configurada como true."
     elif [ "$opcion" == "false" ]; then
         # Accion si la opcion es false
-        echo "La opcion autonetplan-formatted-on-call esta configurada como false."
+        echo "La opcion autonetplan-prevent-purge-on-mistake esta configurada como false."
         echo -e "[\e[31m#\e[0m] Autonetplan esta siendo desinstalado..."
         # Funcion desinstalar programa
         sudo rm -rf $program_files

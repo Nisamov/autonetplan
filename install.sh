@@ -37,8 +37,10 @@ done
 
 # Instalacion de ficheros de configuracion
 while [[ ! -d $CONFIG_FILES ]]; do
-    # Clonacion y renombramiento
-    sudo cp -r auneconf "$CONFIG_FILES/autonetplan"
+    # Creacion de ruta
+    sudo mkdir "$CONFIG_FILES/autonetplan"
+    # Clonacion y renombramiento - copiar todo el contenido a la ruta de fichero de configuracion
+    sudo cp -r auneconf/* "$CONFIG_FILES/autonetplan"
     if [[ -d "$CONFIG_FILES/autonetplan" ]]; then
         # Mensaje instalacion correcta
         echo "[#] Se ha creado la ruta $CONFIG_FILES/autonetplan exitosamente"
