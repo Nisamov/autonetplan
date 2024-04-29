@@ -145,6 +145,21 @@ elif [[ $1 == "-l" || $1 == "--license" ]]; then
         sudo less "$program_files/LICENSE.txt"
 # Continuacion con el programa
 elif [[ $1 == "-x" || $1 == "--execute" ]]; then
+    # Revisar en configuracion si autonetplan-formatted-on-call es true o false
+    opcion=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
+    # Comprobar si la opcion esta establecida en true o false
+    if [ "$opcion" == "true" ]; then
+        # Se previene formatear el contenido del fichero de red
+        # No se hace nada, continuando el programa
+        echo "La opcion autonetplan-formatted-on-call esta configurada como true."
+    elif [ "$opcion" == "false" ]; then
+        # Se limpia el contenido de la variable $network_dir
+        > "$network_dir"
+        # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
+        netplanapply
+        # Mensaje de aviso - limpieza de configuracion exitosa
+        echo -e "[\e[32m#\e[0m] Fichero de configuracion reestablecido"
+    fi
     # Continuacion de programa
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
         sudo nano "$network_dir"
@@ -165,7 +180,6 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 comment_line_dhcp_true
                 # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
                 netplanapply           
-
             elif [[ $4 == "-s" || $3 == "--static" ]]; then
                 # Configuracion de red por ip estatica
                 echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
