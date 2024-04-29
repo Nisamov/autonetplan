@@ -62,6 +62,8 @@ while [[ ! -f "$INSTALL_DIR/autonetplan" ]]; do
         echo "[#] El script principal se ha copiado exitosamente a $INSTALL_DIR/autonetplan"
         # Dar permisos de ejecución al script principal
         sudo chmod +x "$INSTALL_DIR/autonetplan.sh"
+        # Renombrar fichero
+        sudo cp "$INSTALL_DIR/autonetplan.sh" "$INSTALL_DIR/autonetplan"
         # Mensaje tras otorgar correctamente los permisos
         echo "[#] Permisos necesarios otorgados correctamente"
     else
