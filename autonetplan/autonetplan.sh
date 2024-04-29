@@ -67,31 +67,33 @@ function aune-remove(){
 
 function aune-backup(){
     # Variables
-    network_name=00-installer-config.yaml
+    network_name="00-installer-config.yaml"
     network_dired="/etc/netplan"
-    # Funcion guardar copia de seguridad con numero progresivo para evitar reemplazar ficheros
-    # Comprobar exitencia de ruta de backups
-    echo "[#] Revisando existencia de ruta $program_files/program-files/autonetplan-backups"
+    backup_dir="/program-files/autonetplan-backups"
 
-    while [[ ! -d $program_files/program-files/autonetplan-backups ]]; do
+    # Comprobar existencia de ruta de backups
+    echo "[#] Revisando existencia de ruta $backup_dir"
+    if [[ ! -d "$backup_dir" ]]; then
         echo -e "[\e[31m#\e[0m] Ruta no existente, creando ruta..."
         # Crear ruta de copia de seguridad
-        sudo mkdir "$program_files/program-files/autonetplan-backups"
-    done
+        sudo mkdir -p "$backup_dir"
+    fi
+
     # Si existe previamente la ruta...
-    if [[ -d $program_files/program-files/autonetplan-backups ]]; then
-        echo -e "[\e[32m#\e[0m] Ruta $program_files/program-files/autonetplan-backups existente"
-        # Digitos random simplificados
+    if [[ -d "$backup_dir" ]]; then
+        echo -e "[\e[32m#\e[0m] Ruta $backup_dir existente"
+        # Generar un número aleatorio para el nombre del archivo de copia de seguridad
         digited=$(($RANDOM%100))
         echo "[#] Copiando fichero $network_name..."
-        # Almacenamos la copia de seguridad con un valor aleatorio para identificar correctamente la copia de seguridad
-        sudo cp "$network_dired/$network_name" "$program_files/program-files/$network_name-$digited.bk"
+        # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
+        sudo cp "$network_dired/$network_name" "$backup_dir/$network_name-$digited.bk"
         echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
         echo "[#] La copia de seguridad se ha guardado como $network_name-$digited.bk"
     else
         echo -e "[\e[31m#\e[0m] Ha ocurrido un error inesperado."
     fi
 }
+
 
 function netplanapply(){
     # Preguntar si aplicar cambios de red
