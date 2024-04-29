@@ -88,7 +88,7 @@ function aune-backup(){
         # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
         sudo cp "$network_dired/$network_name" "$program_files/$backup_dir/$network_name-$digited.bk"
         echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
-        echo "[#] La copia de seguridad se ha guardado como $network_name-$digited.bk" "en la ruta" "$program_files/$backup_dir/$network_name-$digited.bk"
+        echo "[#] La copia de seguridad se ha guardado como $network_name-$digited.bk" "en la ruta" "$program_files/$backup_dir"
     else
         echo -e "[\e[31m#\e[0m] Ha ocurrido un error inesperado."
     fi

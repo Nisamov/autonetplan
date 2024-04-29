@@ -103,8 +103,8 @@ Este fichero cuenta con dos estados `true` o `false`, estos estados permiten act
 
 Estos son algunos ejemplos del mismo:
 
-`autonetplan-formatted-on-call=true`
+`autonetplan-formatted-on-call`
 Esta opcion permite poder llamar al programa multiples veces cambiando constantemente la red sin tener que editarla manualmente tras la primera configuracion aplicada, ahorrando tiempo innecesario para la configuracion manual.
 
-`autonetplan-prevent-purge-on-mistake=true`
-sta opcion permite deshabilitar la desinstalacion del programa mediante el comando `autonetplan -r`.
+`autonetplan-prevent-purge-on-mistake`
+Esta opcion permite deshabilitar la desinstalacion del programa mediante el comando `autonetplan -r`.
