@@ -69,26 +69,26 @@ function aune-backup(){
     # Variables
     network_name="00-installer-config.yaml"
     network_dired="/etc/netplan"
-    backup_dir="$program_files/autonetplan-backups"
+    backup_dir="autonetplan-backups"
 
     # Comprobar existencia de ruta de backups
-    echo "[#] Revisando existencia de ruta /usr/local/sbin/autonetplan/$backup_dir"
-    if [[ ! -d "/usr/local/sbin/auto-netplan/$backup_dir" ]]; then
+    echo "[#] Revisando existencia de ruta $program_files/$backup_dir"
+    if [[ ! -d "$program_files/$backup_dir" ]]; then
         echo -e "[\e[31m#\e[0m] Ruta no existente, creando ruta..."
         # Crear ruta de copia de seguridad
-        sudo mkdir -p "/usr/local/sbin/auto-netplan/$backup_dir"
+        sudo mkdir -p "$program_files/$backup_dir"
     fi
 
     # Si existe previamente la ruta...
-    if [[ -d "/usr/local/sbin/auto-netplan/$backup_dir" ]]; then
-        echo -e "[\e[32m#\e[0m] Ruta /usr/local/sbin/auto-netplan/$backup_dir existente"
+    if [[ -d "$program_files/$backup_dir" ]]; then
+        echo -e "[\e[32m#\e[0m] Ruta $program_files/$backup_dir existente"
         # Generar un número aleatorio para el nombre del archivo de copia de seguridad
         digited=$(($RANDOM%100))
         echo "[#] Copiando fichero $network_name..."
         # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
-        sudo cp "$network_dired/$network_name" "/usr/local/sbin/auto-netplan/$backup_dir/$network_name-$digited.bk"
+        sudo cp "$network_dired/$network_name" "$program_files/$backup_dir/$network_name-$digited.bk"
         echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
-        echo "[#] La copia de seguridad se ha guardado como $network_name-$digited.bk"
+        echo "[#] La copia de seguridad se ha guardado como $network_name-$digited.bk" "en la ruta" "$program_files/$backup_dir/$network_name-$digited.bk"
     else
         echo -e "[\e[31m#\e[0m] Ha ocurrido un error inesperado."
     fi
