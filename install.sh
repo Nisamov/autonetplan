@@ -111,11 +111,11 @@ while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
 done
 
 # Crear ruta copias de seguridad
-while [[ ! -d "$PROGRAM_FILES/netplan-backups" ]]; do
+while [[ ! -d "$PROGRAM_FILES/autonetplan-backups" ]]; do
     # Clonar el archivo de licencia
-    sudo mkdir "$PROGRAM_FILES/netplan-backups"
+    sudo mkdir "$PROGRAM_FILES/autonetplan-backups"
     # Verificacion de creacion
-    if [[ -d "$PROGRAM_FILES/netplan-backups" ]]; then
+    if [[ -d "$PROGRAM_FILES/autonetplan-backups" ]]; then
         # Mensaje creacion almacenamiento copias de seguridad
         echo "[#] Ruta clonacion copias de seguridad, creada exitosamente"
     else
