@@ -52,7 +52,7 @@ while [[ ! -d $CONFIG_FILES/autonetplan ]]; do
     fi
 done
 
-# Verificar si el archivo principal existe en el directorio correcto
+# Verificar si el archivo principal existe en la ubicación correcta con el nombre correcto
 if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
     # Si el archivo existe, mostrar un mensaje indicando que ya está presente
     echo "[#] El script principal ya existe en $INSTALL_DIR/autonetplan"
@@ -61,6 +61,8 @@ else
     sudo cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR/autonetplan"
     # Verificar si la copia se realizó correctamente
     if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
+        # Renombrar el archivo copiado para quitar la extensión .sh
+        sudo mv "$INSTALL_DIR/autonetplan" "$INSTALL_DIR/autonetplan"
         # Mensaje de copia exitosa
         echo "[#] El script principal se ha copiado exitosamente a $INSTALL_DIR/autonetplan"
         # Dar permisos de ejecución al script principal
@@ -74,6 +76,7 @@ else
         sleep 1
     fi
 fi
+
 
 # Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
 
