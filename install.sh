@@ -36,7 +36,7 @@ while [[ ! -d $PROGRAM_FILES ]]; do
 done
 
 # Instalacion de ficheros de configuracion
-while [[ ! -d $CONFIG_FILES ]]; do
+while [[ ! -d $CONFIG_FILES/autonetplan ]]; do
     # Creacion de ruta
     sudo mkdir "$CONFIG_FILES/autonetplan"
     # Clonacion y renombramiento - copiar todo el contenido a la ruta de fichero de configuracion
