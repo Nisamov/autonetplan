@@ -7,6 +7,8 @@ network_dir="/etc/netplan/00-installer-config.yaml"
 work_dir="/usr/local/sbin"
 program_files="/usr/local/sbin/auto-netplan/"
 INSTALL_DIR="/usr/local/sbin"
+# Fichero autonetplan del directorio autoneconf renombrado como autonetplan
+program_config="/etc/autonetplan/autonetplan.conf"
 
 # Proxima actualizacion -> este "help" ubicar en ruta /usr/local/sbin/auto-netplan/autonetplan.help
 # Al llamar, este sera expuesto con cat (ruta)
@@ -34,9 +36,33 @@ function aune-manual(){
 
 
 function aune-remove(){
-    # Funcion desinstalar programa
-    sudo rm -rf $program_files
-    sudo rm -f $INSTALL_DIR/autonetplan
+    # Revisar en el fichero de configuracion si la opcion autonetplan-prevent-purge-on-mistake es true o false
+    # Buscar la opcion autonetplan-formatted-on-call en el archivo de configuracion
+    opcion=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
+    # Comprobar si la opcion esta establecida en true o false
+    if [ "$opcion" == "true" ]; then
+        # Accion si la opcion es true
+        echo "La opcion autonetplan-formatted-on-call esta configurada como true."
+    elif [ "$opcion" == "false" ]; then
+        # Accion si la opcion es false
+        echo "La opcion autonetplan-formatted-on-call esta configurada como false."
+        echo -e "[\e[31m#\e[0m] Autonetplan esta siendo desinstalado..."
+        # Funcion desinstalar programa
+        sudo rm -rf $program_files
+        sudo rm -f $INSTALL_DIR/autonetplan
+        sudo rm -rf $program_config
+        # Revisar si quedan ficheros del programa
+        if [[ -d $program_files || -f $INSTALL_DIR/autonetplan || -d $program_config ]]; then
+            # Borrar forzosamente todos los ficheros o directorios
+            sudo rm -rf $program_files
+            sudo rm -f $INSTALL_DIR/autonetplan
+            sudo rm -rf $program_config
+        else
+            echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente."
+        fi
+    else
+        echo -e "[\e[33m!\e[0m] La opcion autonetplan-formatted-on-call no esta definida correctamente en el archivo de configuracion."
+    fi
 }
 
 function aune-backup(){

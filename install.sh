@@ -7,18 +7,31 @@
 
 # Ruta del directorio donde se encuentra el script de instalación
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
 # Ruta instalacion super usuario
 INSTALL_DIR="/usr/local/sbin"
-
 # Ruta ficheros programa super usuario
 PROGRAM_FILES="/usr/local/sbin/auto-netplan/"
-
 # Ruta netplan
 NETWORK="/etc/netplan/"
+# Ruta fichero de configuracion guardar dentro de /etc/autonetplan/autonetplan.conf
+CONFIG_FILES="/etc"
 
 # Limpiar consola para mejor lectura
 clear
+
+# Instalacion de ficheros de configuracion
+while [[ ! -d $CONFIG_FILES ]]; do
+    # Clonacion y renombramiento
+    sudo cp -r auneconf $CONFIG_FILES autonetplan
+    if [[ -d $CONFIG_FILES ]]; then
+     # Mensaje instalacion correcta
+        echo "[#] Se ha creado la ruta $CONFIG_FILES exitosamente"
+    else
+        echo -e "[\e[31m#\e[0m] No se ha clonado $CONFIG_FILES correctamente, intentando de nuevo..."
+        # Espera 1 segundo antes de intentar de nuevo
+        sleep 1
+    fi
+done
 
 # Creacion e instalacion rutas y ficheros del programa
 while [[ ! -d $PROGRAM_FILES ]]; do
