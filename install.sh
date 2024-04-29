@@ -57,23 +57,25 @@ if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
     # Si el archivo existe, mostrar un mensaje indicando que ya está presente
     echo "[#] El script principal ya existe en $INSTALL_DIR/autonetplan"
 else
-    echo -e "[\e[31m#\e[0m] El fichero autonetplan no existe, creando..."
-    # Si el archivo no existe, intentar copiarlo y renombrarlo
-    sudo cp "$SCRIPT_DIR/auto-netplan" "$INSTALL_DIR/autonetplan"
-    # Verificar si la copia se realizó correctamente
-    if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
-        # Mensaje de copia exitosa
-        echo "[#] El script principal se ha copiado exitosamente a $INSTALL_DIR/autonetplan"
-        # Dar permisos de ejecución al script principal
-        sudo chmod +x "$INSTALL_DIR/autonetplan"
-        # Mensaje tras otorgar correctamente los permisos
-        echo "[#] Permisos necesarios otorgados correctamente"
-    else
-        # Mensaje si la copia no se realizó correctamente
-        echo -e "[\e[31m#\e[0m] No se ha copiado el script principal correctamente, intentando de nuevo..."
-        # Espera 1 segundo antes de intentar de nuevo
-        sleep 1
-    fi
+    while [[ ! -f "$INSTALL_DIR/autonetplan" ]]; do
+        echo -e "[\e[31m#\e[0m] El fichero autonetplan no existe, creando..."
+        # Si el archivo no existe, intentar copiarlo y renombrarlo
+        sudo cp "$SCRIPT_DIR/auto-netplan/autonetplan.sh" "$INSTALL_DIR/autonetplan"
+        # Verificar si la copia se realizó correctamente
+        if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
+            # Mensaje de copia exitosa
+            echo "[#] El script principal se ha copiado exitosamente a $INSTALL_DIR/autonetplan"
+            # Dar permisos de ejecución al script principal
+            sudo chmod +x "$INSTALL_DIR/autonetplan"
+            # Mensaje tras otorgar correctamente los permisos
+            echo "[#] Permisos necesarios otorgados correctamente"
+        else
+            # Mensaje si la copia no se realizó correctamente
+            echo -e "[\e[31m#\e[0m] No se ha copiado el script principal correctamente, intentando de nuevo..."
+            # Espera 1 segundo antes de intentar de nuevo
+            sleep 1
+        fi
+    done
 fi
 
 
