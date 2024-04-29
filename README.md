@@ -44,16 +44,16 @@ Para instalar Auto Netplan, sigue estos pasos:
 Clona el repositorio:
 ```sh
 sudo apt install git
-git clone https://github.com/Nisamov/auto-netplan /ruta/de/instalacion
+git clone https://github.com/Nisamov/autonetplan /ruta/de/instalacion
 # Ejemplo de instalacion practica
-# git clone https://github.com/Nisamov/auto-netplan /home/user/Github/cloned/
+# git clone https://github.com/Nisamov/autonetplan /home/user/Github/cloned/
 ```
 
 Navega hasta el directorio del repositorio clonado:
 ```sh
-cd auto-netplan
+cd autonetplan
 # Ejemplo de acceso a la ruta de instalacion
-# cd /home/user/Github/cloned/auto-netplan
+# cd /home/user/Github/cloned/autonetplan
 ```
 Ejecuta el instalador:
 ```sh
@@ -64,7 +64,7 @@ sudo bash install.sh
 Las operaciones y posibilidades de ejecucion tras la instalacion son las siguientes:
 ```bash
 # Para llamar al programa es necesario escribir el nombre del programa + parametros
-autonetplan -x -a -iface -s -ip -ntmk
+autonetplan -x -a -iface -s -ip -ntmk -lnkd
 # llamada al programa + coninuacion con el programa + configuracion automatica + ip estatica + agregar interfaz + ingreso de ip fija + agregar mascara de red
 ```
 Ejemplo esquemático en el uso y funcionamiento de autonetplan:
@@ -92,6 +92,8 @@ Para comprender los parametros disponibles, se recomienda leer el siguiente cuad
                                         (solo tras haber indicado previamente '-s')
     $6:_
         -ntmk   / --netmask         >> Establecer mascara de red posteriormente
+    $7:_
+        -lnkd   / --linkeddoor      >> Puerta de enlace para equipos tipo cliente
 ```
 
 ## Configuracion
