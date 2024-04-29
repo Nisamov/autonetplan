@@ -55,15 +55,13 @@ done
 # Copiar el script principal al directorio de instalación renombrando el programa como autonetplan
 while [[ ! -f "$INSTALL_DIR/autonetplan" ]]; do
     # Copiar el archivo
-    sudo cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR/autonetplan.sh"
+    sudo cp "$SCRIPT_DIR/autonetplan/autonetplan" "$INSTALL_DIR/autonetplan"
     # Verificar si la copia se realizó correctamente
-    if [[ -f "$INSTALL_DIR/autonetplan.sh" ]]; then
+    if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
         # Mensaje de copia exitosa
         echo "[#] El script principal se ha copiado exitosamente a $INSTALL_DIR/autonetplan"
         # Dar permisos de ejecución al script principal
-        sudo chmod +x "$INSTALL_DIR/autonetplan.sh"
-        # Renombrar fichero
-        sudo cp "$INSTALL_DIR/autonetplan.sh" "$INSTALL_DIR/autonetplan"
+        sudo chmod +x "$INSTALL_DIR/autonetplan"
         # Mensaje tras otorgar correctamente los permisos
         echo "[#] Permisos necesarios otorgados correctamente"
     else
