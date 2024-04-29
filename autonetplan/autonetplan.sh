@@ -86,7 +86,7 @@ function aune-backup(){
         digited=$(($RANDOM%100))
         echo "[#] Copiando fichero $network_name..."
         # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
-        sudo cp "$network_dired/$network_name" "$backup_dir/$network_name-$digited.bk"
+        sudo cp "$network_dired/$network_name" "/usr/local/sbin/auto-netplan/$backup_dir/$network_name-$digited.bk"
         echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
         echo "[#] La copia de seguridad se ha guardado como $network_name-$digited.bk"
     else
