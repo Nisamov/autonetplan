@@ -67,7 +67,7 @@ function aune-remove(){
 
 function aune-backup(){
     # Variables
-    newtwork_name=00-installer-config.yaml
+    network_name=00-installer-config.yaml
     network_dired="/etc/netplan"
     # Funcion guardar copia de seguridad con numero progresivo para evitar reemplazar ficheros
     # Comprobar exitencia de ruta de backups
