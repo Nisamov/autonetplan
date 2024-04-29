@@ -209,13 +209,11 @@ fi
 
 # [Boceto Configuracion posterior]
 # Tras la primera configuracion, el valor $8 servira para confirmar si se quiere configurar mas de una tarjeta de red
-#   if [[ $8 == "-y" || $8 == "--yes" ]]; then
-#       # Meter en un bucle while para ir agregando tarjetas de red si se mantiene la variable $netcrd = true
-#       while [[ $netcrd == "y" || $netcrd == "Y" ]]; do
-#           # Configuracion
-#       done
-#   else
-#       # No se desea configurar otra tarjeta de red (alerta - amarillo)
-#       echo -e "[\e[31m#\e[0m] No se ha ingresado uno de los siguiente valores: '-y', o '-n'."
-#       echo -e "[\e[33m!\e[0m] No se desea configurar otra tarjeta de red"
-#   fi
+# read -p "¿Desea agregar una tarjeta de red nueva? [y/n]: " netcrd
+# while [[ $netcrd == "-y" || $netcrd == "--yes" ]]; do
+#   Configuracion
+#   Preguntar nuevamente por configurar una nueva tarjeta de red
+#   read -p "¿Desea agregar una tarjeta de red nueva? [y/n]: " netcrd
+# done
+# No se desea configurar otra tarjeta de red (amarillo)
+# echo -e "[\e[33m!\e[0m] No se desea configurar otra tarjeta de red"
