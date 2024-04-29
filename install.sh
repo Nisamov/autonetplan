@@ -54,7 +54,7 @@ done
 
 # Problemas copia de script - revisar
 # Copiar el script principal al directorio de instalación renombrando el programa como autonetplan
-while [[ ! -f "$INSTALL_DIR/autonetplan" ]]; do
+while [[ ! -f "$INSTALL_DIR/autonetplan/autonetplan" ]]; do
     # Copiar el archivo
     sudo cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR/autonetplan/autonetplan"
     # Verificar si la copia se realizó correctamente
