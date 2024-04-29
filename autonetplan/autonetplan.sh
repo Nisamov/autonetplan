@@ -67,11 +67,25 @@ function aune-remove(){
 
 function aune-backup(){
     # Funcion guardar copia de seguridad con numero progresivo para evitar reemplazar ficheros
-    local backup_number=0
-    local backup_file
-    echo "[#] Copiando fichero $network_dir..."
-    sudo cp "$network_dir" "$network_dir.bk"
-    echo "[#] Copia completada."
+    # Comprobar exitencia de ruta de backups
+    echo "[#] Revisando existencia de ruta $program_files/program-files/autonetplan-backups"
+
+    while [[ ! -d $program_files/program-files/autonetplan-backups ]]; do
+        echo -e "[\e[31m#\e[0m] Ruta no existente, creando ruta..."
+        # Crear ruta de copia de seguridad
+        sudo mkdir "$program_files/program-files/autonetplan-backups"
+    done
+    # Si existe previamente la ruta...
+    if [[ -d $program_files/program-files/autonetplan-backups ]]; then
+        local backup_number=0
+        local backup_file
+        echo "[#] Copiando fichero $network_dir..."
+        sudo cp "$network_dir" "$program_files/program-files/autonetplan-backups.bk"
+        echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
+        echo "[#] La copia de seguridad se ha guardado en $program_files/program-files/autonetplan-backups como $network_dir.bk"
+    else
+        echo -e "[\e[31m#\e[0m] Ha ocurrido un error inesperado."
+    fi
 }
 
 function netplanapply(){
