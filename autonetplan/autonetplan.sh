@@ -80,12 +80,12 @@ function aune-backup(){
     done
     # Si existe previamente la ruta...
     if [[ -d $program_files/program-files/autonetplan-backups ]]; then
-        echo -e "[\e[32m#\e[0m] Ruta creada existente"
+        echo -e "[\e[32m#\e[0m] Ruta $program_files/program-files/autonetplan-backups existente"
         # Digitos random simplificados
         digited=$(($RANDOM%100))
         echo "[#] Copiando fichero $network_name..."
         # Almacenamos la copia de seguridad con un valor aleatorio para identificar correctamente la copia de seguridad
-        sudo cp "$network_dired/$network_name" "$program_files/program-files/$network_name-$digited.bk"
+        sudo cp -r "$network_dired/$network_name" "$program_files/program-files/$network_name-$digited.bk"
         echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
         echo "[#] La copia de seguridad se ha guardado como $network_name-$digited.bk"
     else
