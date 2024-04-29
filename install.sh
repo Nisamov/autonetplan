@@ -52,10 +52,12 @@ while [[ ! -d $CONFIG_FILES/autonetplan ]]; do
     fi
 done
 
-# Problemas copia de script - revisar
-# Copiar el script principal al directorio de instalación renombrando el programa como autonetplan
-while [[ ! -f "$INSTALL_DIR/autonetplan" ]]; do
-    # Copiar el archivo
+# Verificar si el archivo principal existe en el directorio correcto
+if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
+    # Si el archivo existe, mostrar un mensaje indicando que ya está presente
+    echo "[#] El script principal ya existe en $INSTALL_DIR/autonetplan"
+else
+    # Si el archivo no existe, intentar copiarlo y renombrarlo
     sudo cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR/autonetplan"
     # Verificar si la copia se realizó correctamente
     if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
@@ -71,7 +73,7 @@ while [[ ! -f "$INSTALL_DIR/autonetplan" ]]; do
         # Espera 1 segundo antes de intentar de nuevo
         sleep 1
     fi
-done
+fi
 
 # Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
 
