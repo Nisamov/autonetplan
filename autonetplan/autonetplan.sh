@@ -5,12 +5,12 @@
 # Declaracion variable directorio de configuracion netplan
 network_dir="/etc/netplan/00-installer-config.yaml"
 work_dir="/usr/local/sbin"
-program_files="/usr/local/sbin/auto-netplan"
+program_files="/usr/local/sbin/autonetplan"
 INSTALL_DIR="/usr/local/sbin"
 # Fichero autonetplan del directorio autoneconf renombrado como autonetplan
 program_config="/etc/autonetplan/autonetplan.conf"
 
-# Proxima actualizacion -> este "help" ubicar en ruta /usr/local/sbin/auto-netplan/autonetplan.help
+# Proxima actualizacion -> este "help" ubicar en ruta /usr/local/sbin/autonetplan/autonetplan.help
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
     # Comprobar que el fichero existe
@@ -69,24 +69,24 @@ function aune-backup(){
     # Variables
     network_name="00-installer-config.yaml"
     network_dired="/etc/netplan"
-    backup_dir="program-files/autonetplan-backups"
+    backup_dir="$program_files/autonetplan-backups"
 
     # Comprobar existencia de ruta de backups
-    echo "[#] Revisando existencia de ruta /usr/local/sbin/auto-netplan/$backup_dir"
-    if [[ ! -d "/usr/local/sbin/auto-netplan/$backup_dir" ]]; then
+    echo "[#] Revisando existencia de ruta /usr/local/sbin/autonetplan/$backup_dir"
+    if [[ ! -d "/usr/local/sbin/autonetplan/$backup_dir" ]]; then
         echo -e "[\e[31m#\e[0m] Ruta no existente, creando ruta..."
         # Crear ruta de copia de seguridad
-        sudo mkdir -p "/usr/local/sbin/auto-netplan/$backup_dir"
+        sudo mkdir -p "/usr/local/sbin/autonetplan/$backup_dir"
     fi
 
     # Si existe previamente la ruta...
-    if [[ -d "/usr/local/sbin/auto-netplan/$backup_dir" ]]; then
-        echo -e "[\e[32m#\e[0m] Ruta /usr/local/sbin/auto-netplan/$backup_dir existente"
+    if [[ -d "/usr/local/sbin/autonetplan/$backup_dir" ]]; then
+        echo -e "[\e[32m#\e[0m] Ruta /usr/local/sbin/autonetplan/$backup_dir existente"
         # Generar un número aleatorio para el nombre del archivo de copia de seguridad
         digited=$(($RANDOM%100))
         echo "[#] Copiando fichero $network_name..."
         # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
-        sudo cp "$network_dired/$network_name" "/usr/local/sbin/auto-netplan/$backup_dir/$network_name-$digited.bk"
+        sudo cp "$network_dired/$network_name" "/usr/local/sbin/autonetplan/$backup_dir/$network_name-$digited.bk"
         echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
         echo "[#] La copia de seguridad se ha guardado como $network_name-$digited.bk"
     else
