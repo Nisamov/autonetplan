@@ -40,7 +40,8 @@ while [[ ! -d $CONFIG_FILES/autonetplan ]]; do
     # Creacion de ruta
     sudo mkdir "$CONFIG_FILES/autonetplan"
     # Clonacion y renombramiento - copiar todo el contenido a la ruta de fichero de configuracion
-    sudo cp -r auneconf/* "$CONFIG_FILES/autonetplan"
+    sudo cp -r $SCRIPT_DIR/auneconf/* "$CONFIG_FILES/autonetplan"
+
     if [[ -d "$CONFIG_FILES/autonetplan" ]]; then
         # Mensaje instalacion correcta
         echo "[#] Se ha creado la ruta $CONFIG_FILES/autonetplan exitosamente"
@@ -55,7 +56,7 @@ done
 # Copiar el script principal al directorio de instalación renombrando el programa como autonetplan
 while [[ ! -f "$INSTALL_DIR/autonetplan" ]]; do
     # Copiar el archivo
-    sudo cp "$SCRIPT_DIR/autonetplan/autonetplan" "$INSTALL_DIR/autonetplan"
+    sudo cp "$SCRIPT_DIR/autonetplan/autonetplan.sh" "$INSTALL_DIR/autonetplan"
     # Verificar si la copia se realizó correctamente
     if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
         # Mensaje de copia exitosa
