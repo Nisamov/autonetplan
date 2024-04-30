@@ -1,6 +1,18 @@
-# Modelo en desarrollo
-# Este codigo es la correcion de autonetplan.sh debido a fallos catastroficos en el programa
 # Por Andres Abadias
+#Copyright [2024] [Andres Abadias]
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 
 # Declaracion variable directorio de configuracion netplan
 network_dir="/etc/netplan/00-installer-config.yaml"
@@ -137,12 +149,6 @@ comment_line_gateway4() {
     # Usa sed para comentar la línea que contiene "gateway4:"
     sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
-
-# Si es de color rojo el aviso = importante revisar
-#   [\e[31m#\e[0m] >> # rojo
-# Si es de color amarillo el aviso = sugerencia o no obligatorio
-#   [\e[33m!!\e[0m] >> !! amarillo
-# Si es de color verde el aviso = todo realizado correctamente
 
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
