@@ -173,7 +173,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         sudo apt update
     elif [[ "$opcionaau" == "false" ]]; then
         # No se descargan paquetes
-        echo "[#] La opcion autonetplan-formatted-on-call esta configurada como false."
+        echo "[#] La opcion autonetplan-automate-update esta configurada como false."
     else
         echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-update."
     fi
@@ -183,10 +183,10 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     if [[ "$opcionafoc" == "true" ]]; then
         # Se limpia el contenido de la variable $network_dir
         > "$network_dir"
-        # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
-        netplanapply
+        # Aplicar cambios al programa netplan sin llamar a la funcion netplanapply
+        sudo netplan apply
         # Mensaje de aviso - limpieza de configuracion exitosa
-        echo -e "[\e[32m#\e[0m] Fichero de configuracion reestablecido"
+        echo -e "[#] Fichero de configuracion de red reestablecido"
     elif [[ "$opcionafoc" == "false" ]]; then
         # No se hace nada, continuando el programa
         # Se previene formatear el contenido del fichero de red
