@@ -95,7 +95,7 @@ function aune-integrity(){
         # Comprobar si la opcion esta establecida en true o false
         if [ "$opcion_aes" == "true" ]; then
             # Ejecutar fichero de lectura integridad del programa
-            sudo bash $integrity_program
+            sudo bash "/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh"
         elif [ "$opcion_aes" == "false" ]; then
             echo "[\e[31m#\e[0m] La funcion autonetplan-enable-search esta desactivada y no se puede continuar con la operacion."
         fi
