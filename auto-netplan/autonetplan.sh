@@ -157,9 +157,6 @@ comment_line_gateway4(){
     # Usa sed para comentar la línea que contiene "gateway4:"
     sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
-
-<<<<<<< HEAD
-=======
 show_net_configuration(){
     # Mostrar configuracion de red, usar tras aplicar configuraciones de red
     # Preguntar si mostrar configuracion
@@ -174,7 +171,6 @@ show_net_configuration(){
     fi
 }
 
->>>>>>> 0562ff23de3350c266db37b29e4870fa05487fc4
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
