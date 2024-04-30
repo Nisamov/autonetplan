@@ -29,6 +29,8 @@ program_files="/usr/local/sbin/auto-netplan"
 INSTALL_DIR="/usr/local/sbin"
 # Fichero autonetplan del directorio autoneconf renombrado como autonetplan
 program_config="/etc/autonetplan/autonetplan.conf"
+# Ruta de programa revision integridad de autonetplan
+integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 
 # Proxima actualizacion -> este "help" ubicar en ruta /usr/local/sbin/autonetplan/autonetplan.help
 # Al llamar, este sera expuesto con cat (ruta)
@@ -81,6 +83,25 @@ function aune-remove(){
         fi
     else
         echo -e "[\e[33m!\e[0m] La opcion autonetplan-formatted-on-call no esta definida correctamente en el archivo de configuracion."
+    fi
+}
+
+
+function aune-integrity(){
+    # Revisar que el fichero de configuracion exista
+    if [[ -f program_config ]]; then
+        # Revisar dentro del fichero si la funciond e lectura de programas esta activada
+        opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
+        # Comprobar si la opcion esta establecida en true o false
+        if [ "$opcion_aes" == "true" ]; then
+            # Ejecutar fichero de lectura integridad del programa
+            sudo bash $integrity_program
+        elif [ "$opcion_aes" == "false" ]; then
+            echo "[\e[31m#\e[0m] La funcion autonetplan-enable-search esta desactivada y no se puede continuar con la operacion."
+        fi
+    else
+        # Avisar de la inexistencia del fichro
+        echo "[\e[31m#\e[0m] El fichero de configuracion no se ha encontrado."
     fi
 }
 
@@ -145,19 +166,19 @@ network:
 EOF
 }
 
-comment_line_dhcp_true(){
+function comment_line_dhcp_true(){
     # Configuracion de red para ip dinamica (dhcp4: true)
     # Usa sed para comentar la línea que contiene "gateway4: y addresses"
     sudo sed -i '/^\s*addresses:/ s/^/# /' "$network_dir"
     sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
 
-comment_line_gateway4(){
+function comment_line_gateway4(){
     # Configuracion de red para servidores
     # Usa sed para comentar la línea que contiene "gateway4:"
     sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
-show_net_configuration(){
+function show_net_configuration(){
     # Mostrar configuracion de red, usar tras aplicar configuraciones de red
     # Preguntar si mostrar configuracion
     read -p "[#] ¿Desea revisar los cambios de red aplicados? [s/n]: " netapplication
@@ -175,6 +196,9 @@ if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
         aune-help
+elif [[ $1 == "-i" || $1 == "--integrity" ]]; then
+    # Llamada de funcion aune-integrity
+        aune-integrity
 elif [[ $1 == "-m" || $1 == "--manual" ]]; then
     # Llamada de funcion aune-manual
         aune-manual

@@ -41,9 +41,15 @@ fi
 ## Instalación
 Para instalar Auto Netplan, sigue estos pasos:
 
+Instalar git:
+```sh
+# Instalar git, con el que se llevara a cabo la clonacion del repositorio
+sudo apt install git
+```
+
+
 Clona el repositorio:
 ```sh
-sudo apt install git
 git clone https://github.com/Nisamov/autonetplan /ruta/de/instalacion
 # Ejemplo de instalacion practica
 # git clone https://github.com/Nisamov/autonetplan /home/user/Github/cloned/
@@ -78,7 +84,8 @@ Para comprender los parametros disponibles, se recomienda leer el siguiente cuad
         -l      / --license         >> Mostrar licencia del programa
         -b      / --backup          >> Crear copia seguridad configuracion actual red
         -x      / --execute         >> Continuar con la ejecucion del programa
-        -m      / --manual
+        -m      / --manual          >> Mostrar manual del programa
+        -i      / --integrity       >> Revisar la integridad del programa
     $2:_
         -m      / --manual          >> Configuracion manual
         -a      / --automatic       >> Configuracion automatica

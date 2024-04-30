@@ -13,6 +13,8 @@ white_msg="[#]"
 ## Variables de mensajes
 msg_revision="[Revision de datos]:"
 
+# Iniciacion del programa
+echo "$green_msg $msg_revision Revision de integridad de datos del programa autonetplan en curso."
 # Revisar si el fichero de configuracion existe
 if [[ -f $program_config ]]; then
     # Enviar mensaje de existencia de fichero de configuracion
@@ -25,7 +27,10 @@ if [[ -f $program_config ]]; then
         opcion_afe=$(grep "^autonetplan-file-existence" "$program_config" | cut -d "=" -f2)
         # Comprobar si la opcion esta establecida en true o false
         if [ "$opcion_afe" == "true" ]; then
-            
+            # Revisa los ficheros y su integridad
+
+            # Codigo
+
         if [ "$opcion_afe" == "false" ]; then
             # Aviso de configuracion deshabilitada
             echo -e "$red_msg $msg_revision La configuracion autonetplan-file-existence esta desactivada."
