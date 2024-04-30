@@ -200,9 +200,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     elif [[ $2 == "-a" || $2 == "--automatic" ]]; then
         # Configuracion automatica
         if [[ $3 == "-iface" || $3 == "--interface" ]]; then
-                # Preguntar por interfaz de red a usar
-                read -p "Ingrese la interfaz de red a usar: " iface
-                # Continuacion de programa
+            # Preguntar por interfaz de red a usar
+            read -p "Ingrese la interfaz de red a usar: " iface
+            # Continuacion de programa
             if [[ $4 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
                 echo "Configuración de red seleccionada con conexion por DHCP"
@@ -224,6 +224,11 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 read -p "Ingrese la direccion IP a usar: " ipconfigure
                 # Preugntar por mascara de red a agregar
                 read -p "Ingrese la mascara de red a agregar: " masked
+                # Llamar a funcion aune-networked
+                # Sustituir valores
+                aune-networked
+                # Aplicar configuracion de red
+                netplanapply
                 if [[ $5 == "-lnkd" || $7 == "--linkeddoor" ]]; then
                     # Preguntar por puerta de enlace
                     read -p "Ingrese una puerta de enlace: " linkeddoor
