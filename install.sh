@@ -145,6 +145,8 @@ else
     # Si el archivo no existe, intentar copiarlo y renombrarlo
     sudo cp "$SCRIPT_DIR/auto-netplan/dir-file-search.sh" "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
     if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
+        # Indicar existencia de fichero
+        echo "[#] El fichero de integridad ha sido creado existosamente"
         # Dar permisos de ejecución al script de integridad
         sudo chmod +x "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
         # Mensaje tras otorgar correctamente los permisos
