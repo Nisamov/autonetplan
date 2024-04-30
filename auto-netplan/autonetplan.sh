@@ -34,7 +34,6 @@ function aune-manual(){
     fi
 }
 
-
 function aune-remove(){
     # Revisar en el fichero de configuracion si la opcion autonetplan-prevent-purge-on-mistake es true o false
     # Buscar la opcion autonetplan-prevent-purge-on-mistake en el archivo de configuracion
@@ -94,7 +93,6 @@ function aune-backup(){
     fi
 }
 
-
 function netplanapply(){
     # Preguntar si aplicar cambios de red
     read -p "¿Desea aplicar los cambios antes de continuar? [s/n]: " netwapply
@@ -140,7 +138,6 @@ comment_line_gateway4() {
     sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
 
-
 # Si es de color rojo el aviso = importante revisar
 #   [\e[31m#\e[0m] >> # rojo
 # Si es de color amarillo el aviso = sugerencia o no obligatorio
@@ -167,21 +164,21 @@ elif [[ $1 == "-l" || $1 == "--license" ]]; then
 # Continuacion con el programa
 elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     # Revisar en configuracion si autonetplan-automate-update es true o false
-    opcion-aau=$(grep "^autonetplan-automate-update" "$program_config" | cut -d "=" -f2)
+    opcionaau=$(grep "^autonetplan-automate-update" "$program_config" | cut -d "=" -f2)
     # Si es true - realizar descarga de paquetes
-    if [[ "$opcion-aau" == "true" ]]; then
+    if [[ "$opcionaau" == "true" ]]; then
         # Se descargar paquetes
         echo "[#] La configuracion autonetplan-automate-update esta configurada como true."
         echo "[#] Descargando paquetes..."
         sudo apt update
-    elif [[ "$opcion-aau" == "false" ]]; then
+    elif [[ "$opcionaau" == "false" ]]; then
         # No se descargan paquetes
         echo "[#] La opcion autonetplan-formatted-on-call esta configurada como false."
     else
         echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-update."
     fi
     # Revisar en configuracion si autonetplan-formatted-on-call es true o false
-    opcion-afoc=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
+    opcionafoc=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
     # Comprobar si la opcion esta establecida en true o false
     if [[ "$opcionafoc" == "true" ]]; then
         # Se limpia el contenido de la variable $network_dir
@@ -243,13 +240,13 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 fi
                 # Realizar copia de seguridad si en el fichero de configuracion esta indicado como true
                 # Revisar en configuracion si autonetplan-automate-update es true o false
-                opcion-aab=$(grep "^autonetplan-automate-backup" "$program_config" | cut -d "=" -f2)
+                opcionaab=$(grep "^autonetplan-automate-backup" "$program_config" | cut -d "=" -f2)
                 # Si es true - realizar copia de seguridad
-                if [[ "$opcion-aab" == "true" ]]; then
+                if [[ "$opcionaab" == "true" ]]; then
                     # Llamar a la funcion aune-backup
                     echo "[#] La configuracion autonetplan-automate-backup esta configurada como true."
                     aune-backup
-                elif [[ "$opcion-aab" == "false" ]]; then
+                elif [[ "$opcionaab" == "false" ]]; then
                     # No se descargan paquetes
                     echo "[#] La opcion autonetplan-automate-backup esta configurada como false."
                 else
