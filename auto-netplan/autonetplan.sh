@@ -94,13 +94,13 @@ function aune-integrity(){
         # Revisar dentro del fichero si la funcion de lectura de programas esta activada
         opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
         # Comprobar si la opcion esta establecida en true o false
-        if [ "$opcion_aes" == "true" ]; then
+        if [[ "$opcion_aes" == "true" ]]; then
             # Mensaje de depuración
             echo "La opción autonetplan-enable-search está habilitada."
             # Ejecutar fichero de lectura integridad del programa
             echo "Ejecutando el script de búsqueda de archivos..."
             sudo bash "$integrity_program"
-        elif [ "$opcion_aes" == "false" ]; then
+        elif [[ "$opcion_aes" == "false" ]]; then
             echo "[\e[31m#\e[0m] La función autonetplan-enable-search está desactivada y no se puede continuar con la operación."
         fi
     else
