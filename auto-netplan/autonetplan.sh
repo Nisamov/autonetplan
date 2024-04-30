@@ -90,13 +90,13 @@ function aune-remove(){
 function aune-integrity(){
     # Revisar que el fichero de configuracion exista
     if [[ -f $program_config ]]; then
+        echo "[#] Revisando el fichero de configuracion..."
         # Revisar dentro del fichero si la funcion de lectura de programas esta activada
         opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
         # Comprobar si la opcion esta establecida en true o false
         if [ "$opcion_aes" == "true" ]; then
             # Mensaje de depuración
             echo "La opción autonetplan-enable-search está habilitada."
-
             # Ejecutar fichero de lectura integridad del programa
             echo "Ejecutando el script de búsqueda de archivos..."
             sudo bash "$integrity_program"
