@@ -7,6 +7,7 @@ Principales valores '$.1':
     -b     | --backup      :: Creacion de copia de seguridad de configuracion de red
     -x     | --execute     :: Continuacion con el programa
     -m     | --manual      :: Mostrar instrucciones y configuracion avanzada
+    -i     | --integrity   :: Mostrar integridad de los ficheros y directorios del programa
 
 Valores segunda categoría '$.2'
     -m     | --manual      :: Configuracion de red manual
