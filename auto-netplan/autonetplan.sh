@@ -229,6 +229,8 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # Llamar a funcion aune-networked
                 # Sustituir valores
                 aune-networked
+                #► Aviso por gateway4
+                echo -e "[\e[33m#\e[0m] Es pobile que si no se ha seleccionado gateway4 como (-lnkd), muestre un aviso de problema en la configuracion, no osbtante, no debera preocuparse, pues todo se resuelve automaticamente."
                 # Aplicar configuracion de red
                 netplanapply
                 if [[ $5 == "-lnkd" || $7 == "--linkeddoor" ]]; then
