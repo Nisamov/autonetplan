@@ -91,7 +91,7 @@ else
 fi
 
 # Verificar si el programa de integridad de dir-file-search existe en la ruta indicada
-if [[ -f "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"]]
+if [[ -f "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh" ]]; then
     # Si el archivo existe, mostrar un mensaje indicando que ya está presente
     echo "[#] El script de integridad ya existe en $INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
 else
