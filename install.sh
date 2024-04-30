@@ -90,8 +90,28 @@ else
     done
 fi
 
-# Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
+# Verificar si el programa de integridad de dir-file-search existe en la ruta indicada
+if [[ -f "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"]]
+    # Si el archivo existe, mostrar un mensaje indicando que ya está presente
+    echo "[#] El script de integridad ya existe en $INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
+else
+    echo -e "[\e[31m#\e[0m] El fichero dir-file-search.sh no existe, creando..."
+    # Si el archivo no existe, intentar copiarlo y renombrarlo
+    sudo cp "$SCRIPT_DIR/auto-netplan/dir-file-search.sh" "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
+    if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
+        # Dar permisos de ejecución al script de integridad
+        sudo chmod +x "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
+        # Mensaje tras otorgar correctamente los permisos
+        echo "[#] Permisos necesarios otorgados al fichero de integridad correctamente"
+    else
+        # Mensaje si la copia no se realizó correctamente
+        echo -e "[\e[31m#\e[0m] No se ha copiado el script de integridad correctamente, intentando de nuevo..."
+        # Espera 1 segundo antes de intentar de nuevo
+        sleep 1
+    fi
+fi
 
+# Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
 # Clonacion de contenido /program-files/ dentro de ruta $PROGRAM_FILES de forma recursiva
 sudo cp -r "$SCRIPT_DIR/program-files" "$PROGRAM_FILES"
 # Verificar si la copia se realizó correctamente
