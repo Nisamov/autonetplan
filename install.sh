@@ -90,7 +90,6 @@ else
     done
 fi
 
-
 # Copiar ficheros ejemplares en la ruta $PROGRAM_FILES
 
 # Clonacion de contenido /program-files/ dentro de ruta $PROGRAM_FILES de forma recursiva

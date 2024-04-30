@@ -1,4 +1,5 @@
 # Por Andres Abadias
+<<<<<<< HEAD
 #Copyright [2024] [Andres Abadias]
 #
 #Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +14,17 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
+=======
+# Licencia Apache2.0
+
+# [[Avisos del programa a tener en cuenta]]
+# Si es de color rojo el aviso = importante revisar
+#   [\e[31m#\e[0m] >> # rojo
+# Si es de color amarillo el aviso = sugerencia o no obligatorio
+#   [\e[33m!!\e[0m] >> ! amarillo
+# Si es de color verde el aviso = todo realizado correctamente
+#   [\e[32m#\e[0m] >> # verde
+>>>>>>> 0562ff23de3350c266db37b29e4870fa05487fc4
 
 # Declaracion variable directorio de configuracion netplan
 network_dir="/etc/netplan/00-installer-config.yaml"
@@ -137,19 +149,36 @@ network:
 EOF
 }
 
-comment_line_dhcp_true() {
+comment_line_dhcp_true(){
     # Configuracion de red para ip dinamica (dhcp4: true)
     # Usa sed para comentar la línea que contiene "gateway4: y addresses"
     sudo sed -i '/^\s*addresses:/ s/^/# /' "$network_dir"
     sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
 
-comment_line_gateway4() {
+comment_line_gateway4(){
     # Configuracion de red para servidores
     # Usa sed para comentar la línea que contiene "gateway4:"
     sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
 
+<<<<<<< HEAD
+=======
+show_net_configuration(){
+    # Mostrar configuracion de red, usar tras aplicar configuraciones de red
+    # Preguntar si mostrar configuracion
+    read -p "[#] ¿Desea revisar los cambios de red aplicados? [s/n]: " netapplication
+    if [[ $netapplication == "s" ]]; then
+        # Mostrar ip a
+        echo "[#] Se ha solicitado la revision de red, mostrando..."
+        sudo ip a
+    else
+        # Se ha cancelado la vista previa
+        echo "[#] Se ha cancelado la vista de red"
+    fi
+}
+
+>>>>>>> 0562ff23de3350c266db37b29e4870fa05487fc4
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
@@ -236,7 +265,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # Sustituir valores
                 aune-networked
                 #► Aviso por gateway4
-                echo -e "[\e[33m#\e[0m] Es pobile que si no se ha seleccionado gateway4 como (-lnkd), muestre un aviso de problema en la configuracion, no osbtante, no debera preocuparse, pues todo se resuelve automaticamente."
+                echo -e "[\e[33m#\e[0m] Es pobile que si no se ha seleccionado gateway4 como (-lnkd), muestre un aviso de problema en la configuracion, no obstante, no debera preocuparse, pues todo se resuelve automaticamente."
                 # Aplicar configuracion de red
                 netplanapply
                 if [[ $5 == "-lnkd" || $7 == "--linkeddoor" ]]; then
@@ -255,6 +284,11 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     # Aplicar red
                     netplanapply
                 fi
+
+                # Preguntar si mostrar configuracion de red
+                # Llamar a la funcion show_net_configuration
+                show_net_configuration
+
                 # Realizar copia de seguridad si en el fichero de configuracion esta indicado como true
                 # Revisar en configuracion si autonetplan-automate-update es true o false
                 opcionaab=$(grep "^autonetplan-automate-backup" "$program_config" | cut -d "=" -f2)
