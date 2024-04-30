@@ -208,8 +208,10 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 echo "Configuración de red seleccionada con conexion por DHCP"
                 # DHCP4 ==  true >> Aplicar cambios en configuracion de red
                 ipfigured=true
-                #¿ Aplicar directamente la configuracion (posteriormente, comentar las lineas gateway, ip, etc)
+                # Aplicar directamente la configuracion (posteriormente, comentar las lineas gateway, ip, etc)
                 aune-networked
+                # Aplicar configuracion de red
+                sudo netplan apply
                 # Comentar secciones (al ser ip dinamica)
                 comment_line_dhcp_true
                 # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
