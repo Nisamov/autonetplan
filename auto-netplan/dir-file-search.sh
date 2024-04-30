@@ -22,19 +22,22 @@ if [[ -f $program_config ]]; then
     # Revisar si la opcion principal esta habilitada
     opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
     # Comprobar si la opcion esta establecida en true o false
-    if [ "$opcion_aes" == "true" ]; then
+    if [[ "$opcion_aes" == "true" ]]; then
         # Revisar si alguna de las otras dos opciones esta activa
         opcion_afe=$(grep "^autonetplan-file-existence" "$program_config" | cut -d "=" -f2)
         # Comprobar si la opcion esta establecida en true o false
-        if [ "$opcion_afe" == "true" ]; then
+        if [[ "$opcion_afe" == "true" ]]; then
             # Revisa los ficheros y su integridad
 
             # Codigo
 
-        if [ "$opcion_afe" == "false" ]; then
+        elif [[ "$opcion_afe" == "false" ]]; then
             # Aviso de configuracion deshabilitada
             echo -e "$red_msg $msg_revision La configuracion autonetplan-file-existence esta desactivada."
-    elif [ "$opcion_aes" == "false" ]; then
+        else
+            echo -e "$red_msg $msg_revision No se ha encontrado la linea autonetplan-file-existence."
+        fi
+    elif [[ "$opcion_aes" == "false" ]]; then
         # Aviso de configuracion deshabilitada
         echo -e "$red_msg $msg_revision La configuracion autonetplan-enable-search esta desactivada."
     fi
