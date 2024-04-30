@@ -89,7 +89,7 @@ function aune-remove(){
 
 function aune-integrity(){
     # Revisar que el fichero de configuracion exista
-    if [[ -f program_config ]]; then
+    if [[ -f $program_config ]]; then
         # Revisar dentro del fichero si la funciond e lectura de programas esta activada
         opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
         # Comprobar si la opcion esta establecida en true o false
@@ -101,7 +101,7 @@ function aune-integrity(){
         fi
     else
         # Avisar de la inexistencia del fichro
-        echo "[\e[31m#\e[0m] El fichero de configuracion no se ha encontrado."
+        echo -e "[\e[31m#\e[0m] El fichero de configuracion no se ha encontrado."
     fi
 }
 
