@@ -1,5 +1,5 @@
 # Por Andres Abadias
-<<<<<<< HEAD
+
 #Copyright [2024] [Andres Abadias]
 #
 #Licensed under the Apache License, Version 2.0 (the "License");
