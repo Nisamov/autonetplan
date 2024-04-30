@@ -166,20 +166,36 @@ elif [[ $1 == "-l" || $1 == "--license" ]]; then
         sudo less "$program_files/LICENSE.txt"
 # Continuacion con el programa
 elif [[ $1 == "-x" || $1 == "--execute" ]]; then
+    # Revisar en configuracion si autonetplan-automate-update es true o false
+    opcion-aau=$(grep "^autonetplan-automate-update" "$program_config" | cut -d "=" -f2)
+    # Si es true - realizar descarga de paquetes
+    if [[ "$opcion-aau" == "true" ]]; then
+        # Se descargar paquetes
+        echo "[#] La configuracion autonetplan-automate-update esta configurada como true."
+        echo "[#] Descargando paquetes..."
+        sudo apt update
+    elif [[ "$opcion-aau" == "false" ]]; then
+        # No se descargan paquetes
+        echo "[#] La opcion autonetplan-formatted-on-call esta configurada como false."
+    else
+        echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-update."
+    fi
     # Revisar en configuracion si autonetplan-formatted-on-call es true o false
-    opcion=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
+    opcion-afoc=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
     # Comprobar si la opcion esta establecida en true o false
-    if [ "$opcion" == "true" ]; then
-        # Se previene formatear el contenido del fichero de red
-        # No se hace nada, continuando el programa
-        echo "La opcion autonetplan-formatted-on-call esta configurada como true."
-    elif [ "$opcion" == "false" ]; then
+    if [[ "$opcionafoc" == "true" ]]; then
         # Se limpia el contenido de la variable $network_dir
         > "$network_dir"
         # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
         netplanapply
         # Mensaje de aviso - limpieza de configuracion exitosa
         echo -e "[\e[32m#\e[0m] Fichero de configuracion reestablecido"
+    elif [[ "$opcionafoc" == "false" ]]; then
+        # No se hace nada, continuando el programa
+        # Se previene formatear el contenido del fichero de red
+        echo "[#] La opcion autonetplan-formatted-on-call esta configurada como false."
+    else
+        echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-formatted-on-call."
     fi
     # Continuacion de programa
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
@@ -205,43 +221,39 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # Configuracion de red por ip estatica
                 echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
                 # Continuacion de programa
-                if [[ $5 == "-ip" || $5 == "--ipconfigure" ]]; then
-                    # Preguntar por ip a almacenar
-                    read -p "Ingrese la direccion IP a usar: " ipconfigure
-                    if [[ $6 == "-ntmk" || $6 == "--netmask" ]]; then
-                        # Preugntar por mascara de red a agregar
-                        read -p "Ingrese la mascara de red a agregar: " masked
-                        if [[ $7 == "-lnkd" || $7 == "--linkeddoor" ]]; then
-                            # Preguntar por puerta de enlace
-                            read -p "Ingrese una puerta de enlace: " linkeddoor
-                            # Llamar a funcion aune-networked
-                            # Sustituir valores
-                            aune-networked
-                            # Aplicar red
-                            netplanapply
-                        else
-                            # Mensaje por error de valores
-                            echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
-
-                            # LLamar a funcion comment_line_gateway4 por saltarse -lnkd
-                            comment_line_gateway4
-                            # Aplicar red
-                            netplanapply
-                        fi
-                    else
-                        # Mensaje por error de valores
-                        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ntmk'."
-                        # Aplicar cambios:
-                            netplanapply
-                        
-                        # Error por ingreso de valores erroneos
-                        exit 1
-                    fi
+                # Preguntar por ip a almacenar
+                read -p "Ingrese la direccion IP a usar: " ipconfigure
+                # Preugntar por mascara de red a agregar
+                read -p "Ingrese la mascara de red a agregar: " masked
+                if [[ $5 == "-lnkd" || $7 == "--linkeddoor" ]]; then
+                    # Preguntar por puerta de enlace
+                    read -p "Ingrese una puerta de enlace: " linkeddoor
+                    # Llamar a funcion aune-networked
+                    # Sustituir valores
+                    aune-networked
+                    # Aplicar red
+                    netplanapply
                 else
                     # Mensaje por error de valores
-                    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-ip'."
-                    # Error por ingreso de valores erroneos
-                    exit 1
+                    echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
+                    # LLamar a funcion comment_line_gateway4 por saltarse -lnkd
+                    comment_line_gateway4
+                    # Aplicar red
+                    netplanapply
+                fi
+                # Realizar copia de seguridad si en el fichero de configuracion esta indicado como true
+                # Revisar en configuracion si autonetplan-automate-update es true o false
+                opcion-aab=$(grep "^autonetplan-automate-backup" "$program_config" | cut -d "=" -f2)
+                # Si es true - realizar copia de seguridad
+                if [[ "$opcion-aab" == "true" ]]; then
+                    # Llamar a la funcion aune-backup
+                    echo "[#] La configuracion autonetplan-automate-backup esta configurada como true."
+                    aune-backup
+                elif [[ "$opcion-aab" == "false" ]]; then
+                    # No se descargan paquetes
+                    echo "[#] La opcion autonetplan-automate-backup esta configurada como false."
+                else
+                    echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-backup."
                 fi
             else
                 # Mensaje por error de valores
