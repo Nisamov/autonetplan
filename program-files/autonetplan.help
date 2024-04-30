@@ -20,12 +20,6 @@ Valores tercera categoria '$.4'
     -s     | --static      :: Configuracion fija (red estatica)
 
 Valores tercera categoria '$.5'
-    -ip    | --ipconfigure :: IP para el equipo
-
-Valores tercera categoria '$.6'
-    -ntmk  | --netmask     :: Mascara de red
-
-Valores tercera categoria '$.7'
     -lnkd  | --linkeddoor  :: Puerta de enlace
 
 Para mas informacion use: autonetplan -m

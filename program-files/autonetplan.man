@@ -34,12 +34,6 @@ Valores $4:
     -s     | --static      :: Configuracion fija (red estatica)
 
 Valores $5:
-    -ip    | --ipconfigure :: IP para el equipo
-
-Valores $6:
-    -ntmk  | --netmask     :: Mascara de red
-
-Valores $7:
     -lnkd  | --linkeddoor  :: Puerta de enlace
 
 [Ejemplo de uso en valores]:
@@ -63,19 +57,17 @@ Valores $7:
             autonetplan -x -a -iface -f
         Opcion2:
             autonetplan --execute --automatica --interface --fluid
-    Ejemplo5 - Ejecucion de programa, configuracion automatica, ingreso de interfaz, red estatica, ingreso de ip, ingreso de mascara de red:
+    Ejemplo5 - Ejecucion de programa, configuracion automatica, ingreso de interfaz, red estatica:
         Opcion1:
-            autonetplan -x -a -iface -s -ip -ntmk
+            autonetplan -x -a -iface -s
         Opcion2:
-            autonetplan --execute --automatic --interface --static --ipconfigure --netmask
-    Ejemplo6 - Ejecicion de programa, configuracion automaticam, ingreso de interfaz, red estatica, ingreso de ip, ingreso de mascara de red y puerta de enlace:
+            autonetplan --execute --automatic --interface --static
+    Ejemplo6 - Ejecicion de programa, configuracion automaticam, ingreso de interfaz, red estatica y puerta de enlace:
         Opcion1:
-            autonetplan -x -a -iface -s -ip -ntmk -lnkd
+            autonetplan -x -a -iface -s -lnkd
         Opcion2:
-            autonetplan --execute --automatic --interface --static --ipconfigure --netmask --linkeddoor
+            autonetplan --execute --automatic --interface --static --linkeddoor
 
 [Ubicaciones de ficheros del programa]:
 Ubicacion de llamada al programa: /usr/local/sbin/autonetplan (codigo .sh sin extension).
 Ubicacion de fichero del programa: /usr/local/sbin/auto-netplan/*
-
-[(Para salir de la previsualizacion, presione "q")]
