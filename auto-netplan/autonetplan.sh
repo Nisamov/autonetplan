@@ -224,6 +224,8 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 read -p "Ingrese la direccion IP a usar: " ipconfigure
                 # Preugntar por mascara de red a agregar
                 read -p "Ingrese la mascara de red a agregar: " masked
+                # Esablecer ipfigured como no >> ip estatica
+                ipfigured=no
                 # Llamar a funcion aune-networked
                 # Sustituir valores
                 aune-networked
