@@ -14,9 +14,6 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
-=======
-# Licencia Apache2.0
-
 # [[Avisos del programa a tener en cuenta]]
 # Si es de color rojo el aviso = importante revisar
 #   [\e[31m#\e[0m] >> # rojo
@@ -24,7 +21,6 @@
 #   [\e[33m!!\e[0m] >> ! amarillo
 # Si es de color verde el aviso = todo realizado correctamente
 #   [\e[32m#\e[0m] >> # verde
->>>>>>> 0562ff23de3350c266db37b29e4870fa05487fc4
 
 # Declaracion variable directorio de configuracion netplan
 network_dir="/etc/netplan/00-installer-config.yaml"
