@@ -92,7 +92,7 @@ function aune-integrity(){
     if [[ -f $program_config ]]; then
         echo "[#] Revisando el fichero de configuracion..."
         # Revisar dentro del fichero si la funcion de lectura de programas esta activada
-        opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
+        opcion_aes=$(awk -F= '/autonetplan-enable-search/ {gsub(/^[ \t]+/,"",$2); print $2}' "$program_config")
         # Comprobar si la opcion esta establecida en true o false
         if [[ "$opcion_aes" == "true" ]]; then
             # Mensaje de depuración
