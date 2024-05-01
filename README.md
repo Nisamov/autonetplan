@@ -117,7 +117,7 @@ Esta opcion permite poder llamar al programa multiples veces cambiando constante
 Esta opcion permite deshabilitar la desinstalacion del programa mediante el comando `autonetplan -r`.
 
 ## Integridad del Programa
-Para revisar la integridad del programa, es necesario usar el comando `autonetplan -i`, este comando llevaa a cabo una busqueda en la configuracion donde cuenta con las siguientes lineas:
+Para revisar la integridad del programa, es necesario usar el comando `autonetplan -i`, este comando lleva a cabo una busqueda en la configuracion `/etc/autonetplan/autonetplan.conf` donde cuenta con las siguientes lineas:
 ```conf
 # Habilitar la busqueda de ficheros y directorios
 autonetplan-enable-search=false
