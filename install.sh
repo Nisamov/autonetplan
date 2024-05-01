@@ -193,7 +193,7 @@ function autonetplan-necessary-integrity(){
     var_inter="[autonetplan-integrity]"
     # Inicio de funcion
     echo "[#] Revision de integridad del programa..."
-    if [[ -f $PROGRAM_FILES ]]; then
+    if [[ -f "/usr/local/sbin/autonetplan" ]]; then
         # Si el fichero existe
         echo -e "[\e[32m#\e[0m] $var_inter El fichero autonetplan se ha instalado correctamente"
         # primera variable de ok
@@ -256,7 +256,7 @@ if [[ $autone == "ok" && $autoconf == "ok" && $autodirfilesearch == "ok" ]]; the
     purge-repo
     # Programa instalado correctamente
     echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
-elif [[ $autone == "ok"]]; then
+elif [[ $autone == "ok" ]]; then
     # Si este funciona al menos, enviar aviso de ok
     echo -e "[\e[32m#\e[0m] El fichero autonetplan se ha econtrado en la ruta correcta, puede ser llamado mediante 'autoentplan <parametros>'."
 else
