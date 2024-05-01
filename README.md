@@ -24,17 +24,22 @@ sudo nano ./install.sh
 ![Estructura del Programa durante Instalacion](public-media/full-structure-post-install-updated.jpg)
 Mediante la imagen mostrada previamente, es posible comprender el funcionamiento y clonacion de los ficheros del repositorio, tras la ejecucion del fichero `install.sh`, este cuenta con una seccion del fichero de isntalacion que borra el repositorio clonado, limpiando asi espacio ya no necesario en el sistema, siendo esta escript el siguiente:
 ```sh
-# Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio
-# Verificar si la ruta $SCRIPT_DIR existe
-if [[ -d "$SCRIPT_DIR" ]]; then
-    # Si la ruta existe, eliminar de forma recursiva el directorio
-    sudo rm -rf "$SCRIPT_DIR"
-    # Mensaje de eliminación exitosa
-    echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
-else
-    # Si la ruta no existe, mostrar un mensaje indicando que no existe
-    echo "[#] La ruta '$SCRIPT_DIR' no existe."
-fi
+# Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio, unicamente tras comprobar la existencia de los ficheros imprescindibles para el programa.
+read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
+    if [[ $deleteRepos == "s" || $deleteRepos == "S" ]]; then
+    # Verificar si la ruta $SCRIPT_DIR existe
+        if [[ -d "$SCRIPT_DIR" ]]; then
+            # Si la ruta existe, eliminar de forma recursiva el directorio
+            sudo rm -rf "$SCRIPT_DIR"
+            # Mensaje de eliminación exitosa
+            echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
+        else
+            # Si la ruta no existe, mostrar un mensaje indicando que no existe
+            echo "[#] La ruta '$SCRIPT_DIR' no existe."
+        fi
+    else
+        echo "El repositorio no se eliminara del sistema"
+    fi
 ```
 
 
@@ -50,7 +55,7 @@ sudo apt install git
 
 Clona el repositorio:
 ```sh
-git clone https://github.com/Nisamov/autonetplan /ruta/de/instalacion
+git clone https://github.com/Nisamov/autonetplan
 # Ejemplo de instalacion practica
 # git clone https://github.com/Nisamov/autonetplan /home/user/Github/cloned/
 ```
@@ -110,3 +115,31 @@ Esta opcion permite poder llamar al programa multiples veces cambiando constante
 
 `autonetplan-prevent-purge-on-mistake`
 Esta opcion permite deshabilitar la desinstalacion del programa mediante el comando `autonetplan -r`.
+
+## Integridad del Programa
+Para revisar la integridad del programa, es necesario usar el comando `autonetplan -i`, este comando llevaa a cabo una busqueda en la configuracion donde cuenta con las siguientes lineas:
+```conf
+# Habilitar la busqueda de ficheros y directorios
+autonetplan-enable-search=false
+autonetplan-file-existence=false
+autonetplan-directory-existence=false
+
+# Para que el la busqueda de tanto ficheros como directorios continue, debera estar activa tanto "autonetplan-enable-search" como cualquiera de las dos opciones siguientes
+
+# Si la revision de ficheros esta activada
+#   Revisar existencia del fichero de configuracion (innecesario, puesto unicamente por incluir todos los ficheros fundamentales para el programa)
+file-existence-config-file=/etc/autonetplan/autonetplan.conf
+#   Revisar existencia programa autonetplan (fichero .sh sin extension)
+file-existence-autonetplansh-file=/usr/local/sbin/autonetplan
+#   Revisar existencia de licencia
+file-existence-license-file=/usr/local/sbin/auto-netplan/LICENSE.txt
+# Si la revision de directorios esta activada
+#   Revisar existencia ruta de configuracion
+dir-existence-config-dir=/etc/autonetplan
+#   Revisar existencia directorio de ficheros
+dir-existence-program-files-dir=/usr/local/sbin/auto-netplan
+```
+Si las lineas `autonetplan-enable-search`, `autonetplan-file-existence`, `autonetplan-directory-existence` se encuentran en estado `true`, se confirmara la busqueda y se llevara a cabo la misma en las rutas indicadas a continuacion.
+
+Pese a este comando, durante la instalacion del programa autonetplan, se lleva a cabo una revision de los ficheros esenciales para el mismo, permitiendo una vez revisado la integridad y ver que todos los ficheros estan en sus respectivos lugares, la eliminacion del repositorio clonado.
+No sera de otra forma que el repositorio sera eliminado, liberando almacenamiento en el sistema innecesario, pues el programa se encontrara instalado correctamente.
