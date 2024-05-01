@@ -185,23 +185,84 @@ clear
 sudo less LICENSE.txt
 # Limpiar consola
 clear
-# Tras la instalacion, el instalador, preguntara si borrar el repositorio clonado para liberar espacio
-read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
-if [[ $deleteRepos == "s" || $deleteRepos == "S" ]]; then
-# Verificar si la ruta $SCRIPT_DIR existe
-    if [[ -d "$SCRIPT_DIR" ]]; then
-        # Si la ruta existe, eliminar de forma recursiva el directorio
-        sudo rm -rf "$SCRIPT_DIR"
-        # Mensaje de eliminación exitosa
-        echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
+
+# Revision de integridas de ficheros
+# Revisar la correcta instalacion de cada uno de los ficheros NECESARIOS para el funcionamiento del programa
+function autonetplan-necessary-integrity(){
+    # Variables
+    var_inter="[autonetplan-integrity]"
+    # Inicio de funcion
+    echo "[#] Revision de integridad del programa..."
+    if [[ -f $PROGRAM_FILES ]]; then
+        # Si el fichero existe
+        echo -e "[\e[32m#\e[0m] $var_inter El fichero autonetplan se ha instalado correctamente"
+        # primera variable de ok
+        autone=ok
     else
-        # Si la ruta no existe, mostrar un mensaje indicando que no existe
-        echo "[#] La ruta '$SCRIPT_DIR' no existe."
+        # Si no se ha encontrado
+        echo -e "[\e[31m#\e[0m] $var_inter El fichero autonetplan no se ha encontrado en el sistema"
+        sleep 1
     fi
+    if [[ -f $CONFIG_FILES/autonetplan/autonetplan.conf ]]; then
+        # Si el fichero existe
+        echo -e "[\e[32m#\e[0m] $var_inter El fichero de configuracion se ha instalado correctamente"
+        # segunda variable de ok
+        autoconf=ok
+    else
+        # Si no se ha encontrado
+        echo -e "[\e[31m#\e[0m] $var_inter El fichero de configuracion no se ha encontrado en el sistema"
+        sleep 1
+    fi
+    if [[ -f $PROGRAM_FILES/program-files/dir-file-search.sh ]]; then
+        # Si el fichero existe
+        echo -e "[\e[32m#\e[0m] $var_inter El fichero dir-file-search.sh se ha instalado correctamente"
+        # tercera variable de ok
+        autodirfilesearch=ok
+    else
+        # Si no se ha encontrado
+        echo -e "[\e[31m#\e[0m] $var_inter El fichero dir-file-search.sh no se ha encontrado en el sistema"
+        sleep 1
+    fi
+}
+
+function purge-repo(){
+    # Tras la instalacion, el instalador, preguntara si borrar el repositorio clonado para liberar espacio
+    read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
+    if [[ $deleteRepos == "s" || $deleteRepos == "S" ]]; then
+    # Verificar si la ruta $SCRIPT_DIR existe
+        if [[ -d "$SCRIPT_DIR" ]]; then
+            # Si la ruta existe, eliminar de forma recursiva el directorio
+            sudo rm -rf "$SCRIPT_DIR"
+            # Mensaje de eliminación exitosa
+            echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
+        else
+            # Si la ruta no existe, mostrar un mensaje indicando que no existe
+            echo "[#] La ruta '$SCRIPT_DIR' no existe."
+        fi
+    else
+        echo "El repositorio no se eliminara del sistema"
+    fi
+}
+
+# Llamada a la funcion autonetplan-necessary-integrity
+autonetplan-necessary-integrity
+
+# Si todos los ficheros necesarios para la instalacion estan "ok", preguntar si eliminar el repositorio
+
+if [[ $autone == "ok" && $autoconf == "ok" && $autodirfilesearch == "ok" ]]; then
+    # Los programas mas importantes se ha instalado correctamente
+    echo -e "[\e[32m#\e[0m] Todos los ficheros mas importantes del programa se han instalado correctamente"
+    # Llamar a la funcion purge-repo
+    purge-repo
+    # Programa instalado correctamente
+    echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
+elif [[ $autone == "ok"]]; then
+    # Si este funciona al menos, enviar aviso de ok
+    echo -e "[\e[32m#\e[0m] El fichero autonetplan se ha econtrado en la ruta correcta, puede ser llamado mediante 'autoentplan <parametros>'."
 else
-    echo "El repositorio no se eliminara del sistema"
+    # Ha ocurrido un error
+    echo -e "[\e[31m#\e[0m] Ha ocurrido un error, puede que alguno de los ficheros no se encuentre en el sistema, revisar la integridad del programa."
 fi
 
 echo "[#] Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '$PROGRAM_FILES'"
-echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
 echo "[#] Mostrar la lista de ayuda del programa autonetplan, ejecute el comando: 'autonetplan -h'"
