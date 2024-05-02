@@ -331,7 +331,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 comment_line_dhcp_true
                 # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
                 netplanapply           
-            elif [[ $4 == "-s" || $3 == "--static" ]]; then
+            elif [[ $4 == "-s" || $4 == "--static" ]]; then
                 # Configuracion de red por ip estatica
                 echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
                 # Continuacion de programa
@@ -356,7 +356,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     aune-networked
                     # Aplicar red
                     netplanapply
-                # Configuracion para otra tarjeta de red (solo de ser necesario)
+                    # Configuracion para otra tarjeta de red (solo de ser necesario)
                 elif [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
                     # Agregar mas configuracion para otras tarjetas de red
                     # Llamar a funcion new-network-card
@@ -364,13 +364,12 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 else
                     echo -e "[\e[33m!\e[0m] No se ha ingresado la opcion para la configuracion de una tarjeta de red: '-ntcd'."
                 fi
-                # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
+                    # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
                 if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" && $6 == "--networkcard" ]]; then
                     # Agregar mas configuracion para otras tarjetas de red
                     # Llamar a funcion new-network-card
                     new-network-card
                 fi
-                
                 else
                     # Mensaje por error de valores
                     echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
