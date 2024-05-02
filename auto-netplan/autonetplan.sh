@@ -365,7 +365,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     echo -e "[\e[33m!\e[0m] No se ha ingresado la opcion para la configuracion de una tarjeta de red: '-ntcd'."
                 fi
                 # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
-                if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" $6 == "--networkcard" ]]; then
+                if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" && $6 == "--networkcard" ]]; then
                     # Agregar mas configuracion para otras tarjetas de red
                     # Llamar a funcion new-network-card
                     new-network-card
