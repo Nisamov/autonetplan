@@ -360,17 +360,3 @@ else
     # Error por ingreso de valores erroneos
     exit 1
 fi
-
-# [Boceto Configuracion posterior]
-# Tras la primera configuracion, el valor $6 servira para confirmar si se quiere configurar mas de una tarjeta de red
-
-
-
-# read -p "¿Desea agregar una tarjeta de red nueva? [y/n]: " netcrd
-# while [[ $netcrd == "-y" || $netcrd == "--yes" ]]; do
-#   Configuracion
-#   Preguntar nuevamente por configurar una nueva tarjeta de red
-#   read -p "¿Desea agregar una tarjeta de red nueva? [y/n]: " netcrd
-# done
-# No se desea configurar otra tarjeta de red (amarillo)
-# echo -e "[\e[33m!\e[0m] No se desea configurar otra tarjeta de red"
