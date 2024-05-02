@@ -16,11 +16,14 @@ Valores segunda categoría '$.2'
 Valores tercera categoria '$.3'
     -iface | --interface   :: Interfaz de red a usar
 
-Valores tercera categoria '$.4'
+Valores cuarta categoria '$.4'
     -f     | --fluid       :: Configuracion DHCP (red fluida)
     -s     | --static      :: Configuracion fija (red estatica)
 
-Valores tercera categoria '$.5'
+Valores quinta categoria '$.5'
     -lnkd  | --linkeddoor  :: Puerta de enlace
+
+Valores sexta categoria   '$.6'
+    -ntcd  | --networkcard :: Configurar mas de una tarjeta de red
 
 Para mas informacion use: autonetplan -m

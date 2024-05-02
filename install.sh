@@ -271,5 +271,5 @@ else
     echo -e "[\e[31m#\e[0m] Ha ocurrido un error, puede que alguno de los ficheros no se encuentre en el sistema, revisar la integridad del programa."
 fi
 
-echo "[#] Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '$PROGRAM_FILES'"
+echo "[#] Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '/etc/autonetplan'"
 echo "[#] Mostrar la lista de ayuda del programa autonetplan, ejecute el comando: 'autonetplan -h'"

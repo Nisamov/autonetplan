@@ -37,6 +37,9 @@ Valores $4:
 Valores $5:
     -lnkd  | --linkeddoor  :: Puerta de enlace
 
+Valores $6:
+    -ntcd  | --networkcard :: Configurar mas de una tarjeta de red
+
 [Ejemplo de uso en valores]:
     Ejemplo1 - Ejecucion de programa y configuracion de red manual:
         Opcion1:

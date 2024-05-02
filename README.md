@@ -20,7 +20,7 @@ Esta es la ruta de los ficheros del repositorio, con este esquema es posible tra
 # Abrir el fichero en texto plano para su compresion con permisos de super usuario
 sudo nano ./install.sh
 ```
-![Estructura del Programa durante Instalacion](public-media/full-structure-post-install.jpg)
+![Estructura del Programa durante Instalacion](public-media/full-structure-during-install.jpg)
 Mediante la imagen mostrada previamente, es posible comprender el funcionamiento y clonacion de los ficheros del repositorio, tras la ejecucion del fichero `install.sh`, este cuenta con una seccion del fichero de isntalacion que borra el repositorio clonado, limpiando asi espacio ya no necesario en el sistema, siendo esta escript el siguiente:
 ```sh
 # Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio, unicamente tras comprobar la existencia de los ficheros imprescindibles para el programa.
@@ -82,7 +82,7 @@ Ejemplo esquemático en el uso y funcionamiento de autonetplan:
 
 Para comprender los parametros disponibles, se recomienda leer el siguiente cuadro:
 ```
-    $1:_
+    $1:
         -h      / --help            >> Mostrar ayuda del programa
         -r      / --remove          >> Desinstalar el programa
         -l      / --license         >> Mostrar licencia del programa
@@ -90,16 +90,18 @@ Para comprender los parametros disponibles, se recomienda leer el siguiente cuad
         -x      / --execute         >> Continuar con la ejecucion del programa
         -m      / --manual          >> Mostrar manual del programa
         -i      / --integrity       >> Revisar la integridad del programa
-    $2:_
+    $2:
         -m      / --manual          >> Configuracion manual
         -a      / --automatic       >> Configuracion automatica
-    $3:_
+    $3:
         -iface  / --interface       >> Indicar posteriormente la interfaz a usar
-    $4:_
+    $4:
         -f      / --fluid           >> Configuracion DHCP (red fluida)
         -s      / --static          >> Configuracion fija (red estatica)
-    $5:_
+    $5:
         -lnkd   / --linkeddoor      >> Puerta de enlace para equipos tipo cliente
+    $6:
+        -ntcd   / --networkcard     >> Configurar mas de una tarjeta de red
 ```
 
 ## Configuracion

@@ -301,7 +301,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         # Agregar mas configuracion para otras tarjetas de red
                         echo "[#] Configurando otra tarjeta de red..."
                         # Ingresar en un bucle while con valores otorgados desde el interior del mismo
-                        while [[ $addnwntcd == "y" || $addnwntcd == "Y" ]]; then
+                        while [[ $addnwntcd == "y" || $addnwntcd == "Y" ]]; do
 
                             # Configuracion para la terjeta de red (esta vez es configuracion por ingreso mediante "read -p")
 
