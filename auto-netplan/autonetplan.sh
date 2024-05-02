@@ -110,8 +110,6 @@ function aune-integrity(){
 }
 
 function new-network-card(){
-    # Preguntar por otra tarjeta de red
-    read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
     # Ingresar en un bucle while con valores otorgados desde el interior del mismo
     while [[ $addnwntcd == "s" || $addnwntcd == "S" ]]; do
         # Inicio de configuracion
@@ -370,8 +368,12 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
                     if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" && $6 == "--networkcard" ]]; then
                         # Agregar mas configuracion para otras tarjetas de red
+                        # Preguntar por otra tarjeta de red
+                        read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
                         # Llamar a funcion new-network-card
                         new-network-card
+                        # Prueba de manejo de valores
+                        echo "[#] SUPUESTAMENTE LA FUNCION 'new-network-card' SE HA EJECUTADO"
                     fi
                 else
                     # Mensaje por error de valores
