@@ -100,6 +100,8 @@ Para comprender los parametros disponibles, se recomienda leer el siguiente cuad
         -s      / --static          >> Configuracion fija (red estatica)
     $5:_
         -lnkd   / --linkeddoor      >> Puerta de enlace para equipos tipo cliente
+    $6:
+        -ntcd   / --networkcard     >> Configurar mas de una tarjeta de red
 ```
 
 ## Configuracion
