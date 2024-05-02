@@ -361,23 +361,24 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     aune-networked
                     # Aplicar red
                     netplanapply
-                elif [[ $5 == "-ntcd" || $6 == "--networkcard" ]]; then
-                    # Llamar a la funcion new-network-card
-                    new-network-card
-                    # Configuracion para otra tarjeta de red (solo de ser necesario)
-                    # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
-                    if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" && $6 == "--networkcard" ]]; then
-                        # Agregar mas configuracion para otras tarjetas de red
-                        # Preguntar por otra tarjeta de red
-                        read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
-                        # Llamar a funcion new-network-card
-                        new-network-card
-                        # Prueba de manejo de valores
-                        echo "[#] SUPUESTAMENTE LA FUNCION 'new-network-card' SE HA EJECUTADO"
-                    fi
+# [ESTA SECCION NO FUNCIONA - NO ES RECONOCIDA POR EL PROGRAMA]
+#                elif [[ $5 == "-ntcd" || $6 == "--networkcard" ]]; then
+#                    # Llamar a la funcion new-network-card
+#                    new-network-card
+#                    # Configuracion para otra tarjeta de red (solo de ser necesario)
+#                    # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
+#                    if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" && $6 == "--networkcard" ]]; then
+#                        # Agregar mas configuracion para otras tarjetas de red
+#                        # Preguntar por otra tarjeta de red
+#                        read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
+#                        # Llamar a funcion new-network-card
+#                        new-network-card
+#                        # Prueba de manejo de valores
+#                        echo "[#] SUPUESTAMENTE LA FUNCION 'new-network-card' SE HA EJECUTADO"
+#                    fi
                 else
                     # Mensaje por error de valores
-                    echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace o tarjeta de red nueva: '-lnkd', 'ntcd'."
+                    echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace o tarjeta de red nueva: '-lnkd', '-ntcd'."
                     # LLamar a funcion comment_line_gateway4 por saltarse -lnkd
                     comment_line_gateway4
                     # Aplicar red
