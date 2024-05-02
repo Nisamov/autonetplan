@@ -72,6 +72,7 @@ function aune-remove(){
         sudo rm -rf $program_files
         sudo rm -f $INSTALL_DIR/autonetplan
         sudo rm -rf $program_config
+        sudo rm -f /etc/autonetplan
         # Revisar si quedan ficheros del programa
         if [[ -d $program_files || -f $INSTALL_DIR/autonetplan || -d $program_config ]]; then
             # Borrar forzosamente todos los ficheros o directorios
