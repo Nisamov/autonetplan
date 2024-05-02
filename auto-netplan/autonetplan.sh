@@ -109,6 +109,52 @@ function aune-integrity(){
     fi
 }
 
+function new-network-card(){
+    # Preguntar por otra tarjeta de red
+    read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
+    # Ingresar en un bucle while con valores otorgados desde el interior del mismo
+    while [[ $addnwntcd == "y" || $addnwntcd == "Y" ]]; do
+        # Inicio de configuracion
+        echo "[#] Configurando otra tarjeta de red..."
+        # Configuracion para la terjeta de red (configuracion por ingreso mediante "read -p")
+        read -p "[#] Ingrese la interfaz de red a configurar: " ntinterface
+        read -p "[#] Elije el modo de conexion [ s (Estatica) / d (Dinamica) ]: " dhcp4configured
+        if [[ $dhcp4configured == "s" ]]; then
+            echo "[#] Se ha establecido la opcion 'configuracion estatica'."
+            # Declaracion de variable de dhcp4 para la tarjeta de red
+            dhcp4netwconfig="no"
+        elif [[ $dhcp4configured == "d" ]]; then
+            echo "[#] Se ha establecido la opcion 'configuracion dinamica'."
+            # Declaracion de variable de dhcp4 para la tarjeta de red
+            dhcp4netwconfig="yes"
+        fi
+        # Apicar la configuracion de red sin aviso (evitar molestar)
+        sudo netplan apply
+        # Si dhcp4 se ha configurado como true, no continuar
+        # Si dhcp4 se ha configurado como no, continuar
+        if [[ $dhcp4netwconfig == "no" ]]; then
+            # Preguntar por direccion IP y Mascara de red
+            read -p "[#] Ingrese la direccion IP a agregar a la tarjeta de red: " ipattachedseccondary
+            read -p "[#] Ingrese la mascara de red a agregar a la tarjeta de red: " ntmskattachedseccondary
+            # Aplicar red sin hacer saber al usuario
+            sudo netplan apply
+        else
+            # Avisar que no se aplicara ip ni mascara de red debido a la configuracion establecida para esta tarjeta de red
+            echo "[#] No se aplicara direccion ip manual ni mascara de red 'dhcp4=no'."
+            # Comentar configuracion IP y Mascara de red
+            # [REVISAR] - Buscar forma de unicamente comentar las lineas de la mascara de red a configurar (evitar configurar el resto por error)
+            # Aplicar red sin hacer saber al usuario
+            sudo netplan apply
+        fi
+        # Preguntar por gateway4:
+        read -p "[#] Ingrese una puerta de enlace para la tarjeta de red: " gatewayattachedseccondary
+        # Aplicar cambios sin hacer saber al usuario
+        sudo netplan apply
+        # Preguntar por configurar otra tarjeta de red
+        read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
+    done
+}
+
 function aune-backup(){
     # Variables
     network_name="00-installer-config.yaml"
@@ -311,54 +357,20 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     # Aplicar red
                     netplanapply
                 # Configuracion para otra tarjeta de red (solo de ser necesario)
-                if [[ $5 == "-ntcd" || $5 == "--networkcard" || $6 == "-ntcd" || $6 == "--networkcard" ]]; then
+                elif [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
                     # Agregar mas configuracion para otras tarjetas de red
-                    # Preguntar por otra tarjeta de red
-                    read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
-                    # Ingresar en un bucle while con valores otorgados desde el interior del mismo
-                    while [[ $addnwntcd == "y" || $addnwntcd == "Y" ]]; do
-                        # Inicio de configuracion
-                        echo "[#] Configurando otra tarjeta de red..."
-                        # Configuracion para la terjeta de red (configuracion por ingreso mediante "read -p")
-                        read -p "[#] Ingrese la interfaz de red a configurar: " ntinterface
-                        read -p "[#] Elije el modo de conexion [ s (Estatica) / d (Dinamica) ]: " dhcp4configured
-                        if [[ $dhcp4configured == "s" ]]; then
-                            echo "[#] Se ha establecido la opcion 'configuracion estatica'."
-                            # Declaracion de variable de dhcp4 para la tarjeta de red
-                            dhcp4netwconfig="no"
-                        elif [[ $dhcp4configured == "d" ]]; then
-                            echo "[#] Se ha establecido la opcion 'configuracion dinamica'."
-                            # Declaracion de variable de dhcp4 para la tarjeta de red
-                            dhcp4netwconfig="yes"
-                        fi
-                            # Apicar la configuracion de red sin aviso (evitar molestar)
-                            sudo netplan apply
-                        # Si dhcp4 se ha configurado como true, no continuar
-                        # Si dhcp4 se ha configurado como no, continuar
-                        if [[ $dhcp4netwconfig == "no" ]]; then
-                            # Preguntar por direccion IP y Mascara de red
-                            read -p "[#] Ingrese la direccion IP a agregar a la tarjeta de red: " ipattachedseccondary
-                            read -p "[#] Ingrese la mascara de red a agregar a la tarjeta de red: " ntmskattachedseccondary
-                            # Aplicar red sin hacer saber al usuario
-                            sudo netplan apply
-                        else
-                            # Avisar que no se aplicara ip ni mascara de red debido a la configuracion establecida para esta tarjeta de red
-                            echo "[#] No se aplicara direccion ip manual ni mascara de red 'dhcp4=no'."
-                            # Comentar configuracion IP y Mascara de red
-                            # [REVISAR] - Buscar forma de unicamente comentar las lineas de la mascara de red a configurar (evitar configurar el resto por error)
-                            # Aplicar red sin hacer saber al usuario
-                            sudo netplan apply
-                        fi
-                        # Preguntar por gateway4:
-                        read -p "[#] Ingrese una puerta de enlace para la tarjeta de red: " gatewayattachedseccondary
-                        # Aplicar cambios sin hacer saber al usuario
-                        sudo netplan apply
-                        # Preguntar por configurar otra tarjeta de red
-                        read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
-                    done
+                    # Llamar a funcion new-network-card
+                    new-network-card
                 else
                     echo -e "[\e[33m!\e[0m] No se ha ingresado la opcion para la configuracion de una tarjeta de red: '-ntcd'."
                 fi
+                # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
+                if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" $6 == "--networkcard" ]]; then
+                    # Agregar mas configuracion para otras tarjetas de red
+                    # Llamar a funcion new-network-card
+                    new-network-card
+                fi
+                
                 else
                     # Mensaje por error de valores
                     echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
