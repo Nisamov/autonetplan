@@ -167,6 +167,7 @@ network:
       dhcp4: $ipfigured
       addresses: [$ipconfigure/$masked]
       gateway4: $linkeddoor
+# Otras tarjetas de red
 EOF
 }
 
@@ -312,10 +313,10 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # Configuracion para otra tarjeta de red (solo de ser necesario)
                 if [[ $5 == "-ntcd" || $5 == "--networkcard" || $6 == "-ntcd" || $6 == "--networkcard" ]]; then
                     # Agregar mas configuracion para otras tarjetas de red
+                    # Preguntar por otra tarjeta de red
+                    read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
                     # Ingresar en un bucle while con valores otorgados desde el interior del mismo
                     while [[ $addnwntcd == "y" || $addnwntcd == "Y" ]]; do
-                        # Preguntar por otra tarjeta de red
-                        read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
                         # Inicio de configuracion
                         echo "[#] Configurando otra tarjeta de red..."
                         # Configuracion para la terjeta de red (configuracion por ingreso mediante "read -p")
