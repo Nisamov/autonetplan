@@ -31,6 +31,13 @@ CONFIG_FILES="/etc"
 # Limpiar consola para mejor lectura
 clear
 
+# [BOCETO]
+# Seleccion de idioma para la instalacion del programa [esp/eng]
+# Solo cuando se alcance la version 1.0.0 o semejante, se llevara a cabo la opcion de lenguaje
+# Variables de idioma:
+#ENG="eng"
+#ESP="esp"
+
 # Creacion e instalacion rutas y ficheros del programa
 while [[ ! -d $PROGRAM_FILES ]]; do
    # Creacion directorio $PROGRAM_FILES

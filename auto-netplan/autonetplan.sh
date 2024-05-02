@@ -296,6 +296,21 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     aune-networked
                     # Aplicar red
                     netplanapply
+                    # Configuracion para otra tarjeta de red (solo de ser necesario)
+                    if [[ $6 == "-ntcd" || $6 == "--networkcard" ]]; then
+                        # Agregar mas configuracion para otras tarjetas de red
+                        echo "[#] Configurando otra tarjeta de red..."
+                        # Ingresar en un bucle while con valores otorgados desde el interior del mismo
+                        while [[ $addnwntcd == "y" || $addnwntcd == "Y" ]]; then
+
+                            # Configuracion para la terjeta de red (esta vez es configuracion por ingreso mediante "read -p")
+
+                            # Preguntar por configurar otra tarjeta de red
+                            read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
+                        done
+                    else
+                        echo -e "[\e[33m!\e[0m] No se ha ingresado la opcion para la configuracion de una tarjeta de red: '-ntcd'."
+                    fi
                 else
                     # Mensaje por error de valores
                     echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
@@ -304,11 +319,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     # Aplicar red
                     netplanapply
                 fi
-
                 # Preguntar si mostrar configuracion de red
                 # Llamar a la funcion show_net_configuration
                 show_net_configuration
-
                 # Realizar copia de seguridad si en el fichero de configuracion esta indicado como true
                 # Revisar en configuracion si autonetplan-automate-update es true o false
                 opcionaab=$(grep "^autonetplan-automate-backup" "$program_config" | cut -d "=" -f2)
@@ -349,7 +362,10 @@ else
 fi
 
 # [Boceto Configuracion posterior]
-# Tras la primera configuracion, el valor $8 servira para confirmar si se quiere configurar mas de una tarjeta de red
+# Tras la primera configuracion, el valor $6 servira para confirmar si se quiere configurar mas de una tarjeta de red
+
+
+
 # read -p "¿Desea agregar una tarjeta de red nueva? [y/n]: " netcrd
 # while [[ $netcrd == "-y" || $netcrd == "--yes" ]]; do
 #   Configuracion
