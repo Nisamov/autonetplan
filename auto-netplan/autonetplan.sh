@@ -113,7 +113,7 @@ function new-network-card(){
     # Preguntar por otra tarjeta de red
     read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
     # Ingresar en un bucle while con valores otorgados desde el interior del mismo
-    while [[ $addnwntcd == "y" || $addnwntcd == "Y" ]]; do
+    while [[ $addnwntcd == "s" || $addnwntcd == "S" ]]; do
         # Inicio de configuracion
         echo "[#] Configurando otra tarjeta de red..."
         # Configuracion para la terjeta de red (configuracion por ingreso mediante "read -p")
@@ -153,6 +153,13 @@ function new-network-card(){
         # Preguntar por configurar otra tarjeta de red
         read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
     done
+
+    if [[ $addnwntcd == "n" || $addnwntcd == "N" ]]; then
+        echo "[#] Se ha cancelado la creacion de una nueva tarjeta de red."
+
+    elif [[ $addnwntcd == " " ]]; then
+        echo "[#] Se ha dejado el campo vacio."
+    fi
 }
 
 function aune-backup(){
