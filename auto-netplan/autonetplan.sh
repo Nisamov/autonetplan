@@ -22,6 +22,9 @@
 # Si es de color verde el aviso = todo realizado correctamente
 #   [\e[32m#\e[0m] >> # verde
 
+# Para versiones mas avanzadas:
+# Agregar confirmaciones antes de continuar con la aplicacion en la red (seguridad)
+
 # Declaracion variable directorio de configuracion netplan
 network_dir="/etc/netplan/00-installer-config.yaml"
 work_dir="/usr/local/sbin"
@@ -32,7 +35,6 @@ program_config="/etc/autonetplan/autonetplan.conf"
 # Ruta de programa revision integridad de autonetplan
 integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 
-# Proxima actualizacion -> este "help" ubicar en ruta /usr/local/sbin/autonetplan/autonetplan.help
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
     # Comprobar que el fichero existe
@@ -426,6 +428,3 @@ else
     # Error por ingreso de valores erroneos
     exit 1
 fi
-
-# Para versiones mas avanzadas:
-#   Agregar confirmaciones antes de continuar con la aplicacion en la red (seguridad)
