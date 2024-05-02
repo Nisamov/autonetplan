@@ -299,28 +299,28 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     else
         echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-update."
     fi
-    # Revisar en configuracion si autonetplan-formatted-on-call es true o false
-    opcionafoc=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
-    # Comprobar si la opcion esta establecida en true o false
-    if [[ "$opcionafoc" == "true" ]]; then
-        # Se limpia el contenido de la variable $network_dir
-        > "$network_dir"
-        # Aplicar cambios al programa netplan sin llamar a la funcion netplanapply
-        sudo netplan apply
-        # Mensaje de aviso - limpieza de configuracion exitosa
-        echo -e "[#] Fichero de configuracion de red reestablecido"
-    elif [[ "$opcionafoc" == "false" ]]; then
-        # No se hace nada, continuando el programa
-        # Se previene formatear el contenido del fichero de red
-        echo "[#] La opcion autonetplan-formatted-on-call esta configurada como false."
-    else
-        echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-formatted-on-call."
-    fi
     # Continuacion de programa
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
         sudo nano "$network_dir"
     elif [[ $2 == "-a" || $2 == "--automatic" ]]; then
         # Configuracion automatica
+        # Revisar en configuracion si autonetplan-formatted-on-call es true o false
+        opcionafoc=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
+        # Comprobar si la opcion esta establecida en true o false
+        if [[ "$opcionafoc" == "true" ]]; then
+            # Se limpia el contenido de la variable $network_dir
+            > "$network_dir"
+            # Aplicar cambios al programa netplan sin llamar a la funcion netplanapply
+            sudo netplan apply
+            # Mensaje de aviso - limpieza de configuracion exitosa
+            echo -e "[#] Fichero de configuracion de red reestablecido"
+        elif [[ "$opcionafoc" == "false" ]]; then
+            # No se hace nada, continuando el programa
+            # Se previene formatear el contenido del fichero de red
+            echo "[#] La opcion autonetplan-formatted-on-call esta configurada como false."
+        else
+            echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-formatted-on-call."
+        fi
         if [[ $3 == "-iface" || $3 == "--interface" ]]; then
             # Preguntar por interfaz de red a usar
             read -p "Ingrese la interfaz de red a usar: " iface
