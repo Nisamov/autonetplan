@@ -92,21 +92,6 @@ if [[ -f $program_config ]]; then
         else
             echo -e "[\e[31m#\e[0m] $msg_revision No se ha encontrado la linea autonetplan-directory-existence."
         fi
-
-        # Opcion 3 - Rutas Manuales (Own-General-Existence)
-        opcion_oge=$(grep "^own-general-existence" "$program_config" | cut -d "=" -f2)
-        # Comprobar si la opcion esta establecida en true o false
-        if [[ "$opcion_oge" == "true" ]]; then
-            # Revisa las rutas indicadas
-
-            # Codigo
-
-        elif [[ "$opcion_oge" == "false" ]]; then
-            # Aviso de configuracion deshabilitada
-            echo -e "[\e[31m#\e[0m] $msg_revision La configuracion own-general-existence esta desactivada."
-        else
-            echo -e "[\e[31m#\e[0m] $msg_revision No se ha encontrado la linea own-general-existence."
-        fi
     elif [[ "$opcion_aes" == "false" ]]; then
         # Aviso de configuracion deshabilitada
         echo -e "[\e[31m#\e[0m] $msg_revision La configuracion autonetplan-enable-search esta desactivada."
