@@ -22,9 +22,6 @@
 # Si es de color verde el aviso = todo realizado correctamente
 #   [\e[32m#\e[0m] >> # verde
 
-# Para versiones mas avanzadas:
-# Agregar confirmaciones antes de continuar con la aplicacion en la red (seguridad)
-
 # Declaracion variable directorio de configuracion netplan
 network_dir="/etc/netplan/00-installer-config.yaml"
 work_dir="/usr/local/sbin"

@@ -23,7 +23,9 @@ Valores cuarta categoria '$.4'
 Valores quinta categoria '$.5'
     -lnkd  | --linkeddoor  :: Puerta de enlace
 
-Valores sexta categoria   '$.6'
-    -ntcd  | --networkcard :: Configurar mas de una tarjeta de red
+
+# [Proximas versiones]:
+#Valores sexta categoria   '$.6'
+#    -ntcd  | --networkcard :: Configurar mas de una tarjeta de red
 
 Para mas informacion use: autonetplan -m
