@@ -353,7 +353,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 echo -e "[\e[33m#\e[0m] Es posbile que si no se ha seleccionado gateway4 como (-lnkd), muestre un aviso de problema en la configuracion, no obstante, no debera preocuparse, pues todo se resuelve automaticamente."
                 # Aplicar configuracion de red
                 netplanapply
-                if [[ $5 == "-lnkd" || $7 == "--linkeddoor" ]]; then
+                if [[ $5 == "-lnkd" || $5 == "--linkeddoor" ]]; then
                     # Preguntar por puerta de enlace
                     read -p "Ingrese una puerta de enlace: " linkeddoor
                     # Llamar a funcion aune-networked
@@ -361,21 +361,11 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     aune-networked
                     # Aplicar red
                     netplanapply
-# [ESTA SECCION NO FUNCIONA - NO ES RECONOCIDA POR EL PROGRAMA]
-#                elif [[ $5 == "-ntcd" || $6 == "--networkcard" ]]; then
-#                    # Llamar a la funcion new-network-card
-#                    new-network-card
-#                    # Configuracion para otra tarjeta de red (solo de ser necesario)
-#                    # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
-#                    if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" && $6 == "--networkcard" ]]; then
-#                        # Agregar mas configuracion para otras tarjetas de red
-#                        # Preguntar por otra tarjeta de red
-#                        read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
-#                        # Llamar a funcion new-network-card
-#                        new-network-card
-#                        # Prueba de manejo de valores
-#                        echo "[#] SUPUESTAMENTE LA FUNCION 'new-network-card' SE HA EJECUTADO"
-#                    fi
+                elif [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
+                    # Llamar a la funcion new-network-card
+                    new-network-card
+                    # Configuracion para otra tarjeta de red (solo de ser necesario)
+                    # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
                 else
                     # Mensaje por error de valores
                     echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace o tarjeta de red nueva: '-lnkd', '-ntcd'."
@@ -384,6 +374,15 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     # Aplicar red
                     netplanapply
                 fi
+                    if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" && $6 == "--networkcard" ]]; then
+                        # Agregar mas configuracion para otras tarjetas de red
+                        # Preguntar por otra tarjeta de red
+                        read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
+                        # Llamar a funcion new-network-card
+                        new-network-card
+                        # Prueba de manejo de valores
+                        echo "[#] SUPUESTAMENTE LA FUNCION 'new-network-card' SE HA EJECUTADO"
+                    fi
                 # Preguntar si mostrar configuracion de red
                 # Llamar a la funcion show_net_configuration
                 show_net_configuration
