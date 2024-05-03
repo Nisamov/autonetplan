@@ -29,9 +29,33 @@ if [[ -f $program_config ]]; then
         # Comprobar si la opcion esta establecida en true o false
         if [[ "$opcion_afe" == "true" ]]; then
             # Revisa los ficheros y su integridad
-
-            # Codigo
-
+            # Busca fichero de configuracion
+            opcion_fecf=$(grep "^file-existence-config-file" "$program_config" | cut -d "=" -f2)
+            # Si el fichero existe
+            if [[ -f $fecf ]]; then
+                echo -e "[\e[32m#\e[0m] El fichero $opcion_fecf existe"
+            else
+            # Si el fichero no existe
+                echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_fecf"
+            fi
+            # Busca fichero de programa
+            opcion_feaf=$(grep "^file-existence-autonetplansh-file" "$program_config" | cut -d "=" -f2)
+            # Si el fichero existe
+            if [[ -f $feaf ]]; then
+                echo -e "[\e[32m#\e[0m] El fichero $opcion_feaf existe"
+            else
+            # Si el fichero no existe
+                echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_feaf"
+            fi
+            # Busca fichero de licencia
+            opcion_felf=$(grep "^file-existence-license-file" "$program_config" | cut -d "=" -f2)
+            # Si el fichero existe
+            if [[ -f $feaf ]]; then
+                echo -e "[\e[32m#\e[0m] El fichero $opcion_felf existe"
+            else
+            # Si el fichero no existe
+                echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_felf"
+            fi
         elif [[ "$opcion_afe" == "false" ]]; then
             # Aviso de configuracion deshabilitada
             echo -e "[\e[31m#\e[0m] $msg_revision La configuracion autonetplan-file-existence esta desactivada."
@@ -44,9 +68,24 @@ if [[ -f $program_config ]]; then
         # Comprobar si la opcion esta establecida en true o false
         if [[ "$opcion_ade" == "true" ]]; then
             # Revisa los directorios y su integridad
-
-            # Codigo
-
+            # Busca directorio de configuracion
+            opcion_decd=$(grep "^dir-existence-config-dir" "$program_config" | cut -d "=" -f2)
+            if [[ -d $decd ]]; then
+                # Si el directorio existe
+                echo -e "[\e[32m#\e[0m] El directorio $opcion_decd existe"
+            else
+                # Si no existe
+                echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_decd"
+            fi
+            # Buscar directorio de ficheros del programa
+            opcion_depfd=$(grep "^dir-existence-program-files-dir" "$program_config" | cut -d "=" -f2)
+            if [[ -d $depfd ]]; then
+                # Si el directorio existe
+                echo -e "[\e[32m#\e[0m] El directorio $opcion_depfd existe"
+            else
+                # Si no existe
+                echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_depfd"
+            fi
         elif [[ "$opcion_ade" == "false" ]]; then
             # Aviso de configuracion deshabilitada
             echo -e "[\e[31m#\e[0m] $msg_revision La configuracion autonetplan-directory-existence esta desactivada."
