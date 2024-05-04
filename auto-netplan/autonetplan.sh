@@ -386,6 +386,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 else
                     # No ingresa valores en $5
                     echo "[#] No se ha proporcionado informacion en $5 (valor 5)"
+                    # Reconoce esta accion al: autonetplan -x -a -iface -s --ntcd
                 fi
                 # Preguntar si mostrar configuracion de red
                 # Llamar a la funcion show_net_configuration
