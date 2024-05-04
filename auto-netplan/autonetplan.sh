@@ -361,6 +361,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     aune-networked
                     # Aplicar red
                     netplanapply
+                # Seccion no reconocida por el programa, revision y ajuste de codigo
                 elif [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
                     # Llamar a la funcion new-network-card
                     new-network-card
