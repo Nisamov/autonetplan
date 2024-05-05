@@ -23,14 +23,15 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             elif [[ $4 == "-s" || $4 == "--static" ]]; then
                 
                 if [[ $5 == "-lnkd" || $5 == "--linkeddoor" ]]; then
+                    
+                    if [[ $6 == "-ntcd" || $6 == "--networkcard" ]]; then
+                    
+                    else
+                        
+                    fi
                    
                 elif [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
                     
-                else
-                    
-                fi
-                if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" && $6 == "--networkcard" ]]; then
-                   
                 else
                     
                 fi
