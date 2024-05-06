@@ -361,21 +361,14 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     aune-networked
                     # Aplicar red
                     netplanapply
-                # Seccion no reconocida por el programa, revision y ajuste de codigo
-                elif [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
-                    # Llamar a la funcion new-network-card
-                    new-network-card
-                    # Configuracion para otra tarjeta de red (solo de ser necesario)
-                    # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
-                else
-                    # Mensaje por error de valores
-                    echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace o tarjeta de red nueva: '-lnkd', '-ntcd'."
-                    # LLamar a funcion comment_line_gateway4 por saltarse -lnkd
-                    comment_line_gateway4
-                    # Aplicar red
-                    netplanapply
-                fi
-                if [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" && $6 == "--networkcard" ]]; then
+                    # Seccion no reconocida por el programa, revision y ajuste de codigo
+                    if [[ $6 == "-ntcd" || $6 == "--networkcard" ]]; then
+                        # Llamar a la funcion new-network-card
+                        new-network-card
+                        # Configuracion para otra tarjeta de red (solo de ser necesario)
+                        # Si $5 es desigual que -ntcd (para evitar duplicar la tarjeta)
+                    fi
+                elif [[ $5 != "-ntcd" && $6 == "-ntcd" || $5 != "-ntcd" && $6 == "--networkcard" ]]; then
                     # Agregar mas configuracion para otras tarjetas de red
                     # Preguntar por otra tarjeta de red
                     read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
@@ -384,9 +377,12 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     # Prueba de manejo de valores
                     echo "[#] SUPUESTAMENTE LA FUNCION 'new-network-card' SE HA EJECUTADO"
                 else
-                    # No ingresa valores en $5
-                    echo "[#] No se ha proporcionado informacion en $5 (valor 5)"
-                    # Reconoce esta accion al: autonetplan -x -a -iface -s --ntcd
+                    # Mensaje por error de valores
+                    echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace o tarjeta de red nueva: '-lnkd', '-ntcd'."
+                    # LLamar a funcion comment_line_gateway4 por saltarse -lnkd
+                    comment_line_gateway4
+                    # Aplicar red
+                    netplanapply
                 fi
                 # Preguntar si mostrar configuracion de red
                 # Llamar a la funcion show_net_configuration
