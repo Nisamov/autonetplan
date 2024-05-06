@@ -69,7 +69,7 @@ function aune-remove(){
         echo -e "[\e[31m#\e[0m] Autonetplan esta siendo desinstalado..."
         # Funcion desinstalar programa
         sudo rm -rf $program_files
-        sudo rm -f $INSTALL_DIR/autonetplan
+        sudo rm -rf $INSTALL_DIR/autonetplan
         sudo rm -rf $program_config
         sudo rm -f /etc/autonetplan
         # Revisar si quedan ficheros del programa
@@ -367,7 +367,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         new-network-card
                         # Configuracion para otra tarjeta de red (solo de ser necesario)
                     fi
-                elif [[ $5 == "-ntcd" $5 == "--networkcard" ]]; then
+                elif [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
                     # Agregar mas configuracion para otras tarjetas de red
                     # Preguntar por otra tarjeta de red
                     read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
