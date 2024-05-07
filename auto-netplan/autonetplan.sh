@@ -366,18 +366,12 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                         # Llamar a la funcion new-network-card
                         new-network-card
                         # Configuracion para otra tarjeta de red (solo de ser necesario)
+                        # Aplicar configuarion sin avisar al usuario
+                        sudo netplan apply
                     fi
-                elif [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
-                    # Agregar mas configuracion para otras tarjetas de red
-                    # Preguntar por otra tarjeta de red
-                    read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
-                    # Llamar a funcion new-network-card
-                    new-network-card
-                    # Prueba de manejo de valores
-                    echo "[#] SUPUESTAMENTE LA FUNCION 'new-network-card' SE HA EJECUTADO"
                 else
                     # Mensaje por error de valores
-                    echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace o tarjeta de red nueva: '-lnkd', '-ntcd'."
+                    echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
                     # LLamar a funcion comment_line_gateway4 por saltarse -lnkd
                     comment_line_gateway4
                     # Aplicar red
@@ -405,6 +399,18 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-f' o '-s'."
                 # Error por ingreso de valores erroneos
                 exit 1
+            fi
+            # Ya sea ip estatica / ip dinamica, si pone en valor 5 = "-ntcd", se aplicara una nueva tarjeta de red
+            if [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
+                    # Agregar mas configuracion para otras tarjetas de red
+                    # Preguntar por otra tarjeta de red
+                    read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
+                    # Llamar a funcion new-network-card
+                    new-network-card
+                    # Guardar y aplicar cambios sin avisar al usuario
+                    sudo netplan apply
+                    # Prueba de manejo de valores
+                    echo "[#] SUPUESTAMENTE LA FUNCION 'new-network-card' SE HA EJECUTADO"
             fi
         else
             # Mensaje por error de valores
