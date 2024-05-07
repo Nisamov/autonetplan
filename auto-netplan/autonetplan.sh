@@ -307,7 +307,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         # Comprobar si la opcion esta establecida en true o false
         if [[ "$opcionafoc" == "true" ]]; then
             # Se limpia el contenido de la variable $network_dir
-            > "$network_dir"
+            sudo > "$network_dir"
             # Aplicar cambios al programa netplan sin llamar a la funcion netplanapply
             sudo netplan apply
             # Mensaje de aviso - limpieza de configuracion exitosa
@@ -329,7 +329,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # DHCP4 ==  true >> Aplicar cambios en configuracion de red
                 ipfigured=true
                 # Aplicar directamente la configuracion (posteriormente, comentar las lineas gateway, ip, etc)
-                aune-networked
+                sudo aune-networked
                 # Aplicar configuracion de red
                 sudo netplan apply
                 # Comentar secciones (al ser ip dinamica)
@@ -348,7 +348,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 ipfigured=no
                 # Llamar a funcion aune-networked
                 # Sustituir valores
-                aune-networked
+                sudo aune-networked
                 # Aviso por gateway4
                 echo -e "[\e[33m#\e[0m] Es posbile que si no se ha seleccionado gateway4 como (-lnkd), muestre un aviso de problema en la configuracion, no obstante, no debera preocuparse, pues todo se resuelve automaticamente."
                 # Aplicar configuracion de red sin avisar al usuario
@@ -358,7 +358,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     read -p "Ingrese una puerta de enlace: " linkeddoor
                     # Llamar a funcion aune-networked
                     # Sustituir valores
-                    aune-networked
+                    sudo aune-networked
                     # Aplicar red sin avisar al usuario
                     sudo netplan apply
                     # Seccion no reconocida por el programa, revision y ajuste de codigo
