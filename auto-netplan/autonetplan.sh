@@ -23,6 +23,7 @@
 #   [\e[32m#\e[0m] >> # verde
 
 # Declaracion variable directorio de configuracion netplan
+#   [Problemas] -> Es posible que en algunos casos, el fichero no exista, buscar solucion inmediata
 network_dir="/etc/netplan/00-installer-config.yaml"
 work_dir="/usr/local/sbin"
 program_files="/usr/local/sbin/auto-netplan"
@@ -297,6 +298,13 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     else
         echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-update."
     fi
+
+    # Revisar el nombre del fichero
+    # Si hay mas de un fichero dentro del directorio /etc/netplan, mostrar opciones y ofrecer edicion por seleccion
+    # Mostrar menu donde el usuario elije el fichero a editar
+    # Motivo de este proceso: Hay veces que el nombre del fichero de conf de red no es el mismo, revision necesaria
+    # Tiempo estimado hasta el arreglo (indefinido, este error no estaba previsto)
+
     # Continuacion de programa
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
         sudo nano "$network_dir"
