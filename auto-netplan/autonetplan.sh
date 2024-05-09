@@ -24,6 +24,7 @@
 
 # Declaracion variable directorio de configuracion netplan
 #   [Problemas] -> Es posible que en algunos casos, el fichero no exista, buscar solucion inmediata
+# network_dir="posible contenido, cualquier fichero .yaml que se encuentre dentro de /etc/netplan" > 7ect/netplan/*.yaml
 network_dir="/etc/netplan/00-installer-config.yaml"
 work_dir="/usr/local/sbin"
 program_files="/usr/local/sbin/auto-netplan"
