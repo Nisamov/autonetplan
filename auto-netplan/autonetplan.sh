@@ -296,6 +296,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         echo -e "[\e[31m#\e[0m] No se ha encontrado el fichero $network_dir, revisa el fichero $program_config y sustituye los valores necesario para el correcto funcionamiento."
         echo "[#] Revisa la linea 15: 'autonetplan-netplan-route-config' y establece la correcta ruta manualmente hacia el fichero de configuracion de netplan."
     fi
+    echo "Mostrar contenido de ruta"
+    echo "Contenido almacenado en network_dir: $network_dir"
+    echo ""
     # Revisar en configuracion si autonetplan-automate-update es true o false
     opcionaau=$(grep "^autonetplan-automate-update" "$program_config" | cut -d "=" -f2)
     # Si es true - realizar descarga de paquetes
