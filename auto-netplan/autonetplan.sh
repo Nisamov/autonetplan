@@ -288,19 +288,6 @@ elif [[ $1 == "-l" || $1 == "--license" ]]; then
         sudo less "$program_files/LICENSE.txt"
     # Continuacion con el programa
 elif [[ $1 == "-x" || $1 == "--execute" ]]; then
-    # Revisar la existencia de la ruta de red
-    if [[ -f network_dir ]]; then
-        # Si el fichero existe
-        echo "[#] El fichero de configuracion de red existe, su ruta es: $network_dir"
-    else
-        # Si el fichero no existe
-        echo -e "[\e[31m#\e[0m] No se ha encontrado el fichero "$network_dir", revisa el fichero "$program_config" y sustituye los valores necesario para el correcto funcionamiento."
-        echo "[#] Revisa la linea 15: 'autonetplan-netplan-route-config' y establece la correcta ruta manualmente hacia el fichero de configuracion de netplan."
-    fi
-    echo "Mostrar contenido almacenado"
-    echo "$network_dir"
-
-
     # Revisar en configuracion si autonetplan-automate-update es true o false
     opcionaau=$(grep "^autonetplan-automate-update" "$program_config" | cut -d "=" -f2)
     # Si es true - realizar descarga de paquetes
@@ -315,13 +302,6 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     else
         echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-update."
     fi
-
-    # Revisar el nombre del fichero
-    # Si hay mas de un fichero dentro del directorio /etc/netplan, mostrar opciones y ofrecer edicion por seleccion
-    # Mostrar menu donde el usuario elije el fichero a editar
-    # Motivo de este proceso: Hay veces que el nombre del fichero de conf de red no es el mismo, revision necesaria
-    # Tiempo estimado hasta el arreglo (indefinido, este error no estaba previsto)
-
     # Continuacion de programa
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
         sudo nano "$network_dir"
