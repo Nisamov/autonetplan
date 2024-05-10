@@ -25,9 +25,10 @@
 # Declaracion variable directorio de configuracion netplan
 # Revisar dentro del fichero la ruta de configuracion de red
 network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -d "=" -f2)
+# Ruta de programa
 work_dir="/usr/local/sbin"
+# Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
-INSTALL_DIR="/usr/local/sbin"
 # Fichero autonetplan del directorio autoneconf renombrado como autonetplan
 program_config="/etc/autonetplan/autonetplan.conf"
 # Ruta de programa revision integridad de autonetplan
@@ -70,14 +71,14 @@ function aune-remove(){
         echo -e "[\e[31m#\e[0m] Autonetplan esta siendo desinstalado..."
         # Funcion desinstalar programa
         sudo rm -rf $program_files
-        sudo rm -rf $INSTALL_DIR/autonetplan
+        sudo rm -rf $work_dir/autonetplan
         sudo rm -rf $program_config
         sudo rm -f /etc/autonetplan
         # Revisar si quedan ficheros del programa
-        if [[ -d $program_files || -f $INSTALL_DIR/autonetplan || -d $program_config ]]; then
+        if [[ -d $program_files || -f $work_dir/autonetplan || -d $program_config ]]; then
             # Borrar forzosamente todos los ficheros o directorios
             sudo rm -rf $program_files
-            sudo rm -f $INSTALL_DIR/autonetplan
+            sudo rm -f $work_dir/autonetplan
             sudo rm -rf $program_config
         else
             echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente."
