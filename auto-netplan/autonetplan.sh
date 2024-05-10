@@ -23,11 +23,8 @@
 #   [\e[32m#\e[0m] >> # verde
 
 # Declaracion variable directorio de configuracion netplan
-#   [Problemas] -> Es posible que en algunos casos, el fichero no exista, buscar solucion inmediata
-# network_dir="posible contenido, cualquier fichero .yaml que se encuentre dentro de /etc/netplan" > /ect/netplan/*.yaml
-# Agregar linea que revise en el fichero de configuracion donde por defecto estara la linea /etc/netplan/00-installer-config.yaml, que es la ruta predeterminada, asi el usuario simplemente tiene que cambiarla
-# Esto es simplemente para quitar trabajo innecesario (realmente no quiero tener que programar todo eso jaja)
-network_dir="/etc/netplan/00-installer-config.yaml"
+# Revisar dentro del fichero la ruta de configuracion de red
+network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -d "=" -f2)
 work_dir="/usr/local/sbin"
 program_files="/usr/local/sbin/auto-netplan"
 INSTALL_DIR="/usr/local/sbin"
@@ -164,6 +161,8 @@ function new-network-card(){
     fi
 }
 
+
+# REVISAR RUTA NETWORK_NAME Y NETWORK_DIRED
 function aune-backup(){
     # Variables
     network_name="00-installer-config.yaml"
@@ -287,6 +286,15 @@ elif [[ $1 == "-l" || $1 == "--license" ]]; then
         sudo less "$program_files/LICENSE.txt"
     # Continuacion con el programa
 elif [[ $1 == "-x" || $1 == "--execute" ]]; then
+    # Revisar la existencia de la ruta de red
+    if [[ -f network_dir ]]; then
+        # Si el fichero existe
+        echo "[#] El fichero de configuracion de red existe, su ruta es: $network_dir"
+    else
+        # Si el fichero no existe
+        echo -e "[\e[31m#\e[0m] No se ha encontrado el fichero $network_dir, revisa el fichero $program_config y sustituye los valores necesario para el correcto funcionamiento."
+        echo "[#] Revisa la linea 15: 'autonetplan-netplan-route-config' y establece la correcta ruta manualmente hacia el fichero de configuracion de netplan."
+    fi
     # Revisar en configuracion si autonetplan-automate-update es true o false
     opcionaau=$(grep "^autonetplan-automate-update" "$program_config" | cut -d "=" -f2)
     # Si es true - realizar descarga de paquetes
