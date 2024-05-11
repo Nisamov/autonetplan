@@ -23,15 +23,15 @@
 #   [\e[32m#\e[0m] >> # verde
 
 # Declaracion variable directorio de configuracion netplan
-# Revisar dentro del fichero la ruta de configuracion de red
-# Problemas ocn almacenamiento, salida en blanco
-network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -d "=" -f2)
 # Ruta de programa
 work_dir="/usr/local/sbin"
 # Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
 # Fichero autonetplan del directorio autoneconf renombrado como autonetplan
 program_config="/etc/autonetplan/autonetplan.conf"
+# Revisar dentro del fichero la ruta de configuracion de red
+# Problemas ocn almacenamiento, salida en blanco
+network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -d "=" -f2)
 # Ruta de programa revision integridad de autonetplan
 integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 
