@@ -167,12 +167,8 @@ function new-network-card(){
     fi
 }
 
-
-# REVISAR RUTA NETWORK_NAME Y NETWORK_DIRED
 function aune-backup(){
     # Variables
-    network_name="00-installer-config.yaml"
-    network_dired="/etc/netplan"
     backup_dir="autonetplan-backups"
 
     # Comprobar existencia de ruta de backups
@@ -188,11 +184,11 @@ function aune-backup(){
         echo -e "[\e[32m#\e[0m] Ruta $program_files/$backup_dir existente"
         # Generar un número aleatorio para el nombre del archivo de copia de seguridad
         digited=$(($RANDOM%100))
-        echo "[#] Copiando fichero $network_name..."
+        echo "[#] Copiando fichero $network_dir..."
         # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
-        sudo cp "$network_dired/$network_name" "$program_files/$backup_dir/$network_name-$digited.bk"
+        sudo cp "$network_dir" "$program_files/$backup_dir/network_backup-$digited.bk"
         echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
-        echo "[#] La copia de seguridad se ha guardado como $network_name-$digited.bk" "en la ruta" "$program_files/$backup_dir"
+        echo "[#] La copia de seguridad se ha guardado como $network_backup-$digited.bk" "en la ruta" "$program_files/$backup_dir"
     else
         echo -e "[\e[31m#\e[0m] Ha ocurrido un error inesperado."
     fi
