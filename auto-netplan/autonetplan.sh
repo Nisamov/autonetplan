@@ -35,6 +35,10 @@ network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -
 # Ruta de programa revision integridad de autonetplan
 integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 
+# Mostrar contenido de variable de red
+echo "$network_dir"
+
+
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
     # Comprobar que el fichero existe
