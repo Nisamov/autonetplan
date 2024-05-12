@@ -83,13 +83,14 @@ Ejemplo esquemático en el uso y funcionamiento de autonetplan:
 Para comprender los parametros disponibles, se recomienda leer el siguiente cuadro:
 ```
     $1:
-        -h      / --help            >> Mostrar ayuda del programa
-        -r      / --remove          >> Desinstalar el programa
-        -l      / --license         >> Mostrar licencia del programa
-        -b      / --backup          >> Crear copia seguridad configuracion actual red
-        -x      / --execute         >> Continuar con la ejecucion del programa
-        -m      / --manual          >> Mostrar manual del programa
-        -i      / --integrity       >> Revisar la integridad del programa
+        -h     | --help             :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa
+        -r     | --remove           :: Desinstalar programa
+        -l     | --license          :: Mostrar licencia del programa
+        -b     | --backup           :: Creacion de copia de seguridad de configuracion de red
+        -x     | --execute          :: Continuacion con el programa
+        -m     | --manual           :: Mostrar instrucciones y configuracion avanzada
+        -i     | --integrity        :: Mostrar integridad de los ficheros y directorios del programa
+        -ntf   | --netfileenabled   :: Mostrar ruta de fichero de red establecido para la configuracion
     $2:
         -m      / --manual          >> Configuracion manual
         -a      / --automatic       >> Configuracion automatica

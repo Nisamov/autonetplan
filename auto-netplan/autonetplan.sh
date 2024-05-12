@@ -35,11 +35,6 @@ network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -
 # Ruta de programa revision integridad de autonetplan
 integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 
-# Mostrar contenido de variable de red
-echo "Contenido a mostrar siguiente linea:"
-echo "$network_dir"
-
-
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
     # Comprobar que el fichero existe
@@ -267,6 +262,13 @@ function show_net_configuration(){
     fi
 }
 
+function show_net_file_configuration_enabled(){
+    # Mostrar el fichero de red que se configurara
+    echo "El fichero de configuracion de red que se configurara a continuacion es el siguiente:"
+    echo "$network_dir"
+    echo "Para cambiar la ruta de configuracion, reestablezca su ruta en el fichero $program_config"
+}
+
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
@@ -430,6 +432,11 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         # Error por ingreso de valores erroneos
         exit 1
     fi
+
+elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
+    # Mostrar fichero de configuracion activo - el cual se configurara si procedemos con el programa
+    show_net_file_configuration_enabled
+
 else
     # Mensaje por error de valores
     echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h', '-r', '-b', '-l', '-m' '-x'."
