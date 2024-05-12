@@ -1,6 +1,6 @@
-# Por Andres Abadias
+# Por Andres Rulsan Abadias Otal
 
-#Copyright [2024] [Andres Abadias]
+#Copyright 2024 Andres Rulsan Abadias Otal
 #
 #Licensed under the Apache License, Version 2.0 (the "License");
 #you may not use this file except in compliance with the License.
@@ -432,6 +432,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         # Error por ingreso de valores erroneos
         exit 1
     fi
+# A partir de aqui, se llaman a las opciones con mas de 3 caracteres
 elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
     # Mostrar fichero de configuracion activo - el cual se configurara si procedemos con el programa
         show_net_file_configuration_enabled
