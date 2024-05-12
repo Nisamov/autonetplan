@@ -432,14 +432,12 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         # Error por ingreso de valores erroneos
         exit 1
     fi
-
 elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
     # Mostrar fichero de configuracion activo - el cual se configurara si procedemos con el programa
-    show_net_file_configuration_enabled
-
+        show_net_file_configuration_enabled
 else
     # Mensaje por error de valores
-    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h', '-r', '-b', '-l', '-m' '-x'."
+    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h','-r', '-b', '-l', '-m' '-x', '-ntf'."
     # Error por ingreso de valores erroneos
     exit 1
 fi
