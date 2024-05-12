@@ -286,6 +286,11 @@ elif [[ $1 == "-b" || $1 == "--backup" ]]; then
     # Creacion de copia de seguridad de configuracion de red
     # Llamada a funcion aune-backup
         aune-backup
+elif [[ $1 == "-v" || $1 == "--version"]]; then
+    # Mostrar version del programa
+    # Edicion manual, es posible que no se adecue correctamente
+    echo "Version: 0.5.X"
+
 elif [[ $1 == "-l" || $1 == "--license" ]]; then
     # Lectura de fichero de licencia
         sudo less "$program_files/LICENSE.txt"
@@ -436,6 +441,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
 elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
     # Mostrar fichero de configuracion activo - el cual se configurara si procedemos con el programa
         show_net_file_configuration_enabled
+#elif [[ $1 == "-" || $1 == "" ]]; then
+
+
 else
     # Mensaje por error de valores
     echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h','-r', '-b', '-l', '-m' '-x', '-ntf'."
