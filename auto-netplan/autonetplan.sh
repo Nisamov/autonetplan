@@ -36,6 +36,7 @@ network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -
 integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 
 # Mostrar contenido de variable de red
+echo "Contenido a mostrar siguiente linea:"
 echo "$network_dir"
 
 
