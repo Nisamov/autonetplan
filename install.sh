@@ -175,10 +175,10 @@ fi
 # Independientemente del idioma elegido y registrado, se seguira llevando a cabo el preoceso anterior para el output de lenguaje
 if [[ "$laguage" == "esp" ]]; then
     echo "[#] Lenguaje Español registrado correctamente en la ruta $PROGRAM_FILES/program-files/laguage.lg"
-    sudo echo "ESP" > "$PROGRAM_FILES/program-files/laguage.lg"
+    echo "ESP" | sudo tee "$PROGRAM_FILES/program-files/laguage.lg" > /dev/null
 elif [[ "$laguage" == "eng" ]]; then
     echo "[#] English language successfully registered in the path $PROGRAM_FILES/program-files/language.lg".
-    sudo echo "ENG" > "$PROGRAM_FILES/program-files/laguage.lg"
+    echo "ENG" | sudo tee "$PROGRAM_FILES/program-files/laguage.lg" > /dev/null
 else
     if [[ "$laguage" == "esp" ]]; then
         echo -e "[\e[31m#\e[0m] Ha ocurrido un error en el registro de idioma"

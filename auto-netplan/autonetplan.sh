@@ -67,7 +67,7 @@ function aune-manual(){
     # Aviso de problema (no crear fichero - tiempo innecesario)
         if [[ $laguage == "ESP" ]]; then
             echo -e "[\e[31m#\e[0m] Error, manual no encontrado."
-        if [[ $laguage == "ENG" ]]; then
+        elif [[ $laguage == "ENG" ]]; then
             echo -e "[\e[31m#\e[0m] Error, manual not found."
         else
             echo -e "[\e[31m#\e[0m] ghobe', bIQublaHbe' 'e' yIchaw', joH."
@@ -114,7 +114,13 @@ function aune-remove(){
             sudo rm -f $work_dir/autonetplan
             sudo rm -rf $program_config
         else
-            echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente."
+            if [[ $laguage == "ESP" ]]; then
+                echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente."
+            elif [[ $laguage == "ENG" ]]; then
+                echo -e "[\e[32m#\e[0m] Program successfully uninstalled."
+            else
+                echo -e "[\e[32m#\e[0m] ghu'vam'e' wIlo'chugh."
+            fi
         fi
     else
         echo -e "[\e[33m!\e[0m] La opcion autonetplan-formatted-on-call no esta definida correctamente en el archivo de configuracion."
