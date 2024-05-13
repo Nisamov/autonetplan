@@ -35,7 +35,7 @@ network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -
 # Ruta de programa revision integridad de autonetplan
 integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 # Ruta de ultima version
-current_version=$(cat $program_files/program-files/version.txt)
+current_version=$(cat $program_files/program-files/version)
 
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
