@@ -291,7 +291,7 @@ elif [[ $1 == "-b" || $1 == "--backup" ]]; then
 elif [[ $1 == "-u" || $1 == "--update" ]]; then
     # Revisar actualizacion y comparar
     # Obtener la última versión desde GitHub sobre el programa
-    latest_release=$(curl -s "https://github.com/Nisamov/autonetplan/releases/tag/autonetplan" | jq -r '.autonetplan')
+    latest_release=$(curl -s "https://github.com/Nisamov/autonetplan/releases/tag/autonetplan" | jq -r '.tag_name')
     # Obtener ultima version
     # Extraer el número de versión del nombre del release
     latest_version=$(echo "$latest_release" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
