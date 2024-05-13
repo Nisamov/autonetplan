@@ -114,7 +114,7 @@ else
         if [[ $language == "esp" ]]; then
             echo -e "[\e[31m#\e[0m] El fichero autonetplan no existe, creando..."
         else
-            echo -e "[31m] The autonetplan file does not exist, creating..."
+            echo -e "[\e[31m#\e[0m] The autonetplan file does not exist, creating..."
         fi
         # Si el archivo no existe, intentar copiarlo y renombrarlo
         sudo cp "$SCRIPT_DIR/auto-netplan/autonetplan.sh" "$INSTALL_DIR/autonetplan"
@@ -377,7 +377,7 @@ function purge-repo(){
         read -p "Do you want to delete the cloned repository? [y/n]: " deleteRepos
     fi
     
-    if [[ $deleteRepos == "s" || $deleteRepos == "S" ]]; then
+    if [[ $deleteRepos == "s" || $deleteRepos == "S" || $deleteRepos == "y" || $deleteRepos == "Y" ]]; then
     # Verificar si la ruta $SCRIPT_DIR existe
         if [[ -d "$SCRIPT_DIR" ]]; then
             # Si la ruta existe, eliminar de forma recursiva el directorio
