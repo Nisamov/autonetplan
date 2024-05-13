@@ -43,7 +43,8 @@ read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
 ## Sistema de Lectura de Datos
 
 Mediante este esquema, es posible visualizar de una forma mas comoda, la lectura de datos, permitiendo comprender como funcionan los ficheros principales y como se comprueban los mismos, siendo asi un ejemplo, el fichero `dir-file-search.sh`, el cual se encarga de revisar los ficheros.
-![Estructura de Lectura de Datos](general-structure-data-reading.jpg)
+
+![Estructura de Lectura de Datos](adgeneral-structure-data-reading.jpg)
 
 ## Instalación
 Para instalar Auto Netplan, sigue estos pasos:
