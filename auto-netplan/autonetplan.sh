@@ -100,17 +100,17 @@ function aune-integrity(){
         opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
         # Comprobar si la opcion esta establecida en true o false
         if [[ "$opcion_aes" == "true" ]]; then
-            # Mensaje de depuración
-            echo "[#] La opción autonetplan-enable-search está habilitada."
+            # Mensaje de depuracion
+            echo "[#] La opcion autonetplan-enable-search esta habilitada."
             # Ejecutar fichero de lectura integridad del programa
-            echo "[#] Ejecutando el script de búsqueda de archivos..."
+            echo "[#] Ejecutando el script de busqueda de archivos..."
             sudo bash "$integrity_program"
         elif [[ "$opcion_aes" == "false" ]]; then
-            echo -e "[\e[31m#\e[0m] La función autonetplan-enable-search está desactivada y no se puede continuar con la operación."
+            echo -e "[\e[31m#\e[0m] La funcion autonetplan-enable-search esta desactivada y no se puede continuar con la operacion."
         fi
     else
         # Avisar de la inexistencia del fichero
-        echo -e "[\e[31m#\e[0m] El fichero de configuración no se ha encontrado."
+        echo -e "[\e[31m#\e[0m] El fichero de configuracion no se ha encontrado."
     fi
 }
 
@@ -180,7 +180,7 @@ function aune-backup(){
     # Si existe previamente la ruta...
     if [[ -d "$program_files/$backup_dir" ]]; then
         echo -e "[\e[32m#\e[0m] Ruta $program_files/$backup_dir existente"
-        # Generar un número aleatorio para el nombre del archivo de copia de seguridad
+        # Generar un numero aleatorio para el nombre del archivo de copia de seguridad
         digited=$(($RANDOM%100))
         echo "[#] Copiando fichero $network_dir..."
         # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
@@ -210,7 +210,7 @@ function netplanapply(){
 
 function aune-networked(){
     # Configuracion de red por autonetplan
-            echo -e "[\e[33m#\e[0m] Configuración de red por configuracion automatica..."
+            echo -e "[\e[33m#\e[0m] Configuracion de red por configuracion automatica..."
             sudo cat <<EOF > "$network_dir"
 # Editado con autonetplan
 network:
@@ -227,7 +227,7 @@ EOF
 
 function aune-networked-secondary(){
     # Configuracion tajeta secundaria de red
-            echo -e "[\e[33m#\e[0m] Configuración de red secundaria"
+            echo -e "[\e[33m#\e[0m] Configuracion de red secundaria"
             sudo cat <<EOF >> "$network_dir"
     $ntinterface:
       dhcp4: $dhcp4netwconfig
@@ -239,7 +239,7 @@ EOF
 function comment_line_dhcp_true(){
     # Configuracion unica para la primera tarjeta de red configurada
     # Configuracion de red para ip dinamica (dhcp4: true)
-    # Usa sed para comentar la línea que contiene "gateway4: y addresses"
+    # Usa sed para comentar la linea que contiene "gateway4: y addresses"
     sudo sed -i '/^\s*addresses:/ s/^/# /' "$network_dir"
     sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
@@ -247,7 +247,7 @@ function comment_line_dhcp_true(){
 function comment_line_gateway4(){
     # Configuracion unica para la primera tarjeta de red configurada
     # Configuracion de red para servidores
-    # Usa sed para comentar la línea que contiene "gateway4:"
+    # Usa sed para comentar la linea que contiene "gateway4:"
     sudo sed -i '/^\s*gateway4:/ s/^/# /' "$network_dir"
 }
 function show_net_configuration(){
@@ -294,29 +294,29 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
     read -p "[#] ¿Desea continuar? [s/n]: " updatecontinue
     if [[ $updatecontinue == "s" ]]; then
         # Revisar actualizacion y comparar
-        # Obtener la última versión desde GitHub sobre el programa
+        # Obtener la ultima version desde GitHub sobre el programa
         latest_release=$(curl -s "https://github.com/Nisamov/autonetplan/releases/tag/autonetplan" | jq -r '.tag_name')
         # Obtener ultima version
-        # Extraer el número de versión del nombre del release
+        # Extraer el numero de version del nombre del release
         latest_version=$(echo "$latest_release" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
-        # Verificar si hay una nueva versión disponible
+        # Verificar si hay una nueva version disponible
         if [[ "$latest_version" != "$current_version" ]]; then
-            echo "¡Nueva versión disponible! Versión actual: $current_version, Última versión: $latest_version"
+            echo "¡Nueva version disponible! Version actual: $current_version, Última version: $latest_version"
             # Solicitar actualizacion
             read -p "¿Desea actualizar el programa? [s/n]: " updaterequest
             if [[ $updaterequest == "s" ]]; then
-                # Código para actualizar el programa
+                # Codigo para actualizar el programa
                 echo "Actualizando el programa..."
             elif [[ $updaterequest == "n" ]]; then
                 # Cancelacion de actualizacion
                 echo "[#] Se ha cancelado la actualizacion"
                 exit 1
             else
-                echo "[#] Se ha añadido un parámetro no registrado, cancelando actualización..."
+                echo "[#] Se ha añadido un parametro no registrado, cancelando actualizacion..."
                 exit 1
             fi
         else
-            echo "Tu programa ya está actualizado. Versión actual: $current_version"
+            echo "Tu programa ya esta actualizado. Version actual: $current_version"
         fi
     elif [[ $updatecontinue == "n" ]]; then
         # Si se cancela la operacion
@@ -378,7 +378,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             # Continuacion de programa
             if [[ $4 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
-                echo "Configuración de red seleccionada con conexion por DHCP"
+                echo "Configuracion de red seleccionada con conexion por DHCP"
                 # DHCP4 ==  true >> Aplicar cambios en configuracion de red
                 ipfigured=true
                 # Aplicar directamente la configuracion (posteriormente, comentar las lineas gateway, ip, etc)
