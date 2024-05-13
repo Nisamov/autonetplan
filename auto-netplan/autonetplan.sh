@@ -318,7 +318,7 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
         else
             echo "Tu programa ya está actualizado. Versión actual: $current_version"
         fi
-    elif [[ $updatecontinue == "n" ]];
+    elif [[ $updatecontinue == "n" ]]; then
         # Si se cancela la operacion
         echo "[#] Se ha cancelado la actualizacion"
         exit 1
