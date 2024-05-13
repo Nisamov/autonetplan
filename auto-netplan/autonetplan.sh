@@ -36,6 +36,9 @@ network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -
 integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 # Ruta de ultima version
 current_version=$(cat $program_files/program-files/version)
+# Idioma del programa
+# Si el idioma establecido en el fichero no es ni ESP ni ENG, el idioma con el que se enviara el output sera Klingon (Referencia a Star Treck)
+laguage=$(cat $program_files/program-files/laguage.lg)
 
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
@@ -45,7 +48,13 @@ function aune-help(){
         sudo less $program_files/program-files/autonetplan.help
     else
     # Aviso de problema (no crear fichero - tiempo innecesario)
-        echo -e "[\e[31m#\e[0m] Error, fichero de soporte no encontrado"
+        if [[ $laguage == "ESP" ]]; then
+            echo -e "[\e[31m#\e[0m] Error, fichero de soporte no encontrado."
+        elif [[ $laguage == "ENG" ]]; then
+            echo -e "[\e[31m#\e[0m] Error, support file not found".
+        else
+            echo -e "[\e[31m#\e[0m] toH, pivbe'nISlu' 'e' yIchav."
+        fi
     fi
 }
 
@@ -56,7 +65,13 @@ function aune-manual(){
         sudo less $program_files/program-files/autonetplan.man
     else
     # Aviso de problema (no crear fichero - tiempo innecesario)
-        echo -e "[\e[31m#\e[0m] Error, manual no encontrado"
+        if [[ $laguage == "ESP" ]]; then
+            echo -e "[\e[31m#\e[0m] Error, manual no encontrado."
+        if [[ $laguage == "ENG" ]]; then
+            echo -e "[\e[31m#\e[0m] Error, manual not found."
+        else
+            echo -e "[\e[31m#\e[0m] ghobe', bIQublaHbe' 'e' yIchaw', joH."
+        fi
     fi
 }
 
@@ -67,11 +82,26 @@ function aune-remove(){
     # Comprobar si la opcion esta establecida en true o false
     if [ "$opcion" == "true" ]; then
         # Accion si la opcion es true
-        echo "La opcion autonetplan-prevent-purge-on-mistake esta configurada como true."
+        if [[ $laguage == "ESP" ]]; then
+            echo "[#] La opcion autonetplan-prevent-purge-on-mistake esta configurada como true."
+        elif [[ $laguage == "ENG" ]]; then
+            echo "[#] The autonetplan-prevent-purge-on-mistake option is set to true."
+        else
+            echo "[#] 'ej ngemHom HoS, ngemHomDaq QottaHvIS ngeb tera'ngan."
+        fi
     elif [ "$opcion" == "false" ]; then
         # Accion si la opcion es false
-        echo "La opcion autonetplan-prevent-purge-on-mistake esta configurada como false."
-        echo -e "[\e[31m#\e[0m] Autonetplan esta siendo desinstalado..."
+        if [[ $laguage == "ESP" ]]; then
+            echo "[#] La opcion autonetplan-prevent-purge-on-mistake esta configurada como false."
+            echo -e "[\e[31m#\e[0m] Autonetplan esta siendo desinstalado..."
+        elif [[ $laguage == "ENG" ]]; then
+            echo "[#] The autonetplan-prevent-purge-on-mistake option is set to false."
+            echo -e "[\e[31m#\e[0m] Autonetplan is being uninstalled..."
+        else
+            echo "[#] 'ej ngemHom HoS, ngemHomDaq QottaHvIS ghaH."
+            echo -e "[\e[31m#\e[0m] 'u' Hoch woHta'DI' QeHlu'."
+        fi
+
         # Funcion desinstalar programa
         sudo rm -rf $program_files
         sudo rm -rf $work_dir/autonetplan
