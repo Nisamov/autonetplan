@@ -20,7 +20,7 @@ Esta es la ruta de los ficheros del repositorio, con este esquema es posible tra
 # Abrir el fichero en texto plano para su compresion con permisos de super usuario
 sudo nano ./install.sh
 ```
-![Estructura del Programa durante Instalacion](public-media/full-structure-during-install.jpg)
+![Estructura del Programa durante Instalacion](public-media/full-general-structure-during-install.jpg)
 Mediante la imagen mostrada previamente, es posible comprender el funcionamiento y clonacion de los ficheros del repositorio, tras la ejecucion del fichero `install.sh`, este cuenta con una seccion del fichero de isntalacion que borra el repositorio clonado, limpiando asi espacio ya no necesario en el sistema, siendo esta escript el siguiente:
 ```sh
 # Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio, unicamente tras comprobar la existencia de los ficheros imprescindibles para el programa.
