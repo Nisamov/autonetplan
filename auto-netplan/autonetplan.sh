@@ -300,13 +300,14 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
         # Solicitar actualizacion
         read -p "¿Desea actualizar el programa? [s/n]: " updaterequest
         if [[ $updaterequest == "s" ]]; then
-            # Codigo para actualizar el programa
+            # Código para actualizar el programa
+            echo "Actualizando el programa..."
         elif [[ $updaterequest == "n" ]]; then
             # Cancelacion de actualizacion
             echo "[#] Se ha cancelado la actualizacion"
             exit 1
         else
-            echo "[#] Se ha añadido un parametro no registrado, cancelando actualizacion..."
+            echo "[#] Se ha añadido un parámetro no registrado, cancelando actualización..."
             exit 1
         fi
     else
