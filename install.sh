@@ -69,7 +69,7 @@ while [[ ! -d $PROGRAM_FILES ]]; do
             # Espera 1 segundo antes de intentar de nuevo
             sleep 1
         else
-            echo -e "[31m] Failed to clone $PROGRAM_FILES successfully, trying again..."
+            echo -e "[\e[31m#\e[0m] Failed to clone $PROGRAM_FILES successfully, trying again..."
             sleep 1
         fi
     fi
@@ -422,7 +422,7 @@ if [[ $autone == "ok" && $autoconf == "ok" && $autodirfilesearch == "ok" ]]; the
     # Programa instalado correctamente
     if [[ "$laguage" == "esp" ]]; then
         echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
-    elif
+    else
         echo -e "[\e[32m#\e[0m] Program successfully installed."
     fi
 elif [[ $autone == "ok" ]]; then
@@ -436,7 +436,7 @@ else
     # Ha ocurrido un error
     if [[ "$laguage" == "esp" ]]; then
         echo -e "[\e[31m#\e[0m] Ha ocurrido un error, puede que alguno de los ficheros no se encuentre en el sistema, revisar la integridad del programa."
-    elif
+    else
          echo -e "[\e[31m#\e[0m] An error has occurred, some of the files may not be found in the system, check the integrity of the program."
     fi
 fi
@@ -444,7 +444,7 @@ fi
 if [[ "$laguage" == "esp" ]]; then
     echo "[#] Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '/etc/autonetplan'"
     echo "[#] Mostrar la lista de ayuda del programa autonetplan, ejecute el comando: 'autonetplan -h'"
-elif
+else
     echo "[#] The program paths are: '$INSTALL_DIR/autonetplan' and '/etc/autonetplan'"
     echo "[#] Display the autonetplan program help list, run the command: 'autonetplan -h'"
 fi
