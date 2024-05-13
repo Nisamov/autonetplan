@@ -293,7 +293,8 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
     # Obtener la última versión desde GitHub sobre el programa
     latest_release=$(curl -s "https://github.com/Nisamov/autonetplan/releases/tag/autonetplan" | jq -r '.autonetplan')
     # Obtener ultima version
-    latest_version=$(echo "$latest_release" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+    # Extraer el número de versión del nombre del release
+    latest_version=$(echo "$latest_release" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
     # Verificar si hay una nueva versión disponible
     if [[ "$latest_version" != "$current_version" ]]; then
         echo "¡Nueva versión disponible! Versión actual: $current_version, Última versión: $latest_version"
