@@ -313,7 +313,7 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
     else
         echo "Tu programa ya está actualizado. Versión actual: $current_version"
     fi
-elif [[ $1 == "-v" || $1 == "--version"]]; then
+elif [[ $1 == "-v" || $1 == "--version" ]]; then
     # Mostrar version del programa
     echo "$current_version"
 elif [[ $1 == "-l" || $1 == "--license" ]]; then
