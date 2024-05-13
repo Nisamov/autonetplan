@@ -32,6 +32,24 @@ CONFIG_FILES="/etc"
 # Limpiar consola para mejor lectura
 clear
 
+# Preguntar sobre el idioma a usar, segun eso, los ficheros se redistribuiran unicamente en el idioma establecido
+# Unicamente van a estar disponibles dos idiomas, el ingles y el español (idioma origen)
+# Los comentarios no van a ser traducidos, unicamente los mensajes de salida, ahorrando tiempo en la ejecucion de codigo y liberando peso innecesario (para algo estan los traductores)
+while true; do
+    # No se continuara hasta que se seleccione un lenguaje
+    read -p "[AutoNetplan]: Select your language / Seleccione su idioma [eng/esp]: " language
+
+    if [[ $language == "esp" ]]; then
+        echo "[#] Se ha seleccionado el idioma Español"
+        break
+    elif [[ $language == "eng" ]]; then
+        echo "[#] You've selected English language"
+        break
+    else
+        echo "[#] Invalid language / Idioma inválido"
+    fi
+done
+
 # Creacion e instalacion rutas y ficheros del programa
 while [[ ! -d $PROGRAM_FILES ]]; do
    # Creacion directorio $PROGRAM_FILES
@@ -39,12 +57,21 @@ while [[ ! -d $PROGRAM_FILES ]]; do
     # Si el directorio existe
     if [[ -d $PROGRAM_FILES ]]; then
          # Mensaje instalacion correcta
-        echo "[#] Se ha creado la ruta $PROGRAM_FILES exitosamente"
+        if [[ $language == "esp" ]]; then
+            echo "[#] Se ha creado la ruta $PROGRAM_FILES exitosamente"
+        else
+            echo “[#] Path $PROGRAM_FILES has been created successfully”.
+        fi
    # Si el directorio no existe
     else
-        echo -e "[\e[31m#\e[0m] No se ha clonado $PROGRAM_FILES correctamente, intentando de nuevo..."
-        # Espera 1 segundo antes de intentar de nuevo
-        sleep 1
+        if [[ $language == "esp" ]]; then
+            echo -e "[\e[31m#\e[0m] No se ha clonado $PROGRAM_FILES correctamente, intentando de nuevo..."
+            # Espera 1 segundo antes de intentar de nuevo
+            sleep 1
+        else
+            echo -e “[31m] Failed to clone $PROGRAM_FILES successfully, trying again...”
+            sleep 1
+        fi
     fi
 done
 
