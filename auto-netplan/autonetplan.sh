@@ -34,6 +34,8 @@ program_config="/etc/autonetplan/autonetplan.conf"
 network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -d "=" -f2)
 # Ruta de programa revision integridad de autonetplan
 integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
+# Ruta de ultima version
+current_version=$(cat $program_files/program-files/version.txt)
 
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
@@ -286,11 +288,33 @@ elif [[ $1 == "-b" || $1 == "--backup" ]]; then
     # Creacion de copia de seguridad de configuracion de red
     # Llamada a funcion aune-backup
         aune-backup
+elif [[ $1 == "-u" || $1 == "--update" ]]; then
+    # Revisar actualizacion y comparar
+    # Obtener la última versión desde GitHub sobre el programa
+    latest_release=$(curl -s "https://github.com/Nisamov/autonetplan/releases/tag/autonetplan" | jq -r '.autonetplan')
+    # Obtener ultima version
+    latest_version=$(echo "$latest_release" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+    # Verificar si hay una nueva versión disponible
+    if [[ "$latest_version" != "$current_version" ]]; then
+        echo "¡Nueva versión disponible! Versión actual: $current_version, Última versión: $latest_version"
+        # Solicitar actualizacion
+        read -p "¿Desea actualizar el programa? [s/n]: " updaterequest
+        if [[ $updaterequest == "s" ]]; then
+            # Codigo para actualizar el programa
+        elif [[ $updaterequest == "n" ]]; then
+            # Cancelacion de actualizacion
+            echo "[#] Se ha cancelado la actualizacion"
+            exit 1
+        else
+            echo "[#] Se ha añadido un parametro no registrado, cancelando actualizacion..."
+            exit 1
+        fi
+    else
+        echo "Tu programa ya está actualizado. Versión actual: $current_version"
+    fi
 elif [[ $1 == "-v" || $1 == "--version"]]; then
     # Mostrar version del programa
-    # Edicion manual, es posible que no se adecue correctamente
-    echo "Version: 0.5.X"
-
+    echo "$current_version"
 elif [[ $1 == "-l" || $1 == "--license" ]]; then
     # Lectura de fichero de licencia
         sudo less "$program_files/LICENSE.txt"
@@ -442,8 +466,7 @@ elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
     # Mostrar fichero de configuracion activo - el cual se configurara si procedemos con el programa
         show_net_file_configuration_enabled
 #elif [[ $1 == "-" || $1 == "" ]]; then
-
-
+#elif [[ $1 == "-" || $1 == "" ]]; then
 else
     # Mensaje por error de valores
     echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h','-r', '-b', '-l', '-m' '-x', '-ntf'."
