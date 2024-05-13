@@ -11,10 +11,10 @@ El programa cuenta con un instalador, este instalara el programa dentro del sist
 ## Estructura del Programa y Explicacion Visual
 Estos ejemplos han sido creados para la completa comprension del programa.
 
-### Estructura tras la instalacion
+### Estructura Tras la instalacion
 Esta es la estructura correspondiente tras la ejecucion del script `install.sh`, el cual clona y crea rutas dentro del sistema con el objetivo de repartir el programa de una forma completa dentro del mismo.
 ![Estructura del Programa tras Instalacion](public-media/post-structured.jpg)
-### Estructura durante la creacion
+### Estructura General Durante la Creacion
 Esta es la ruta de los ficheros del repositorio, con este esquema es posible trazar la ruta completa de cada fichero, asi como observar la creacion de nuevos, este esquema esta simplificado, para comprender la estructura completa del programa,s e recomienda ejecutar el siguiente comando:
 ```sh
 # Abrir el fichero en texto plano para su compresion con permisos de super usuario
@@ -40,7 +40,10 @@ read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
         echo "El repositorio no se eliminara del sistema"
     fi
 ```
+## Sistema de Lectura de Datos
 
+Mediante este esquema, es posible visualizar de una forma mas comoda, la lectura de datos, permitiendo comprender como funcionan los ficheros principales y como se comprueban los mismos, siendo asi un ejemplo, el fichero `dir-file-search.sh`, el cual se encarga de revisar los ficheros.
+![Estructura de Lectura de Datos](general-structure-data-reading.jpg)
 
 ## Instalación
 Para instalar Auto Netplan, sigue estos pasos:
