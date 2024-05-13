@@ -289,31 +289,45 @@ elif [[ $1 == "-b" || $1 == "--backup" ]]; then
     # Llamada a funcion aune-backup
         aune-backup
 elif [[ $1 == "-u" || $1 == "--update" ]]; then
-    # Revisar actualizacion y comparar
-    # Obtener la última versión desde GitHub sobre el programa
-    latest_release=$(curl -s "https://github.com/Nisamov/autonetplan/releases/tag/autonetplan" | jq -r '.tag_name')
-    # Obtener ultima version
-    # Extraer el número de versión del nombre del release
-    latest_version=$(echo "$latest_release" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
-    # Verificar si hay una nueva versión disponible
-    if [[ "$latest_version" != "$current_version" ]]; then
-        echo "¡Nueva versión disponible! Versión actual: $current_version, Última versión: $latest_version"
-        # Solicitar actualizacion
-        read -p "¿Desea actualizar el programa? [s/n]: " updaterequest
-        if [[ $updaterequest == "s" ]]; then
-            # Código para actualizar el programa
-            echo "Actualizando el programa..."
-        elif [[ $updaterequest == "n" ]]; then
-            # Cancelacion de actualizacion
-            echo "[#] Se ha cancelado la actualizacion"
-            exit 1
+    # Informar de configuracion no estable
+    echo "[#] Esta opcion del programa no se ha desarrollado correctamente."
+    read -p "[#] ¿Desea continuar? [s/n]: " updatecontinue
+    if [[ $updatecontinue == "s" ]]; then
+        # Revisar actualizacion y comparar
+        # Obtener la última versión desde GitHub sobre el programa
+        latest_release=$(curl -s "https://github.com/Nisamov/autonetplan/releases/tag/autonetplan" | jq -r '.tag_name')
+        # Obtener ultima version
+        # Extraer el número de versión del nombre del release
+        latest_version=$(echo "$latest_release" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
+        # Verificar si hay una nueva versión disponible
+        if [[ "$latest_version" != "$current_version" ]]; then
+            echo "¡Nueva versión disponible! Versión actual: $current_version, Última versión: $latest_version"
+            # Solicitar actualizacion
+            read -p "¿Desea actualizar el programa? [s/n]: " updaterequest
+            if [[ $updaterequest == "s" ]]; then
+                # Código para actualizar el programa
+                echo "Actualizando el programa..."
+            elif [[ $updaterequest == "n" ]]; then
+                # Cancelacion de actualizacion
+                echo "[#] Se ha cancelado la actualizacion"
+                exit 1
+            else
+                echo "[#] Se ha añadido un parámetro no registrado, cancelando actualización..."
+                exit 1
+            fi
         else
-            echo "[#] Se ha añadido un parámetro no registrado, cancelando actualización..."
-            exit 1
+            echo "Tu programa ya está actualizado. Versión actual: $current_version"
         fi
+    elif [[ $updatecontinue == "n" ]];
+        # Si se cancela la operacion
+        echo "[#] Se ha cancelado la actualizacion"
+        exit 1
     else
-        echo "Tu programa ya está actualizado. Versión actual: $current_version"
+        # Si se ingresa un valor no valido
+        echo "[#] Ingreso de valores no registrados, cancelando..."
+        exit 1
     fi
+
 elif [[ $1 == "-v" || $1 == "--version" ]]; then
     # Mostrar version del programa
     echo "$current_version"
