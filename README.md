@@ -146,3 +146,12 @@ Si las lineas `autonetplan-enable-search`, `autonetplan-file-existence`, `autone
 
 Pese a este comando, durante la instalacion del programa autonetplan, se lleva a cabo una revision de los ficheros esenciales para el mismo, permitiendo una vez revisado la integridad y ver que todos los ficheros estan en sus respectivos lugares, la eliminacion del repositorio clonado.
 No sera de otra forma que el repositorio sera eliminado, liberando almacenamiento en el sistema innecesario, pues el programa se encontrara instalado correctamente.
+
+## Idioma y Traduccion
+
+Los idiomas a los que esta traducido el programa son Español [ESP] e Inglés [ING]
+Durante la instalacion del programa, se solicitara un idioma, el cual se almacena en un fichero, que es usado posteriormente para el output del programa (evitando asi, escribir dos veces el programa o bien hacer una version diferente, pudiendo establecer ambos idiomas en el mismo programa).
+
+## Fuente de Contenido
+
+__Traduccion:__ [DeepL](https://www.deepl.com/es/translator) - Traduccion Español - Ingles realizada mediante traductor.

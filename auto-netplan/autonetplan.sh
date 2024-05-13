@@ -170,23 +170,23 @@ function aune-backup(){
     backup_dir="autonetplan-backups"
 
     # Comprobar existencia de ruta de backups
-    echo "[#] Revisando existencia de ruta $program_files/$backup_dir"
-    if [[ ! -d "$program_files/$backup_dir" ]]; then
+    echo "[#] Revisando existencia de ruta $program_files/program-files/$backup_dir"
+    if [[ ! -d "$program_files/program-files/$backup_dir" ]]; then
         echo -e "[\e[31m#\e[0m] Ruta no existente, creando ruta..."
         # Crear ruta de copia de seguridad
-        sudo mkdir -p "$program_files/$backup_dir"
+        sudo mkdir -p "$program_files/program-files/$backup_dir"
     fi
 
     # Si existe previamente la ruta...
-    if [[ -d "$program_files/$backup_dir" ]]; then
-        echo -e "[\e[32m#\e[0m] Ruta $program_files/$backup_dir existente"
+    if [[ -d "$program_files/program-files/$backup_dir" ]]; then
+        echo -e "[\e[32m#\e[0m] Ruta $program_files/program-files/$backup_dir existente"
         # Generar un numero aleatorio para el nombre del archivo de copia de seguridad
         digited=$(($RANDOM%100))
         echo "[#] Copiando fichero $network_dir..."
         # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
-        sudo cp "$network_dir" "$program_files/$backup_dir/network_backup-$digited.bk"
+        sudo cp "$network_dir" "$program_files/program-files/$backup_dir/network_backup-$digited.bk"
         echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
-        echo "[#] La copia de seguridad se ha guardado como $network_backup-$digited.bk" "en la ruta" "$program_files/$backup_dir"
+        echo "[#] La copia de seguridad se ha guardado como $network_backup-$digited.bk" "en la ruta" "$program_files/program-files/$backup_dir"
     else
         echo -e "[\e[31m#\e[0m] Ha ocurrido un error inesperado."
     fi
