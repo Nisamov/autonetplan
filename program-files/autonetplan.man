@@ -19,10 +19,13 @@ Valores $1:
     -r     | --remove           :: Desinstalar programa
     -l     | --license          :: Mostrar licencia del programa
     -b     | --backup           :: Creacion de copia de seguridad de configuracion de red
+    -u     | --update           :: Actualizar el programa
+    -v     | --version          :: Mostrar version actual del programa
     -x     | --execute          :: Continuacion con el programa
     -m     | --manual           :: Mostrar instrucciones y configuracion avanzada
     -i     | --integrity        :: Mostrar integridad de los ficheros y directorios del programa
     -ntf   | --netfileenabled   :: Mostrar ruta de fichero de red establecido para la configuracion
+    -clg   | --changelanguage   :: Cambiar el idioma definido en la instalacion
 
 Valores $2:
     -m     | --manual      :: Configuracion de red manual

@@ -333,16 +333,21 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
     echo "[#] Esta opcion del programa no se ha desarrollado correctamente."
     read -p "[#] ¿Desea continuar? [s/n]: " updatecontinue
     if [[ $updatecontinue == "s" ]]; then
+
+        #
+        # NO ALMACENA LA ULTIMA PUBLICACION DE GITHUB, IMPIDIENDO ASI EL CORRECTO FUNCIONAMIENTO DEL PROGRAMA EN LA ACTUALIZACION
+        #
+
         # Revisar actualizacion y comparar
         # Obtener la ultima version desde GitHub sobre el programa
         latest_release=$(
         curl -s https://api.github.com/repos/Nisamov/autonetplan/releases | jq .[0].name
         )
-        echo "Ultima publicacion $lastest_release"
         # Obtener ultima version
         # Extraer el numero de version del nombre del release
         latest_version=$(echo "$latest_release" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
-        echo "Ultima version $latest_version"
+
+
         # Verificar si hay una nueva version disponible
         if [[ "$latest_version" != "$current_version" ]]; then
             echo "¡Nueva version disponible! Version actual: $current_version, Última version: $latest_version"
