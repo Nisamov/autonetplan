@@ -1,0 +1,36 @@
+# 0.6.0
+
+AutoNetplan - v0.6.0
+
+AutoNetplan es un software libre que permite la configuración de red de forma automática, usando Netplan.
+Cuenta con diferentes comandos y ficheros que permiten un mejor uso y orden del programa.
+
+El idioma original del programa es Español, creado por Andrés Abadías (Nisamov) en lenguaje Bash.
+Para obtener más información sobre el programa, una vez instalado, ejecute los siguiente comandos:
+
+- autonetplan -m
+- autonetplan -h
+
+## Cambios
+Se han creado varios ficheros de alta importancia en el programa `version`, `laguage.lg`
+Se ha añadido la opcion de instalacion y uso de idioma Ingles durante la instalacion y en el fichero para su uso diario
+Se ha agregado una forma de actualizar el programa
+Se ha añadido la referencia a una franquicia
+Se ha añadido la opcion de agregar una nueva tarjeta de red
+Se ha modificado el fichero de configuracion para poder establecer la ruta al fichero de red a modificar
+Se han añadido nuevos comandos con display y ejecucion
+Se han añadido nuevas funciones al script principal
+Se han agregado ficheros nuevos a revisar su existencia por el script `dir-file-search.sh`, asi como en el fichero de configuracion
+Se ha agregado el uso de la API de GitHub para comprobar versiones y actualizar el programa (En desarrollo)
+Los ficheros de manual y soporte (man / help), se han sincronizado con los cambios
+
+## Correcciones
+Se han corregido ficheros y lineas mal programadas
+Se ha arreglado cierta estructura del programa
+Se han corregido lineas con output mal formado por correccion de lineas en el output mal formadas
+El fichero de instalacion se ha arreglado, corrigiendo errores de creacion de ficheros
+Se han reubicado directorios y ficheros que estaban mal referenciados en el codigo con respecto a lo que se esperaba
+Se ha arreglado la estructura de previsualizacion en el README.md
+Se ha eliminado el fichero .106 que servia como guia a la hora de reubicar icheros y comprobar la creacion de los mismos
+
+Full Changelog: https://github.com/Nisamov/autonetplan/commits/autonetplan

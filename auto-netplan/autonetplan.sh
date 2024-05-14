@@ -308,7 +308,54 @@ function show_net_file_configuration_enabled(){
 
 function change_program_language(){
     # Configuracion de cambio de idioma
-    echo "[#] Esta funcion esta en desarrollo."
+    if [[ $language == "ESP" ]]; then
+        read -p "¿Que idioma quiere establecer? [esp/eng]: " languageremodel
+        if [[ $languageremodel == "esp" ]]; then
+        sudo cat <<EOF > "$program_files/program-files/language.lg"
+ESP
+EOF
+        echo "[#] Idioma cambiado a Español"
+        elif [[ $languageremodel == "eng" ]]; then
+        sudo cat <<EOF > "$program_files/program-files/language.lg"
+ENG
+EOF
+        echo "[#] Language changed to English"
+        fi
+    elif [[ $language == "ENG" ]]; then
+        read -p "What language do you want to set? [esp/eng]: " languageremodel
+        if [[ $languageremodel == "esp" ]]; then
+        sudo cat <<EOF > "$program_files/program-files/language.lg"
+ESP
+EOF
+        echo "[#] Idioma cambiado a Español"
+        elif [[ $languageremodel == "eng" ]]; then
+        sudo cat <<EOF > "$program_files/program-files/language.lg"
+ENG
+EOF
+        echo "[#] Language changed to English"
+        fi
+    else
+        # No hay idioma predefinido
+        echo -e "[\e[31m#\e[0m] meqqu' qaStaHvIS ram, quvHa'mo' qay'choH."
+        # Aqui se solicita el ingreso de un idioma
+        read -p "[#] Humanpu' 'enqIyDu [quis/tera]" Hol_registrado
+        if [[ "$Hol_registrado" == "quis" ]]; then
+            # Idioma español
+            sudo cat <<EOF > "$program_files/program-files/language.lg"
+ESP
+EOF
+            echo "[#] Idioma Español registrado"
+        elif [[ "$Hol_registrado" == "tera" ]]; then
+            # Idioma ingles
+            sudo cat <<EOF > "$program_files/program-files/language.lg"
+ENG
+EOF
+        echo "[#] English language registered"
+        else
+            # Ha habido un error y se envia en klingon
+            echo -e "[\e[31m#\e[0m] Sor Hap pe'lu'pu'"
+        fi
+    fi
 }
 
 if [[ $1 == "-h" || $1 == "--help" ]]; then
