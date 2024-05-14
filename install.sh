@@ -180,14 +180,18 @@ if [[ -f "$PROGRAM_FILES/program-files/laguage.lg" ]]; then
         echo "[#] Fichero $PROGRAM_FILES/program-files/laguage.lg existente."
         echo "[#] Registrando idioma en el fichero..."
         # Escribir "ESP" en el fichero
-        sudo echo "ESP" > "$PROGRAM_FILES/program-files/laguage.lg"
+        sudo cat <<EOF > "$PROGRAM_FILES/program-files/laguage.lg"
+ESP
+EOF
     else
         echo "[#] Existing $PROGRAM_FILES/program-files/language.lg file."
         echo "[#] Registering language in the file..."
         # Dar permisos al fichero
         sudo chmod 644 "$PROGRAM_FILES/program-files/laguage.lg"
         # Escribir "ENG" en el fichero
-        sudo echo "ENG" > "$PROGRAM_FILES/program-files/laguage.lg"
+        sudo cat <<EOF > "$PROGRAM_FILES/program-files/laguage.lg"
+ENG
+EOF
     fi
 else
 # Fichero inexistente
