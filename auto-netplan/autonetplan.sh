@@ -338,7 +338,7 @@ EOF
         # No hay idioma predefinido
         echo -e "[\e[31m#\e[0m] meqqu' qaStaHvIS ram, quvHa'mo' qay'choH."
         # Aqui se solicita el ingreso de un idioma
-        read -p "[#] Humanpu' 'enqIyDu [quis/tera]" Hol_registrado
+        read -p "[#] Humanpu' 'enqIyDu [quis/tera]: " Hol_registrado
         if [[ "$Hol_registrado" == "quis" ]]; then
             # Idioma español
             sudo cat <<EOF > "$program_files/program-files/language.lg"
