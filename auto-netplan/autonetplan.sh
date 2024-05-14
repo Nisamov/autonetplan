@@ -103,16 +103,16 @@ function aune-remove(){
         fi
 
         # Funcion desinstalar programa
-        sudo rm -rf $program_files
-        sudo rm -rf $work_dir/autonetplan
-        sudo rm -rf $program_config
-        sudo rm -f /etc/autonetplan
+        sudo rm -rf "$program_files"
+        sudo rm -rf "$work_dir/autonetplan"
+        sudo rm -rf "$program_config"
+        sudo rm -rf "/etc/autonetplan"
         # Revisar si quedan ficheros del programa
         if [[ -d $program_files || -f $work_dir/autonetplan || -d $program_config ]]; then
             # Borrar forzosamente todos los ficheros o directorios
-            sudo rm -rf $program_files
-            sudo rm -f $work_dir/autonetplan
-            sudo rm -rf $program_config
+            sudo rm -rf "$program_files"
+            sudo rm -rf "$work_dir/autonetplan"
+            sudo rm -rf "$program_config"
         else
             if [[ $laguage == "ESP" ]]; then
                 echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente."
