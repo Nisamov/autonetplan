@@ -308,6 +308,7 @@ function show_net_file_configuration_enabled(){
 
 function change_program_language(){
     # Configuracion de cambio de idioma
+    echo "[#] Esta funcion esta en desarrollo."
 }
 
 if [[ $1 == "-h" || $1 == "--help" ]]; then
