@@ -334,7 +334,9 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
     if [[ $updatecontinue == "s" ]]; then
         # Revisar actualizacion y comparar
         # Obtener la ultima version desde GitHub sobre el programa
-        latest_release=$(curl -s "https://github.com/Nisamov/autonetplan/releases/tag/autonetplan" | jq -r '.tag_name')
+        latest_release=$(
+        curl -s https://api.github.com/repos/Nisamov/autonetplan/releases | jq .[0].name
+        )
         # Obtener ultima version
         # Extraer el numero de version del nombre del release
         latest_version=$(echo "$latest_release" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
