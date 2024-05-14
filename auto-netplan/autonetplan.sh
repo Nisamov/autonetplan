@@ -302,9 +302,12 @@ function show_net_configuration(){
 
 function show_net_file_configuration_enabled(){
     # Mostrar el fichero de red que se configurara
-    echo "El fichero de configuracion de red que se configurara a continuacion es el siguiente:"
-    echo "$network_dir"
+    echo "El fichero de configuracion de red que se configurara a continuacion es el siguiente: $network_dir"
     echo "Para cambiar la ruta de configuracion, reestablezca su ruta en el fichero $program_config"
+}
+
+function change_program_laguage(){
+    # Configuracion de cambio de idioma
 }
 
 if [[ $1 == "-h" || $1 == "--help" ]]; then
@@ -517,7 +520,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
 elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
     # Mostrar fichero de configuracion activo - el cual se configurara si procedemos con el programa
         show_net_file_configuration_enabled
-#elif [[ $1 == "-" || $1 == "" ]]; then
+elif [[ $1 == "-clg" || $1 == "--changelaguage" ]]; then
+    # Llamar a funcion de cambiar idioma
+        change_program_laguage
 #elif [[ $1 == "-" || $1 == "" ]]; then
 else
     # Mensaje por error de valores

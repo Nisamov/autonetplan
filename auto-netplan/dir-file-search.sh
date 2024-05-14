@@ -56,6 +56,24 @@ if [[ -f $program_config ]]; then
             # Si el fichero no existe
                 echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_felf"
             fi
+            # Busca el fcihero de version
+            opcion_fevf=$(grep "^file-existence-version-file" "$program_config" | cut -d "=" -f2)
+            # Si el fichero existe
+            if [[ -f $opcion_fevf ]]; then
+                echo -e "[\e[32m#\e[0m] El fichero $opcion_fecf existe"
+            else
+            # Si el fichero no existe
+                echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_fevf"
+            fi
+            # Busca el fcihero de idioma
+            opcion_felaf=$(grep "^file-existence-laguage-file" "$program_config" | cut -d "=" -f2)
+            # Si el fichero existe
+            if [[ -f $opcion_felaf ]]; then
+                echo -e "[\e[32m#\e[0m] El fichero $opcion_felaf existe"
+            else
+            # Si el fichero no existe
+                echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_felaf"
+            fi
         elif [[ "$opcion_afe" == "false" ]]; then
             # Aviso de configuracion deshabilitada
             echo -e "[\e[31m#\e[0m] $msg_revision La configuracion autonetplan-file-existence esta desactivada."
