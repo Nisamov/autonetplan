@@ -160,7 +160,7 @@ Los idiomas a los que esta traducido el programa son Español [ESP] e Inglés [I
 Durante la instalacion del programa, se solicitara un idioma, el cual se almacena en un fichero, que es usado posteriormente para el output del programa (evitando asi, escribir dos veces el programa o bien hacer una version diferente, pudiendo establecer ambos idiomas en el mismo programa).
 
 Como broma, se ha decidido añadir mensajes de error en Klingon, unicamente visibles cuando ocurre un error en el programa y no se ha establecido un idioma dentro del fichero establecido, o bien, este idioma no se ha reconocido por el programa.
-Este idioma, hace referencia a la franquicia Star Treck, este idioma, es unicamente visible durante la ejecucion del programa y no durante la instalacion.
+Este idioma, hace referencia a la franquicia Star Trek, este idioma, es unicamente visible durante la ejecucion del programa y no durante la instalacion.
 
 ## Fuente de Contenido
 
