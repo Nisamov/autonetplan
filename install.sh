@@ -174,16 +174,37 @@ fi
 # Agregar informacion del idioma en el fichero $PROGRAM_FILES/program-files/laguage.lg
 # Independientemente del idioma elegido y registrado, se seguira llevando a cabo el proceso anterior para el output de lenguaje
 # Revisar existencia de fichero de idioma
-if [[ -f "/$PROGRAM_FILES/program-files/laguage.lg" ]]; then
+if [[ -f "$PROGRAM_FILES/program-files/laguage.lg" ]]; then
     # Segun el idioma escogido
     if [[ "$laguage" == "esp" ]]; then
-        echo "[#] Fichero /$PROGRAM_FILES/program-files/laguage.lg existente."
+        echo "[#] Fichero $PROGRAM_FILES/program-files/laguage.lg existente."
         echo "[#] Registrando idioma en el fichero..."
         # Codigo de registro
     else
-        echo "[#] Existing /$PROGRAM_FILES/program-files/language.lg file."
+        echo "[#] Existing $PROGRAM_FILES/program-files/language.lg file."
         echo "[#] Registering language in the file..."
         # Codigo de registro
+    fi
+else
+# Fichero inexistente
+    if [[ "$laguage" == "esp" ]]; then
+        echo -e "[\e[31m#\e[0m] No se ha encontrado el fichero $PROGRAM_FILES/program-files/laguage.lg."
+        while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
+            echo "[#] Creando fichero..."
+            sudo touch "$PROGRAM_FILES/program-files/language.lg"
+            if [[ -f "$PROGRAM_FILES/LICENSE.txt" ]]; then
+                echo "[#] Fichero $PROGRAM_FILES/program-files/language.lg creado."
+            fi
+        done
+    else
+        echo -e "[\e[31m#\e[0m] Registering language in file...File $PROGRAM_FILES/program-files/language.lg was not found."
+        while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
+            echo "[#] Making file..."
+            sudo touch "$PROGRAM_FILES/program-files/language.lg"
+            if [[ -f "$PROGRAM_FILES/LICENSE.txt" ]]; then
+                echo "[#] File $PROGRAM_FILES/program-files/language.lg created."
+            fi
+        done
     fi
 fi
 
