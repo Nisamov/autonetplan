@@ -131,18 +131,38 @@ function aune-remove(){
 function aune-integrity(){
     # Revisar que el fichero de configuracion exista
     if [[ -f $program_config ]]; then
-        echo "[#] Revisando el fichero de configuracion..."
+        if [[ $language == "ESP" ]]; then
+            echo "[#] Revisando el fichero de configuracion..."
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] Reviewing the configuration file..."
+        else
+            echo "[#] wejpuH qaDanganpu'..."
+        fi
         # Revisar dentro del fichero si la funcion de lectura de programas esta activada
         opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
         # Comprobar si la opcion esta establecida en true o false
         if [[ "$opcion_aes" == "true" ]]; then
             # Mensaje de depuracion
-            echo "[#] La opcion autonetplan-enable-search esta habilitada."
-            # Ejecutar fichero de lectura integridad del programa
-            echo "[#] Ejecutando el script de busqueda de archivos..."
+            if [[ $language == "ESP" ]]; then
+                echo "[#] La opcion autonetplan-enable-search esta habilitada."
+                # Ejecutar fichero de lectura integridad del programa
+                echo "[#] Ejecutando el script de busqueda de archivos..."
+            elif [[ $language == "ENG" ]]; then
+                echo "[#] The autonetplan-enable-search option is enabled."
+                echo "[#] Running the file search script..."
+            else
+                echo "[#] ravDaq Hoch Hutlh puS."
+                echo "[#] ghe'qam ghu'vam ghItlhmey rur..."
+            fi
             sudo bash "$integrity_program"
         elif [[ "$opcion_aes" == "false" ]]; then
-            echo -e "[\e[31m#\e[0m] La funcion autonetplan-enable-search esta desactivada y no se puede continuar con la operacion."
+            if [[ $language == "ESP" ]]; then
+                echo -e "[\e[31m#\e[0m] La funcion autonetplan-enable-search esta desactivada y no se puede continuar con la operacion."
+            elif [[ $language == "ENG" ]]; then
+                echo -e "[\e[31m#\e[0m] The autonetplan-enable-search function is disabled and the operation cannot be continued."
+            else
+                echo -e "[\e[31m#\e[0m] pay' ghuS boQwI'pu' Humanpu''e'."
+            fi
         fi
     else
         # Avisar de la inexistencia del fichero
