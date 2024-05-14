@@ -38,7 +38,7 @@ integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 current_version=$(cat $program_files/program-files/version)
 # Idioma del programa
 # Si el idioma establecido en el fichero no es ni ESP ni ENG, el idioma con el que se enviara el output sera Klingon (Referencia a Star Treck)
-laguage=$(cat $program_files/program-files/laguage.lg)
+language=$(cat $program_files/program-files/language.lg)
 
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
@@ -48,9 +48,9 @@ function aune-help(){
         sudo less $program_files/program-files/autonetplan.help
     else
     # Aviso de problema (no crear fichero - tiempo innecesario)
-        if [[ $laguage == "ESP" ]]; then
+        if [[ $language == "ESP" ]]; then
             echo -e "[\e[31m#\e[0m] Error, fichero de soporte no encontrado."
-        elif [[ $laguage == "ENG" ]]; then
+        elif [[ $language == "ENG" ]]; then
             echo -e "[\e[31m#\e[0m] Error, support file not found".
         else
             echo -e "[\e[31m#\e[0m] toH, pivbe'nISlu' 'e' yIchav."
@@ -65,9 +65,9 @@ function aune-manual(){
         sudo less $program_files/program-files/autonetplan.man
     else
     # Aviso de problema (no crear fichero - tiempo innecesario)
-        if [[ $laguage == "ESP" ]]; then
+        if [[ $language == "ESP" ]]; then
             echo -e "[\e[31m#\e[0m] Error, manual no encontrado."
-        elif [[ $laguage == "ENG" ]]; then
+        elif [[ $language == "ENG" ]]; then
             echo -e "[\e[31m#\e[0m] Error, manual not found."
         else
             echo -e "[\e[31m#\e[0m] ghobe', bIQublaHbe' 'e' yIchaw', joH."
@@ -82,19 +82,19 @@ function aune-remove(){
     # Comprobar si la opcion esta establecida en true o false
     if [ "$opcion" == "true" ]; then
         # Accion si la opcion es true
-        if [[ $laguage == "ESP" ]]; then
+        if [[ $language == "ESP" ]]; then
             echo "[#] La opcion autonetplan-prevent-purge-on-mistake esta configurada como true."
-        elif [[ $laguage == "ENG" ]]; then
+        elif [[ $language == "ENG" ]]; then
             echo "[#] The autonetplan-prevent-purge-on-mistake option is set to true."
         else
             echo "[#] 'ej ngemHom HoS, ngemHomDaq QottaHvIS ngeb tera'ngan."
         fi
     elif [ "$opcion" == "false" ]; then
         # Accion si la opcion es false
-        if [[ $laguage == "ESP" ]]; then
+        if [[ $language == "ESP" ]]; then
             echo "[#] La opcion autonetplan-prevent-purge-on-mistake esta configurada como false."
             echo -e "[\e[31m#\e[0m] Autonetplan esta siendo desinstalado..."
-        elif [[ $laguage == "ENG" ]]; then
+        elif [[ $language == "ENG" ]]; then
             echo "[#] The autonetplan-prevent-purge-on-mistake option is set to false."
             echo -e "[\e[31m#\e[0m] Autonetplan is being uninstalled..."
         else
@@ -114,9 +114,9 @@ function aune-remove(){
             sudo rm -rf "$work_dir/autonetplan"
             sudo rm -rf "$program_config"
         else
-            if [[ $laguage == "ESP" ]]; then
+            if [[ $language == "ESP" ]]; then
                 echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente."
-            elif [[ $laguage == "ENG" ]]; then
+            elif [[ $language == "ENG" ]]; then
                 echo -e "[\e[32m#\e[0m] Program successfully uninstalled."
             else
                 echo -e "[\e[32m#\e[0m] ghu'vam'e' wIlo'chugh."
@@ -306,7 +306,7 @@ function show_net_file_configuration_enabled(){
     echo "Para cambiar la ruta de configuracion, reestablezca su ruta en el fichero $program_config"
 }
 
-function change_program_laguage(){
+function change_program_language(){
     # Configuracion de cambio de idioma
 }
 
@@ -522,9 +522,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
 elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
     # Mostrar fichero de configuracion activo - el cual se configurara si procedemos con el programa
         show_net_file_configuration_enabled
-elif [[ $1 == "-clg" || $1 == "--changelaguage" ]]; then
+elif [[ $1 == "-clg" || $1 == "--changelanguage" ]]; then
     # Llamar a funcion de cambiar idioma
-        change_program_laguage
+        change_program_language
 #elif [[ $1 == "-" || $1 == "" ]]; then
 else
     # Mensaje por error de valores

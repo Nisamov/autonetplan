@@ -171,43 +171,43 @@ else
     fi
 fi
 
-# Agregar informacion del idioma en el fichero $PROGRAM_FILES/program-files/laguage.lg
+# Agregar informacion del idioma en el fichero $PROGRAM_FILES/program-files/language.lg
 # Independientemente del idioma elegido y registrado, se seguira llevando a cabo el proceso anterior para el output de lenguaje
 # Revisar existencia de fichero de idioma
-if [[ -f "$PROGRAM_FILES/program-files/laguage.lg" ]]; then
+if [[ -f "$PROGRAM_FILES/program-files/language.lg" ]]; then
     # Segun el idioma escogido
-    if [[ "$laguage" == "esp" ]]; then
-        echo "[#] Fichero $PROGRAM_FILES/program-files/laguage.lg existente."
+    if [[ "$language" == "esp" ]]; then
+        echo "[#] Fichero $PROGRAM_FILES/program-files/language.lg existente."
         echo "[#] Registrando idioma en el fichero..."
         # Dar permisos al fichero
-        sudo chmod 777 "$PROGRAM_FILES/program-files/laguage.lg"
+        sudo chmod 777 "$PROGRAM_FILES/program-files/language.lg"
         # Escribir "ESP" en el fichero
-        sudo cat <<EOF > "$PROGRAM_FILES/program-files/laguage.lg"
+        sudo cat <<EOF > "$PROGRAM_FILES/program-files/language.lg"
 ESP
 EOF
     else
         echo "[#] Existing $PROGRAM_FILES/program-files/language.lg file."
         echo "[#] Registering language in the file..."
         # Dar permisos al fichero
-        sudo chmod 777 "$PROGRAM_FILES/program-files/laguage.lg"
+        sudo chmod 777 "$PROGRAM_FILES/program-files/language.lg"
         # Escribir "ENG" en el fichero
-        sudo cat <<EOF > "$PROGRAM_FILES/program-files/laguage.lg"
+        sudo cat <<EOF > "$PROGRAM_FILES/program-files/language.lg"
 ENG
 EOF
     fi
 else
 # Fichero inexistente
-    if [[ "$laguage" == "esp" ]]; then
-        echo -e "[\e[31m#\e[0m] No se ha encontrado el fichero $PROGRAM_FILES/program-files/laguage.lg."
+    if [[ "$language" == "esp" ]]; then
+        echo -e "[\e[31m#\e[0m] No se ha encontrado el fichero $PROGRAM_FILES/program-files/language.lg."
         while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
             echo "[#] Creando fichero..."
             sudo touch "$PROGRAM_FILES/program-files/language.lg"
             if [[ -f "$PROGRAM_FILES/LICENSE.txt" ]]; then
                 echo "[#] Fichero $PROGRAM_FILES/program-files/language.lg creado."
                 # Escribir "ESP" en el fichero
-                sudo echo "ESP" > "$PROGRAM_FILES/program-files/laguage.lg"
+                sudo echo "ESP" > "$PROGRAM_FILES/program-files/language.lg"
                 # Cambiar permisos del fichero
-                sudo chmod 644 "$PROGRAM_FILES/program-files/laguage.lg"
+                sudo chmod 644 "$PROGRAM_FILES/program-files/language.lg"
             fi
         done
     else
@@ -218,9 +218,9 @@ else
             if [[ -f "$PROGRAM_FILES/LICENSE.txt" ]]; then
                 echo "[#] File $PROGRAM_FILES/program-files/language.lg created."
                 # Escribir "ENG" en el fichero
-                sudo echo "ENG" > "$PROGRAM_FILES/program-files/laguage.lg"
+                sudo echo "ENG" > "$PROGRAM_FILES/program-files/language.lg"
                 # Cambiar permisos del fichero
-                sudo chmod 644 "$PROGRAM_FILES/program-files/laguage.lg"
+                sudo chmod 644 "$PROGRAM_FILES/program-files/language.lg"
             fi
         done
     fi
@@ -233,14 +233,14 @@ while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
     # Verificar si la clonación se realizó correctamente
     if [[ -f "$PROGRAM_FILES/LICENSE.txt" ]]; then
         # Mensaje de clonación exitosa de la licencia
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo "[#] Licencia instalada correctamente 'autonetplan -l' para leerla."
         else
             echo "[#] License successfully installed "autonetplan -l" to read it."
         fi
     else
         # Mensaje si la clonación no se realizó correctamente
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo -e "[\e[31m#\e[0m] No se ha clonado la licencia correctamente, intentando de nuevo..."
             # Espera 1 segundo antes de intentar de nuevo
             sleep 1
@@ -258,14 +258,14 @@ while [[ ! -d "$PROGRAM_FILES/autonetplan-backups" ]]; do
     # Verificacion de creacion
     if [[ -d "$PROGRAM_FILES/autonetplan-backups" ]]; then
         # Mensaje creacion almacenamiento copias de seguridad
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo "[#] Ruta clonacion copias de seguridad, creada exitosamente"
         else
             echo "[#] Backup clone path, successfully created".
         fi
     else
         # Mensaje si la creacion no se realizó correctamente
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo -e "[\e[31m#\e[0m] Ha ocurrido un error en la creacion, intentando de nuevo..."
             # Espera 1 segundo antes de intentar de nuevo
             sleep 1
@@ -279,13 +279,13 @@ done
 # Verificar si el programa de integridad de dir-file-search existe en la ruta indicada
 if [[ -f "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh" ]]; then
     # Si el archivo existe, mostrar un mensaje indicando que ya está presente
-    if [[ "$laguage" == "esp" ]]; then
+    if [[ "$language" == "esp" ]]; then
         echo "[#] El script de integridad ya existe en $INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
     else
         echo "[#] Integrity script already exists in $INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
     fi
 else
-    if [[ "$laguage" == "esp" ]]; then
+    if [[ "$language" == "esp" ]]; then
         echo -e "[\e[31m#\e[0m] El fichero dir-file-search.sh no existe, creando..."
     else
         echo -e "[\e[31m#\e[0m] The file dir-file-search.sh does not exist, creating..."
@@ -294,7 +294,7 @@ else
     sudo cp "$SCRIPT_DIR/auto-netplan/dir-file-search.sh" "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
     if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
         # Indicar existencia de fichero
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo "[#] El fichero de integridad ha sido creado existosamente"
         else
             echo "[#] The integrity file has been successfully created."
@@ -302,14 +302,14 @@ else
         # Dar permisos de ejecución al script de integridad
         sudo chmod +x "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
         # Mensaje tras otorgar correctamente los permisos
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo "[#] Permisos necesarios otorgados al fichero de integridad correctamente"
         else
             echo "[#] Necessary permissions granted to the integrity file successfully".
         fi
     else
         # Mensaje si la copia no se realizó correctamente
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo -e "[\e[31m#\e[0m] No se ha copiado el script de integridad correctamente, intentando de nuevo..."
             # Espera 1 segundo antes de intentar de nuevo
             sleep 1
@@ -328,7 +328,7 @@ function pause(){
 #Espacio diferencial de texto
 echo ""
 # Llamada a funcion previa
-if [[ "$laguage" == "esp" ]]; then
+if [[ "$language" == "esp" ]]; then
     pause 'Presione cualquier tecla para continuar...'
 else
     pause 'Press any key to continue...'
@@ -346,14 +346,14 @@ function autonetplan-necessary-integrity(){
     # Variables
     var_inter="[autonetplan-integrity]"
     # Inicio de funcion
-    if [[ "$laguage" == "esp" ]]; then
+    if [[ "$language" == "esp" ]]; then
         echo "[#] Revision de integridad del programa..."
     else
         echo "[#] Program integrity check..."
     fi
     if [[ -f "/usr/local/sbin/autonetplan" ]]; then
         # Si el fichero existe
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo -e "[\e[32m#\e[0m] $var_inter El fichero autonetplan se ha instalado correctamente"
         else
             echo -e "[\e[32m#\e[0m] $var_inter The autonetplan file has been successfully installed."
@@ -362,7 +362,7 @@ function autonetplan-necessary-integrity(){
         autone=ok
     else
         # Si no se ha encontrado
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo -e "[\e[31m#\e[0m] $var_inter El fichero autonetplan no se ha encontrado en el sistema"
             sleep 1
         else
@@ -372,7 +372,7 @@ function autonetplan-necessary-integrity(){
     fi
     if [[ -f $CONFIG_FILES/autonetplan/autonetplan.conf ]]; then
         # Si el fichero existe
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo -e "[\e[32m#\e[0m] $var_inter El fichero de configuracion se ha instalado correctamente"
         else
             echo -e "[32m] $var_inter The configuration file has been successfully installed".
@@ -381,7 +381,7 @@ function autonetplan-necessary-integrity(){
         autoconf=ok
     else
         # Si no se ha encontrado
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo -e "[\e[31m#\e[0m] $var_inter El fichero de configuracion no se ha encontrado en el sistema"
         else
             echo -e "[\e[31m#\e[0m] $var_inter The configuration file was not found on the system".
@@ -390,7 +390,7 @@ function autonetplan-necessary-integrity(){
     fi
     if [[ -f $PROGRAM_FILES/program-files/dir-file-search.sh ]]; then
         # Si el fichero existe
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo -e "[\e[32m#\e[0m] $var_inter El fichero dir-file-search.sh se ha instalado correctamente"
         else
             echo -e "[\e[32m#\e[0m] $var_inter The file dir-file-search.sh has been successfully installed."
@@ -399,7 +399,7 @@ function autonetplan-necessary-integrity(){
         autodirfilesearch=ok
     else
         # Si no se ha encontrado
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo -e "[\e[31m#\e[0m] $var_inter El fichero dir-file-search.sh no se ha encontrado en el sistema"
         else
             echo -e "[\e[31m#\e[0m] $var_inter The file dir-file-search.sh was not found on the system."
@@ -410,7 +410,7 @@ function autonetplan-necessary-integrity(){
 
 function purge-repo(){
     # Tras la instalacion, el instalador, preguntara si borrar el repositorio clonado para liberar espacio
-    if [[ "$laguage" == "esp" ]]; then
+    if [[ "$language" == "esp" ]]; then
         read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
     else
         read -p "Do you want to delete the cloned repository? [y/n]: " deleteRepos
@@ -422,21 +422,21 @@ function purge-repo(){
             # Si la ruta existe, eliminar de forma recursiva el directorio
             sudo rm -rf "$SCRIPT_DIR"
             # Mensaje de eliminación exitosa
-            if [[ "$laguage" == "esp" ]]; then
+            if [[ "$language" == "esp" ]]; then
                 echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
             else
                 echo "[#] The cloned repository has been recursively deleted."
             fi
         else
             # Si la ruta no existe, mostrar un mensaje indicando que no existe
-            if [[ "$laguage" == "esp" ]]; then
+            if [[ "$language" == "esp" ]]; then
                 echo "[#] La ruta "$SCRIPT_DIR" no existe."
             else
                 echo "[#] The path "$SCRIPT_DIR" does not exist."
             fi
         fi
     else
-        if [[ "$laguage" == "esp" ]]; then
+        if [[ "$language" == "esp" ]]; then
             echo "El repositorio no se eliminara del sistema"
         else
             echo "The repository will not be removed from the system"
@@ -451,7 +451,7 @@ autonetplan-necessary-integrity
 
 if [[ $autone == "ok" && $autoconf == "ok" && $autodirfilesearch == "ok" ]]; then
     # Los programas mas importantes se ha instalado correctamente
-    if [[ "$laguage" == "esp" ]]; then
+    if [[ "$language" == "esp" ]]; then
         echo -e "[\e[32m#\e[0m] Todos los ficheros mas importantes del programa se han instalado correctamente"
     else
         echo -e "[\e[32m#\e[0m] All the most important files of the program have been successfully installed".
@@ -459,28 +459,28 @@ if [[ $autone == "ok" && $autoconf == "ok" && $autodirfilesearch == "ok" ]]; the
     # Llamar a la funcion purge-repo
     purge-repo
     # Programa instalado correctamente
-    if [[ "$laguage" == "esp" ]]; then
+    if [[ "$language" == "esp" ]]; then
         echo -e "[\e[32m#\e[0m] Programa instalado correctamente."
     else
         echo -e "[\e[32m#\e[0m] Program successfully installed."
     fi
 elif [[ $autone == "ok" ]]; then
     # Si este funciona al menos, enviar aviso de ok
-    if [[ "$laguage" == "esp" ]]; then
+    if [[ "$language" == "esp" ]]; then
         echo -e "[\e[32m#\e[0m] El fichero autonetplan se ha econtrado en la ruta correcta, puede ser llamado mediante 'autoentplan <parametros>'."
     else
         echo -e "[\e[32m#\e[0m] The autonetplan file has been found in the correct path, it can be called by 'autoentplan <parameters>'."
     fi
 else
     # Ha ocurrido un error
-    if [[ "$laguage" == "esp" ]]; then
+    if [[ "$language" == "esp" ]]; then
         echo -e "[\e[31m#\e[0m] Ha ocurrido un error, puede que alguno de los ficheros no se encuentre en el sistema, revisar la integridad del programa."
     else
          echo -e "[\e[31m#\e[0m] An error has occurred, some of the files may not be found in the system, check the integrity of the program."
     fi
 fi
 
-if [[ "$laguage" == "esp" ]]; then
+if [[ "$language" == "esp" ]]; then
     echo "[#] Las rutas del programa son: '$INSTALL_DIR/autonetplan' y '/etc/autonetplan'"
     echo "[#] Mostrar la lista de ayuda del programa autonetplan, ejecute el comando: 'autonetplan -h'"
 else
