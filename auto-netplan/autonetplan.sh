@@ -222,13 +222,27 @@ function new-network-card(){
         # Si dhcp4 se ha configurado como no, continuar
         if [[ $dhcp4netwconfig == "no" ]]; then
             # Preguntar por direccion IP y Mascara de red
-            read -p "[#] Ingrese la direccion IP a agregar a la tarjeta de red: " ipattachedseccondary
-            read -p "[#] Ingrese la mascara de red a agregar a la tarjeta de red: " ntmskattachedseccondary
+            if [[ $language == "ESP" ]]; then
+                read -p "[#] Ingrese la direccion IP a agregar a la tarjeta de red: " ipattachedseccondary
+                read -p "[#] Ingrese la mascara de red a agregar a la tarjeta de red: " ntmskattachedseccondary
+            elif [[ $language == "ENG" ]]; then
+                 read -p "[#] Enter the IP address to add to the network card: " ipattachedseccondary
+                 read -p "[#] Enter the network mask to add to the network card: " ntmskattachedseccondary
+            else
+                read -p "[#] pa' QoyDI' che'rup: " ipattachedseccondary
+                read -p "[#] 'entepray' SuvwI': " ntmskattachedseccondary
+            fi
             # Aplicar red sin hacer saber al usuario
             sudo netplan apply
         else
             # Avisar que no se aplicara ip ni mascara de red debido a la configuracion establecida para esta tarjeta de red
-            echo "[#] No se aplicara direccion ip manual ni mascara de red 'dhcp4=no'."
+            if [[ $language == "ESP" ]]; then
+                echo "[#] No se aplicara direccion ip manual ni mascara de red 'dhcp4=no'."
+            elif [[ $language == "ENG" ]]; then
+                echo "[#] No manual ip address or netmask 'dhcp4=no' will be applied."
+            else
+                echo "[#] vIpOQmoHmeH mInDu' vIqIpHa'chugh 'CHUQ=Qo'."
+            fi
             # Comentar configuracion IP y Mascara de red
             # [REVISAR] - Buscar forma de unicamente comentar las lineas de la mascara de red a configurar (evitar configurar el resto por error)
             # Aplicar red sin hacer saber al usuario
