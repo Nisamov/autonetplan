@@ -53,7 +53,8 @@ function aune-help(){
         elif [[ $language == "ENG" ]]; then
             echo -e "[\e[31m#\e[0m] Error, support file not found".
         else
-            echo -e "[\e[31m#\e[0m] toH, pivbe'nISlu' 'e' yIchav."
+            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+            exit
         fi
     fi
 }
@@ -70,7 +71,8 @@ function aune-manual(){
         elif [[ $language == "ENG" ]]; then
             echo -e "[\e[31m#\e[0m] Error, manual not found."
         else
-            echo -e "[\e[31m#\e[0m] ghobe', bIQublaHbe' 'e' yIchaw', joH."
+            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+            exit
         fi
     fi
 }
@@ -87,7 +89,8 @@ function aune-remove(){
         elif [[ $language == "ENG" ]]; then
             echo "[#] The autonetplan-prevent-purge-on-mistake option is set to true."
         else
-            echo "[#] 'ej ngemHom HoS, ngemHomDaq QottaHvIS ngeb tera'ngan."
+            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+            exit
         fi
     elif [ "$opcion" == "false" ]; then
         # Accion si la opcion es false
@@ -98,8 +101,8 @@ function aune-remove(){
             echo "[#] The autonetplan-prevent-purge-on-mistake option is set to false."
             echo -e "[\e[31m#\e[0m] Autonetplan is being uninstalled..."
         else
-            echo "[#] 'ej ngemHom HoS, ngemHomDaq QottaHvIS ghaH."
-            echo -e "[\e[31m#\e[0m] 'u' Hoch woHta'DI' QeHlu'."
+            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+            exit
         fi
 
         # Funcion desinstalar programa
@@ -119,7 +122,7 @@ function aune-remove(){
             elif [[ $language == "ENG" ]]; then
                 echo -e "[\e[32m#\e[0m] Program successfully uninstalled."
             else
-                echo -e "[\e[32m#\e[0m] ghu'vam'e' wIlo'chugh."
+                echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente / Program successfully uninstalled."
             fi
         fi
     else
@@ -136,7 +139,8 @@ function aune-integrity(){
         elif [[ $language == "ENG" ]]; then
             echo "[#] Reviewing the configuration file..."
         else
-            echo "[#] wejpuH qaDanganpu'..."
+            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+            exit
         fi
         # Revisar dentro del fichero si la funcion de lectura de programas esta activada
         opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
@@ -151,8 +155,8 @@ function aune-integrity(){
                 echo "[#] The autonetplan-enable-search option is enabled."
                 echo "[#] Running the file search script..."
             else
-                echo "[#] ravDaq Hoch Hutlh puS."
-                echo "[#] ghe'qam ghu'vam ghItlhmey rur..."
+                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+                exit
             fi
             sudo bash "$integrity_program"
         elif [[ "$opcion_aes" == "false" ]]; then
@@ -161,7 +165,8 @@ function aune-integrity(){
             elif [[ $language == "ENG" ]]; then
                 echo -e "[\e[31m#\e[0m] The autonetplan-enable-search function is disabled and the operation cannot be continued."
             else
-                echo -e "[\e[31m#\e[0m] pay' ghuS boQwI'pu' Humanpu''e'."
+                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+                exit
             fi
         fi
     else
@@ -171,7 +176,8 @@ function aune-integrity(){
         elif [[ $language == "ENG" ]]; then
             echo -e "[\e[31m#\e[0m] The configuration file was not found."
         else
-            echo -e "[\e[31m#\e[0m] jatlhqa' *be'neDIq* je."
+            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+            exit
         fi
     fi
 }
@@ -190,9 +196,8 @@ function new-network-card(){
             read -p "[#] Enter the network interface to be configured: " ntinterface
             read -p "[#] Select the connection mode [ s (Static) / d (Dynamic) ]: " dhcp4configured
         else
-            echo "[#] yapbe' choraQ Sov..."
-            echo "[#] qevpa'Daq lIngbe'lu'bogh, " ntinterface
-            read -p "[#] pagh tu'lu'bogh yuD [ y (yIHiv) / q (qemIl) ]: " dhcp4configured
+            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+            exit
         fi
 
         if [[ $dhcp4configured == "s" || $dhcp4configured == "y" ]]; then
@@ -201,7 +206,8 @@ function new-network-card(){
             elif [[ $language == "ENG" ]]; then
                 echo "[#] The 'static configuration' option has been set."
             else
-                echo "[#] poSlu'DI' nuv 'sechtaHvIS.'."
+                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+                exit
             fi
             # Declaracion de variable de dhcp4 para la tarjeta de red
             dhcp4netwconfig="no"
@@ -211,7 +217,8 @@ function new-network-card(){
             elif [[ $language == "ENG" ]]; then
                 echo "[#] The 'dynamic configuration' option has been set."
             else
-                echo "[#] poSlu'DI' nuv 'QumpIn'."
+                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+                exit
             fi
             # Declaracion de variable de dhcp4 para la tarjeta de red
             dhcp4netwconfig="yes"
@@ -229,8 +236,8 @@ function new-network-card(){
                  read -p "[#] Enter the IP address to add to the network card: " ipattachedseccondary
                  read -p "[#] Enter the network mask to add to the network card: " ntmskattachedseccondary
             else
-                read -p "[#] pa' QoyDI' che'rup: " ipattachedseccondary
-                read -p "[#] 'entepray' SuvwI': " ntmskattachedseccondary
+                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+                exit
             fi
             # Aplicar red sin hacer saber al usuario
             sudo netplan apply
@@ -241,7 +248,8 @@ function new-network-card(){
             elif [[ $language == "ENG" ]]; then
                 echo "[#] No manual ip address or netmask 'dhcp4=no' will be applied."
             else
-                echo "[#] vIpOQmoHmeH mInDu' vIqIpHa'chugh 'CHUQ=Qo'."
+                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+                exit
             fi
             # Comentar configuracion IP y Mascara de red
             # [REVISAR] - Buscar forma de unicamente comentar las lineas de la mascara de red a configurar (evitar configurar el resto por error)

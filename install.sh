@@ -437,9 +437,9 @@ function purge-repo(){
         fi
     else
         if [[ "$language" == "esp" ]]; then
-            echo "El repositorio no se eliminara del sistema"
+            echo "[#] El repositorio no se eliminara del sistema"
         else
-            echo "The repository will not be removed from the system"
+            echo "[#] The repository will not be removed from the system"
         fi
     fi
 }
