@@ -165,8 +165,14 @@ function aune-integrity(){
             fi
         fi
     else
+        if [[ $language == "ESP" ]]; then
         # Avisar de la inexistencia del fichero
-        echo -e "[\e[31m#\e[0m] El fichero de configuracion no se ha encontrado."
+            echo -e "[\e[31m#\e[0m] El fichero de configuracion no se ha encontrado."
+        elif [[ $language == "ENG" ]]; then
+            echo -e "[\e[31m#\e[0m] The configuration file was not found."
+        else
+            echo -e "[\e[31m#\e[0m] jatlhqa' *be'neDIq* je."
+        fi
     fi
 }
 
@@ -174,16 +180,39 @@ function new-network-card(){
     # Ingresar en un bucle while con valores otorgados desde el interior del mismo
     while [[ $addnwntcd == "s" || $addnwntcd == "S" ]]; do
         # Inicio de configuracion
-        echo "[#] Configurando otra tarjeta de red..."
-        # Configuracion para la terjeta de red (configuracion por ingreso mediante "read -p")
-        read -p "[#] Ingrese la interfaz de red a configurar: " ntinterface
-        read -p "[#] Elije el modo de conexion [ s (Estatica) / d (Dinamica) ]: " dhcp4configured
-        if [[ $dhcp4configured == "s" ]]; then
-            echo "[#] Se ha establecido la opcion 'configuracion estatica'."
+        if [[ $language == "ESP" ]]; then
+            echo "[#] Configurando otra tarjeta de red..."
+            # Configuracion para la terjeta de red (configuracion por ingreso mediante "read -p")
+            read -p "[#] Ingrese la interfaz de red a configurar: " ntinterface
+            read -p "[#] Elije el modo de conexion [ s (Estatica) / d (Dinamica) ]: " dhcp4configured
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] Configuring another network card..."
+            read -p "[#] Enter the network interface to be configured: " ntinterface
+            read -p "[#] Select the connection mode [ s (Static) / d (Dynamic) ]: " dhcp4configured
+        else
+            echo "[#] yapbe' choraQ Sov..."
+            echo "[#] qevpa'Daq lIngbe'lu'bogh, " ntinterface
+            read -p "[#] pagh tu'lu'bogh yuD [ y (yIHiv) / q (qemIl) ]: " dhcp4configured
+        fi
+
+        if [[ $dhcp4configured == "s" || $dhcp4configured == "y" ]]; then
+            if [[ $language == "ESP" ]]; then
+                echo "[#] Se ha establecido la opcion 'configuracion estatica'."
+            elif [[ $language == "ENG" ]]; then
+                echo "[#] The 'static configuration' option has been set."
+            else
+                echo "[#] poSlu'DI' nuv 'sechtaHvIS.'."
+            fi
             # Declaracion de variable de dhcp4 para la tarjeta de red
             dhcp4netwconfig="no"
-        elif [[ $dhcp4configured == "d" ]]; then
-            echo "[#] Se ha establecido la opcion 'configuracion dinamica'."
+        elif [[ $dhcp4configured == "d" || $dhcp4configured == "q" ]]; then
+            if [[ $language == "ESP" ]]; then
+                echo "[#] Se ha establecido la opcion 'configuracion dinamica'."
+            elif [[ $language == "ENG" ]]; then
+                echo "[#] The 'dynamic configuration' option has been set."
+            else
+                echo "[#] poSlu'DI' nuv 'QumpIn'."
+            fi
             # Declaracion de variable de dhcp4 para la tarjeta de red
             dhcp4netwconfig="yes"
         fi
