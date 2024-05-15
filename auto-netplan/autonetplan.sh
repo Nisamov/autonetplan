@@ -37,7 +37,6 @@ integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 # Ruta de ultima version
 current_version=$(cat $program_files/program-files/version)
 # Idioma del programa
-# Si el idioma establecido en el fichero no es ni ESP ni ENG, el idioma con el que se enviara el output sera Klingon (Referencia a Star Treck)
 language=$(cat $program_files/program-files/language.lg)
 
 # Al llamar, este sera expuesto con cat (ruta)
@@ -406,26 +405,7 @@ EOF
         echo "[#] Language changed to English"
         fi
     else
-        # No hay idioma predefinido
-        echo -e "[\e[31m#\e[0m] meqqu' qaStaHvIS ram, quvHa'mo' qay'choH."
-        # Aqui se solicita el ingreso de un idioma
-        read -p "[#] Humanpu' 'enqIyDu [quis/tera]: " Hol_registrado
-        if [[ "$Hol_registrado" == "quis" ]]; then
-            # Idioma español
-            sudo cat <<EOF > "$program_files/program-files/language.lg"
-ESP
-EOF
-            echo "[#] Idioma Español registrado"
-        elif [[ "$Hol_registrado" == "tera" ]]; then
-            # Idioma ingles
-            sudo cat <<EOF > "$program_files/program-files/language.lg"
-ENG
-EOF
-        echo "[#] English language registered"
-        else
-            # Ha habido un error y se envia en klingon
-            echo -e "[\e[31m#\e[0m] Sor Hap pe'lu'pu'"
-        fi
+        echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
     fi
 }
 

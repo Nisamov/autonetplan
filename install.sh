@@ -448,7 +448,6 @@ function purge-repo(){
 autonetplan-necessary-integrity
 
 # Si todos los ficheros necesarios para la instalacion estan "ok", preguntar si eliminar el repositorio
-
 if [[ $autone == "ok" && $autoconf == "ok" && $autodirfilesearch == "ok" ]]; then
     # Los programas mas importantes se ha instalado correctamente
     if [[ "$language" == "esp" ]]; then
