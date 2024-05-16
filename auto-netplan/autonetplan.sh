@@ -60,30 +60,27 @@ function aune-autoupdate(){
 
         # Verificar si hay una nueva version disponible
         if [[ "$latest_version" != "$current_version" ]]; then
-            echo "¡Nueva version disponible! Version actual: $current_version, Última version: $latest_version"
+            echo "[#] ¡Nueva version disponible! Version actual: $current_version, Última version: $latest_version"
             # Actualizar directamente
             # COdigo de actualizacion
         else
-            echo "Tu programa ya esta actualizado. Version actual: $current_version"
+            echo "[#] Tu programa ya esta actualizado. Version actual: $current_version"
         fi
-    else
-
-    fi
-
-}
-
-# Ejecutar si auto_update = true
-if [[ $auto_update == "true" ]]; then
-    aune-autoupdate
-else
-    if [[ $language == "ESP" ]]; then
+    elif [[ $auto_update == "false" ]]; then
+        if [[ $language == "ESP" ]]; then
         echo "[#] La opcion 'autonetplan-update-program' esta establecida como 'false'."
-    elif [[ $language == "ENG" ]]; then
-        echo "[#] The 'autonetplan-update-program' option is set to 'false'."
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] The 'autonetplan-update-program' option is set to 'false'."
+        else
+            echo "[#] No se ha registrado un idioma"
+        fi
     else
         echo -e "[\e[31m#\e[0m] La opcion 'autonetplan-update-program' no se ha detectado."
     fi
-fi
+}
+
+# Llamada a la funcion aune-autoupdate
+aune-autoupdate
 
 # Funcion de ayuda
 # Al llamar, este sera expuesto con cat (ruta)
