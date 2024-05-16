@@ -123,9 +123,9 @@ if [[ -f $program_config ]]; then
             # Si el fichero existe
             if [[ -f $opcion_fevf ]]; then
                 if [[ $language == "ESP" ]]; then
-                    echo -e "[\e[32m#\e[0m] El fichero $opcion_fecf existe"
+                    echo -e "[\e[32m#\e[0m] El fichero $opcion_fevf existe"
                 elif [[ $language == "ENG" ]]; then
-                    echo -e "[\e[32m#\e[0m] File $opcion_fecf exists"
+                    echo -e "[\e[32m#\e[0m] File $opcion_fevf exists"
                 fi
             else
             # Si el fichero no existe
