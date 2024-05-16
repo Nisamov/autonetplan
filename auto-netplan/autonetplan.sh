@@ -38,7 +38,54 @@ integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
 current_version=$(cat $program_files/program-files/version)
 # Idioma del programa
 language=$(cat $program_files/program-files/language.lg)
+# Auto actualizaciones del programa
+auto_update=$(grep "^autonetplan-update-program" "$program_config" | cut -d "=" -f2)
 
+# Funcion de auto actualizacion
+function aune-autoupdate(){
+    if [[ $auto_update == "true" ]]; then
+        if [[ $language == "ESP" ]]; then
+            echo "[#] La opcion 'autonetplan-update-program' esta establecida como 'true'."
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] The 'autonetplan-update-program' option is set to 'true'."
+        else
+            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+        fi
+        # Revisar actualizacion y comparar
+        # Obtener la ultima version desde GitHub sobre el programa
+        latest_release=$(curl -s https://api.github.com/repos/Nisamov/autonetplan/releases | jq .[0].name)
+        # Obtener ultima version
+        # Extraer el numero de version del nombre del release
+        latest_version=$(echo "$latest_release" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
+
+        # Verificar si hay una nueva version disponible
+        if [[ "$latest_version" != "$current_version" ]]; then
+            echo "¡Nueva version disponible! Version actual: $current_version, Última version: $latest_version"
+            # Actualizar directamente
+            # COdigo de actualizacion
+        else
+            echo "Tu programa ya esta actualizado. Version actual: $current_version"
+        fi
+    else
+
+    fi
+
+}
+
+# Ejecutar si auto_update = true
+if [[ $auto_update == "true" ]]; then
+    aune-autoupdate
+else
+    if [[ $language == "ESP" ]]; then
+        echo "[#] La opcion 'autonetplan-update-program' esta establecida como 'false'."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] The 'autonetplan-update-program' option is set to 'false'."
+    else
+        echo -e "[\e[31m#\e[0m] La opcion 'autonetplan-update-program' no se ha detectado."
+    fi
+fi
+
+# Funcion de ayuda
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
     # Comprobar que el fichero existe
@@ -436,35 +483,7 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
         # NO ALMACENA LA ULTIMA PUBLICACION DE GITHUB, IMPIDIENDO ASI EL CORRECTO FUNCIONAMIENTO DEL PROGRAMA EN LA ACTUALIZACION
         #
 
-        # Revisar actualizacion y comparar
-        # Obtener la ultima version desde GitHub sobre el programa
-        latest_release=$(
-        curl -s https://api.github.com/repos/Nisamov/autonetplan/releases | jq .[0].name
-        )
-        # Obtener ultima version
-        # Extraer el numero de version del nombre del release
-        latest_version=$(echo "$latest_release" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
-
-
-        # Verificar si hay una nueva version disponible
-        if [[ "$latest_version" != "$current_version" ]]; then
-            echo "¡Nueva version disponible! Version actual: $current_version, Última version: $latest_version"
-            # Solicitar actualizacion
-            read -p "¿Desea actualizar el programa? [s/n]: " updaterequest
-            if [[ $updaterequest == "s" ]]; then
-                # Codigo para actualizar el programa
-                echo "Actualizando el programa..."
-            elif [[ $updaterequest == "n" ]]; then
-                # Cancelacion de actualizacion
-                echo "[#] Se ha cancelado la actualizacion"
-                exit 1
-            else
-                echo "[#] Se ha añadido un parametro no registrado, cancelando actualizacion..."
-                exit 1
-            fi
-        else
-            echo "Tu programa ya esta actualizado. Version actual: $current_version"
-        fi
+       
     elif [[ $updatecontinue == "n" ]]; then
         # Si se cancela la operacion
         echo "[#] Se ha cancelado la actualizacion"
