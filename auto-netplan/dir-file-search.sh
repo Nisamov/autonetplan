@@ -196,7 +196,7 @@ if [[ -f $program_config ]]; then
                 if [[ $language == "ESP" ]]; then
                     echo -e "[\e[32m#\e[0m] El directorio $opcion_depfd existe"
                 elif [[ $language == "ENG" ]]; then
-                    echo -e "[\e[32m#\e[0m] Directory $opcion_depfd does not exist"
+                    echo -e "[\e[32m#\e[0m] Directory $opcion_depfd exist"
                 fi
             else
                 # Si no existe
