@@ -74,7 +74,8 @@ function aune-autoupdate(){
         elif [[ $language == "ENG" ]]; then
             echo "[#] The 'autonetplan-update-program' option is set to 'true'."
         else
-            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
+            echo "[#] Idioma no registrado / Laguage not registered."
+            language-registration
         fi
         # Revisar actualizacion y comparar
         # Obtener la ultima version desde GitHub sobre el programa
@@ -90,7 +91,7 @@ function aune-autoupdate(){
             elif [[ $language == "ENG" ]]; then
                 echo "[#] New version available! Current version: $current_version, Last version: $latest_version"
             else
-                echo "[#] No se ha registrado un idioma"
+                echo "[#] Idioma no registrado / Laguage not registered."
                 language-registration
             fi
             # Actualizar directamente
@@ -101,7 +102,7 @@ function aune-autoupdate(){
             elif [[ $language == "ENG" ]]; then
                 echo "[#] Your program is already updated. Current version: $current_version"
             else
-                echo "[#] No se ha registrado un idioma"
+                echo "[#] Idioma no registrado / Laguage not registered."
                 language-registration
             fi
         fi
@@ -111,7 +112,7 @@ function aune-autoupdate(){
         elif [[ $language == "ENG" ]]; then
             echo "[#] The 'autonetplan-update-program' option is set to 'false'."
         else
-            echo "[#] No se ha registrado un idioma"
+            echo "[#] Idioma no registrado / Laguage not registered."
             language-registration
         fi
     else
@@ -268,7 +269,7 @@ function aune-integrity(){
 
 function new-network-card(){
     # Ingresar en un bucle while con valores otorgados desde el interior del mismo
-    while [[ $addnwntcd == "s" || $addnwntcd == "S" ]]; do
+    while [[ $addnwntcd == "s" || $addnwntcd == "S" || $addnwntcd == "y" || $addnwntcd == "Y" ]]; do
         # Inicio de configuracion
         if [[ $language == "ESP" ]]; then
             echo "[#] Configurando otra tarjeta de red..."
@@ -352,7 +353,14 @@ function new-network-card(){
         # Aplicar cambios sin hacer saber al usuario
         sudo netplan apply
         # Preguntar por configurar otra tarjeta de red
-        read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
+        if [[ $language == "ESP" ]]; then
+            read -p "[#] ¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
+        elif [[ $language == "ENG" ]]; then
+             read -p "[#] Do you want to configure a new network card? [y/n]: " addnwntcd
+        else
+            echo "[#] Idioma no registrado / Laguage not registered."
+            language-registration
+        fi
     done
 
     if [[ $addnwntcd == "n" || $addnwntcd == "N" ]]; then
