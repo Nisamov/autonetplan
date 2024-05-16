@@ -475,12 +475,8 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
     echo "[#] Esta opcion del programa no se ha desarrollado correctamente."
     read -p "[#] ¿Desea continuar? [s/n]: " updatecontinue
     if [[ $updatecontinue == "s" ]]; then
-
-        #
-        # NO ALMACENA LA ULTIMA PUBLICACION DE GITHUB, IMPIDIENDO ASI EL CORRECTO FUNCIONAMIENTO DEL PROGRAMA EN LA ACTUALIZACION
-        #
-
-       
+        # Llamar a funcion aune-autoupdate
+        aune-autoupdate
     elif [[ $updatecontinue == "n" ]]; then
         # Si se cancela la operacion
         echo "[#] Se ha cancelado la actualizacion"
