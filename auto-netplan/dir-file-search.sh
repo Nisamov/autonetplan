@@ -3,6 +3,7 @@
 
 # Variables del programa
 program_config=/etc/autonetplan/autonetplan.conf
+program_files="/usr/local/sbin/auto-netplan"
 language=$(cat $program_files/program-files/language.lg)
 
 ## Variables de mensajes
