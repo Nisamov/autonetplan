@@ -41,8 +41,33 @@ language=$(cat $program_files/program-files/language.lg)
 # Auto actualizaciones del programa
 auto_update=$(grep "^autonetplan-update-program" "$program_config" | cut -d "=" -f2)
 
+function language-registration(){
+    # Configuracion si no hay un idioma registrado
+    # Este codiog se ejcutara cada vez que no se haya registrado el idioma o no se encuentre correctamente registrado
+    while true; do
+        # Se les preguntara un idioma a registrar
+        read -p "[#] Seleccione su lenguaje / Select your language [esp / eng]: " languageregistration
+        if [[ $languageregistration == "esp" ]]; then
+            # Escribir "ESP" en el fichero
+            sudo cat <<EOF > "$program_files/program-files/language.lg"
+ESP
+EOF
+        elif [[ $languageregistration == "eng" ]]; then
+        # Escribir "ESP" en el fichero
+            sudo cat <<EOF > "$program_files/program-files/language.lg"
+ENG
+EOF
+        else
+            echo "[#] Opcion invalida / Invalid option."
+        fi
+    done
+}
+
 # Funcion de auto actualizacion
 function aune-autoupdate(){
+    # Indicar que todavia se esta desarrollando esta seccion del codigo
+    echo "Esta seccion del codigo no funciona correctamente, se esta trabajando en una solucion."
+
     if [[ $auto_update == "true" ]]; then
         if [[ $language == "ESP" ]]; then
             echo "[#] La opcion 'autonetplan-update-program' esta establecida como 'true'."
@@ -60,11 +85,25 @@ function aune-autoupdate(){
 
         # Verificar si hay una nueva version disponible
         if [[ "$latest_version" != "$current_version" ]]; then
-            echo "[#] ¡Nueva version disponible! Version actual: $current_version, Última version: $latest_version"
+            if [[ $language == "ESP" ]]; then
+                echo "[#] ¡Nueva version disponible! Version actual: $current_version, Última version: $latest_version"
+            elif [[ $language == "ENG" ]]; then
+                echo "[#] New version available! Current version: $current_version, Last version: $latest_version"
+            else
+                echo "[#] No se ha registrado un idioma"
+                language-registration
+            fi
             # Actualizar directamente
             # COdigo de actualizacion
         else
-            echo "[#] Tu programa ya esta actualizado. Version actual: $current_version"
+            if [[ $language == "ESP" ]]; then
+                echo "[#] Tu programa ya esta actualizado. Version actual: $current_version"
+            elif [[ $language == "ENG" ]]; then
+                echo "[#] Your program is already updated. Current version: $current_version"
+            else
+                echo "[#] No se ha registrado un idioma"
+                language-registration
+            fi
         fi
     elif [[ $auto_update == "false" ]]; then
         if [[ $language == "ESP" ]]; then
@@ -73,6 +112,7 @@ function aune-autoupdate(){
             echo "[#] The 'autonetplan-update-program' option is set to 'false'."
         else
             echo "[#] No se ha registrado un idioma"
+            language-registration
         fi
     else
         echo -e "[\e[31m#\e[0m] La opcion 'autonetplan-update-program' no se ha detectado."
@@ -96,8 +136,8 @@ function aune-help(){
         elif [[ $language == "ENG" ]]; then
             echo -e "[\e[31m#\e[0m] Error, support file not found".
         else
-            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-            exit
+            echo "[#] Idioma no registrado / Laguage not registered."
+            language-registration
         fi
     fi
 }
@@ -114,8 +154,8 @@ function aune-manual(){
         elif [[ $language == "ENG" ]]; then
             echo -e "[\e[31m#\e[0m] Error, manual not found."
         else
-            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-            exit
+            echo "[#] Idioma no registrado / Laguage not registered."
+            language-registration
         fi
     fi
 }
@@ -132,8 +172,8 @@ function aune-remove(){
         elif [[ $language == "ENG" ]]; then
             echo "[#] The autonetplan-prevent-purge-on-mistake option is set to true."
         else
-            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-            exit
+            echo "[#] Idioma no registrado / Laguage not registered."
+            language-registration
         fi
     elif [ "$opcion" == "false" ]; then
         # Accion si la opcion es false
@@ -144,8 +184,8 @@ function aune-remove(){
             echo "[#] The autonetplan-prevent-purge-on-mistake option is set to false."
             echo -e "[\e[31m#\e[0m] Autonetplan is being uninstalled..."
         else
-            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-            exit
+            echo "[#] Idioma no registrado / Laguage not registered."
+            language-registration
         fi
 
         # Funcion desinstalar programa
@@ -165,6 +205,7 @@ function aune-remove(){
             elif [[ $language == "ENG" ]]; then
                 echo -e "[\e[32m#\e[0m] Program successfully uninstalled."
             else
+                # Esto indica la desinstalacion del programa, no hay que pedir el idioma
                 echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente / Program successfully uninstalled."
             fi
         fi
@@ -182,8 +223,8 @@ function aune-integrity(){
         elif [[ $language == "ENG" ]]; then
             echo "[#] Reviewing the configuration file..."
         else
-            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-            exit
+            echo "[#] Idioma no registrado / Laguage not registered."
+            language-registration
         fi
         # Revisar dentro del fichero si la funcion de lectura de programas esta activada
         opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
@@ -198,8 +239,8 @@ function aune-integrity(){
                 echo "[#] The autonetplan-enable-search option is enabled."
                 echo "[#] Running the file search script..."
             else
-                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-                exit
+                echo "[#] Idioma no registrado / Laguage not registered."
+                language-registration
             fi
             sudo bash "$integrity_program"
         elif [[ "$opcion_aes" == "false" ]]; then
@@ -208,8 +249,8 @@ function aune-integrity(){
             elif [[ $language == "ENG" ]]; then
                 echo -e "[\e[31m#\e[0m] The autonetplan-enable-search function is disabled and the operation cannot be continued."
             else
-                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-                exit
+                echo "[#] Idioma no registrado / Laguage not registered."
+                language-registration
             fi
         fi
     else
@@ -219,8 +260,8 @@ function aune-integrity(){
         elif [[ $language == "ENG" ]]; then
             echo -e "[\e[31m#\e[0m] The configuration file was not found."
         else
-            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-            exit
+            echo "[#] Idioma no registrado / Laguage not registered."
+            language-registration
         fi
     fi
 }
@@ -239,8 +280,8 @@ function new-network-card(){
             read -p "[#] Enter the network interface to be configured: " ntinterface
             read -p "[#] Select the connection mode [ s (Static) / d (Dynamic) ]: " dhcp4configured
         else
-            echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-            exit
+            echo "[#] Idioma no registrado / Laguage not registered."
+            language-registration
         fi
 
         if [[ $dhcp4configured == "s" || $dhcp4configured == "y" ]]; then
@@ -249,8 +290,8 @@ function new-network-card(){
             elif [[ $language == "ENG" ]]; then
                 echo "[#] The 'static configuration' option has been set."
             else
-                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-                exit
+                echo "[#] Idioma no registrado / Laguage not registered."
+                language-registration
             fi
             # Declaracion de variable de dhcp4 para la tarjeta de red
             dhcp4netwconfig="no"
@@ -260,8 +301,8 @@ function new-network-card(){
             elif [[ $language == "ENG" ]]; then
                 echo "[#] The 'dynamic configuration' option has been set."
             else
-                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-                exit
+                echo "[#] Idioma no registrado / Laguage not registered."
+                language-registration
             fi
             # Declaracion de variable de dhcp4 para la tarjeta de red
             dhcp4netwconfig="yes"
@@ -279,8 +320,8 @@ function new-network-card(){
                  read -p "[#] Enter the IP address to add to the network card: " ipattachedseccondary
                  read -p "[#] Enter the network mask to add to the network card: " ntmskattachedseccondary
             else
-                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-                exit
+                echo "[#] Idioma no registrado / Laguage not registered."
+                language-registration
             fi
             # Aplicar red sin hacer saber al usuario
             sudo netplan apply
@@ -291,8 +332,8 @@ function new-network-card(){
             elif [[ $language == "ENG" ]]; then
                 echo "[#] No manual ip address or netmask 'dhcp4=no' will be applied."
             else
-                echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
-                exit
+                echo "[#] Idioma no registrado / Laguage not registered."
+                language-registration
             fi
             # Comentar configuracion IP y Mascara de red
             # [REVISAR] - Buscar forma de unicamente comentar las lineas de la mascara de red a configurar (evitar configurar el resto por error)
@@ -300,7 +341,14 @@ function new-network-card(){
             sudo netplan apply
         fi
         # Preguntar por gateway4:
-        read -p "[#] Ingrese una puerta de enlace para la tarjeta de red: " gatewayattachedseccondary
+        if [[ $language == "ESP" ]]; then
+            read -p "[#] Ingrese una puerta de enlace para la tarjeta de red: " gatewayattachedseccondary
+        elif [[ $language == "ENG" ]]; then
+            read -p "[#] Enter a gateway for the network card: " gatewayattachedseccondary
+        else
+            echo "[#] Idioma no registrado / Laguage not registered."
+            language-registration
+        fi
         # Aplicar cambios sin hacer saber al usuario
         sudo netplan apply
         # Preguntar por configurar otra tarjeta de red
@@ -310,7 +358,7 @@ function new-network-card(){
     if [[ $addnwntcd == "n" || $addnwntcd == "N" ]]; then
         echo "[#] Se ha cancelado la creacion de una nueva tarjeta de red."
 
-    elif [[ $addnwntcd == " " ]]; then
+    elif [[ $addnwntcd == "" ]]; then
         echo "[#] Se ha dejado el campo vacio."
     fi
 }
