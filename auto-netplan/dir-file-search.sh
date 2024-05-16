@@ -66,7 +66,7 @@ if [[ -f $program_config ]]; then
                 echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_fevf"
             fi
             # Busca el fcihero de idioma
-            opcion_felaf=$(grep "^file-existence-laguage-file" "$program_config" | cut -d "=" -f2)
+            opcion_felaf=$(grep "^file-existence-language-file" "$program_config" | cut -d "=" -f2)
             # Si el fichero existe
             if [[ -f $opcion_felaf ]]; then
                 echo -e "[\e[32m#\e[0m] El fichero $opcion_felaf existe"
