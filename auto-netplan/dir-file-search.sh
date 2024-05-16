@@ -175,28 +175,56 @@ if [[ -f $program_config ]]; then
             opcion_decd=$(grep "^dir-existence-config-dir" "$program_config" | cut -d "=" -f2)
             if [[ -d $opcion_decd ]]; then
                 # Si el directorio existe
-                echo -e "[\e[32m#\e[0m] El directorio $opcion_decd existe"
+                if [[ $language == "ESP" ]]; then
+                    echo -e "[\e[32m#\e[0m] El directorio $opcion_decd existe"
+                elif [[ $language == "ENG" ]]; then
+                    echo -e "[\e[32m#\e[0m] Directory $opcion_decd exists"
+                fi
             else
                 # Si no existe
-                echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_decd"
+                if [[ $language == "ESP" ]]; then
+                    echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_decd"
+                elif [[ $language == "ENG" ]]; then
+                    echo -e "[\e[31m#\e[0m] Directory $opcion_decd does not exist"
+                fi
             fi
             # Buscar directorio de ficheros del programa
             opcion_depfd=$(grep "^dir-existence-program-files-dir" "$program_config" | cut -d "=" -f2)
             if [[ -d $opcion_depfd ]]; then
                 # Si el directorio existe
-                echo -e "[\e[32m#\e[0m] El directorio $opcion_depfd existe"
+                if [[ $language == "ESP" ]]; then
+                    echo -e "[\e[32m#\e[0m] El directorio $opcion_depfd existe"
+                elif [[ $language == "ENG" ]]; then
+                    echo -e "[\e[32m#\e[0m] Directory $opcion_depfd does not exist"
+                fi
             else
                 # Si no existe
-                echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_depfd"
+                if [[ $language == "ESP" ]]; then
+                    echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_depfd"
+                elif [[ $language == "ENG" ]]; then
+                    echo -e "[\e[31m#\e[0m] Directory $opcion_depfd does not exist"
+                fi
             fi
         elif [[ "$opcion_ade" == "false" ]]; then
             # Aviso de configuracion deshabilitada
-            echo -e "[\e[31m#\e[0m] $msg_revision La configuracion autonetplan-directory-existence esta desactivada."
+            if [[ $language == "ESP" ]]; then
+                echo -e "[\e[31m#\e[0m] $msg_revision La configuracion autonetplan-directory-existence esta desactivada."
+            elif [[ $language == "ENG" ]]; then
+                echo -e "[\e[31m#\e[0m] $msg_revision_eng The autonetplan-directory-existence configuration is disabled."
+            fi
         else
-            echo -e "[\e[31m#\e[0m] $msg_revision No se ha encontrado la linea autonetplan-directory-existence."
+            if [[ $language == "ESP" ]]; then
+                echo -e "[\e[31m#\e[0m] $msg_revision No se ha encontrado la linea autonetplan-directory-existence."
+            elif [[ $language == "ENG" ]]; then
+                echo -e "[\e[31m#\e[0m] $msg_revision_eng The autonetplan-directory-existence line was not found."
+            fi
         fi
     elif [[ "$opcion_aes" == "false" ]]; then
         # Aviso de configuracion deshabilitada
-        echo -e "[\e[31m#\e[0m] $msg_revision La configuracion autonetplan-enable-search esta desactivada."
+        if [[ $language == "ESP" ]]; then
+            echo -e "[\e[31m#\e[0m] $msg_revision La configuracion autonetplan-enable-search esta desactivada."
+        elif [[ $language == "ENG" ]]; then
+            echo -e "[\e[31m#\e[0m] $msg_revision_eng The autonetplan-enable-search setting is disabled."
+        fi
     fi
 fi
