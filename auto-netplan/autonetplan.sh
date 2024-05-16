@@ -363,6 +363,14 @@ function new-network-card(){
         fi
     done
 
+
+##
+# HASTA AQUI LA TRADUCCION | SIN TRADUCCION MAS ADELANTE (Salvo alguna seccion)
+##
+# No se ha traducido al completo en esta version (0.6.0) - No se daran explicaciones
+##
+
+
     if [[ $addnwntcd == "n" || $addnwntcd == "N" ]]; then
         echo "[#] Se ha cancelado la creacion de una nueva tarjeta de red."
 
@@ -418,7 +426,7 @@ function aune-networked(){
     # Configuracion de red por autonetplan
             echo -e "[\e[33m#\e[0m] Configuracion de red por configuracion automatica..."
             sudo cat <<EOF > "$network_dir"
-# Editado con autonetplan
+# Editado con autonetplan / Edited with autonetplan
 network:
   version: 2
   renderer: networkd
@@ -427,7 +435,7 @@ network:
       dhcp4: $ipfigured
       addresses: [$ipconfigure/$masked]
       gateway4: $linkeddoor
-# Otras tarjetas de red
+# Otras tarjetas de red / Other network cards
 EOF
 }
 
