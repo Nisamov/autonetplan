@@ -120,9 +120,6 @@ function aune-autoupdate(){
     fi
 }
 
-# Llamada a la funcion aune-autoupdate
-aune-autoupdate
-
 # Funcion de ayuda
 # Al llamar, este sera expuesto con cat (ruta)
 function aune-help(){
