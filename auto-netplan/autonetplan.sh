@@ -66,7 +66,7 @@ EOF
 # Funcion de auto actualizacion
 function aune-autoupdate(){
     # Indicar que todavia se esta desarrollando esta seccion del codigo
-    echo "Esta seccion del codigo no funciona correctamente, se esta trabajando en una solucion."
+    echo "Auto Actualizacion : Esta seccion del codigo no funciona correctamente, se esta trabajando en una solucion."
 
     if [[ $auto_update == "true" ]]; then
         if [[ $language == "ESP" ]]; then
@@ -513,6 +513,13 @@ EOF
         echo -e "[\e[31m#\e[0m] L46U4G3 N0T R3615T343D."
     fi
 }
+
+# Si la funcion aune-autoupdate en la configuracion es true
+# Declaracion de variable
+
+if [[ $auto_update == "true" ]]; then
+    aune-autoupdate
+fi
 
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
