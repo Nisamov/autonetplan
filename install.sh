@@ -35,9 +35,9 @@ language=$(cat "/etc/default/locale")
 clear
 
 # Establecer un idioma
-if [[ $language == "en_US.UTF-8" ]]; then
+if [[ $language == "LANG=en_US.UTF-8" ]]; then
     language="eng"
-elif [[ $language == "es_ES.UTF-8" ]]; then
+elif [[ $language == "LANG=es_ES.UTF-8" ]]; then
     language="esp"
 else
     # Si no es ninguno, establecer idioma ingles
