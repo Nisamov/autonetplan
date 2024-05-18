@@ -28,27 +28,22 @@ PROGRAM_FILES="/usr/local/sbin/auto-netplan"
 NETWORK="/etc/netplan/"
 # Ruta fichero de configuracion guardar dentro de /etc/autonetplan/autonetplan.conf
 CONFIG_FILES="/etc"
+# Idioma del programa
+language=$(cat "/etc/default/locale")
 
 # Limpiar consola para mejor lectura
 clear
 
-# Preguntar sobre el idioma a usar, segun eso, los ficheros se redistribuiran unicamente en el idioma establecido
-# Unicamente van a estar disponibles dos idiomas, el ingles y el español (idioma origen)
-# Los comentarios no van a ser traducidos, unicamente los mensajes de salida, ahorrando tiempo en la ejecucion de codigo y liberando peso innecesario (para algo estan los traductores)
-while true; do
-    # No se continuara hasta que se seleccione un lenguaje
-    read -p "[AutoNetplan]: Select your language / Seleccione su idioma [eng/esp]: " language
-
-    if [[ $language == "esp" ]]; then
-        echo "[#] Se ha seleccionado el idioma Español"
-        break
-    elif [[ $language == "eng" ]]; then
-        echo "[#] You've selected English language"
-        break
-    else
-        echo "[#] Invalid language / Idioma inválido"
-    fi
-done
+# Establecer un idioma
+if [[ $language == "en_US.UTF-8" ]]; then
+    language="eng"
+elif [[ $language == "es_ES.UTF-8" ]]; then
+    language="esp"
+else
+    # Si no es ninguno, establecer idioma ingles
+    language="eng"
+fi
+echo "Idioma establecido / Language set: $language"
 
 # Creacion e instalacion rutas y ficheros del programa
 while [[ ! -d $PROGRAM_FILES ]]; do
@@ -174,6 +169,7 @@ fi
 # Agregar informacion del idioma en el fichero $PROGRAM_FILES/program-files/language.lg
 # Independientemente del idioma elegido y registrado, se seguira llevando a cabo el proceso anterior para el output de lenguaje
 # Revisar existencia de fichero de idioma
+# Este fichero permitira cambiar el idioma si se desea
 if [[ -f "$PROGRAM_FILES/program-files/language.lg" ]]; then
     # Segun el idioma escogido
     if [[ "$language" == "esp" ]]; then
