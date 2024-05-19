@@ -78,6 +78,7 @@ function aune-autoupdate(){
             language-registration
         fi
         # Obtener la última versión desde GitHub sobre el programa
+        # Obtener la última versión desde GitHub sobre el programa
         response=$(curl -s https://api.github.com/repos/Nisamov/autonetplan/releases/latest)
         echo "Response from GitHub API: $response" # Línea de depuración para mostrar la respuesta completa
 
@@ -85,7 +86,7 @@ function aune-autoupdate(){
         echo "Extracted tag name: $latest_tag" # Línea de depuración para mostrar el nombre del tag
 
         # Extraer el número de versión del tag name
-        latest_version=$(echo "$latest_tag" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
+        latest_version=$(echo "$latest_tag" | sed -n 's/v\?\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
         echo "Extracted version number: $latest_version" # Línea de depuración para mostrar el número de versión extraído
 
         # Verificar si el número de versión se ha extraído correctamente
@@ -116,7 +117,6 @@ function aune-autoupdate(){
                 language-registration
             fi
         fi
-
 
     elif [[ $auto_update == "false" ]]; then
         if [[ $language == "ESP" ]]; then
