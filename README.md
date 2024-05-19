@@ -1,3 +1,5 @@
+<!--Software creado por Andrés Ruslan Abadías Otal-->
+
 ![Logo principal](public-storage/main.jpg)
 ![Separador](public-storage/separador.jpg)
 ![Logo principal](public-storage/security.jpg)
