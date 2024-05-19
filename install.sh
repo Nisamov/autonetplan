@@ -225,7 +225,7 @@ fi
 # Clonar el fichero de actualizacion en /usr/local/sbin/auto-netplan/program-files/
 while [[ ! -f "$PROGRAM_FILES/program-files/auneupdate.sh" ]]; do
     # Clonar el archivo
-    sudo cp "$SCRIPT_DIR/auto-netplan/auneupdate" "$PROGRAM_FILES/program-files/auneupdate.sh"
+    sudo cp "$SCRIPT_DIR/auto-netplan/auneupdate.sh" "$PROGRAM_FILES/program-files/auneupdate.sh"
     # Verificar si la clonación se realizó correctamente
     if [[ -f "$PROGRAM_FILES/program-files/auneupdate.sh" ]]; then
         # Mensaje de clonación exitosa
