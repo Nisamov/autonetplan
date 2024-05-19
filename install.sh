@@ -222,6 +222,30 @@ else
     fi
 fi
 
+# Clonar el fichero de actualizacion en /usr/local/sbin/auto-netplan/program-files/
+while [[ ! -f "$PROGRAM_FILES/program-files/auneupdate.sh" ]]; do
+    # Clonar el archivo
+    sudo cp "$SCRIPT_DIR/auto-netplan/auneupdate" "$PROGRAM_FILES/program-files/auneupdate.sh"
+    # Verificar si la clonación se realizó correctamente
+    if [[ -f "$PROGRAM_FILES/program-files/auneupdate.sh" ]]; then
+        # Mensaje de clonación exitosa
+        if [[ "$language" == "esp" ]]; then
+            echo "[#] Script de actualizacion instalada correctamente"
+        else
+            echo "[#] Update script successfully installed"
+        fi
+    else
+        if [[ "$language" == "esp" ]]; then
+            echo -e "[\e[31m#\e[0m] No se ha clonado el script de actualizacion correctamente, intentando de nuevo..."
+            # Espera 1 segundo antes de intentar de nuevo
+            sleep 1
+        else
+            echo -e "[\e[31m#\e[0m] Failed to clone update script successfully, trying again..."
+            sleep 1
+        fi
+    fi
+done
+
 # Clonar el fichero de licencia dentro del resto de los ficheros
 while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
     # Clonar el archivo de licencia

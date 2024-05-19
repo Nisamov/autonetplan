@@ -135,7 +135,7 @@ if [[ -f $program_config ]]; then
                     echo -e "[\e[31m#\e[0m] File $opcion_fevf does not exist"
                 fi
             fi
-            # Busca el fcihero de idioma
+            # Busca el fichero de idioma
             opcion_felaf=$(grep "^file-existence-language-file" "$program_config" | cut -d "=" -f2)
             # Si el fichero existe
             if [[ -f $opcion_felaf ]]; then
@@ -152,6 +152,24 @@ if [[ -f $program_config ]]; then
                     echo -e "[\e[31m#\e[0m] File $opcion_felaf does not exist"
                 fi
             fi
+            # Busca el fichero de actualizacion
+            opcion_feuf=$(grep "^file-existence-update-file" "$program_config" | cut -d "=" -f2)
+            # Si el fichero existe
+            if [[ -f $opcion_feuf ]]; then
+                if [[ $language == "ESP" ]]; then
+                    echo -e "[\e[32m#\e[0m] El fichero $opcion_feuf existe"
+                elif [[ $language == "ENG" ]]; then
+                    echo -e "[\e[32m#\e[0m] File $opcion_feuf exists"
+                fi
+            else
+            # Si el fichero no existe
+                if [[ $language == "ESP" ]]; then
+                    echo -e "[\e[31m#\e[0m] No se ha encontrado $opcion_feuf"
+                elif [[ $language == "ENG" ]]; then
+                    echo -e "[\e[31m#\e[0m] File $opcion_feuf does not exist"
+                fi
+            fi
+
         elif [[ "$opcion_afe" == "false" ]]; then
             # Aviso de configuracion deshabilitada
             if [[ $language == "ESP" ]]; then

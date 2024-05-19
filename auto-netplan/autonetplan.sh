@@ -82,11 +82,11 @@ function aune-autoupdate(){
         response=$(curl -s https://api.github.com/repos/Nisamov/autonetplan/releases/latest)
 
         latest_tag=$(echo "$response" | jq -r .tag_name)
-        echo "Extracted tag name: $latest_tag" # Línea de depuración para mostrar el nombre del tag
+        echo "Ultimo tag: $latest_tag" # Línea de depuración para mostrar el nombre del tag
 
         # Extraer el número de versión del tag name
         latest_version=$(echo "$latest_tag" | sed -n 's/v\?\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
-        echo "Extracted version number: $latest_version" # Línea de depuración para mostrar el número de versión extraído
+        echo "Ultima version: $latest_version" # Línea de depuración para mostrar el número de versión extraído
 
         # Verificar si el número de versión se ha extraído correctamente
         if [[ -z "$latest_version" ]]; then
@@ -104,8 +104,9 @@ function aune-autoupdate(){
                 echo "[#] Idioma no registrado / Language not registered."
                 language-registration
             fi
-            # Actualizar directamente
-            # Código de actualización
+            # Actualizar software
+            # Llamar al fichero auneupdate.sh
+            auneupdate="/usr/local/sbin/auto-netplan/program-files/"
         else
             if [[ $language == "ESP" ]]; then
                 echo "[#] Tu programa ya está actualizado. Versión actual: $current_version"
