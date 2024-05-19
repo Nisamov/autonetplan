@@ -77,10 +77,9 @@ function aune-autoupdate(){
             echo "[#] Idioma no registrado / Laguage not registered."
             language-registration
         fi
-        # Obtener la última versión desde GitHub sobre el programa
+
         # Obtener la última versión desde GitHub sobre el programa
         response=$(curl -s https://api.github.com/repos/Nisamov/autonetplan/releases/latest)
-        echo "Response from GitHub API: $response" # Línea de depuración para mostrar la respuesta completa
 
         latest_tag=$(echo "$response" | jq -r .tag_name)
         echo "Extracted tag name: $latest_tag" # Línea de depuración para mostrar el nombre del tag
