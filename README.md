@@ -24,7 +24,11 @@ sudo nano ./install.sh
 Mediante la imagen mostrada previamente, es posible comprender el funcionamiento y clonacion de los ficheros del repositorio, tras la ejecucion del fichero `install.sh`, este cuenta con una seccion del fichero de isntalacion que borra el repositorio clonado, limpiando asi espacio ya no necesario en el sistema, siendo esta escript el siguiente:
 ```sh
 # Tras la instalacion, el instalador, borrara el repositorio clonado para liberar espacio, unicamente tras comprobar la existencia de los ficheros imprescindibles para el programa.
-read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
+# Este ejemplo es una version reducida del funcionamiento de la desinstalacion
+function purge-repo(){
+    # Tras la instalacion, el instalador, preguntara si borrar el repositorio clonado para liberar espacio
+    read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
+    
     if [[ $deleteRepos == "s" || $deleteRepos == "S" ]]; then
     # Verificar si la ruta $SCRIPT_DIR existe
         if [[ -d "$SCRIPT_DIR" ]]; then
@@ -34,11 +38,15 @@ read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
             echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
         else
             # Si la ruta no existe, mostrar un mensaje indicando que no existe
-            echo "[#] La ruta '$SCRIPT_DIR' no existe."
+            echo "[#] La ruta "$SCRIPT_DIR" no existe."
         fi
     else
-        echo "El repositorio no se eliminara del sistema"
+        echo "[#] El repositorio no se eliminara del sistema"
     fi
+}
+
+# Llamar a la funcion purge-repo
+purge-repo
 ```
 ## Sistema de Lectura de Datos
 
@@ -85,33 +93,28 @@ Ejemplo esquemático en el uso y funcionamiento de autonetplan:
 ![Estructura del Programa tras Instalacion](public-media/function-structured.jpg)
 
 Para comprender los parametros disponibles, se recomienda leer el siguiente cuadro:
-```
-    $1:
-        -h     | --help             :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa
-        -r     | --remove           :: Desinstalar programa
-        -l     | --license          :: Mostrar licencia del programa
-        -b     | --backup           :: Creacion de copia de seguridad de configuracion de red
-        -u     | --update           :: Actualizar el programa
-        -v     | --version          :: Mostrar version actual del programa
-        -x     | --execute          :: Continuacion con el programa
-        -m     | --manual           :: Mostrar instrucciones y configuracion avanzada
-        -i     | --integrity        :: Mostrar integridad de los ficheros y directorios del programa
-        -ntf   | --netfileenabled   :: Mostrar ruta de fichero de red establecido para la configuracion
-        -clg   | --changelanguage   :: Cambiar el idioma definido en la instalacion
-    $2:
-        -m      / --manual          >> Configuracion manual
-        -a      / --automatic       >> Configuracion automatica
-    $3:
-        -iface  / --interface       >> Indicar posteriormente la interfaz a usar
-    $4:
-        -f      / --fluid           >> Configuracion DHCP (red fluida)
-        -s      / --static          >> Configuracion fija (red estatica)
-    $5:
-        -lnkd   / --linkeddoor      >> Puerta de enlace para equipos tipo cliente
-        -ntcd   / --networkcard     >> Configurar otra tarjeta de red sin agregar puerta de enlace de tarjeta principal '-lnkd'
-    $6:
-        -ntcd   / --networkcard     >> Configurar otra tarjeta de red habiendo agregado puerta de enlace en tarjeta principal '-lnkd'
-```
+| Parámetro | Simplificación | Completo | Descripción | Ejemplo visual |
+|-----------|----------------|----------|-------------|----------------|
+| $1        | -h             | --help   | Mostrar ayuda rápida del programa | autonetplan -h |
+| $1        | -r             | --remove | Desinstalar el software | autonetplan -r |
+| $1        | -l             | --license| Mostrar licencia del software | autonetplan -l |
+| $1        | -b             | --backup | Crear copia seguridad fichero conf de red | autonetplan -b |
+| $1        | -u             | --update | Actualizar el software | autonetplan -u |
+| $1        | -v             | --version| Mostrar versión del software | autonetplan -v |
+| $1        | -x             | --execute| Continuación con la ejecución | autonetplan -x |
+| $1        | -m             | --manual | Mostrar instrucciones y config avanzada | autonetplan -m |
+| $1        | -i             | --integrity| Revisar integridad del software | autonetplan -i |
+| $1        | -ntf           | --netfileenabled | Mostrar ruta de fichero de red establecido | autonetplan -ntf |
+| $1        | -clg           | --changelanguage | Cambiar el idioma del software | autonetplan -clg |
+| $2        | -m             | --manual | Configuración de red manual | autonetplan -x -m |
+| $2        | -a             | --automatic| Configuración de red automática | autonetplan -x -a |
+| $3        | -iface         | --interface| Ingreso de interfaz de red | autonetplan -x -a -iface |
+| $4        | -f             | --fluid  | Configuración DHCP True (IP Dinámica) | autonetplan -x -a -iface -f |
+| $4        | -s             | --static | Configuración DHCP False (IP Estática) | autonetplan -x -a -iface -s |
+| $5        | -lnkd          | --linkeddoor | Puerta de enlace para el cliente | autonetplan -x -a -iface -s -lnkd |
+| $5        | -ntcd          | --networkcard | Configurar otra tarjeta de red sin puerta de enlace | autonetplan -x -a iface -s -ntcd |
+| $6        | -ntcd          | --networkcard | Configurar otra tarjeta de red | autonetplan -x -a iface -s -lnkd -ntcd |
+
 
 ## Configuracion
 El programa autonetplan cuenta con un fichero de configuracion ubicado en la ruta:

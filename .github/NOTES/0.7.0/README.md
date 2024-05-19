@@ -10,3 +10,4 @@
 
 ## Prevision para futuras actualizaciones
 - Proceso de actualizacion sin perder la configuracion establecida en versiones viejas
+- Dividir el script autonetplan.sh en diferentes scripts que ejecuten diferentes acciones, evitando acumular codigo (Orden y Legibilidad)
