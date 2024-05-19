@@ -77,35 +77,40 @@ function aune-autoupdate(){
             echo "[#] Idioma no registrado / Laguage not registered."
             language-registration
         fi
-        # Revisar actualizacion y comparar
-        # Obtener la ultima version desde GitHub sobre el programa
-        latest_release=$(curl -s https://api.github.com/repos/Nisamov/autonetplan/releases | jq .[0].name)
-        # Obtener ultima version
-        # Extraer el numero de version del nombre del release
+        # Obtener la última versión desde GitHub sobre el programa
+        latest_release=$(curl -s https://api.github.com/repos/Nisamov/autonetplan/releases/latest | jq -r .name)
+        # Extraer el número de versión del nombre del release
         latest_version=$(echo "$latest_release" | sed -n 's/.*v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
 
-        # Verificar si hay una nueva version disponible
+        # Verificar si el número de versión se ha extraído correctamente
+        if [[ -z "$latest_version" ]]; then
+            echo "[#] Error: No se pudo extraer la última versión desde GitHub."
+            exit 1
+        fi
+
+        # Verificar si hay una nueva versión disponible
         if [[ "$latest_version" != "$current_version" ]]; then
             if [[ $language == "ESP" ]]; then
-                echo "[#] ¡Nueva version disponible! Version actual: $current_version, Última version: $latest_version"
+                echo "[#] ¡Nueva versión disponible! Versión actual: $current_version, Última versión: $latest_version"
             elif [[ $language == "ENG" ]]; then
                 echo "[#] New version available! Current version: $current_version, Last version: $latest_version"
             else
-                echo "[#] Idioma no registrado / Laguage not registered."
+                echo "[#] Idioma no registrado / Language not registered."
                 language-registration
             fi
             # Actualizar directamente
-            # COdigo de actualizacion
+            # Código de actualización
         else
             if [[ $language == "ESP" ]]; then
-                echo "[#] Tu programa ya esta actualizado. Version actual: $current_version"
+                echo "[#] Tu programa ya está actualizado. Versión actual: $current_version"
             elif [[ $language == "ENG" ]]; then
                 echo "[#] Your program is already updated. Current version: $current_version"
             else
-                echo "[#] Idioma no registrado / Laguage not registered."
+                echo "[#] Idioma no registrado / Language not registered."
                 language-registration
             fi
         fi
+
     elif [[ $auto_update == "false" ]]; then
         if [[ $language == "ESP" ]]; then
         echo "[#] La opcion 'autonetplan-update-program' esta establecida como 'false'."
