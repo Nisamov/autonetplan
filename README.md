@@ -31,3 +31,8 @@ cd autonetplan
 ```sh
 sudo bash install.sh
 ```
+![Logo principal](public-storage/installation5.jpg)
+```sh
+autonetplan <parametros>
+```
+Accede a la página web haciendo clic [aqui](http://autonetplan.wikidot.com/parameters).
