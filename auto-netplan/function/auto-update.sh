@@ -7,9 +7,6 @@ auto_update=$(grep "^autonetplan-update-program" "$program_config" | cut -d "=" 
 
 # Funcion de auto actualizacion
 function aune-autoupdate(){
-    # Indicar que todavia se esta desarrollando esta seccion del codigo
-    echo "Auto Actualizacion : Esta seccion del codigo no funciona correctamente, se esta trabajando en una solucion."
-
     if [[ $auto_update == "true" ]]; then
         if [[ $language == "ESP" ]]; then
             echo "[#] La opcion 'autonetplan-update-program' esta establecida como 'true'."
