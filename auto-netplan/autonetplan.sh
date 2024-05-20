@@ -40,6 +40,8 @@ current_version=$(cat $program_files/program-files/version)
 language=$(cat $program_files/program-files/language.lg)
 # Auto actualizaciones del programa
 auto_update=$(grep "^autonetplan-update-program" "$program_config" | cut -d "=" -f2)
+# Programas bifurcados del codigo original
+aune_bifurcation_route="/usr/local/sbin/auto-netplan/function"
 
 # Funcion de auto actualizacion
 function aune-autoupdate(){
@@ -77,7 +79,7 @@ function aune-autoupdate(){
                 echo "[#] New version available! Current version: $current_version, Last version: $latest_version"
             else
                 echo "[#] Idioma no registrado / Language not registered."
-                sudo bash "$program_files/function/language-registration.sh"
+                sudo bash "$aune_bifurcation_route/language-registration.sh"
             fi
             # Actualizar software
             # Llamar al fichero auneupdate.sh
@@ -89,7 +91,7 @@ function aune-autoupdate(){
                 echo "[#] Your program is already updated. Current version: $current_version"
             else
                 echo "[#] Idioma no registrado / Language not registered."
-                sudo bash "$program_files/function/language-registration.sh"
+                sudo bash "$aune_bifurcation_route/language-registration.sh"
             fi
         fi
 
@@ -100,7 +102,7 @@ function aune-autoupdate(){
             echo "[#] The 'autonetplan-update-program' option is set to 'false'."
         else
             echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$program_files/function/language-registration.sh"
+            sudo bash "$aune_bifurcation_route/language-registration.sh"
         fi
     else
         echo -e "[\e[31m#\e[0m] La opcion 'autonetplan-update-program' no se ha detectado."
@@ -122,7 +124,7 @@ function aune-help(){
             echo -e "[\e[31m#\e[0m] Error, support file not found".
         else
             echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$program_files/function/language-registration.sh"
+            sudo bash "$aune_bifurcation_route/language-registration.sh"
         fi
     fi
 }
@@ -140,65 +142,10 @@ function aune-manual(){
             echo -e "[\e[31m#\e[0m] Error, manual not found."
         else
             echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$program_files/function/language-registration.sh"
+            sudo bash "$aune_bifurcation_route/language-registration.sh"
         fi
     fi
 }
-
-function aune-remove(){
-    # Revisar en el fichero de configuracion si la opcion autonetplan-prevent-purge-on-mistake es true o false
-    # Buscar la opcion autonetplan-prevent-purge-on-mistake en el archivo de configuracion
-    opcion=$(grep "^autonetplan-prevent-purge-on-mistake" "$program_config" | cut -d "=" -f2)
-    # Comprobar si la opcion esta establecida en true o false
-    if [ "$opcion" == "true" ]; then
-        # Accion si la opcion es true
-        if [[ $language == "ESP" ]]; then
-            echo "[#] La opcion autonetplan-prevent-purge-on-mistake esta configurada como true."
-        elif [[ $language == "ENG" ]]; then
-            echo "[#] The autonetplan-prevent-purge-on-mistake option is set to true."
-        else
-            echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$program_files/function/language-registration.sh"
-        fi
-    elif [ "$opcion" == "false" ]; then
-        # Accion si la opcion es false
-        if [[ $language == "ESP" ]]; then
-            echo "[#] La opcion autonetplan-prevent-purge-on-mistake esta configurada como false."
-            echo -e "[\e[31m#\e[0m] Autonetplan esta siendo desinstalado..."
-        elif [[ $language == "ENG" ]]; then
-            echo "[#] The autonetplan-prevent-purge-on-mistake option is set to false."
-            echo -e "[\e[31m#\e[0m] Autonetplan is being uninstalled..."
-        else
-            echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$program_files/function/language-registration.sh"
-        fi
-
-        # Funcion desinstalar programa
-        sudo rm -rf "$program_files"
-        sudo rm -rf "$work_dir/autonetplan"
-        sudo rm -rf "$program_config"
-        sudo rm -rf "/etc/autonetplan"
-        # Revisar si quedan ficheros del programa
-        if [[ -d $program_files || -f $work_dir/autonetplan || -d $program_config ]]; then
-            # Borrar forzosamente todos los ficheros o directorios
-            sudo rm -rf "$program_files"
-            sudo rm -rf "$work_dir/autonetplan"
-            sudo rm -rf "$program_config"
-        else
-            if [[ $language == "ESP" ]]; then
-                echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente."
-            elif [[ $language == "ENG" ]]; then
-                echo -e "[\e[32m#\e[0m] Program successfully uninstalled."
-            else
-                # Esto indica la desinstalacion del programa, no hay que pedir el idioma
-                echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente / Program successfully uninstalled."
-            fi
-        fi
-    else
-        echo -e "[\e[33m!\e[0m] La opcion autonetplan-formatted-on-call no esta definida correctamente en el archivo de configuracion."
-    fi
-}
-
 
 function aune-integrity(){
     # Revisar que el fichero de configuracion exista
@@ -209,7 +156,7 @@ function aune-integrity(){
             echo "[#] Reviewing the configuration file..."
         else
             echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$program_files/function/language-registration.sh"
+            sudo bash "$aune_bifurcation_route/language-registration.sh"
         fi
         # Revisar dentro del fichero si la funcion de lectura de programas esta activada
         opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
@@ -225,7 +172,7 @@ function aune-integrity(){
                 echo "[#] Running the file search script..."
             else
                 echo "[#] Idioma no registrado / Laguage not registered."
-                sudo bash "$program_files/function/language-registration.sh"
+                sudo bash "$aune_bifurcation_route/language-registration.sh"
             fi
             sudo bash "$integrity_program"
         elif [[ "$opcion_aes" == "false" ]]; then
@@ -246,7 +193,7 @@ function aune-integrity(){
             echo -e "[\e[31m#\e[0m] The configuration file was not found."
         else
             echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$program_files/function/language-registration.sh"
+            sudo bash "$aune_bifurcation_route/language-registration.sh"
         fi
     fi
 }
@@ -266,7 +213,7 @@ function new-network-card(){
             read -p "[#] Select the connection mode [ s (Static) / d (Dynamic) ]: " dhcp4configured
         else
             echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$program_files/function/language-registration.sh"
+            sudo bash "$aune_bifurcation_route/language-registration.sh"
         fi
 
         if [[ $dhcp4configured == "s" || $dhcp4configured == "y" ]]; then
@@ -276,7 +223,7 @@ function new-network-card(){
                 echo "[#] The 'static configuration' option has been set."
             else
                 echo "[#] Idioma no registrado / Laguage not registered."
-                sudo bash "$program_files/function/language-registration.sh"
+                sudo bash "$aune_bifurcation_route/language-registration.sh"
             fi
             # Declaracion de variable de dhcp4 para la tarjeta de red
             dhcp4netwconfig="no"
@@ -287,7 +234,7 @@ function new-network-card(){
                 echo "[#] The 'dynamic configuration' option has been set."
             else
                 echo "[#] Idioma no registrado / Laguage not registered."
-                sudo bash "$program_files/function/language-registration.sh"
+                sudo bash "$aune_bifurcation_route/language-registration.sh"
             fi
             # Declaracion de variable de dhcp4 para la tarjeta de red
             dhcp4netwconfig="yes"
@@ -332,7 +279,7 @@ function new-network-card(){
             read -p "[#] Enter a gateway for the network card: " gatewayattachedseccondary
         else
             echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$program_files/function/language-registration.sh"
+            sudo bash "$aune_bifurcation_route/language-registration.sh"
         fi
         # Aplicar cambios sin hacer saber al usuario
         sudo netplan apply
@@ -343,7 +290,7 @@ function new-network-card(){
              read -p "[#] Do you want to configure a new network card? [y/n]: " addnwntcd
         else
             echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$program_files/function/language-registration.sh"
+            sudo bash "$aune_bifurcation_route/language-registration.sh"
         fi
     done
 
@@ -520,7 +467,7 @@ elif [[ $1 == "-m" || $1 == "--manual" ]]; then
         aune-manual
 elif [[ $1 == "-r" || $1 == "--remove" ]]; then
     # Llamada de funcion aune-remove
-        aune-remove
+        sudo bash "$aune_bifurcation_route/uninstall.sh"
 elif [[ $1 == "-b" || $1 == "--backup" ]]; then
     # Creacion de copia de seguridad de configuracion de red
     # Llamada a funcion aune-backup
