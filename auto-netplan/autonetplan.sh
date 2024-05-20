@@ -30,10 +30,9 @@ program_files="/usr/local/sbin/auto-netplan"
 # Fichero autonetplan del directorio autoneconf renombrado como autonetplan
 program_config="/etc/autonetplan/autonetplan.conf"
 # Revisar dentro del fichero la ruta de configuracion de red
-# Problemas ocn almacenamiento, salida en blanco
 network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -d "=" -f2)
 # Ruta de programa revision integridad de autonetplan
-integrity_program=/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh
+integrity_program="/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh"
 # Ruta de ultima version
 current_version=$(cat $program_files/program-files/version)
 # Idioma del programa
@@ -106,95 +105,6 @@ function aune-autoupdate(){
         fi
     else
         echo -e "[\e[31m#\e[0m] La opcion 'autonetplan-update-program' no se ha detectado."
-    fi
-}
-
-# Funcion de ayuda
-# Al llamar, este sera expuesto con cat (ruta)
-function aune-help(){
-    # Comprobar que el fichero existe
-    if [[ -f "$program_files/program-files/autonetplan.help" ]]; then
-        # Mostrar fichero con posibilidad de subir o bajar en la lectura
-        sudo less $program_files/program-files/autonetplan.help
-    else
-    # Aviso de problema (no crear fichero - tiempo innecesario)
-        if [[ $language == "ESP" ]]; then
-            echo -e "[\e[31m#\e[0m] Error, fichero de soporte no encontrado."
-        elif [[ $language == "ENG" ]]; then
-            echo -e "[\e[31m#\e[0m] Error, support file not found".
-        else
-            echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$aune_bifurcation_route/language-registration.sh"
-        fi
-    fi
-}
-
-function aune-manual(){
-    # Comprobar que el fichero existe
-    if [[ -f "$program_files/program-files/autonetplan.man" ]]; then
-        # Mostrar fichero con posibilidad de subir o bajar en la lectura
-        sudo less $program_files/program-files/autonetplan.man
-    else
-    # Aviso de problema (no crear fichero - tiempo innecesario)
-        if [[ $language == "ESP" ]]; then
-            echo -e "[\e[31m#\e[0m] Error, manual no encontrado."
-        elif [[ $language == "ENG" ]]; then
-            echo -e "[\e[31m#\e[0m] Error, manual not found."
-        else
-            echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$aune_bifurcation_route/language-registration.sh"
-        fi
-    fi
-}
-
-function aune-integrity(){
-    # Revisar que el fichero de configuracion exista
-    if [[ -f $program_config ]]; then
-        if [[ $language == "ESP" ]]; then
-            echo "[#] Revisando el fichero de configuracion..."
-        elif [[ $language == "ENG" ]]; then
-            echo "[#] Reviewing the configuration file..."
-        else
-            echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$aune_bifurcation_route/language-registration.sh"
-        fi
-        # Revisar dentro del fichero si la funcion de lectura de programas esta activada
-        opcion_aes=$(grep "^autonetplan-enable-search" "$program_config" | cut -d "=" -f2)
-        # Comprobar si la opcion esta establecida en true o false
-        if [[ "$opcion_aes" == "true" ]]; then
-            # Mensaje de depuracion
-            if [[ $language == "ESP" ]]; then
-                echo "[#] La opcion autonetplan-enable-search esta habilitada."
-                # Ejecutar fichero de lectura integridad del programa
-                echo "[#] Ejecutando el script de busqueda de archivos..."
-            elif [[ $language == "ENG" ]]; then
-                echo "[#] The autonetplan-enable-search option is enabled."
-                echo "[#] Running the file search script..."
-            else
-                echo "[#] Idioma no registrado / Laguage not registered."
-                sudo bash "$aune_bifurcation_route/language-registration.sh"
-            fi
-            sudo bash "$integrity_program"
-        elif [[ "$opcion_aes" == "false" ]]; then
-            if [[ $language == "ESP" ]]; then
-                echo -e "[\e[31m#\e[0m] La funcion autonetplan-enable-search esta desactivada y no se puede continuar con la operacion."
-            elif [[ $language == "ENG" ]]; then
-                echo -e "[\e[31m#\e[0m] The autonetplan-enable-search function is disabled and the operation cannot be continued."
-            else
-                echo "[#] Idioma no registrado / Laguage not registered."
-                sudo bash "$program_files/function/language-registration.sh"
-            fi
-        fi
-    else
-        if [[ $language == "ESP" ]]; then
-        # Avisar de la inexistencia del fichero
-            echo -e "[\e[31m#\e[0m] El fichero de configuracion no se ha encontrado."
-        elif [[ $language == "ENG" ]]; then
-            echo -e "[\e[31m#\e[0m] The configuration file was not found."
-        else
-            echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$aune_bifurcation_route/language-registration.sh"
-        fi
     fi
 }
 
@@ -337,22 +247,6 @@ function aune-backup(){
     fi
 }
 
-function netplanapply(){
-    # Preguntar si aplicar cambios de red
-    read -p "¿Desea aplicar los cambios antes de continuar? [s/n]: " netwapply
-    if [[ $netwapply == "s" ]]; then
-        sudo netplan apply
-    elif [[ $netwapply == "n" ]]; then
-        echo -e "[\e[31m#\e[0m] Se ha denegado la aplicacion de cambios."
-    else
-        # Mensaje rojo - referencia
-        echo -e "[\e[31m#\e[0m] Se ha introducido un valor no registrado."
-        # Mensaje verde - referencia
-        echo -e "[\e[32m#\e[0m] Se han aplicado los cambios por seguridad."
-        sudo netplan apply
-    fi
-}
-
 function aune-networked(){
     # Configuracion de red por autonetplan
             echo -e "[\e[33m#\e[0m] Configuracion de red por configuracion automatica..."
@@ -458,13 +352,13 @@ fi
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
-        aune-help
+        sudo bash "$aune_bifurcation_route/help.sh"
 elif [[ $1 == "-i" || $1 == "--integrity" ]]; then
     # Llamada de funcion aune-integrity
-        aune-integrity
+        sudo bash "$aune_bifurcation_route/integrity.sh"
 elif [[ $1 == "-m" || $1 == "--manual" ]]; then
     # Llamada de funcion aune-manual
-        aune-manual
+        sudo bash "$aune_bifurcation_route/manual.sh"
 elif [[ $1 == "-r" || $1 == "--remove" ]]; then
     # Llamada de funcion aune-remove
         sudo bash "$aune_bifurcation_route/uninstall.sh"
@@ -478,7 +372,7 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
     read -p "[#] ¿Desea continuar? [s/n]: " updatecontinue
     if [[ $updatecontinue == "s" ]]; then
         # Llamar a programa auto-update
-        sudo bash "$program_files/function/auto-update.sh"
+       sudo bash "$aune_bifurcation_route/auto-update.sh"
     elif [[ $updatecontinue == "n" ]]; then
         # Si se cancela la operacion
         echo "[#] Se ha cancelado la actualizacion"
@@ -549,7 +443,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # Comentar secciones (al ser ip dinamica)
                 comment_line_dhcp_true
                 # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
-                netplanapply           
+                sudo bash "$aune_bifurcation_route/netplanapply.sh"           
             elif [[ $4 == "-s" || $4 == "--static" ]]; then
                 # Configuracion de red por ip estatica
                 echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
