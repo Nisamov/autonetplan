@@ -274,7 +274,7 @@ done
 # Crear ruta y clonar subprogramas de ejecucion
 while [[ ! -d "$PROGRAM_FILES/function" ]]; do
     # Clonar contenido a la ruta indicada
-    sudo cp "$SCRIPT_DIR/auto-netplan/function/*" "$PROGRAM_FILES/function/"
+    sudo cp -r "$SCRIPT_DIR/auto-netplan/function/"* "$PROGRAM_FILES/function/"
     # Si se ha clonado correctamente, mostrar contenido
 
     # auto-update.sh
