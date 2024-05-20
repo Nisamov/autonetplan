@@ -271,6 +271,102 @@ while [[ ! -f "$PROGRAM_FILES/LICENSE.txt" ]]; do
     fi
 done
 
+# Crear ruta y clonar subprogramas de ejecucion
+while [[ ! -d "$PROGRAM_FILES/function" ]]; do
+    # Clonar contenido a la ruta indicada
+    sudo cp "$SCRIPT_DIR/auto-netplan/function/*" "$PROGRAM_FILES/function/"
+    # Si se ha clonado correctamente, mostrar contenido
+
+    # auto-update.sh
+    if [[ -f "$PROGRAM_FILES/function/auto-update.sh" ]]; then
+        if [[ "$language" == "esp" ]]; then
+            echo "[#] El fichero auto-update.sh clonado correctamente en '$PROGRAM_FILES/function/auto-update.sh'."
+        elif [[ "$language" == "eng" ]]; then
+            echo "[#] Auto-update.sh file successfully cloned to '$PROGRAM_FILES/function/auto-update.sh'."
+        fi
+    else
+        echo -e "[\e[31m#\e[0m] El fichero auto-update.sh no se ha clonado correctamente."
+    fi
+
+    # change-language.sh
+    if [[ -f "$PROGRAM_FILES/function/change-language.sh" ]]; then
+        if [[ "$language" == "esp" ]]; then
+            echo "[#] El fichero change-language.sh clonado correctamente en '$PROGRAM_FILES/function/change-language.sh'."
+        elif [[ "$language" == "eng" ]]; then
+            echo "[#] Change-language.sh file successfully cloned to '$PROGRAM_FILES/function/change-language.sh'."
+        fi
+    else
+        echo -e "[\e[31m#\e[0m] El fichero change-language.sh no se ha clonado correctamente."
+    fi
+
+    # help.sh
+    if [[ -f "$PROGRAM_FILES/function/help.sh" ]]; then
+        if [[ "$language" == "esp" ]]; then
+            echo "[#] El fichero help.sh clonado correctamente en '$PROGRAM_FILES/function/help.sh'."
+        elif [[ "$language" == "eng" ]]; then
+            echo "[#] Help.sh file successfully cloned to '$PROGRAM_FILES/function/help.sh'."
+        fi
+    else
+        echo -e "[\e[31m#\e[0m] El fichero help.sh no se ha clonado correctamente."
+    fi
+
+    # integrity.sh
+    if [[ -f "$PROGRAM_FILES/function/integrity.sh" ]]; then
+        if [[ "$language" == "esp" ]]; then
+            echo "[#] El fichero integrity.sh clonado correctamente en '$PROGRAM_FILES/function/integrity.sh'."
+        elif [[ "$language" == "eng" ]]; then
+            echo "[#] Integrity.sh file successfully cloned to '$PROGRAM_FILES/function/integrity.sh'."
+        fi
+    else
+        echo -e "[\e[31m#\e[0m] El fichero integrity.sh no se ha clonado correctamente."
+    fi
+
+    # language-registration.sh
+    if [[ -f "$PROGRAM_FILES/function/language-registration.sh" ]]; then
+        if [[ "$language" == "esp" ]]; then
+            echo "[#] El fichero language-registration.sh clonado correctamente en '$PROGRAM_FILES/function/language-registration.sh'."
+        elif [[ "$language" == "eng" ]]; then
+            echo "[#] Language-registration.sh file successfully cloned to '$PROGRAM_FILES/function/language-registration.sh'."
+        fi
+    else
+        echo -e "[\e[31m#\e[0m] El fichero language-registration.sh no se ha clonado correctamente."
+    fi
+
+    # manual.sh
+    if [[ -f "$PROGRAM_FILES/function/manual.sh" ]]; then
+        if [[ "$language" == "esp" ]]; then
+            echo "[#] El fichero manual.sh clonado correctamente en '$PROGRAM_FILES/function/manual.sh'."
+        elif [[ "$language" == "eng" ]]; then
+            echo "[#] Manual.sh file successfully cloned to '$PROGRAM_FILES/function/manual.sh'."
+        fi
+    else
+        echo -e "[\e[31m#\e[0m] El fichero manual.sh no se ha clonado correctamente."
+    fi
+
+    # netplanapply.sh
+    if [[ -f "$PROGRAM_FILES/function/netplanapply.sh" ]]; then
+        if [[ "$language" == "esp" ]]; then
+            echo "[#] El fichero netplanapply.sh clonado correctamente en '$PROGRAM_FILES/function/netplanapply.sh'."
+        elif [[ "$language" == "eng" ]]; then
+            echo "[#] Netplanapply.sh file successfully cloned to '$PROGRAM_FILES/function/netplanapply.sh'."
+        fi
+    else
+        echo -e "[\e[31m#\e[0m] El fichero netplanapply.sh no se ha clonado correctamente."
+    fi
+
+    # uninstall.sh
+    if [[ -f "$PROGRAM_FILES/function/uninstall.sh" ]]; then
+        if [[ "$language" == "esp" ]]; then
+            echo "[#] El fichero uninstall.sh clonado correctamente en '$PROGRAM_FILES/function/uninstall.sh'."
+        elif [[ "$language" == "eng" ]]; then
+            echo "[#] Uninstall.sh file successfully cloned to '$PROGRAM_FILES/function/uninstall.sh'."
+        fi
+    else
+        echo -e "[\e[31m#\e[0m] El fichero uninstall.sh no se ha clonado correctamente."
+    fi
+
+done
+
 # Crear ruta copias de seguridad
 while [[ ! -d "$PROGRAM_FILES/autonetplan-backups" ]]; do
     # Clonar el archivo de licencia
