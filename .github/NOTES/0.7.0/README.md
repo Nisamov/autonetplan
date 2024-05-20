@@ -10,6 +10,8 @@
 - Corregido el README.md y su diseño confuso, se ha agregado un estilo más cómodo y sencillo para los lectores
 - Se ha divido el script autonetplan.sh en diferentes scripts que ejecuten diferentes acciones, evitando acumular codigo (Orden y Legibilidad)
 - Se han eliminado ficheros e imagenes poco relevantes para el software
+- Se ha corregido la salida del software (exit 1 = salida por valores ingresados erroneos | exit 2 = salida por problema con fichero de configuracion)
+
 
 ## Prevision para futuras actualizaciones
 - Proceso de actualizacion sin perder la configuracion establecida en versiones viejas

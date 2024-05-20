@@ -14,28 +14,6 @@ msg_revision_eng="[Data review]:"
 #yellow_msg="[\e[33m#\e[0m]"
 #green_msg="[\e[32m#\e[0m]"
 
-# Declaracion de variable - registro de idioma
-function language-registration(){
-    # Configuracion si no hay un idioma registrado
-    # Este codiog se ejcutara cada vez que no se haya registrado el idioma o no se encuentre correctamente registrado
-    while true; do
-        # Se les preguntara un idioma a registrar
-        read -p "[#] Seleccione su lenguaje / Select your language [esp / eng]: " languageregistration
-        if [[ $languageregistration == "esp" ]]; then
-            # Escribir "ESP" en el fichero
-            sudo cat <<EOF > "$program_files/program-files/language.lg"
-ESP
-EOF
-        elif [[ $languageregistration == "eng" ]]; then
-        # Escribir "ESP" en el fichero
-            sudo cat <<EOF > "$program_files/program-files/language.lg"
-ENG
-EOF
-        else
-            echo "[#] Opcion invalida / Invalid option."
-        fi
-    done
-}
 
 # Iniciacion del programa
 if [[ $language == "ESP" ]]; then
@@ -44,7 +22,7 @@ elif [[ $language == "ENG" ]]; then
     echo -e "[\e[32m#\e[0m] $msg_revision_eng Data integrity review of the ongoing autonetplan program."
 else
     echo "[#] Idioma no registrado / Laguage not registered."
-    language-registration
+    sudo bash "$aune_bifurcation_route/language-registration.sh"
 fi
 
 # Revisar si el fichero de configuracion existe
