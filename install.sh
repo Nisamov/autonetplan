@@ -533,31 +533,32 @@ function purge-repo(){
     else
         read -p "Do you want to delete the cloned repository? [y/n]: " deleteRepos
     fi
-    
-    if [[ $deleteRepos == "s" || $deleteRepos == "S" || $deleteRepos == "y" || $deleteRepos == "Y" ]]; then
-    # Verificar si la ruta $SCRIPT_DIR existe
-        if [[ -d "$SCRIPT_DIR" ]]; then
-            # Si la ruta existe, eliminar de forma recursiva el directorio
-            sudo rm -rf "$SCRIPT_DIR"
-            # Mensaje de eliminación exitosa
-            if [[ "$language" == "esp" ]]; then
+    if [[ "$language" == "esp" ]]; then
+        if [[ $deleteRepos == "s" || $deleteRepos == "S" ]]; then
+        # Verificar si la ruta $SCRIPT_DIR existe
+            if [[ -d "$SCRIPT_DIR" ]]; then
+                # Si la ruta existe, eliminar de forma recursiva el directorio
+                sudo rm -rf "$SCRIPT_DIR"
+                # Mensaje de eliminación exitosa
                 echo "[#] Se ha eliminado de forma recursiva el repositorio clonado."
             else
-                echo "[#] The cloned repository has been recursively deleted."
+                # Si la ruta no existe, mostrar un mensaje indicando que no existe
+                echo "[#] La ruta "$SCRIPT_DIR" no existe."
             fi
         else
-            # Si la ruta no existe, mostrar un mensaje indicando que no existe
-            if [[ "$language" == "esp" ]]; then
-                echo "[#] La ruta "$SCRIPT_DIR" no existe."
-            else
-                echo "[#] The path "$SCRIPT_DIR" does not exist."
-            fi
+            echo "[#] El repositorio no se eliminara del sistema"
         fi
     else
-        if [[ "$language" == "esp" ]]; then
-            echo "[#] El repositorio no se eliminara del sistema"
+        if [[ $deleteRepos == "y" || $deleteRepos == "Y" ]]; then
+            if [[ -d "$SCRIPT_DIR" ]]; then
+                sudo rm -rf "$SCRIPT_DIR"
+                echo "[#] The cloned repository has been recursively deleted."
+                echo "[#] The path "$SCRIPT_DIR" does not exist."
+            else
+                echo "[#] The repository will not be removed from the system"
+            fi
         else
-            echo "[#] The repository will not be removed from the system"
+            echo "[#] The repository will not be removed from the system."
         fi
     fi
 }
