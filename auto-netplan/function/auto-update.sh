@@ -3,9 +3,9 @@
 # Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
 # Idioma del programa
-language=$(cat $program_files/program-files/language.lg)
+language=$(cat "$program_files/program-files/language.lg")
 # Ruta de ultima version
-current_version=$(cat $program_files/program-files/version)
+current_version=$(cat "$program_files/program-files/version")
 # Fichero de configuracion
 program_config="/etc/autonetplan/autonetplan.conf"
 # Auto actualizaciones del programa
@@ -20,7 +20,7 @@ function aune-autoupdate(){
             echo "[#] The 'autonetplan-update-program' option is set to 'true'."
         else
             echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "program_files/function/language-registration.sh"
+            sudo bash "$program_files/function/language-registration.sh"
         fi
         # Obtener la última versión desde GitHub sobre el programa
         response=$(curl -s https://api.github.com/repos/Nisamov/autonetplan/releases/latest)
@@ -48,7 +48,8 @@ function aune-autoupdate(){
             fi
             # Actualizar software
             # Llamar al fichero auneupdate.sh
-            auneupdate="/usr/local/sbin/auto-netplan/program-files/"
+            auneupdate="/usr/local/sbin/auto-netplan/program-files/auneupdate.sh"
+            sudo bash "$auneupdate"
         else
             if [[ $language == "ESP" ]]; then
                 echo "[#] Tu programa ya está actualizado. Versión actual: $current_version"
