@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Declaracion variables
-temp_cloned="/usr/local/sbin/autonetplan/temp/"
+temp_cloned="/usr/local/sbin/auto-netplan/temp/"
 # Idioma del programa
 language=$(cat $program_files/program-files/language.lg)
 
@@ -13,6 +13,9 @@ while [[ ! -d $temp_cloned ]]; do
     if [[ -d $temp_cloned ]]; then
         # Descargar version mas reciente
         git clone "https://github.com/Nisamov/autonetplan" $temp_cloned
+        # Eliminar y distribuir ficheros
+
+        # Fin
     else
         # No se ha creado la ruta correctamente, volver a intentar
         if [[ $language == "ESP" ]]; then
