@@ -445,9 +445,9 @@ function pause(){
 echo ""
 # Llamada a funcion previa
 if [[ "$language" == "esp" ]]; then
-    pause 'Presione cualquier tecla para continuar...'
+    pause '[/] Presione cualquier tecla para continuar...'
 else
-    pause 'Press any key to continue...'
+    pause '[/] Press any key to continue...'
 fi
 # Limpiar consola
 clear
