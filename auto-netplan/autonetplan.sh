@@ -265,20 +265,8 @@ elif [[ $1 == "-b" || $1 == "--backup" ]]; then
         aune-backup
 elif [[ $1 == "-u" || $1 == "--update" ]]; then
     # Informar de configuracion no estable
-    echo "[#] Esta opcion del programa no se ha desarrollado correctamente."
-    read -p "[#] ¿Desea continuar? [s/n]: " updatecontinue
-    if [[ $updatecontinue == "s" ]]; then
-        # Llamar a programa auto-update
-       sudo bash "$aune_bifurcation_route/auto-update.sh"
-    elif [[ $updatecontinue == "n" ]]; then
-        # Si se cancela la operacion
-        echo "[#] Se ha cancelado la actualizacion"
-        exit 1
-    else
-        # Si se ingresa un valor no valido
-        echo "[#] Ingreso de valores no registrados, cancelando..."
-        exit 1
-    fi
+    # Llamar a programa auto-update
+    sudo bash "$aune_bifurcation_route/auto-update.sh"
 
 elif [[ $1 == "-v" || $1 == "--version" ]]; then
     # Mostrar version del programa

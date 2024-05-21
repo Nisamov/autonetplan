@@ -2,7 +2,7 @@
 # Programa de busqueda de ficheros para autonetplan
 
 # Variables del programa
-program_config=/etc/autonetplan/autonetplan.conf
+program_config="/etc/autonetplan/autonetplan.conf"
 program_files="/usr/local/sbin/auto-netplan"
 language=$(cat $program_files/program-files/language.lg)
 
