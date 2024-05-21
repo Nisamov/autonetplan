@@ -491,7 +491,7 @@ function autonetplan-necessary-integrity(){
         if [[ "$language" == "esp" ]]; then
             echo -e "[\e[32m#\e[0m] $var_inter El fichero de configuracion se ha instalado correctamente"
         else
-            echo -e "[32m] $var_inter The configuration file has been successfully installed".
+            echo -e "[\e[32m#\e[0m] $var_inter The configuration file has been successfully installed".
         fi
         # segunda variable de ok
         autoconf=ok
