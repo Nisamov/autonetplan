@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
 # Idioma del programa

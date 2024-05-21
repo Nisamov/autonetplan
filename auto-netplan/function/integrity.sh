@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Ruta de ficheros del programa
+program_files="/usr/local/sbin/auto-netplan"
 # Fichero autonetplan del directorio autoneconf renombrado como autonetplan
 program_config="/etc/autonetplan/autonetplan.conf"
 # Ruta de programa revision integridad de autonetplan
