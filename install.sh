@@ -37,13 +37,15 @@ clear
 # Establecer un idioma
 if [[ $language == "LANG=en_US.UTF-8" ]]; then
     language="eng"
+    echo "Language set: $language"
 elif [[ $language == "LANG=es_ES.UTF-8" ]]; then
     language="esp"
+    echo "Idioma establecido: $language"
 else
     # Si no es ninguno, establecer idioma ingles
     language="eng"
+    echo "Language set: $language"
 fi
-echo "Idioma establecido / Language set: $language"
 
 # Creacion e instalacion rutas y ficheros del programa
 while [[ ! -d $PROGRAM_FILES ]]; do
