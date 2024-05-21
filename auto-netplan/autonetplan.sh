@@ -239,27 +239,32 @@ function show_net_file_configuration_enabled(){
     echo "Para cambiar la ruta de configuracion, reestablezca su ruta en el fichero $program_config"
 }
 
-# Si la funcion aune-autoupdate en la configuracion es true
-# Declaracion de variable
-
-if [[ $auto_update == "true" ]]; then
-    sudo bash "$aune_bifurcation_route/auto-update.sh"
-fi
-
 if [[ $1 == "-h" || $1 == "--help" ]]; then
+    if [[ $auto_update == "true" ]]; then
+        sudo bash "$aune_bifurcation_route/auto-update.sh"
+    fi
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
         sudo bash "$aune_bifurcation_route/help.sh"
 elif [[ $1 == "-i" || $1 == "--integrity" ]]; then
+    if [[ $auto_update == "true" ]]; then
+        sudo bash "$aune_bifurcation_route/auto-update.sh"
+    fi
     # Llamada de funcion aune-integrity
         sudo bash "$aune_bifurcation_route/integrity.sh"
 elif [[ $1 == "-m" || $1 == "--manual" ]]; then
+    if [[ $auto_update == "true" ]]; then
+        sudo bash "$aune_bifurcation_route/auto-update.sh"
+    fi
     # Llamada de funcion aune-manual
         sudo bash "$aune_bifurcation_route/manual.sh"
 elif [[ $1 == "-r" || $1 == "--remove" ]]; then
     # Llamada de funcion aune-remove
         sudo bash "$aune_bifurcation_route/uninstall.sh"
 elif [[ $1 == "-b" || $1 == "--backup" ]]; then
+    if [[ $auto_update == "true" ]]; then
+        sudo bash "$aune_bifurcation_route/auto-update.sh"
+    fi
     # Creacion de copia de seguridad de configuracion de red
     # Llamada a funcion aune-backup
         aune-backup
@@ -269,14 +274,25 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
     sudo bash "$aune_bifurcation_route/auto-update.sh"
 
 elif [[ $1 == "-v" || $1 == "--version" ]]; then
+    if [[ $auto_update == "true" ]]; then
+        sudo bash "$aune_bifurcation_route/auto-update.sh"
+    fi
     # Mostrar version del programa
     echo "$current_version"
 elif [[ $1 == "-l" || $1 == "--license" ]]; then
+    if [[ $auto_update == "true" ]]; then
+        sudo bash "$aune_bifurcation_route/auto-update.sh"
+    fi
     # Lectura de fichero de licencia
         sudo less "$program_files/LICENSE.txt"
     # Continuacion con el programa
 elif [[ $1 == "-x" || $1 == "--execute" ]]; then
+    if [[ $auto_update == "true" ]]; then
+        # Actualizar el software
+        sudo bash "$aune_bifurcation_route/auto-update.sh"
+    fi
     # Revisar en configuracion si autonetplan-automate-update es true o false
+    # Actualizar paquetes
     opcionaau=$(grep "^autonetplan-automate-update" "$program_config" | cut -d "=" -f2)
     # Si es true - realizar descarga de paquetes
     if [[ "$opcionaau" == "true" ]]; then
