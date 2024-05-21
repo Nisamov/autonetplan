@@ -4,6 +4,8 @@
 program_files="/usr/local/sbin/auto-netplan"
 # Idioma del programa
 language=$(cat $program_files/program-files/language.lg)
+# Ruta de ultima version
+current_version=$(cat $program_files/program-files/version)
 # Fichero de configuracion
 program_config="/etc/autonetplan/autonetplan.conf"
 # Auto actualizaciones del programa
