@@ -11,7 +11,9 @@
 - Se ha divido el script autonetplan.sh en diferentes scripts que ejecuten diferentes acciones, evitando acumular codigo (Orden y Legibilidad)
 - Se han eliminado ficheros e imagenes poco relevantes para el software
 - Se ha corregido la salida del software (exit 1 = salida por valores ingresados erroneos | exit 2 = salida por problema con fichero de configuracion)
-
+- Se ha corregido el output durante la instalacion, corrigiendo errores de mensajes sin formato
+- Se ha corregido el formato de traduccion de algunos mensajes.
 
 ## Prevision para futuras actualizaciones
 - Proceso de actualizacion sin perder la configuracion establecida en versiones viejas
+- Configurar la red mediante una interfaz
