@@ -232,7 +232,7 @@ function aune-networked(){
     else
         echo -e "[\e[33m#\e[0m] Network configuration by automatic configuration..."
     fi
-            sudo cat <<EOF > "$network_dir"
+    sudo cat <<EOF > "$network_dir"
 # Editado con autonetplan / Edited with autonetplan
 network:
   version: 2
