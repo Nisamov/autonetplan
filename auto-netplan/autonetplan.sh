@@ -232,7 +232,7 @@ function aune-networked(){
     else
         echo -e "[\e[33m#\e[0m] Network configuration by automatic configuration..."
     fi
-    sudo cat <<EOF > "$network_dir"
+    sudo bash -c "cat <<EOF > '$network_dir'
 # Editado con autonetplan / Edited with autonetplan
 network:
   version: 2
@@ -243,7 +243,7 @@ network:
       addresses: [$ipconfigure/$masked]
       gateway4: $linkeddoor
 # Otras tarjetas de red / Other network cards
-EOF
+EOF"
 }
 
 function aune-networked-secondary(){
@@ -297,7 +297,21 @@ function show_net_file_configuration_enabled(){
     echo "Para cambiar la ruta de configuracion, reestablezca su ruta en el fichero $program_config"
 }
 
-if [[ $1 == "-h" || $1 == "--help" ]]; then
+if [[ $1 == "-d" || $1 == "--debug" ]]; then
+    echo "[DEBUG] network_dir=$network_dir"
+    echo "[DEBUG] dhcp4netwconfig=$dhcp4netwconfig"
+    echo "[DEBUG] workdir=$work_dir"
+    echo "[DEBUG] program_files=$program_files"
+    echo "[DEBUG] program_config=$program_files"
+    echo "[DEBUG] network_dir=$network_dir"
+    echo "[DEBUG] integrity_program=$integrity_program"
+    echo "[DEBUG] current_version=$current_version"
+    echo "[DEBUG] language=$language"
+    echo "[DEBUG] auto_update=$auto_update"
+    echo "[DEBUG] aune_bifurcation_route=$aune_bifurcation_route"
+    echo "[DEBUG] program_config=$program_config"
+
+elif [[ $1 == "-h" || $1 == "--help" ]]; then
     if [[ $auto_update == "true" ]]; then
         sudo bash "$aune_bifurcation_route/auto-update.sh"
     fi
@@ -419,7 +433,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 ipfigured=no
                 # Llamar a funcion aune-networked
                 # Sustituir valores
-                aune-networked
+                sudo aune-networked
                 # Aviso por gateway4
                 echo -e "[\e[33m#\e[0m] Es posbile que si no se ha seleccionado gateway4 como (-lnkd), muestre un aviso de problema en la configuracion, no obstante, no debera preocuparse, pues todo se resuelve automaticamente."
                 # Aplicar configuracion de red sin avisar al usuario
@@ -429,7 +443,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     read -p "Ingrese una puerta de enlace: " linkeddoor
                     # Llamar a funcion aune-networked
                     # Sustituir valores
-                    aune-networked
+                    sudo aune-networked
                     # Aplicar red sin avisar al usuario
                     sudo netplan apply
                     # Seccion no reconocida por el programa, revision y ajuste de codigo
