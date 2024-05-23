@@ -446,7 +446,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     # LLamar a funcion comment_line_gateway4 por saltarse -lnkd
                     comment_line_gateway4
                     # Aplicar red
-                    netplanapply
+                    sudo bash "$aune_bifurcation_route/netplanapply.sh"
                 fi
                 # Preguntar si mostrar configuracion de red
                 # Llamar a la funcion show_net_configuration
