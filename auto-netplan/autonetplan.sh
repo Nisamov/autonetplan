@@ -246,6 +246,10 @@ if [[ $1 == "-h" || $1 == "--help" ]]; then
     # Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     # Llamada de funcion ayuda
         sudo bash "$aune_bifurcation_route/help.sh"
+elif [[ $1 == "-p" || $1 == "--ping" ]]; then
+    # Comprobar que el software recibe la solicitud
+    echo "[#] Ping recibido, recepción estable."
+
 elif [[ $1 == "-i" || $1 == "--integrity" ]]; then
     if [[ $auto_update == "true" ]]; then
         sudo bash "$aune_bifurcation_route/auto-update.sh"
@@ -436,11 +440,10 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
 # A partir de aqui, se llaman a las opciones con mas de 3 caracteres
 elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
     # Mostrar fichero de configuracion activo - el cual se configurara si procedemos con el programa
-        show_net_file_configuration_enabled
+    show_net_file_configuration_enabled
 elif [[ $1 == "-clg" || $1 == "--changelanguage" ]]; then
     # Llamar a funcion de cambiar idioma
-        sudo bash "$aune_bifurcation_route/change-language.sh"
-#elif [[ $1 == "-" || $1 == "" ]]; then
+    sudo bash "$aune_bifurcation_route/change-language.sh"
 else
     # Mensaje por error de valores
     echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h','-r', '-b', '-l', '-m' '-x', '-ntf'."

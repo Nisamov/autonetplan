@@ -16,6 +16,7 @@ Tras usar el programa, es posible que pueda dar problemas siempre y cuando no se
 [Valores del programa]:
 Valores $1:
     -h     | --help             :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa
+    -p     | --ping             :: Confirmar si el programa recibe las peticiones
     -r     | --remove           :: Desinstalar programa
     -l     | --license          :: Mostrar licencia del programa
     -b     | --backup           :: Creacion de copia de seguridad de configuracion de red
