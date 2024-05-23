@@ -137,16 +137,23 @@ function new-network-card(){
             sudo bash "$aune_bifurcation_route/language-registration.sh"
         fi
     done
-##
-# HASTA AQUI LA TRADUCCION | SIN TRADUCCION MAS ADELANTE (Salvo alguna seccion)
-##
-# No se ha traducido al completo en esta version (0.6.0) - No se daran explicaciones
-##
     if [[ $addnwntcd == "n" || $addnwntcd == "N" ]]; then
-        echo "[#] Se ha cancelado la creacion de una nueva tarjeta de red."
+        if [[ $language == "ESP" ]]; then
+            echo "[#] Se ha cancelado la creacion de una nueva tarjeta de red."
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] The creation of a new network card has been cancelled."
+        else
+            echo "[#] The creation of a new network card has been cancelled."
+        fi
 
     elif [[ $addnwntcd == "" ]]; then
-        echo "[#] Se ha dejado el campo vacio."
+        if [[ $language == "ESP" ]]; then
+            echo "[#] Se ha dejado el campo vacio."
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] The field has been left empty."
+        else
+            echo "[#] The field has been left empty."
+        fi
     fi
 }
 
@@ -155,31 +162,76 @@ function aune-backup(){
     backup_dir="autonetplan-backups"
 
     # Comprobar existencia de ruta de backups
-    echo "[#] Revisando existencia de ruta $program_files/program-files/$backup_dir"
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Revisando existencia de ruta $program_files/program-files/$backup_dir."
+    elif [[ $language == "ESP" ]]; then
+        echo "[#] Checking existence of path $program_files/program-files/$backup_dir."
+    else
+        echo "[#] Checking existence of path $program_files/program-files/$backup_dir."
+    fi
+
     if [[ ! -d "$program_files/program-files/$backup_dir" ]]; then
-        echo -e "[\e[31m#\e[0m] Ruta no existente, creando ruta..."
+        if [[ $language == "ESP" ]]; then
+            echo -e "[\e[31m#\e[0m] Ruta no existente, creando ruta..."
+        elif [[ $language == "ENG" ]]; then
+            echo -e "[\e[31m#\e[0m] Non existing route, creating route..."
+        else
+            echo -e "[\e[31m#\e[0m] Non existing route, creating route..."
+        fi
         # Crear ruta de copia de seguridad
         sudo mkdir -p "$program_files/program-files/$backup_dir"
     fi
 
     # Si existe previamente la ruta...
     if [[ -d "$program_files/program-files/$backup_dir" ]]; then
-        echo -e "[\e[32m#\e[0m] Ruta $program_files/program-files/$backup_dir existente"
+        if [[ $language == "ESP" ]]; then
+            echo -e "[\e[32m#\e[0m] Ruta $program_files/program-files/$backup_dir existente."
+        elif [[ $language == "ENG" ]]; then
+            echo -e "[\e[32m#\e[0m] Existing $program_files/program-files/$backup_dir path."
+        else
+            echo -e "[\e[32m#\e[0m] Existing $program_files/program-files/$backup_dir path."
+        fi
         # Generar un numero aleatorio para el nombre del archivo de copia de seguridad
         digited=$(($RANDOM%100))
-        echo "[#] Copiando fichero $network_dir..."
+        if [[ $language == "ESP" ]]; then
+            echo "[#] Copiando fichero $network_dir..."
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] Copying $network_dir file..."
+        else
+            echo "[#] Copying $network_dir file..."
+        fi
         # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
         sudo cp "$network_dir" "$program_files/program-files/$backup_dir/network_backup_"$digited".bk"
-        echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
-        echo "[#] La copia de seguridad se ha guardado como network_backup_"$digited".bk" "en la ruta" "$program_files/program-files/$backup_dir"
+        if [[ $language == "ESP" ]]; then
+            echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
+            echo "[#] La copia de seguridad se ha guardado como network_backup_"$digited".bk" "en la ruta" "$program_files/program-files/$backup_dir."
+        elif [[ $language == "ENG" ]]; then
+            echo -e "[\e[32m#\e[0m] Backup completed."
+            echo "[#] The backup has been saved as “network_backup_”$digited“.bk” “in the path” “$program_files/program-files/$backup_dir."
+        else
+            echo -e "[\e[32m#\e[0m] Backup completed."
+            echo "[#] The backup has been saved as “network_backup_”$digited“.bk” “in the path” “$program_files/program-files/$backup_dir."
+        fi
     else
-        echo -e "[\e[31m#\e[0m] Ha ocurrido un error inesperado."
+        if [[ $language == "ESP" ]]; then
+            echo -e "[\e[31m#\e[0m] Ha ocurrido un error inesperado."
+        elif [[ $language == "ENG" ]]; then
+            echo -e "[\e[31m#\e[0m] An unexpected error has occurred."
+        else
+            echo -e "[\e[31m#\e[0m] An unexpected error has occurred."
+        fi
     fi
 }
 
 function aune-networked(){
     # Configuracion de red por autonetplan
-            echo -e "[\e[33m#\e[0m] Configuracion de red por configuracion automatica..."
+    if [[ $language == "ESP" ]]; then
+        echo -e "[\e[33m#\e[0m] Configuracion de red por configuracion automatica..."
+    elif [[ $language == "ENG" ]]; then
+        echo -e "[\e[33m#\e[0m] Network configuration by automatic configuration..."
+    else
+        echo -e "[\e[33m#\e[0m] Network configuration by automatic configuration..."
+    fi
             sudo cat <<EOF > "$network_dir"
 # Editado con autonetplan / Edited with autonetplan
 network:
@@ -196,7 +248,13 @@ EOF
 
 function aune-networked-secondary(){
     # Configuracion tajeta secundaria de red
-            echo -e "[\e[33m#\e[0m] Configuracion de red secundaria"
+        if [[ $language == "ESP" ]]; then
+            echo -e "[\e[33m#\e[0m] Configuracion de red secundaria."
+        elif [[ $language == "ESP" ]]; then
+            echo -e "[\e[33m#\e[0m] Secondary network configuration."
+        else
+            echo -e "[\e[33m#\e[0m] Secondary network configuration."
+        fi
             sudo cat <<EOF >> "$network_dir"
     $ntinterface:
       dhcp4: $dhcp4netwconfig
