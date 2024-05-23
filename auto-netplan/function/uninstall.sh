@@ -67,7 +67,13 @@ function aune-remove(){
             fi
         fi
     else
-        echo -e "[\e[33m!\e[0m] La opcion autonetplan-formatted-on-call no esta definida correctamente en el archivo de configuracion."
+        if [[ $language == "ESP" ]]; then
+            echo -e "[\e[33m!\e[0m] La opcion autonetplan-formatted-on-call no esta definida correctamente en el archivo de configuracion."
+        elif [[ $language == "ENG" ]]; then
+            echo -e "[\e[33m!\e[0m] The autonetplan-formatted-on-call option is not correctly defined in the configuration file."
+        else
+            echo -e "[\e[33m!\e[0m] The autonetplan-formatted-on-call option is not correctly defined in the configuration file."
+        fi
         exit 2
     fi
 }
