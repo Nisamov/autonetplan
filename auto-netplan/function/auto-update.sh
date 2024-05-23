@@ -1,15 +1,23 @@
 #!/bin/bash
 
+# Ruta de programa
+work_dir="/usr/local/sbin"
 # Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
-# Idioma del programa
-language=$(cat "$program_files/program-files/language.lg")
-# Ruta de ultima version
-current_version=$(cat "$program_files/program-files/version")
-# Fichero de configuracion
+# Fichero autonetplan del directorio autoneconf renombrado como autonetplan
 program_config="/etc/autonetplan/autonetplan.conf"
+# Revisar dentro del fichero la ruta de configuracion de red
+network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -d "=" -f2)
+# Ruta de programa revision integridad de autonetplan
+integrity_program="/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh"
+# Ruta de ultima version
+current_version=$(cat $program_files/program-files/version)
+# Idioma del programa
+language=$(cat $program_files/program-files/language.lg)
 # Auto actualizaciones del programa
 auto_update=$(grep "^autonetplan-update-program" "$program_config" | cut -d "=" -f2)
+# Programas bifurcados del codigo original
+aune_bifurcation_route="/usr/local/sbin/auto-netplan/function"
 
 # Funcion de auto actualizacion
 function aune-autoupdate(){
@@ -61,7 +69,7 @@ function aune-autoupdate(){
                 echo "[#] New version available! Current version: $current_version, Last version: $latest_version"
             else
                 echo "[#] Idioma no registrado / Language not registered."
-                sudo bash "program_files/function/language-registration.sh"
+                sudo bash "$program_files/function/language-registration.sh"
             fi
             # Actualizar software
             # Llamar al fichero auneupdate.sh
@@ -74,7 +82,7 @@ function aune-autoupdate(){
                 echo "[#] Your program is already updated. Current version: $current_version"
             else
                 echo "[#] Idioma no registrado / Language not registered."
-                sudo bash "program_files/function/language-registration.sh"
+                sudo bash "$program_files/function/language-registration.sh"
             fi
         fi
 

@@ -13,6 +13,7 @@
 - Se ha corregido la salida del software (exit 1 = salida por valores ingresados erroneos | exit 2 = salida por problema con fichero de configuracion)
 - Se ha corregido el output durante la instalacion, corrigiendo errores de mensajes sin formato
 - Se ha corregido el formato de traduccion de algunos mensajes.
+- Se ha corregido el sistema de actualizacion, rutas mal especificadas y mal funcionamiento durante versiones previas
 
 ## Prevision para futuras actualizaciones
 - Proceso de actualizacion sin perder la configuracion establecida en versiones viejas
