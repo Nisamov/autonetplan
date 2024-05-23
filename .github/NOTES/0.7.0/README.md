@@ -15,6 +15,9 @@
 - Se ha corregido el formato de traduccion de algunos mensajes.
 - Se ha corregido el sistema de actualizacion, rutas mal especificadas y mal funcionamiento durante versiones previas
 
+## Problemas actuales
+- Se limpia el fichero yaml de /etc/netplan/*.yaml pero no aplica la configuracion de red esperada, no se agrega nada dentro del fichero
+
 ## Prevision para futuras actualizaciones
 - Proceso de actualizacion sin perder la configuracion establecida en versiones viejas
 - Configurar la red mediante una interfaz

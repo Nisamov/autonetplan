@@ -57,7 +57,13 @@ function aune-remove(){
                 echo -e "[\e[32m#\e[0m] Program successfully uninstalled."
             else
                 # Esto indica la desinstalacion del programa, no hay que pedir el idioma
-                echo -e "[\e[32m#\e[0m] Programa desinstalado correctamente / Program successfully uninstalled."
+                if [[ $language == "ESP" ]]; then
+                    echo -e "[\e[32m#\e[0m] Programa desinstalado correctamenterogram successfully uninstalled."
+                elif [[ $language == "ESP" ]]; then
+                    echo -e "[\e[32m#\e[0m] Program successfully uninstalled."
+                else
+                    echo -e "[\e[32m#\e[0m] Program successfully uninstalled."
+                fi
             fi
         fi
     else
