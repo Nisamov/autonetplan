@@ -378,7 +378,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         # Comprobar si la opcion esta establecida en true o false
         if [[ "$opcionafoc" == "true" ]]; then
             # Se limpia el contenido de la variable $network_dir
+            sudo chmod u+w "$network_dir"
             sudo > "$network_dir"
+            sudo chmod u-w "$network_dir"
             # Aplicar cambios al programa netplan sin llamar a la funcion netplanapply
             sudo netplan apply
             # Mensaje de aviso - limpieza de configuracion exitosa
