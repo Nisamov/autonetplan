@@ -432,7 +432,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 ipfigured=no
                 # Llamar a funcion aune-networked
                 # Sustituir valores
-                sudo aune-networked
+                aune-networked
                 # Aviso por gateway4
                 echo -e "[\e[33m#\e[0m] Es posbile que si no se ha seleccionado gateway4 como (-lnkd), muestre un aviso de problema en la configuracion, no obstante, no debera preocuparse, pues todo se resuelve automaticamente."
                 # Aplicar configuracion de red sin avisar al usuario
