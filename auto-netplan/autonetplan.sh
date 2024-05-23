@@ -298,18 +298,17 @@ function show_net_file_configuration_enabled(){
 }
 
 if [[ $1 == "-d" || $1 == "--debug" ]]; then
-    echo "[DEBUG] network_dir=$network_dir"
-    echo "[DEBUG] dhcp4netwconfig=$dhcp4netwconfig"
-    echo "[DEBUG] workdir=$work_dir"
-    echo "[DEBUG] program_files=$program_files"
-    echo "[DEBUG] program_config=$program_files"
-    echo "[DEBUG] network_dir=$network_dir"
-    echo "[DEBUG] integrity_program=$integrity_program"
-    echo "[DEBUG] current_version=$current_version"
-    echo "[DEBUG] language=$language"
-    echo "[DEBUG] auto_update=$auto_update"
-    echo "[DEBUG] aune_bifurcation_route=$aune_bifurcation_route"
-    echo "[DEBUG] program_config=$program_config"
+    echo -e "[\e[33mDEBUG\e[0m] network_dir=$network_dir"
+    echo -e "[\e[33mDEBUG\e[0m] workdir=$work_dir"
+    echo -e "[\e[33mDEBUG\e[0m] program_files=$program_files"
+    echo -e "[\e[33mDEBUG\e[0m] program_config=$program_files"
+    echo -e "[\e[33mDEBUG\e[0m] network_dir=$network_dir"
+    echo -e "[\e[33mDEBUG\e[0m] integrity_program=$integrity_program"
+    echo -e "[\e[33mDEBUG\e[0m] current_version=$current_version"
+    echo -e "[\e[33mDEBUG\e[0m] language=$language"
+    echo -e "[\e[33mDEBUG\e[0m] auto_update=$auto_update"
+    echo -e "[\e[33mDEBUG\e[0m] aune_bifurcation_route=$aune_bifurcation_route"
+    echo -e "[\e[33mDEBUG\e[0m] program_config=$program_config"
 
 elif [[ $1 == "-h" || $1 == "--help" ]]; then
     if [[ $auto_update == "true" ]]; then
