@@ -2,6 +2,7 @@ Soporte AutoNetplan
 
 Principales valores '$.1':
     -h     | --help             :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa
+    -d     | --debug            :: Modo de prueba del software
     -p     | --ping             :: Confirmar si el programa recibe las peticiones
     -r     | --remove           :: Desinstalar programa
     -l     | --license          :: Mostrar licencia del programa
@@ -15,22 +16,21 @@ Principales valores '$.1':
     -clg   | --changelanguage   :: Cambiar el idioma definido en la instalacion
 
 Valores segunda categoría '$.2'
-    -m     | --manual      :: Configuracion de red manual
-    -a     | --automatic   :: Configuracion de red automatica
+    -m     | --manual           :: Configuracion de red manual
+    -a     | --automatic        :: Configuracion de red automatica
 
 Valores tercera categoria '$.3'
-    -iface | --interface   :: Interfaz de red a usar
+    -iface | --interface        :: Interfaz de red a usar
 
 Valores cuarta categoria '$.4'
-    -f     | --fluid       :: Configuracion DHCP (red fluida)
-    -s     | --static      :: Configuracion fija (red estatica)
+    -f     | --fluid            :: Configuracion DHCP (red fluida)
+    -s     | --static           :: Configuracion fija (red estatica)
 
 Valores quinta categoria '$.5'
-    -lnkd  | --linkeddoor  :: Puerta de enlace
+    -lnkd  | --linkeddoor       :: Puerta de enlace
+    -ntcd  | --networkcard      :: Configurar otra tarjeta de red sin puerta de enlace
 
-
-# [Proximas versiones]:
-#Valores sexta categoria   '$.6'
-#    -ntcd  | --networkcard :: Configurar mas de una tarjeta de red
+Valores quinta categoria '$.6'
+    -ntcd  | --networkcard     :: Configurar mas de una tarjeta de red
 
 Para mas informacion use: autonetplan -m

@@ -49,12 +49,12 @@ function new-network-card(){
         if [[ $language == "ESP" ]]; then
             echo "[#] Configurando otra tarjeta de red..."
             # Configuracion para la terjeta de red (configuracion por ingreso mediante "read -p")
-            read -p "[#] Ingrese la interfaz de red a configurar: " ntinterface
-            read -p "[#] Elije el modo de conexion [ s (Estatica) / d (Dinamica) ]: " dhcp4configured
+            read -p "[?] Ingrese la interfaz de red a configurar: " ntinterface
+            read -p "[?] Elije el modo de conexion [ s (Estatica) / d (Dinamica) ]: " dhcp4configured
         elif [[ $language == "ENG" ]]; then
             echo "[#] Configuring another network card..."
-            read -p "[#] Enter the network interface to be configured: " ntinterface
-            read -p "[#] Select the connection mode [ s (Static) / d (Dynamic) ]: " dhcp4configured
+            read -p "[?] Enter the network interface to be configured: " ntinterface
+            read -p "[?] Select the connection mode [ s (Static) / d (Dynamic) ]: " dhcp4configured
         else
             echo "[#] Idioma no registrado / Laguage not registered."
             sudo bash "$aune_bifurcation_route/language-registration.sh"
@@ -90,11 +90,11 @@ function new-network-card(){
         if [[ $dhcp4netwconfig == "no" ]]; then
             # Preguntar por direccion IP y Mascara de red
             if [[ $language == "ESP" ]]; then
-                read -p "[#] Ingrese la direccion IP a agregar a la tarjeta de red: " ipattachedseccondary
-                read -p "[#] Ingrese la mascara de red a agregar a la tarjeta de red: " ntmskattachedseccondary
+                read -p "[?] Ingrese la direccion IP a agregar a la tarjeta de red: " ipattachedseccondary
+                read -p "[?] Ingrese la mascara de red a agregar a la tarjeta de red: " ntmskattachedseccondary
             elif [[ $language == "ENG" ]]; then
-                 read -p "[#] Enter the IP address to add to the network card: " ipattachedseccondary
-                 read -p "[#] Enter the network mask to add to the network card: " ntmskattachedseccondary
+                 read -p "[?] Enter the IP address to add to the network card: " ipattachedseccondary
+                 read -p "[?] Enter the network mask to add to the network card: " ntmskattachedseccondary
             else
                 echo "[#] Idioma no registrado / Laguage not registered."
                 sudo bash "$program_files/function/language-registration.sh"
@@ -118,9 +118,9 @@ function new-network-card(){
         fi
         # Preguntar por gateway4:
         if [[ $language == "ESP" ]]; then
-            read -p "[#] Ingrese una puerta de enlace para la tarjeta de red: " gatewayattachedseccondary
+            read -p "[?] Ingrese una puerta de enlace para la tarjeta de red: " gatewayattachedseccondary
         elif [[ $language == "ENG" ]]; then
-            read -p "[#] Enter a gateway for the network card: " gatewayattachedseccondary
+            read -p "[?] Enter a gateway for the network card: " gatewayattachedseccondary
         else
             echo "[#] Idioma no registrado / Laguage not registered."
             sudo bash "$aune_bifurcation_route/language-registration.sh"
@@ -129,9 +129,9 @@ function new-network-card(){
         sudo netplan apply
         # Preguntar por configurar otra tarjeta de red
         if [[ $language == "ESP" ]]; then
-            read -p "[#] ¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
+            read -p "[?] ¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
         elif [[ $language == "ENG" ]]; then
-             read -p "[#] Do you want to configure a new network card? [y/n]: " addnwntcd
+             read -p "[?] Do you want to configure a new network card? [y/n]: " addnwntcd
         else
             echo "[#] Idioma no registrado / Laguage not registered."
             sudo bash "$aune_bifurcation_route/language-registration.sh"
@@ -280,7 +280,7 @@ function comment_line_gateway4(){
 function show_net_configuration(){
     # Mostrar configuracion de red, usar tras aplicar configuraciones de red
     # Preguntar si mostrar configuracion
-    read -p "[#] ¿Desea revisar los cambios de red aplicados? [s/n]: " netapplication
+    read -p "[?] ¿Desea revisar los cambios de red aplicados? [s/n]: " netapplication
     if [[ $netapplication == "s" ]]; then
         # Mostrar ip a
         echo "[#] Se ha solicitado la revision de red, mostrando..."
@@ -293,8 +293,8 @@ function show_net_configuration(){
 
 function show_net_file_configuration_enabled(){
     # Mostrar el fichero de red que se configurara
-    echo "El fichero de configuracion de red que se configurara a continuacion es el siguiente: $network_dir"
-    echo "Para cambiar la ruta de configuracion, reestablezca su ruta en el fichero $program_config"
+    echo "[#] El fichero de configuracion de red que se configurara a continuacion es el siguiente: $network_dir"
+    echo "[#] Para cambiar la ruta de configuracion, reestablezca su ruta en el fichero $program_config"
 }
 
 if [[ $1 == "-d" || $1 == "--debug" ]]; then
@@ -405,11 +405,11 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         fi
         if [[ $3 == "-iface" || $3 == "--interface" ]]; then
             # Preguntar por interfaz de red a usar
-            read -p "Ingrese la interfaz de red a usar: " iface
+            read -p "[?] Ingrese la interfaz de red a usar: " iface
             # Continuacion de programa
             if [[ $4 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
-                echo "Configuracion de red seleccionada con conexion por DHCP"
+                echo "[#] Configuracion de red seleccionada con conexion por DHCP"
                 # DHCP4 ==  true >> Aplicar cambios en configuracion de red
                 ipfigured=true
                 # Aplicar directamente la configuracion (posteriormente, comentar las lineas gateway, ip, etc)
@@ -425,9 +425,9 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
                 # Continuacion de programa
                 # Preguntar por ip a almacenar
-                read -p "Ingrese la direccion IP a usar: " ipconfigure
+                read -p "[?] Ingrese la direccion IP a usar: " ipconfigure
                 # Preugntar por mascara de red a agregar
-                read -p "Ingrese la mascara de red a agregar: " masked
+                read -p "[?] Ingrese la mascara de red a agregar: " masked
                 # Esablecer ipfigured como no >> ip estatica
                 ipfigured=no
                 # Llamar a funcion aune-networked
@@ -439,7 +439,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 sudo netplan apply
                 if [[ $5 == "-lnkd" || $5 == "--linkeddoor" ]]; then
                     # Preguntar por puerta de enlace
-                    read -p "Ingrese una puerta de enlace: " linkeddoor
+                    read -p "[?] Ingrese una puerta de enlace: " linkeddoor
                     # Llamar a funcion aune-networked
                     # Sustituir valores
                     sudo aune-networked
@@ -488,7 +488,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             if [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
                     # Agregar mas configuracion para otras tarjetas de red
                     # Preguntar por otra tarjeta de red
-                    read -p "¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
+                    read -p "[?] ¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
                     # Llamar a funcion new-network-card
                     new-network-card
                     # Guardar y aplicar cambios sin avisar al usuario

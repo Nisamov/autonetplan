@@ -529,9 +529,9 @@ function autonetplan-necessary-integrity(){
 function purge-repo(){
     # Tras la instalacion, el instalador, preguntara si borrar el repositorio clonado para liberar espacio
     if [[ "$language" == "esp" ]]; then
-        read -p "¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
+        read -p "[?] ¿Desea borrar el repositorio clonado? [s/n]: " deleteRepos
     else
-        read -p "Do you want to delete the cloned repository? [y/n]: " deleteRepos
+        read -p "[?] Do you want to delete the cloned repository? [y/n]: " deleteRepos
     fi
     if [[ "$language" == "esp" ]]; then
         if [[ $deleteRepos == "s" || $deleteRepos == "S" ]]; then

@@ -14,10 +14,12 @@
 - Se ha corregido el output durante la instalacion, corrigiendo errores de mensajes sin formato
 - Se ha corregido el formato de traduccion de algunos mensajes.
 - Se ha corregido el sistema de actualizacion, rutas mal especificadas y mal funcionamiento durante versiones previas
+- Se han agregado nuevos parámetros durante la ejecución [-p / -d / -clg]
+- Se ha revisado la sección del software donde se interactua con el fichero de red
 
 ## Problemas actuales
-- Se limpia el fichero yaml de /etc/netplan/*.yaml pero no aplica la configuracion de red esperada, no se agrega nada dentro del fichero
 
 ## Prevision para futuras actualizaciones
 - Proceso de actualizacion sin perder la configuracion establecida en versiones viejas
+    Almacenar datos ordenados en un fichero temporal e ir colocandolos correspondientemente
 - Configurar la red mediante una interfaz

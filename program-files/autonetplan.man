@@ -14,8 +14,9 @@ Este programa cuenta con varios procesos:
 Tras usar el programa, es posible que pueda dar problemas siempre y cuando no se haya leido con antelacion la documentacion ofrecida.
 
 [Valores del programa]:
-Valores $1:
+Principales valores '$.1':
     -h     | --help             :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa
+    -d     | --debug            :: Modo de prueba del software
     -p     | --ping             :: Confirmar si el programa recibe las peticiones
     -r     | --remove           :: Desinstalar programa
     -l     | --license          :: Mostrar licencia del programa
@@ -28,23 +29,24 @@ Valores $1:
     -ntf   | --netfileenabled   :: Mostrar ruta de fichero de red establecido para la configuracion
     -clg   | --changelanguage   :: Cambiar el idioma definido en la instalacion
 
-Valores $2:
-    -m     | --manual      :: Configuracion de red manual
-    -a     | --automatic   :: Configuracion de red automatica
+Valores segunda categoría '$.2'
+    -m     | --manual           :: Configuracion de red manual
+    -a     | --automatic        :: Configuracion de red automatica
 
-Valores $3:
-    -iface | --interface   :: Interfaz de red a usar
+Valores tercera categoria '$.3'
+    -iface | --interface        :: Interfaz de red a usar
 
-Valores $4:
-    -f     | --fluid       :: Configuracion DHCP (red fluida)
-    -s     | --static      :: Configuracion fija (red estatica)
+Valores cuarta categoria '$.4'
+    -f     | --fluid            :: Configuracion DHCP (red fluida)
+    -s     | --static           :: Configuracion fija (red estatica)
 
-Valores $5:
-    -lnkd  | --linkeddoor  :: Puerta de enlace
+Valores quinta categoria '$.5'
+    -lnkd  | --linkeddoor       :: Puerta de enlace
+    -ntcd  | --networkcard      :: Configurar otra tarjeta de red sin puerta de enlace
 
-# [Proximas versiones]:
-#Valores $6:
-#    -ntcd  | --networkcard :: Configurar mas de una tarjeta de red
+Valores quinta categoria '$.6'
+    -ntcd  | --networkcard     :: Configurar mas de una tarjeta de red
+
 
 [Ejemplo de uso en valores]:
     Ejemplo1 - Ejecucion de programa y configuracion de red manual:
@@ -81,3 +83,4 @@ Valores $5:
 [Ubicaciones de ficheros del programa]:
 Ubicacion de llamada al programa: /usr/local/sbin/autonetplan (codigo .sh sin extension).
 Ubicacion de fichero del programa: /usr/local/sbin/auto-netplan/*
+Ubicacion de configuracion del programa: /etc/autonetplan/autonetplan.conf
