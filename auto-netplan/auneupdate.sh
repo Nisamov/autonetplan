@@ -3,6 +3,7 @@
 # Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
 temp_cloned="/usr/local/sbin/auto-netplan/temp/"
+aune_bifurcation_route="/usr/local/sbin/auto-netplan/function"
 # Idioma del programa
 language=$(cat $program_files/program-files/language.lg)
 
