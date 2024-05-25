@@ -5,16 +5,16 @@ AutoNetplan es un programa que permite configurar de manera rapida y segura la r
 Este programa cuenta con varios procesos:
     Proceso1: Instalacion
         Durante la instalacion, este programa clona ficheros dentro del equipo, bien sea creando rutas o usando rutas ya existentes.
-        Esta hecho para ser usado mediante ingreso directo de los valores, para posteriormente solicitar el valor a trabajar.
+        Esta hecho para ser usado mediante ingreso directo de los parámetros, para posteriormente solicitar el valor a trabajar.
     Proceso2: Limpieza de clonacion
         Para limpiar el equipo, el programa trae consigo un pequeño script que elimina el contenido clonado del repositorio publico, es posible cancelar este proceso.
     Proceso3: Utilizacion de programa
-        Para llamar al program es necesario usar el comando "autonetplan" seguido de varios valores, siendo algunos de estos innecesarios a la hora de su ejecicion.
+        Para llamar al program es necesario usar el comando "autonetplan" seguido de varios parámetros, siendo algunos de estos innecesarios a la hora de su ejecicion.
 
 Tras usar el programa, es posible que pueda dar problemas siempre y cuando no se haya leido con antelacion la documentacion ofrecida.
 
-[Valores del programa]:
-Principales valores '$.1':
+[Parámetros del programa]:
+Principales parámetros '$.1':
     -h     | --help             :: Mostrar ayuda de la ruta raiz, tras haber instalado el programa
     -d     | --debug            :: Modo de prueba del software
     -p     | --ping             :: Confirmar si el programa recibe las peticiones
@@ -29,26 +29,26 @@ Principales valores '$.1':
     -ntf   | --netfileenabled   :: Mostrar ruta de fichero de red establecido para la configuracion
     -clg   | --changelanguage   :: Cambiar el idioma definido en la instalacion
 
-Valores segunda categoría '$.2'
+Parámetros segunda categoría '$.2'
     -m     | --manual           :: Configuracion de red manual
     -a     | --automatic        :: Configuracion de red automatica
 
-Valores tercera categoria '$.3'
+Parámetros tercera categoria '$.3'
     -iface | --interface        :: Interfaz de red a usar
 
-Valores cuarta categoria '$.4'
+Parámetros cuarta categoria '$.4'
     -f     | --fluid            :: Configuracion DHCP (red fluida)
     -s     | --static           :: Configuracion fija (red estatica)
 
-Valores quinta categoria '$.5'
+Parámetros quinta categoria '$.5'
     -lnkd  | --linkeddoor       :: Puerta de enlace
     -ntcd  | --networkcard      :: Configurar otra tarjeta de red sin puerta de enlace
 
-Valores quinta categoria '$.6'
+Parámetros quinta categoria '$.6'
     -ntcd  | --networkcard     :: Configurar mas de una tarjeta de red
 
 
-[Ejemplo de uso en valores]:
+[Ejemplo de uso en parámetros]:
     Ejemplo1 - Ejecucion de programa y configuracion de red manual:
         Opcion1:
             autonetplan -x -m
@@ -74,7 +74,7 @@ Valores quinta categoria '$.6'
             autonetplan -x -a -iface -s
         Opcion2:
             autonetplan --execute --automatic --interface --static
-    Ejemplo6 - Ejecicion de programa, configuracion automaticam, ingreso de interfaz, red estatica y puerta de enlace:
+    Ejemplo6 - Ejecicion de programa, configuracion automatica, ingreso de interfaz, red estatica y puerta de enlace:
         Opcion1:
             autonetplan -x -a -iface -s -lnkd
         Opcion2:
