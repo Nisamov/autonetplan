@@ -26,7 +26,7 @@ while [[ ! -d "$temp_cloned" ]]; do
         fi
 
         if [[ $mantainconf == "s" || $mantainconf == "y" ]]; then
-            sudo bash "$aune_bifurcation_route/auto-update.sh"
+            sudo bash "$aune_bifurcation_route/search-replace.sh"
         else
             if [[ $language == "ESP" ]]; then
                 echo "[#] No se mantendra la configuracion del software."
