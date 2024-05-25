@@ -15,11 +15,11 @@ nwvsn="/usr/local/sbin/auto-netplan/temp"
 #   Fichero .man
 
 # Comprobar existencia de ficheros
-if [[ -f "$nwvsn/temp/program-files/version" ]]; then
+if [[ -f "$nwvsn/program-files/version" ]]; then
     # Eliminar fichero local
     sudo rm "/usr/local/sbin/auto-netplan/program-files/version"
     # Copiar fichero descargado a ruta indicada
-    sudo cp "$nwvsn/temp/program-files/version" "/usr/local/sbin/auto-netplan/program-files/version"
+    sudo cp "$nwvsn/program-files/version" "/usr/local/sbin/auto-netplan/program-files/version"
 fi
 
 #   Comprobar fichero de configuracion
