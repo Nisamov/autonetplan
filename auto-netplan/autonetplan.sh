@@ -517,7 +517,7 @@ elif [[ $1 == "-clg" || $1 == "--changelanguage" ]]; then
     sudo bash "$aune_bifurcation_route/change-language.sh"
 else
     # Mensaje por error de valores
-    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-h','-r', '-b', '-l', '-m' '-x', '-ntf'."
+    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'."
     # Error por ingreso de valores erroneos
     exit 1
 fi

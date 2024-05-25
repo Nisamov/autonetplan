@@ -3,6 +3,7 @@
 ## Contenido agregado
 - Nuevo fichero de actualizacion
 - Nuevas rutas temporales para la actualizacion del software
+- Nuevo sistema de acualizacion de software, con posibilidad de guardar configuracion vieja de versiones posteriores
 
 ## Correcciones
 - Corregido el reconocimiento de idioma (Ahora el software revisara el idioma instalado en el equipo, para evitar perder tiempo preguntando)
@@ -20,6 +21,4 @@
 ## Problemas actuales
 
 ## Prevision para futuras actualizaciones
-- Proceso de actualizacion sin perder la configuracion establecida en versiones viejas
-    Almacenar datos ordenados en un fichero temporal e ir colocandolos correspondientemente
 - Configurar la red mediante una interfaz

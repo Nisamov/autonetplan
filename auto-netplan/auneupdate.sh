@@ -2,7 +2,6 @@
 
 # Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
-# Declaracion variables
 temp_cloned="/usr/local/sbin/auto-netplan/temp/"
 # Idioma del programa
 language=$(cat $program_files/program-files/language.lg)
@@ -26,10 +25,18 @@ while [[ ! -d "$temp_cloned" ]]; do
         fi
 
         if [[ $mantainconf == "s" || $mantainconf == "y" ]]; then
-            # Crear fichero donde almacenar la informacion de configuracion temporalmente
-            sudo touch "config-data-temp.info" "$temp_cloned"
+            sudo bash "$aune_bifurcation_route/auto-update.sh"
+        else
+            if [[ $language == "ESP" ]]; then
+                echo "[#] No se mantendra la configuracion del software."
+            elif [[ $language == "ENG" ]]; then
+                 echo "[#] The software configuration will not be saved"
+            else
+                echo "[#] The software configuration will not be saved"
+            fi
         fi
-
+        # Distribucion y reemplazo de ficheros
+        sudo bash "$aune_bifurcation_route/update-replace-full.sh"
         # Fin
     else
         # No se ha creado la ruta correctamente, volver a intentar
