@@ -1,6 +1,6 @@
 #!/bin/bash
+# Por Andres Ruslan Abadias Otal
 
-# Programa por github.com/Nisamov
 #Copyright [2024] [Andres Abadias]
 #
 #Licensed under the Apache License, Version 2.0 (the "License");

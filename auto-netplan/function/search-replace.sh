@@ -1,4 +1,5 @@
 #!/bin/bash
+# Por Andres Ruslan Abadias Otal
 
 # Variables
 old_config="/etc/autonetplan/autonetplan.conf"

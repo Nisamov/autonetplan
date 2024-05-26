@@ -1,4 +1,5 @@
 #!/bin/bash
+# Por Andres Ruslan Abadias Otal
 
 # Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
