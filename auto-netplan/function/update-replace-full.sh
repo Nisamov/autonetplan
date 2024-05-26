@@ -7,13 +7,6 @@ language=$(cat $program_files/program-files/language.lg)
 #   Nueva version  (new version)
 nwvsn="/usr/local/sbin/auto-netplan/temp"
 
-# Contenido a reemplazar
-#   version [done]
-#   Todos los ficheros .sh
-#   Fichero de configuracion [done]
-#   Fichero .help [done]
-#   Fichero .man [done]
-
 # Comprobar existencia de fichero de version
 if [[ -f "$nwvsn/program-files/version" ]]; then
     if [[ $language == "ESP" ]]; then
@@ -59,7 +52,7 @@ if [[ -f "$nwvsn/program-files/autonetplan.man" ]]; then
     sudo cp "$nwvsn/program-files/autonetplan.man" "$program_files/program-files/autonetplan.man"
 fi
 
-# Comprobar fichero de mhelp
+# Comprobar fichero de help
 if [[ -f "$nwvsn/program-files/autonetplan.help" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Actualizando fichero de ayuda..."
@@ -72,6 +65,21 @@ if [[ -f "$nwvsn/program-files/autonetplan.help" ]]; then
     sudo rm "$program_files/program-files/autonetplan.help"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/program-files/autonetplan.help" "$program_files/program-files/autonetplan.help"
+fi
+
+# Comprobar directorio de function
+if [[ -d "$program_files/function" ]]; then
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Actualizando directorio function..."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Updating function directory..."
+    else
+        echo "[#] Updating function directory..."
+    fi
+    # Eliminar fichero manual local
+    sudo rm -rf "$program_files/function"
+    # Copiar fichero descargado a ruta indicada
+    sudo cp -r "$nwvsn/auto-netplan/function" "$program_files/function"
 fi
 
 # Finalizacion de actualizacion
