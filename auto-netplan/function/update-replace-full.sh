@@ -20,6 +20,13 @@ if [[ -f "$nwvsn/program-files/version" ]]; then
     sudo rm "$program_files/program-files/version"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/program-files/version" "/usr/local/sbin/auto-netplan/program-files/version"
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Fichero de version actualizado correctamente."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Version file correctly updated."
+    else
+        echo "[#] Version file correctly updated." 
+    fi
 fi
 
 # Comprobar fichero de configuracion
@@ -28,6 +35,13 @@ if [[ -f "$nwvsn/auneconf/autonetplan.conf" ]]; then
     sudo rm "/etc/autonetplan/autonetplan.conf"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/auneconf/autonetplan.conf" "/etc/autonetplan/autonetplan.conf"
+    if [[ $language == "ESP" ]]; then
+        echo "[#] FIchero de configuracion actualizado corractamente."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Configuration file correctly updated."
+    else
+        echo "[#] Configuration file correctly updated."
+    fi
 fi
 
 # Comprobar fichero de manual
@@ -36,6 +50,13 @@ if [[ -f "$nwvsn/program-files/autonetplan.man" ]]; then
     sudo rm "$program_files/program-files/autonetplan.man"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/program-files/autonetplan.man" "$program_files/program-files/autonetplan.man"
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Fichero de manual actualizado correctamente."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Manual correctly updated."
+    else
+        echo "[#] Manual correctly updated."
+    fi
 fi
 
 # Comprobar fichero de mhelp
@@ -44,6 +65,13 @@ if [[ -f "$nwvsn/program-files/autonetplan.help" ]]; then
     sudo rm "$program_files/program-files/autonetplan.help"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/program-files/autonetplan.help" "$program_files/program-files/autonetplan.help"
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Fichero de ayuda actualizado correctamente."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Help file correctly updated."
+    else
+        echo "[#] Help file correctly updated."
+    fi
 fi
 
 # Finalizacion de actualizacion
