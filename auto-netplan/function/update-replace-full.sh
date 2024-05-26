@@ -11,18 +11,18 @@ nwvsn="/usr/local/sbin/auto-netplan/temp"
 #   version [done]
 #   Todos los ficheros .sh
 #   Fichero de configuracion [done]
-#   Fichero .help
-#   Fichero .man
+#   Fichero .help [done]
+#   Fichero .man [done]
 
-# Comprobar existencia de ficheros
+# Comprobar existencia de fichero de version
 if [[ -f "$nwvsn/program-files/version" ]]; then
     # Eliminar fichero local
-    sudo rm "/usr/local/sbin/auto-netplan/program-files/version"
+    sudo rm "$program_files/program-files/version"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/program-files/version" "/usr/local/sbin/auto-netplan/program-files/version"
 fi
 
-#   Comprobar fichero de configuracion
+# Comprobar fichero de configuracion
 if [[ -f "$nwvsn/auneconf/autonetplan.conf" ]]; then
     # Eliminar fichero de configuracion local
     sudo rm "/etc/autonetplan/autonetplan.conf"
@@ -30,6 +30,23 @@ if [[ -f "$nwvsn/auneconf/autonetplan.conf" ]]; then
     sudo cp "$nwvsn/auneconf/autonetplan.conf" "/etc/autonetplan/autonetplan.conf"
 fi
 
+# Comprobar fichero de manual
+if [[ -f "$nwvsn/program-files/autonetplan.man" ]]; then
+    # Eliminar fichero manual local
+    sudo rm "$program_files/program-files/autonetplan.man"
+    # Copiar fichero descargado a ruta indicada
+    sudo cp "$nwvsn/program-files/autonetplan.man" "$program_files/program-files/autonetplan.man"
+fi
+
+# Comprobar fichero de mhelp
+if [[ -f "$nwvsn/program-files/autonetplan.help" ]]; then
+    # Eliminar fichero manual local
+    sudo rm "$program_files/program-files/autonetplan.help"
+    # Copiar fichero descargado a ruta indicada
+    sudo cp "$nwvsn/program-files/autonetplan.help" "$program_files/program-files/autonetplan.help"
+fi
+
+# Finalizacion de actualizacion
 if [[ $language == "ESP" ]]; then
     echo -e "[\e[32m#\e[0m] Actualizacion finalizada correctamente."
 elif [[ $language == "ENG" ]]; then
