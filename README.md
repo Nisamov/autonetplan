@@ -1,4 +1,5 @@
 <!--Software creado por Andrés Ruslan Abadías Otal-->
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FNisamov%2Fautonetplan&count_bg=%23979E92&title_bg=%23787070&icon=powershell.svg&icon_color=%23C8C3C3&title=hits&edge_flat=true)](https://hits.seeyoufarm.com)
 
 ![Logo principal](public-storage/main.jpg)
 ![Separador](public-storage/separador.jpg)
