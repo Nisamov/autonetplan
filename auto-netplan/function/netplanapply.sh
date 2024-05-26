@@ -1,4 +1,5 @@
 #!/bin/bash
+# Por Andres Ruslan Abadias Otal
 
 function netplanapply(){
     # Preguntar si aplicar cambios de red

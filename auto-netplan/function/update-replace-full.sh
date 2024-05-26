@@ -1,4 +1,5 @@
 #!/bin/bash
+# Por Andres Ruslan Abadias Otal
 
 # Declaracion de variables
 program_files="/usr/local/sbin/auto-netplan"

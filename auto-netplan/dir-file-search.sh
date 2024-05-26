@@ -1,4 +1,4 @@
-# Por Andres Abadias
+# Por Andres Ruslan Abadias Otal
 # Programa de busqueda de ficheros para autonetplan
 
 # Variables del programa

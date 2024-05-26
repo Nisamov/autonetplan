@@ -1,4 +1,5 @@
 #!/bin/bash
+# Por Andres Ruslan Abadias Otal
 
 # Ruta de programa
 work_dir="/usr/local/sbin"
