@@ -61,7 +61,7 @@ if [[ -f "$nwvsn/program-files/autonetplan.help" ]]; then
     else
         echo "[#] Updating help file..."
     fi
-    # Eliminar fichero manual local
+    # Eliminar fichero local
     sudo rm "$program_files/program-files/autonetplan.help"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/program-files/autonetplan.help" "$program_files/program-files/autonetplan.help"
@@ -76,10 +76,40 @@ if [[ -d "$program_files/function" ]]; then
     else
         echo "[#] Updating function directory..."
     fi
-    # Eliminar fichero manual local
+    # Eliminar directorio funcion local
     sudo rm -rf "$program_files/function"
-    # Copiar fichero descargado a ruta indicada
+    # Copiar directorio descargado a ruta indicada
     sudo cp -r "$nwvsn/auto-netplan/function" "$program_files/function"
+fi
+
+# Comprobar fichero dir-file-search.sh
+if [[ -d "$program_files/program-files/dir-file-search.sh" ]]; then
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Actualizando fichero dir-file-search.sh..."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Updating dir-file-search.sh file..."
+    else
+        echo "[#] Updating dir-file-search.sh file..."
+    fi
+    # Eliminar fichero local
+    sudo rm "$program_files/program-files/dir-file-search.sh"
+    # Copiar fichero descargado a ruta indicada
+    sudo cp "$nwvsn/auto-netplan/dir-file-search.sh" "$program_files/program-files/dir-file-search.sh"
+fi
+
+# Comprobar fichero auneupdate.sh
+if [[ -d "$program_files/program-files/auneupdate.sh" ]]; then
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Actualizando fichero auneupdate.sh..."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Updating auneupdate.sh file..."
+    else
+        echo "[#] Updating auneupdate.sh file..."
+    fi
+    # Eliminar fichero local
+    sudo rm "$program_files/program-files/auneupdate.sh"
+    # Copiar fichero descargado a ruta indicada
+    sudo cp "$nwvsn/auto-netplan/auneupdate.sh" "$program_files/program-files/auneupdate.sh"
 fi
 
 # Finalizacion de actualizacion
@@ -90,3 +120,8 @@ elif [[ $language == "ENG" ]]; then
 else
     echo -e "[\e[32m#\e[0m] Update finished correctly."
 fi
+
+# Eliminar ruta /temp y el contenido en su interior, pues se ha clonado el contenido unicamente necesario para avanzar la version
+# SI se deverad se quiere actualizar todo el software, se recomienda desinstalar el software y clonarlo nuevamente para instalarlo desde la ultima version
+sudo rm -rf "$nwvsn"
+# Esta ruta se elimina debido a que es una ruta temporal, dejarla solo provocaria problemas, siendo mas eficiente este metodo
