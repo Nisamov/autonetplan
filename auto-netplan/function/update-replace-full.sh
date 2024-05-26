@@ -83,7 +83,7 @@ if [[ -d "$program_files/function" ]]; then
 fi
 
 # Comprobar fichero dir-file-search.sh
-if [[ -d "$program_files/program-files/dir-file-search.sh" ]]; then
+if [[ -f "$program_files/program-files/dir-file-search.sh" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Actualizando fichero dir-file-search.sh..."
     elif [[ $language == "ENG" ]]; then
@@ -98,7 +98,7 @@ if [[ -d "$program_files/program-files/dir-file-search.sh" ]]; then
 fi
 
 # Comprobar fichero auneupdate.sh
-if [[ -d "$program_files/program-files/auneupdate.sh" ]]; then
+if [[ -f "$program_files/program-files/auneupdate.sh" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Actualizando fichero auneupdate.sh..."
     elif [[ $language == "ENG" ]]; then
@@ -110,6 +110,21 @@ if [[ -d "$program_files/program-files/auneupdate.sh" ]]; then
     sudo rm "$program_files/program-files/auneupdate.sh"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/auto-netplan/auneupdate.sh" "$program_files/program-files/auneupdate.sh"
+fi
+
+# Comprobar fichero autonetplan
+if [[ -f "/usr/local/sbin/autonetplan" ]]; then
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Actualizando fichero autonetplan..."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Updating autonetplan file..."
+    else
+        echo "[#] Updating autonetplan file..."
+    fi
+    # Eliminar fichero local
+    sudo rm "/usr/local/sbin/autonetplan"
+    # Copiar fichero descargado a ruta indicada
+    sudo cp "$nwvsn/auto-netplan/autonetplan.sh" "/usr/local/sbin/autonetplan"
 fi
 
 # Finalizacion de actualizacion
