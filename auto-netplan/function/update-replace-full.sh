@@ -16,62 +16,62 @@ nwvsn="/usr/local/sbin/auto-netplan/temp"
 
 # Comprobar existencia de fichero de version
 if [[ -f "$nwvsn/program-files/version" ]]; then
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Actualizando fichero de version..."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Updating version file..."
+    else
+        echo "[#]Updating version file..." 
+    fi
     # Eliminar fichero local
     sudo rm "$program_files/program-files/version"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/program-files/version" "/usr/local/sbin/auto-netplan/program-files/version"
-    if [[ $language == "ESP" ]]; then
-        echo "[#] Fichero de version actualizado correctamente."
-    elif [[ $language == "ENG" ]]; then
-        echo "[#] Version file correctly updated."
-    else
-        echo "[#] Version file correctly updated." 
-    fi
 fi
 
 # Comprobar fichero de configuracion
 if [[ -f "$nwvsn/auneconf/autonetplan.conf" ]]; then
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Actualizando fichero de configuracion..."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Updating configuration file..."
+    else
+        echo "[#] Updating configuration file..."
+    fi
     # Eliminar fichero de configuracion local
     sudo rm "/etc/autonetplan/autonetplan.conf"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/auneconf/autonetplan.conf" "/etc/autonetplan/autonetplan.conf"
-    if [[ $language == "ESP" ]]; then
-        echo "[#] FIchero de configuracion actualizado corractamente."
-    elif [[ $language == "ENG" ]]; then
-        echo "[#] Configuration file correctly updated."
-    else
-        echo "[#] Configuration file correctly updated."
-    fi
 fi
 
 # Comprobar fichero de manual
 if [[ -f "$nwvsn/program-files/autonetplan.man" ]]; then
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Actualizando fichero de manual..."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Updating manual file..."
+    else
+        echo "[#] Updating manual file..."
+    fi
     # Eliminar fichero manual local
     sudo rm "$program_files/program-files/autonetplan.man"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/program-files/autonetplan.man" "$program_files/program-files/autonetplan.man"
-    if [[ $language == "ESP" ]]; then
-        echo "[#] Fichero de manual actualizado correctamente."
-    elif [[ $language == "ENG" ]]; then
-        echo "[#] Manual correctly updated."
-    else
-        echo "[#] Manual correctly updated."
-    fi
 fi
 
 # Comprobar fichero de mhelp
 if [[ -f "$nwvsn/program-files/autonetplan.help" ]]; then
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Actualizando fichero de ayuda..."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Updating help file..."
+    else
+        echo "[#] Updating help file..."
+    fi
     # Eliminar fichero manual local
     sudo rm "$program_files/program-files/autonetplan.help"
     # Copiar fichero descargado a ruta indicada
     sudo cp "$nwvsn/program-files/autonetplan.help" "$program_files/program-files/autonetplan.help"
-    if [[ $language == "ESP" ]]; then
-        echo "[#] Fichero de ayuda actualizado correctamente."
-    elif [[ $language == "ENG" ]]; then
-        echo "[#] Help file correctly updated."
-    else
-        echo "[#] Help file correctly updated."
-    fi
 fi
 
 # Finalizacion de actualizacion
