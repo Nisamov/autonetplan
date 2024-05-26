@@ -135,8 +135,3 @@ elif [[ $language == "ENG" ]]; then
 else
     echo -e "[\e[32m#\e[0m] Update finished correctly."
 fi
-
-# Eliminar ruta /temp y el contenido en su interior, pues se ha clonado el contenido unicamente necesario para avanzar la version
-# SI se deverad se quiere actualizar todo el software, se recomienda desinstalar el software y clonarlo nuevamente para instalarlo desde la ultima version
-sudo rm -rf "$nwvsn"
-# Esta ruta se elimina debido a que es una ruta temporal, dejarla solo provocaria problemas, siendo mas eficiente este metodo
