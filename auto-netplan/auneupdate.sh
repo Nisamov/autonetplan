@@ -53,3 +53,4 @@ while [[ ! -d "$temp_cloned" ]]; do
 done
 
 # Al sustituir ficheros, se borraran las configuraciones, regresando a las estandar
+sudo rm -rf "/usr/local/sbin/auto-netplan/temp"
