@@ -1,5 +1,7 @@
 # Apuntes Para Version 0.8.0
 
+Se comenzará a usar https://github.com/koalaman/shellcheck para revisar posibles mejoras en el código
+
 ## Prevision para esta version
 Traduccion completa del software
 Correccion de problemas
