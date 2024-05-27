@@ -201,16 +201,16 @@ function aune-backup(){
             echo "[#] Copying $network_dir file..."
         fi
         # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
-        sudo cp "$network_dir" "$program_files/program-files/$backup_dir/network_backup_"$digited".bk"
+        sudo cp "$network_dir" "$program_files/program-files/$backup_dir/network_backup_$digited.bk"
         if [[ $language == "ESP" ]]; then
             echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
-            echo "[#] La copia de seguridad se ha guardado como network_backup_"$digited".bk" "en la ruta" "$program_files/program-files/$backup_dir."
+            echo "[#] La copia de seguridad se ha guardado como network_backup_$digited.bk en la ruta $program_files/program-files/$backup_dir."
         elif [[ $language == "ENG" ]]; then
             echo -e "[\e[32m#\e[0m] Backup completed."
-            echo "[#] The backup has been saved as “network_backup_”$digited“.bk” “in the path” “$program_files/program-files/$backup_dir."
+            echo "[#] The backup has been saved as network_backup_$digited.bk in the path $program_files/program-files/$backup_dir."
         else
             echo -e "[\e[32m#\e[0m] Backup completed."
-            echo "[#] The backup has been saved as “network_backup_”$digited“.bk” “in the path” “$program_files/program-files/$backup_dir."
+            echo "[#] The backup has been saved as network_backup_$digited.bk in the path $program_files/program-files/$backup_dir."
         fi
     else
         if [[ $language == "ESP" ]]; then
@@ -413,7 +413,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # DHCP4 ==  true >> Aplicar cambios en configuracion de red
                 ipfigured=true
                 # Aplicar directamente la configuracion (posteriormente, comentar las lineas gateway, ip, etc)
-                sudo aune-networked
+                aune-networked
                 # Aplicar configuracion de red
                 sudo netplan apply
                 # Comentar secciones (al ser ip dinamica)
@@ -442,7 +442,7 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     read -p "[?] Ingrese una puerta de enlace: " linkeddoor
                     # Llamar a funcion aune-networked
                     # Sustituir valores
-                    sudo aune-networked
+                    aune-networked
                     # Aplicar red sin avisar al usuario
                     sudo netplan apply
                     # Seccion no reconocida por el programa, revision y ajuste de codigo

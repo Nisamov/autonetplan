@@ -1,3 +1,4 @@
+#!/bin/bash
 # Por Andres Ruslan Abadias Otal
 # Programa de busqueda de ficheros para autonetplan
 
@@ -5,6 +6,7 @@
 program_config="/etc/autonetplan/autonetplan.conf"
 program_files="/usr/local/sbin/auto-netplan"
 language=$(cat $program_files/program-files/language.lg)
+aune_bifurcation_route="/usr/local/sbin/auto-netplan/function"
 
 ## Variables de mensajes
 msg_revision="[Revision de datos]:"
