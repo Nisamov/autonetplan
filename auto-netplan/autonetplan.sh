@@ -397,14 +397,34 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
     # Si es true - realizar descarga de paquetes
     if [[ "$opcionaau" == "true" ]]; then
         # Se descargar paquetes
-        echo "[#] La configuracion autonetplan-automate-update esta configurada como true."
-        echo "[#] Descargando paquetes..."
+        if [[ $language == "ESP" ]]; then
+            echo "[#] La configuracion autonetplan-automate-update esta configurada como true."
+            echo "[#] Descargando paquetes..."
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] The autonetplan-automate-update configuration is set to true."
+            echo "[#] Downloading packages..."
+        else
+            echo "[#] The autonetplan-automate-update configuration is set to true."
+            echo "[#] Downloading packages..."
+        fi
         sudo apt update
     elif [[ "$opcionaau" == "false" ]]; then
         # No se descargan paquetes
-        echo "[#] La opcion autonetplan-automate-update esta configurada como false."
+        if [[ $language == "ESP" ]]; then
+            echo "[#] La opcion autonetplan-automate-update esta configurada como false."
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] The autonetplan-automate-update option is set to false."
+        else
+            echo "[#] The autonetplan-automate-update option is set to false."
+        fi
     else
-        echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-update."
+        if [[ $language == "ESP" ]]; then
+            echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-update."
+        elif [[ $language == "ENG" ]]; then
+            echo -e "[\e[31m#\e[0m] No configuration with the autonetplan-automate-update ID has been detected."
+        else
+            echo -e "[\e[31m#\e[0m] No configuration with the autonetplan-automate-update ID has been detected."
+        fi
     fi
     # Continuacion de programa
     if [[ $2 == "-m" || $2 == "--manual" ]]; then
