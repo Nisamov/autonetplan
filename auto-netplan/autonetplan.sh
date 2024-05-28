@@ -283,18 +283,38 @@ function show_net_configuration(){
     read -p "[?] ¿Desea revisar los cambios de red aplicados? [s/n]: " netapplication
     if [[ $netapplication == "s" ]]; then
         # Mostrar ip a
-        echo "[#] Se ha solicitado la revision de red, mostrando..."
+        if [[ $language == "ESP" ]]; then
+            echo "[#] Se ha solicitado la revision de red, mostrando..."
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] The network revision has been requested, showing..."
+        else
+            echo "[#] The network revision has been requested, showing..."
+        fi
         sudo ip a
     else
         # Se ha cancelado la vista previa
-        echo "[#] Se ha cancelado la vista de red"
+        if [[ $language == "ESP" ]]; then
+            echo "[#] Se ha cancelado la vista de red."
+        elif [[ $language == "ENG" ]]; then
+            echo "[#] Network view has been canceled."
+        else
+            echo "[#] Network view has been canceled."
+        fi
     fi
 }
 
 function show_net_file_configuration_enabled(){
     # Mostrar el fichero de red que se configurara
-    echo "[#] El fichero de configuracion de red que se configurara a continuacion es el siguiente: $network_dir"
-    echo "[#] Para cambiar la ruta de configuracion, reestablezca su ruta en el fichero $program_config"
+    if [[ $language == "ESP" ]]; then
+        echo "[#] El fichero de configuracion de red que se configurara a continuacion es el siguiente: $network_dir"
+        echo "[#] Para cambiar la ruta de configuracion, reestablezca su ruta en el fichero $program_config"
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] The network configuration file to be configured next is as follows: $network_dir"
+        echo "[#] To change the configuration path, reestablish its path in the file $program_config"
+    else
+        echo "[#] The network configuration file to be configured next is as follows: $network_dir"
+        echo "[#] To change the configuration path, reestablish its path in the file $program_config"
+    fi
 }
 
 if [[ $1 == "-d" || $1 == "--debug" ]]; then
@@ -319,8 +339,13 @@ elif [[ $1 == "-h" || $1 == "--help" ]]; then
         sudo bash "$aune_bifurcation_route/help.sh"
 elif [[ $1 == "-p" || $1 == "--ping" ]]; then
     # Comprobar que el software recibe la solicitud
-    echo "[#] Ping recibido, recepción estable."
-
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Ping recibido, recepción estable."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] Ping received, stable reception."
+    else
+        echo "[#] Ping received, stable reception."
+    fi
 elif [[ $1 == "-i" || $1 == "--integrity" ]]; then
     if [[ $auto_update == "true" ]]; then
         sudo bash "$aune_bifurcation_route/auto-update.sh"
