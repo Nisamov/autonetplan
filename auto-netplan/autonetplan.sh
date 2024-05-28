@@ -440,21 +440,51 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
             # Aplicar cambios al programa netplan sin llamar a la funcion netplanapply
             sudo netplan apply
             # Mensaje de aviso - limpieza de configuracion exitosa
-            echo -e "[#] Fichero de configuracion de red reestablecido"
+            if [[ $language == "ESP" ]]; then
+                echo "[#] Fichero de configuracion de red reestablecido."
+            elif [[ $language == "ENG" ]]; then
+                echo "[#] Network configuration file reestablished."
+            else
+                echo "[#] Network configuration file reestablished."
+            fi
         elif [[ "$opcionafoc" == "false" ]]; then
             # No se hace nada, continuando el programa
             # Se previene formatear el contenido del fichero de red
-            echo "[#] La opcion autonetplan-formatted-on-call esta configurada como false."
+            if [[ $language == "ESP" ]]; then
+                echo "[#] La opcion autonetplan-formatted-on-call esta configurada como false."
+            elif [[ $language == "ENG" ]]; then
+                echo "[#] The autonetplan-formatted-on-call option is set to false."
+            else
+                echo "[#] The autonetplan-formatted-on-call option is set to false."
+            fi
         else
-            echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-formatted-on-call."
+            if [[ $language == "ESP" ]]; then
+                echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-formatted-on-call."
+            elif [[ $language == "ENG" ]]; then
+                echo -e "[\e[31m#\e[0m] No configuration with the ID autonetplan-formatted-on-call has been detected."
+            else
+                echo -e "[\e[31m#\e[0m] No configuration with the ID autonetplan-formatted-on-call has been detected."
+            fi
         fi
         if [[ $3 == "-iface" || $3 == "--interface" ]]; then
             # Preguntar por interfaz de red a usar
-            read -p "[?] Ingrese la interfaz de red a usar: " iface
+            if [[ $language == "ESP" ]]; then
+                read -p "[?] Ingrese la interfaz de red a usar: " iface
+            elif [[ $language == "ENG" ]]; then
+                read -p "[?] Enter the network interface to use: " iface
+            else
+                read -p "[?] Enter the network interface to use: " iface
+            fi
             # Continuacion de programa
             if [[ $4 == "-f" || $3 == "--fluid" ]]; then
                 # Configuracion de red por DHCP
-                echo "[#] Configuracion de red seleccionada con conexion por DHCP"
+                if [[ $language == "ESP" ]]; then
+                    echo "[#] Configuracion de red seleccionada con conexion por DHCP."
+                elif [[ $language == "ENG" ]]; then
+                    echo "[#] Selected network configuration with connection by DHCP."
+                else
+                    echo "[#] Selected network configuration with connection by DHCP."
+                fi
                 # DHCP4 ==  true >> Aplicar cambios en configuracion de red
                 ipfigured=true
                 # Aplicar directamente la configuracion (posteriormente, comentar las lineas gateway, ip, etc)
@@ -466,25 +496,47 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
                 sudo bash "$aune_bifurcation_route/netplanapply.sh"           
             elif [[ $4 == "-s" || $4 == "--static" ]]; then
-                # Configuracion de red por ip estatica
-                echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica"
-                # Continuacion de programa
-                # Preguntar por ip a almacenar
-                read -p "[?] Ingrese la direccion IP a usar: " ipconfigure
-                # Preugntar por mascara de red a agregar
-                read -p "[?] Ingrese la mascara de red a agregar: " masked
+                if [[ $language == "ESP" ]]; then
+                    # Configuracion de red por ip estatica
+                    echo -e "[\e[33m#\e[0m] La configuracion de red esta establecida de forma estatica."
+                    # Continuacion de programa
+                    # Preguntar por ip a almacenar
+                    read -p "[?] Ingrese la direccion IP a usar: " ipconfigure
+                    # Preugntar por mascara de red a agregar
+                    read -p "[?] Ingrese la mascara de red a agregar: " masked
+                elif [[ $language == "ENG" ]]; then
+                    echo -e "[\e[33m#\e[0m] The network configuration is statically set."
+                    read -p "[?] Enter the IP address to use: " ipconfigure
+                    read -p "[?] Enter the netmask to add: " masked
+                else
+                    echo -e "[\e[33m#\e[0m] The network configuration is statically set."
+                    read -p "[?] Enter the IP address to use: " ipconfigure
+                    read -p "[?] Enter the netmask to add: " masked
+                fi
                 # Esablecer ipfigured como no >> ip estatica
                 ipfigured=no
                 # Llamar a funcion aune-networked
                 # Sustituir valores
                 aune-networked
                 # Aviso por gateway4
-                echo -e "[\e[33m#\e[0m] Es posbile que si no se ha seleccionado gateway4 como (-lnkd), muestre un aviso de problema en la configuracion, no obstante, no debera preocuparse, pues todo se resuelve automaticamente."
+                if [[ $language == "ESP" ]]; then
+                    echo -e "[\e[33m#\e[0m] Es posbile que si no se ha seleccionado gateway4 como (-lnkd), muestre un aviso de problema en la configuracion, no obstante, no debera preocuparse, pues todo se resuelve automaticamente."
+                elif [[ $language == "ENG" ]]; then
+                    echo -e "[\e[33m#\e[0m] It is possible that if gateway4 has not been selected as (-lnkd), it may show a problem warning in the configuration, however, you should not worry, as everything is solved automatically."
+                else
+                    echo -e "[\e[33m#\e[0m] It is possible that if gateway4 has not been selected as (-lnkd), it may show a problem warning in the configuration, however, you should not worry, as everything is solved automatically."
+                fi
                 # Aplicar configuracion de red sin avisar al usuario
                 sudo netplan apply
                 if [[ $5 == "-lnkd" || $5 == "--linkeddoor" ]]; then
                     # Preguntar por puerta de enlace
-                    read -p "[?] Ingrese una puerta de enlace: " linkeddoor
+                    if [[ $language == "ESP" ]]; then
+                        read -p "[?] Ingrese una puerta de enlace: " linkeddoor
+                    elif [[ $language == "ENG" ]]; then
+                        read -p "[?] Enter a gateway: " linkeddoor
+                    else
+                        read -p "[?] Enter a gateway: " linkeddoor
+                    fi
                     # Llamar a funcion aune-networked
                     # Sustituir valores
                     aune-networked
