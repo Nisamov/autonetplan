@@ -552,7 +552,13 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     fi
                 else
                     # Mensaje por error de valores
-                    echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
+                    if [[ $language == "ESP" ]]; then
+                        echo -e "[\e[33m!\e[0m] No se ha ingresado una puerta de enlace: '-lnkd'."
+                    elif [[ $language == "ENG" ]]; then
+                        echo -e "[\e[33m!\e[0m] No gateway has been entered: '-lnkd'."
+                    else
+                        echo -e "[\e[33m!\e[0m] No gateway has been entered: '-lnkd'."
+                    fi
                     # LLamar a funcion comment_line_gateway4 por saltarse -lnkd
                     comment_line_gateway4
                     # Aplicar red
@@ -567,41 +573,81 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # Si es true - realizar copia de seguridad
                 if [[ "$opcionaab" == "true" ]]; then
                     # Llamar a la funcion aune-backup
-                    echo "[#] La configuracion autonetplan-automate-backup esta configurada como true."
+                    if [[ $language == "ESP" ]]; then
+                        echo "[#] La configuracion autonetplan-automate-backup esta configurada como true."
+                    elif [[ $language == "ENG" ]]; then
+                        echo "[#] The autonetplan-automate-backup configuration is set to true."
+                    else
+                        echo "[#] The autonetplan-automate-backup configuration is set to true."
+                    fi
                     aune-backup
                 elif [[ "$opcionaab" == "false" ]]; then
                     # No se descargan paquetes
-                    echo "[#] La opcion autonetplan-automate-backup esta configurada como false."
+                    if [[ $language == "ESP" ]]; then
+                        echo "[#] La opcion autonetplan-automate-backup esta configurada como false."
+                    elif [[ $language == "ENG" ]]; then
+                        echo "[#] The autonetplan-automate-backup option is set to false."
+                    else
+                        echo "[#] The autonetplan-automate-backup option is set to false."
+                    fi
                 else
-                    echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-backup."
+                    if [[ $language == "ESP" ]]; then
+                        echo -e "[\e[31m#\e[0m] No se ha detectado ninguna configuracion con el ID autonetplan-automate-backup."
+                    elif [[ $language == "ENG" ]]; then
+                        echo -e "[\e[31m#\e[0m] No configuration with the autonetplan-automate-backup ID has been detected."
+                    else
+                        echo -e "[\e[31m#\e[0m] No configuration with the autonetplan-automate-backup ID has been detected."
+                    fi
                 fi
             else
                 # Mensaje por error de valores
-                echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-f' o '-s'."
+                if [[ $language == "ESP" ]]; then
+                    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-f' o '-s'."
+                elif [[ $language == "ENG" ]]; then
+                    echo -e "[\e[31m#\e[0m] Error of values entered: '-f' or '-s'."
+                else
+                    echo -e "[\e[31m#\e[0m] Error of values entered: '-f' or '-s'."
+                fi
                 # Error por ingreso de valores erroneos
                 exit 1
             fi
             # Ya sea ip estatica / ip dinamica, si pone en valor 5 = "-ntcd", se aplicara una nueva tarjeta de red
             if [[ $5 == "-ntcd" || $5 == "--networkcard" ]]; then
-                    # Agregar mas configuracion para otras tarjetas de red
-                    # Preguntar por otra tarjeta de red
+                # Agregar mas configuracion para otras tarjetas de red
+                # Preguntar por otra tarjeta de red
+                if [[ $language == "ESP" ]]; then
                     read -p "[?] ¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
-                    # Llamar a funcion new-network-card
-                    new-network-card
-                    # Guardar y aplicar cambios sin avisar al usuario
-                    sudo netplan apply
-                    # Prueba de manejo de valores
-                    echo "[#] SUPUESTAMENTE LA FUNCION 'new-network-card' SE HA EJECUTADO"
+                elif [[ $language == "ENG" ]]; then
+                    read -p "[?] Do you want to configure a new network card? [y/n]: " addnwntcd
+                else
+                    read -p "[?] Do you want to configure a new network card? [y/n]: " addnwntcd
+                fi
+                # Llamar a funcion new-network-card
+                new-network-card
+                # Guardar y aplicar cambios sin avisar al usuario
+                sudo netplan apply
             fi
         else
             # Mensaje por error de valores
-            echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-iface' o '--interface'."
+            if [[ $language == "ESP" ]]; then
+                echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-iface' o '--interface'."
+            elif [[ $language == "ENG" ]]; then
+                echo -e "[\e[31m#\e[0m] Error of values entered: '-iface' or '--interface'."
+            else
+                echo -e "[\e[31m#\e[0m] Error of values entered: '-iface' or '--interface'."
+            fi
             # Error por ingreso de valores erroneos
             exit 1
         fi
     else
         # Mensaje por error de valores
-        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-m' o '-a'."
+        if [[ $language == "ESP" ]]; then
+            echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-m' o '-a'."
+        elif [[ $language == "ENG" ]]; then
+            echo -e "[\e[31m#\e[0m] Error of values entered: '-m' or '-a'."
+        else
+            echo -e "[\e[31m#\e[0m] Error of values entered: '-m' or '-a'."
+        fi
         # Error por ingreso de valores erroneos
         exit 1
     fi
@@ -614,7 +660,13 @@ elif [[ $1 == "-clg" || $1 == "--changelanguage" ]]; then
     sudo bash "$aune_bifurcation_route/change-language.sh"
 else
     # Mensaje por error de valores
-    echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'."
+    if [[ $language == "ESP" ]]; then
+        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'."
+    elif [[ $language == "ENG" ]]; then
+        echo -e "[\e[31m#\e[0m] Error values entered: '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'."
+    else
+        echo -e "[\e[31m#\e[0m] Error values entered: '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'."
+    fi
     # Error por ingreso de valores erroneos
     exit 1
 fi
