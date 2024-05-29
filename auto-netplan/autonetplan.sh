@@ -202,15 +202,25 @@ function aune-backup(){
         fi
         # Almacenar la copia de seguridad con un valor aleatorio para identificarla correctamente
         sudo cp "$network_dir" "$program_files/program-files/$backup_dir/network_backup_$digited.bk"
-        if [[ $language == "ESP" ]]; then
-            echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
-            echo "[#] La copia de seguridad se ha guardado como network_backup_$digited.bk en la ruta $program_files/program-files/$backup_dir."
-        elif [[ $language == "ENG" ]]; then
-            echo -e "[\e[32m#\e[0m] Backup completed."
-            echo "[#] The backup has been saved as network_backup_$digited.bk in the path $program_files/program-files/$backup_dir."
+        if [[ -f "$program_files/program-files/$backup_dir/network_backup_$digited.bk" ]]; then
+            if [[ $language == "ESP" ]]; then
+                echo -e "[\e[32m#\e[0m] Copia de seguridad completada."
+                echo "[#] La copia de seguridad se ha guardado como network_backup_$digited.bk en la ruta $program_files/program-files/$backup_dir."
+            elif [[ $language == "ENG" ]]; then
+                echo -e "[\e[32m#\e[0m] Backup completed."
+                echo "[#] The backup has been saved as network_backup_$digited.bk in the path $program_files/program-files/$backup_dir."
+            else
+                echo -e "[\e[32m#\e[0m] Backup completed."
+                echo "[#] The backup has been saved as network_backup_$digited.bk in the path $program_files/program-files/$backup_dir."
+            fi
         else
-            echo -e "[\e[32m#\e[0m] Backup completed."
-            echo "[#] The backup has been saved as network_backup_$digited.bk in the path $program_files/program-files/$backup_dir."
+            if [[ $language == "ESP" ]]; then
+                echo "[#] La copia de seguridad ha fallado, asegurate que has referenciado correctamente la ruta en el fichero de configuracion '/etc/autonetplan/autonetplan.conf'"
+            elif [[ $language == "ENG" ]]; then
+                echo "[#] The backup has failed, make sure you have correctly referenced the path in the configuration file '/etc/autonetplan/autonetplan.conf'."
+            else
+                echo "[#] The backup has failed, make sure you have correctly referenced the path in the configuration file '/etc/autonetplan/autonetplan.conf'."
+            fi
         fi
     else
         if [[ $language == "ESP" ]]; then
