@@ -16,7 +16,6 @@ msg_revision_eng="[Data review]:"
 #yellow_msg="[\e[33m#\e[0m]"
 #green_msg="[\e[32m#\e[0m]"
 
-
 # Iniciacion del programa
 if [[ $language == "ESP" ]]; then
     echo -e "[\e[32m#\e[0m] $msg_revision Revision de integridad de datos del programa autonetplan en curso."

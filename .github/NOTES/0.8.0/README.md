@@ -10,6 +10,8 @@ Corregir pag web
 
 ## Contenido Agregado
 
+Se ha completado la traduccion al ingles
+
 ## Correcciones
 
 ## Problemas actuales
