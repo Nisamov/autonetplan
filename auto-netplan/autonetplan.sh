@@ -215,11 +215,11 @@ function aune-backup(){
             fi
         else
             if [[ $language == "ESP" ]]; then
-                echo "[#] La copia de seguridad ha fallado, asegurate que has referenciado correctamente la ruta en el fichero de configuracion '/etc/autonetplan/autonetplan.conf'"
+                echo -e "[\e[31m#\e[0m] La copia de seguridad ha fallado, asegurate que has referenciado correctamente la ruta en el fichero de configuracion '/etc/autonetplan/autonetplan.conf'"
             elif [[ $language == "ENG" ]]; then
-                echo "[#] The backup has failed, make sure you have correctly referenced the path in the configuration file '/etc/autonetplan/autonetplan.conf'."
+                echo -e "[\e[31m#\e[0m] The backup has failed, make sure you have correctly referenced the path in the configuration file '/etc/autonetplan/autonetplan.conf'."
             else
-                echo "[#] The backup has failed, make sure you have correctly referenced the path in the configuration file '/etc/autonetplan/autonetplan.conf'."
+                echo -e "[\e[31m#\e[0m] The backup has failed, make sure you have correctly referenced the path in the configuration file '/etc/autonetplan/autonetplan.conf'."
             fi
         fi
     else
