@@ -1,6 +1,8 @@
 #!/bin/bash
 # Por Andres Ruslan Abadias Otal
 
+# Codigo de actualizacion de software
+
 # Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
 temp_cloned="/usr/local/sbin/auto-netplan/temp/"

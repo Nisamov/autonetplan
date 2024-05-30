@@ -16,7 +16,6 @@
 #limitations under the License.
 
 #Programa instalacion servicio autonetplan
-# Programa listo para funcionamiento, posteriormente, correccion y agregacion de mejoras
 
 # Ruta del directorio donde se encuentra el script de instalación
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
