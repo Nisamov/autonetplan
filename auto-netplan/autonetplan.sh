@@ -668,6 +668,34 @@ elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
 elif [[ $1 == "-clg" || $1 == "--changelanguage" ]]; then
     # Llamar a funcion de cambiar idioma
     sudo bash "$aune_bifurcation_route/change-language.sh"
+elif [["$@" == "" ]]; then
+    if [[ $language == "ESP" ]]; then
+        echo -e "[\e[31m#\e[0m] No se ha ingresado ningun valor, ingrese uno de los siguientes:"
+    elif [[ $language == "ENG" ]]; then
+        echo -e "[\e[31m#\e[0m] No value has been entered, enter one of the following:"
+    else
+        echo -e "[\e[31m#\e[0m] No value has been entered, enter one of the following:"
+    fi
+    echo "-h     | --help "
+    echo "-d     | --debug"
+    echo "-p     | --ping"
+    echo "-r     | --remove"
+    echo "-l     | --license"
+    echo "-b     | --backup"
+    echo "-u     | --update "
+    echo "-v     | --version"
+    echo "-x     | --execute"
+    echo "-m     | --manual"
+    echo "-i     | --integrity"
+    echo "-ntf   | --netfileenabled"
+    echo "-clg   | --changelanguage"
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Para mas informacion, usa el comando `autonetplan -h`."
+    elif [[ $language == "ENG" ]]; then
+        echo "[#] For more information, use the command `autonetplan -h`."
+    else
+        echo "[#] For more information, use the command `autonetplan -h`."
+    fi
 else
     # Mensaje por error de valores
     if [[ $language == "ESP" ]]; then
