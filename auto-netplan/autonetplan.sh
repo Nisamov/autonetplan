@@ -690,11 +690,11 @@ elif [[ "$@" == "" ]]; then
     echo "-ntf   | --netfileenabled"
     echo "-clg   | --changelanguage"
     if [[ $language == "ESP" ]]; then
-        echo "[#] Para mas informacion, usa el comando `autonetplan -h`."
+        echo "[#] Para mas informacion, usa el comando autonetplan -h."
     elif [[ $language == "ENG" ]]; then
-        echo "[#] For more information, use the command `autonetplan -h`."
+        echo "[#] For more information, use the command autonetplan -h."
     else
-        echo "[#] For more information, use the command `autonetplan -h`."
+        echo "[#] For more information, use the command autonetplan -h."
     fi
 else
     # Mensaje por error de valores
