@@ -12,6 +12,10 @@ Se ha corregido la pagina web
 
 ## Correcciones
 
+Se ha corregido la respuesta por ingreso de valores erroneo:
+- En caso de no ingresar contenido muestra una salida diferente a la anterior.
+- En caso de ingresar un valor diferente al registrado, muestra una salida nueva.
+
 ## Problemas actuales
 
 ## Prevision para futuras actualizaciones
