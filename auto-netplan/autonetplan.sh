@@ -668,7 +668,7 @@ elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
 elif [[ $1 == "-clg" || $1 == "--changelanguage" ]]; then
     # Llamar a funcion de cambiar idioma
     sudo bash "$aune_bifurcation_route/change-language.sh"
-elif [["$@" == "" ]]; then
+elif [[ "$@" == "" ]]; then
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[31m#\e[0m] No se ha ingresado ningun valor, ingrese uno de los siguientes:"
     elif [[ $language == "ENG" ]]; then
