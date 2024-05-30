@@ -699,11 +699,17 @@ elif [[ "$@" == "" ]]; then
 else
     # Mensaje por error de valores
     if [[ $language == "ESP" ]]; then
-        echo -e "[\e[31m#\e[0m] Error de valores ingresados: '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'."
+        echo -e "[\e[31m#\e[0m] Valor ingresado: $1 "
+        echo -e "[\e[31m#\e[0m] El valor ingresado no es compatible con ninguno de los siguientes valores:"
+        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'"
     elif [[ $language == "ENG" ]]; then
-        echo -e "[\e[31m#\e[0m] Error values entered: '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'."
+        echo -e "[\e[31m#\e[0m] Entered value: $1 "
+        echo -e "[\e[31m#\e[0m] Entered value is not compatible with none of the following values:"
+        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'"
     else
-        echo -e "[\e[31m#\e[0m] Error values entered: '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'."
+        echo -e "[\e[31m#\e[0m] Entered value: $1 "
+        echo -e "[\e[31m#\e[0m] Entered value is not compatible with none of the following values:"
+        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'"
     fi
     # Error por ingreso de valores erroneos
     exit 1
