@@ -34,9 +34,9 @@ network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -
 # Ruta de programa revision integridad de autonetplan
 integrity_program="/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh"
 # Ruta de ultima version
-current_version=$(cat $program_files/program-files/version)
+current_version=$(cat "$program_files/program-files/version")
 # Idioma del programa
-language=$(cat $program_files/program-files/language.lg)
+language=$(cat "$program_files/program-files/language.lg")
 # Auto actualizaciones del programa
 auto_update=$(grep "^autonetplan-update-program" "$program_config" | cut -d "=" -f2)
 # Programas bifurcados del codigo original
