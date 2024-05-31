@@ -62,6 +62,7 @@ if [[ -f $program_config ]]; then
                 elif [[ $language == "ENG" ]]; then
                     echo -e "[\e[32m#\e[0m] File $opcion_fecf does not exist"
                 fi
+                exit 2
             fi
             # Busca fichero de programa
             opcion_feaf=$(grep "^file-existence-autonetplansh-file" "$program_config" | cut -d "=" -f2)
@@ -79,6 +80,7 @@ if [[ -f $program_config ]]; then
                 elif [[ $language == "ENG" ]]; then
                     echo -e "[\e[31m#\e[0m] File $opcion_feaf does not exist"
                 fi
+                exit 2
             fi
             # Busca fichero de licencia
             opcion_felf=$(grep "^file-existence-license-file" "$program_config" | cut -d "=" -f2)
@@ -96,6 +98,7 @@ if [[ -f $program_config ]]; then
                 elif [[ $language == "ENG" ]]; then
                     echo -e "[\e[31m#\e[0m] File $opcion_felf does not exist"
                 fi
+                exit 2
             fi
             # Busca el fcihero de version
             opcion_fevf=$(grep "^file-existence-version-file" "$program_config" | cut -d "=" -f2)
@@ -113,6 +116,7 @@ if [[ -f $program_config ]]; then
                 elif [[ $language == "ENG" ]]; then
                     echo -e "[\e[31m#\e[0m] File $opcion_fevf does not exist"
                 fi
+                exit 2
             fi
             # Busca el fichero de idioma
             opcion_felaf=$(grep "^file-existence-language-file" "$program_config" | cut -d "=" -f2)
@@ -130,6 +134,7 @@ if [[ -f $program_config ]]; then
                 elif [[ $language == "ENG" ]]; then
                     echo -e "[\e[31m#\e[0m] File $opcion_felaf does not exist"
                 fi
+                exit 2
             fi
             # Busca el fichero de actualizacion
             opcion_feuf=$(grep "^file-existence-update-file" "$program_config" | cut -d "=" -f2)
@@ -147,6 +152,7 @@ if [[ -f $program_config ]]; then
                 elif [[ $language == "ENG" ]]; then
                     echo -e "[\e[31m#\e[0m] File $opcion_feuf does not exist"
                 fi
+                exit 2
             fi
 
         elif [[ "$opcion_afe" == "false" ]]; then
@@ -162,6 +168,7 @@ if [[ -f $program_config ]]; then
             elif [[ $language == "ENG" ]]; then
                 echo -e "[\e[31m#\e[0m] $msg_revision_eng The autonetplan-file-existence line was not found."
             fi
+            exit 2
         fi
 
         # Opcion 2 - Directorios
@@ -185,6 +192,7 @@ if [[ -f $program_config ]]; then
                 elif [[ $language == "ENG" ]]; then
                     echo -e "[\e[31m#\e[0m] Directory $opcion_decd does not exist"
                 fi
+                exit 2
             fi
             # Buscar directorio de ficheros del programa
             opcion_depfd=$(grep "^dir-existence-program-files-dir" "$program_config" | cut -d "=" -f2)
@@ -202,6 +210,7 @@ if [[ -f $program_config ]]; then
                 elif [[ $language == "ENG" ]]; then
                     echo -e "[\e[31m#\e[0m] Directory $opcion_depfd does not exist"
                 fi
+                exit 2
             fi
         elif [[ "$opcion_ade" == "false" ]]; then
             # Aviso de configuracion deshabilitada
@@ -210,12 +219,14 @@ if [[ -f $program_config ]]; then
             elif [[ $language == "ENG" ]]; then
                 echo -e "[\e[31m#\e[0m] $msg_revision_eng The autonetplan-directory-existence configuration is disabled."
             fi
+            exit 2
         else
             if [[ $language == "ESP" ]]; then
                 echo -e "[\e[31m#\e[0m] $msg_revision No se ha encontrado la linea autonetplan-directory-existence."
             elif [[ $language == "ENG" ]]; then
                 echo -e "[\e[31m#\e[0m] $msg_revision_eng The autonetplan-directory-existence line was not found."
             fi
+            exit 2
         fi
     elif [[ "$opcion_aes" == "false" ]]; then
         # Aviso de configuracion deshabilitada
@@ -224,5 +235,6 @@ if [[ -f $program_config ]]; then
         elif [[ $language == "ENG" ]]; then
             echo -e "[\e[31m#\e[0m] $msg_revision_eng The autonetplan-enable-search setting is disabled."
         fi
+        exit 2
     fi
 fi

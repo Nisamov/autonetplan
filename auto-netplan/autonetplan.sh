@@ -696,6 +696,7 @@ elif [[ "$@" == "" ]]; then
     else
         echo "[#] For more information, use the command autonetplan -h."
     fi
+    exit 1
 else
     # Mensaje por error de valores
     if [[ $language == "ESP" ]]; then
