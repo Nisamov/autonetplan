@@ -229,13 +229,15 @@ function comment_line_gateway4(){
 function show_net_configuration(){
     # Mostrar configuracion de red, usar tras aplicar configuraciones de red
     # Preguntar si mostrar configuracion
-    read -p "[?] ¿Desea revisar los cambios de red aplicados? [s/n]: " netapplication
-    if [[ $netapplication == "s" ]]; then
+    if [[ $language == "ESP" ]]; then
+        read -p "[?] ¿Desea revisar los cambios de red aplicados? [s/n]: " netapplication
+    else
+        read -p "[?] Do you want to review the applied network changes? [y/n]: " netapplication
+    fi
+    if [[ $netapplication == "s" || $netapplication == "y" ]]; then
         # Mostrar ip a
         if [[ $language == "ESP" ]]; then
             echo "[#] Se ha solicitado la revision de red, mostrando..."
-        elif [[ $language == "ENG" ]]; then
-            echo "[#] The network revision has been requested, showing..."
         else
             echo "[#] The network revision has been requested, showing..."
         fi
@@ -244,8 +246,6 @@ function show_net_configuration(){
         # Se ha cancelado la vista previa
         if [[ $language == "ESP" ]]; then
             echo "[#] Se ha cancelado la vista de red."
-        elif [[ $language == "ENG" ]]; then
-            echo "[#] Network view has been canceled."
         else
             echo "[#] Network view has been canceled."
         fi
