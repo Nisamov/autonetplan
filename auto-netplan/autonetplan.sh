@@ -148,7 +148,7 @@ function new-network-card(){
         echo "[#] Se ha seleccionado a configurar la interfaz '$nxtiface' para la configuracion."
         # Se añade la linea al final del fichero de configuracion de red netplan
         sudo echo "$nxtiface:" >> "$network_dir"
-        while [[ $nxtipfigured != "s" || $nxtipfigured != "f" ]]; do
+        while [[ $nxtipfigured != "s" && $nxtipfigured != "f" ]]; do
             read -p "[?] Ingrese el tipo de configuracion deseado [(Estatico) s / f (Dinamico)]: " nxtipfigured
         done
         if [[ $nxtipfigured == "s" ]]; then
@@ -184,7 +184,7 @@ function new-network-card(){
         read -p "[?] Enter the network interface to be configured: " nxtiface
         echo "[#] You have selected to configure the interface '$nxtiface' for the configuration."
         sudo echo "$nxtiface:" >> "$network_dir"
-        while [[ $nxtipfigured != "s" || $nxtipfigured != "f" ]]; do
+        while [[ $nxtipfigured != "s" && $nxtipfigured != "f" ]]; do
             read -p "[?] Enter the desired configuration type [(Static) s / f (Dynamic)]: " nxtipfigured
         done
         if [[ $nxtipfigured == "s" ]]; then
