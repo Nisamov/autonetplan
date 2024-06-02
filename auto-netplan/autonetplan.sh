@@ -158,7 +158,7 @@ EOF"
             nxtipfigureddb="no"
             # Agregar la configuracion estatica
             sudo bash -c "cat <<EOF >> '$network_dir'
-    dhcp4: $nxtipfigureddb
+      dhcp4: $nxtipfigureddb
 EOF"
             # Se continua con las preguntas
             echo "[#] Se ha selccionado la configuracion estatica."
@@ -173,7 +173,7 @@ EOF"
             nxtipfigureddb="true"
             # Agregar la configuracion dinamica
             sudo bash -c "cat <<EOF >> '$network_dir'
-    dhcp4: $nxtipfigureddb
+      dhcp4: $nxtipfigureddb
 EOF"
             echo "[#] Se ha selccionado la configuracion dinamica."
         fi
@@ -193,7 +193,6 @@ EOF"
         echo "[#] Configuring a new network card."
         read -p "[?] Enter the network interface to be configured: " nxtiface
         echo "[#] You have selected to configure the interface '$nxtiface' for the configuration."
-        sudo sh -c "echo '$nxtiface:' >> '$network_dir'"
         sudo bash -c "cat <<EOF >> '$network_dir'
     $nxtiface:
 EOF"
@@ -203,7 +202,7 @@ EOF"
         if [[ $nxtipfigured == "s" ]]; then
             nxtipfigureddb="no"
             sudo bash -c "cat <<EOF >> '$network_dir'
-    dhcp4: $nxtipfigureddb
+      dhcp4: $nxtipfigureddb
 EOF"
             echo "[#] The static configuration has been selected."
             read -p "[?] Enter the IP address to be set: " ipconfigurenxt
@@ -214,7 +213,7 @@ EOF"
         else
             nxtipfigureddb="true"
             sudo bash -c "cat <<EOF >> '$network_dir'
-    dhcp4: $nxtipfigureddb
+      dhcp4: $nxtipfigureddb
 EOF"
             echo "[#] The dynamic configuration has been selected."
         fi

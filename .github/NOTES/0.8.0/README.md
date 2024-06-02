@@ -16,9 +16,10 @@ Se ha corregido la respuesta por ingreso de valores erroneo:
 - En caso de no ingresar contenido muestra una salida diferente a la anterior.
 - En caso de ingresar un valor diferente al registrado, muestra una salida nueva.
 Se ha eliminado el uso de solicitud de guardado constante.
+Se ha corregido el comando '-ntcd', el cual no se aplicaba
+Se han eliminado lineas innecesarias no usadas
+Se han eliminado funciones mal programadas
 
 ## Problemas actuales
-
-'-ntcd' se aplica pero no guarda los espacios correctamente
 
 ## Prevision para futuras actualizaciones
