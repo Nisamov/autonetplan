@@ -147,7 +147,7 @@ function new-network-card(){
         read -p "[?] Ingrese la interfaz de red a configurar: " nxtiface
         echo "[#] Se ha seleccionado a configurar la interfaz '$nxtiface' para la configuracion."
         # Se añade la linea al final del fichero de configuracion de red netplan
-        sudo echo "$nxtiface:" >> "$network_dir"
+        sudo sh -c "echo '$nxtiface:' >> '$network_dir'"
         while [[ $nxtipfigured != "s" && $nxtipfigured != "f" ]]; do
             read -p "[?] Ingrese el tipo de configuracion deseado [(Estatico) s / f (Dinamico)]: " nxtipfigured
         done
@@ -155,58 +155,58 @@ function new-network-card(){
             # IP Estatica
             nxtipfigureddb="no"
             # Agregar la configuracion estatica
-            sudo echo "dhcp4: $nxtipfigureddb:" >> "$network_dir"
+            sudo sh -c "echo 'dhcp4: $nxtipfigureddb:' >> '$network_dir'"
             # Se continua con las preguntas
             echo "[#] Se ha selccionado la configuracion estatica."
             read -p "[?] Ingrese la direccion IP a establecer: " ipconfigurenxt
             read -p "[?] Ingrese la mascara de red: " maskednxt
             # Agregar los parametros guardados al fichero
-            sudo echo "addresses: [$ipconfigurenxt/$maskednxt]" >> "$network_dir"
+            sudo sh -c "echo 'addresses: [$ipconfigurenxt/$maskednxt]' >> '$network_dir'"
         else
             # IP Dinamica
             nxtipfigureddb="true"
             # Agregar la configuracion dinamica
-            sudo echo "dhcp4: $nxtipfigureddb:" >> "$network_dir"
+            sudo sh -c "echo 'dhcp4: $nxtipfigureddb:' >> '$network_dir'"
             echo "[#] Se ha selccionado la configuracion dinamica."
         fi
         read -p "[?] ¿Deseas agregar una puerta de enlace? [s/n]: " prtenlace
         if [[ $prtenlace == "s" ]]; then
             read -p "[?] Ingrese la puerta de enlace a agregar: " linkeddoornxt
-            sudo echo "gateway4: $linkeddoornxt" >> "$network_dir"
+            sudo sh -c "echo 'gateway4: $linkeddoornxt' >> '$network_dir'"
         else
             echo "[#] Se ha denegado el ingreso de la puerta de enlace."
         fi
-        sudo echo "# Siguiente tarjeta de red" >> "$network_dir"
+        sudo sh -c "echo '# Siguiente tarjeta de red' >> '$network_dir'"
         # Aplicar cambios
         sudo netplan apply
     else
         echo "[#] Configuring a new network card."
         read -p "[?] Enter the network interface to be configured: " nxtiface
         echo "[#] You have selected to configure the interface '$nxtiface' for the configuration."
-        sudo echo "$nxtiface:" >> "$network_dir"
+        sudo sh -c "echo '$nxtiface:' >> '$network_dir'"
         while [[ $nxtipfigured != "s" && $nxtipfigured != "f" ]]; do
             read -p "[?] Enter the desired configuration type [(Static) s / f (Dynamic)]: " nxtipfigured
         done
         if [[ $nxtipfigured == "s" ]]; then
             nxtipfigureddb="no"
-            sudo echo "dhcp4: $nxtipfigureddb:" >> "$network_dir"
+            sudo sh -c "echo 'dhcp4: $nxtipfigureddb:' >> '$network_dir'"
             echo "[#] The static configuration has been selected."
             read -p "[?] Enter the IP address to be set: " ipconfigurenxt
             read -p "[?] Enter the network mask: " maskednxt
-            sudo echo "addresses: [$ipconfigurenxt/$maskednxt]" >> "$network_dir"
+            sudo sh -c "echo 'addresses: [$ipconfigurenxt/$maskednxt]' >> '$network_dir'"
         else
             nxtipfigureddb="true"
-            sudo echo "dhcp4: $nxtipfigureddb:" >> "$network_dir"
+            sudo sh -c "echo 'dhcp4: $nxtipfigureddb:' >> '$network_dir'"
             echo "[#] The dynamic configuration has been selected."
         fi
         read -p "[?] Do you want to add a gateway? [y/n]: " prtenlace
         if [[ $prtenlace == "y" ]]; then
             read -p "[?] Enter the gateway to add: " linkeddoornxt
-            sudo echo "gateway4: $linkeddoornxt" >> "$network_dir"
+            sudo sh -c "echo 'gateway4: $linkeddoornxt' >> '$network_dir'"
         else
             echo "[#] Gateway login has been denied."
         fi
-        sudo echo "# Next netcard" >> "$network_dir"
+        sudo sh -c "echo '# Next netcard' >> '$network_dir'"
         # Aplicar cambios
         sudo netplan apply
     fi
