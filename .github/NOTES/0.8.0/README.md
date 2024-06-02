@@ -19,6 +19,6 @@ Se ha eliminado el uso de solicitud de guardado constante.
 
 ## Problemas actuales
 
-La creacion de una nueva tarjeta de red no se aplica adecuadamente, debido a que no se aplicaba pues el codigo no estaba escrito correctamente
+'-ntcd' se aplica pero no guarda los espacios correctamente
 
 ## Prevision para futuras actualizaciones

@@ -128,7 +128,7 @@ function aune-networked(){
         echo -e "[\e[33m#\e[0m] Network configuration by automatic configuration..."
     fi
     sudo bash -c "cat <<EOF > '$network_dir'
-# Editado con autonetplan / Edited with autonetplan
+# Editado con AutoNetplan / Edited with AutoNetplan
 network:
   version: 2
   renderer: networkd
@@ -147,7 +147,9 @@ function new-network-card(){
         read -p "[?] Ingrese la interfaz de red a configurar: " nxtiface
         echo "[#] Se ha seleccionado a configurar la interfaz '$nxtiface' para la configuracion."
         # Se añade la linea al final del fichero de configuracion de red netplan
-        sudo sh -c "echo '    $nxtiface:' >> '$network_dir'"
+        sudo bash -c "cat <<EOF >> '$network_dir'
+    $nxtiface:
+EOF"
         while [[ $nxtipfigured != "s" && $nxtipfigured != "f" ]]; do
             read -p "[?] Ingrese el tipo de configuracion deseado [(Estatico) s / f (Dinamico)]: " nxtipfigured
         done
@@ -155,24 +157,32 @@ function new-network-card(){
             # IP Estatica
             nxtipfigureddb="no"
             # Agregar la configuracion estatica
-            sudo sh -c "echo '      dhcp4: $nxtipfigureddb:' >> '$network_dir'"
+            sudo bash -c "cat <<EOF >> '$network_dir'
+    dhcp4: $nxtipfigureddb
+EOF"
             # Se continua con las preguntas
             echo "[#] Se ha selccionado la configuracion estatica."
             read -p "[?] Ingrese la direccion IP a establecer: " ipconfigurenxt
             read -p "[?] Ingrese la mascara de red: " maskednxt
             # Agregar los parametros guardados al fichero
-            sudo sh -c "echo '      addresses: [$ipconfigurenxt/$maskednxt]' >> '$network_dir'"
+            sudo bash -c "cat <<EOF >> '$network_dir'
+      addresses: [$ipconfigurenxt/$maskednxt]
+EOF"
         else
             # IP Dinamica
             nxtipfigureddb="true"
             # Agregar la configuracion dinamica
-            sudo sh -c "echo '      dhcp4: $nxtipfigureddb:' >> '$network_dir'"
+            sudo bash -c "cat <<EOF >> '$network_dir'
+    dhcp4: $nxtipfigureddb
+EOF"
             echo "[#] Se ha selccionado la configuracion dinamica."
         fi
         read -p "[?] ¿Deseas agregar una puerta de enlace? [s/n]: " prtenlace
         if [[ $prtenlace == "s" ]]; then
             read -p "[?] Ingrese la puerta de enlace a agregar: " linkeddoornxt
-            sudo sh -c "echo '      gateway4: $linkeddoornxt' >> '$network_dir'"
+            sudo bash -c "cat <<EOF >> '$network_dir'
+      gateway4: $linkeddoornxt
+EOF"
         else
             echo "[#] Se ha denegado el ingreso de la puerta de enlace."
         fi
@@ -184,25 +194,36 @@ function new-network-card(){
         read -p "[?] Enter the network interface to be configured: " nxtiface
         echo "[#] You have selected to configure the interface '$nxtiface' for the configuration."
         sudo sh -c "echo '$nxtiface:' >> '$network_dir'"
+        sudo bash -c "cat <<EOF >> '$network_dir'
+    $nxtiface:
+EOF"
         while [[ $nxtipfigured != "s" && $nxtipfigured != "f" ]]; do
             read -p "[?] Enter the desired configuration type [(Static) s / f (Dynamic)]: " nxtipfigured
         done
         if [[ $nxtipfigured == "s" ]]; then
             nxtipfigureddb="no"
-            sudo sh -c "echo 'dhcp4: $nxtipfigureddb' >> '$network_dir'"
+            sudo bash -c "cat <<EOF >> '$network_dir'
+    dhcp4: $nxtipfigureddb
+EOF"
             echo "[#] The static configuration has been selected."
             read -p "[?] Enter the IP address to be set: " ipconfigurenxt
             read -p "[?] Enter the network mask: " maskednxt
-            sudo sh -c "echo 'addresses: [$ipconfigurenxt/$maskednxt]' >> '$network_dir'"
+            sudo bash -c "cat <<EOF >> '$network_dir'
+      addresses: [$ipconfigurenxt/$maskednxt]
+EOF"
         else
             nxtipfigureddb="true"
-            sudo sh -c "echo 'dhcp4: $nxtipfigureddb:' >> '$network_dir'"
+            sudo bash -c "cat <<EOF >> '$network_dir'
+    dhcp4: $nxtipfigureddb
+EOF"
             echo "[#] The dynamic configuration has been selected."
         fi
         read -p "[?] Do you want to add a gateway? [y/n]: " prtenlace
         if [[ $prtenlace == "y" ]]; then
             read -p "[?] Enter the gateway to add: " linkeddoornxt
-            sudo sh -c "echo 'gateway4: $linkeddoornxt' >> '$network_dir'"
+            sudo bash -c "cat <<EOF >> '$network_dir'
+      gateway4: $linkeddoornxt
+EOF"
         else
             echo "[#] Gateway login has been denied."
         fi
