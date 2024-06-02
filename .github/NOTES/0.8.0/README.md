@@ -15,7 +15,10 @@ Se ha corregido la pagina web
 Se ha corregido la respuesta por ingreso de valores erroneo:
 - En caso de no ingresar contenido muestra una salida diferente a la anterior.
 - En caso de ingresar un valor diferente al registrado, muestra una salida nueva.
+Se ha eliminado el uso de solicitud de guardado constante.
 
 ## Problemas actuales
+
+La creacion de una nueva tarjeta de red no se aplica adecuadamente
 
 ## Prevision para futuras actualizaciones

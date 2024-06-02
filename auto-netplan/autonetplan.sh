@@ -504,7 +504,8 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # Comentar secciones (al ser ip dinamica)
                 comment_line_dhcp_true
                 # Aplicar cambios al programa netplan meidante la llamada a la funcion netplanapply
-                sudo bash "$aune_bifurcation_route/netplanapply.sh"           
+                # Aplicar configuracion de red
+                sudo netplan apply        
             elif [[ $4 == "-s" || $4 == "--static" ]]; then
                 if [[ $language == "ESP" ]]; then
                     # Configuracion de red por ip estatica
@@ -572,7 +573,8 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                     # LLamar a funcion comment_line_gateway4 por saltarse -lnkd
                     comment_line_gateway4
                     # Aplicar red
-                    sudo bash "$aune_bifurcation_route/netplanapply.sh"
+                    # Aplicar configuracion de red
+                    sudo netplan apply
                 fi
                 # Preguntar si mostrar configuracion de red
                 # Llamar a la funcion show_net_configuration
