@@ -42,121 +42,6 @@ auto_update=$(grep "^autonetplan-update-program" "$program_config" | cut -d "=" 
 # Programas bifurcados del codigo original
 aune_bifurcation_route="/usr/local/sbin/auto-netplan/function"
 
-function new-network-card(){
-    # Ingresar en un bucle while con valores otorgados desde el interior del mismo
-    while [[ $addnwntcd == "s" || $addnwntcd == "S" || $addnwntcd == "y" || $addnwntcd == "Y" ]]; do
-        # Inicio de configuracion
-        if [[ $language == "ESP" ]]; then
-            echo "[#] Configurando otra tarjeta de red..."
-            # Configuracion para la terjeta de red (configuracion por ingreso mediante "read -p")
-            read -p "[?] Ingrese la interfaz de red a configurar: " ntinterface
-            read -p "[?] Elije el modo de conexion [ s (Estatica) / d (Dinamica) ]: " dhcp4configured
-        elif [[ $language == "ENG" ]]; then
-            echo "[#] Configuring another network card..."
-            read -p "[?] Enter the network interface to be configured: " ntinterface
-            read -p "[?] Select the connection mode [ s (Static) / d (Dynamic) ]: " dhcp4configured
-        else
-            echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$aune_bifurcation_route/language-registration.sh"
-        fi
-
-        if [[ $dhcp4configured == "s" || $dhcp4configured == "y" ]]; then
-            if [[ $language == "ESP" ]]; then
-                echo "[#] Se ha establecido la opcion 'configuracion estatica'."
-            elif [[ $language == "ENG" ]]; then
-                echo "[#] The 'static configuration' option has been set."
-            else
-                echo "[#] Idioma no registrado / Laguage not registered."
-                sudo bash "$aune_bifurcation_route/language-registration.sh"
-            fi
-            # Declaracion de variable de dhcp4 para la tarjeta de red
-            dhcp4netwconfig="no"
-        elif [[ $dhcp4configured == "d" || $dhcp4configured == "q" ]]; then
-            if [[ $language == "ESP" ]]; then
-                echo "[#] Se ha establecido la opcion 'configuracion dinamica'."
-            elif [[ $language == "ENG" ]]; then
-                echo "[#] The 'dynamic configuration' option has been set."
-            else
-                echo "[#] Idioma no registrado / Laguage not registered."
-                sudo bash "$aune_bifurcation_route/language-registration.sh"
-            fi
-            # Declaracion de variable de dhcp4 para la tarjeta de red
-            dhcp4netwconfig="yes"
-        fi
-        # Apicar la configuracion de red sin aviso (evitar molestar)
-        sudo netplan apply
-        # Si dhcp4 se ha configurado como true, no continuar
-        # Si dhcp4 se ha configurado como no, continuar
-        if [[ $dhcp4netwconfig == "no" ]]; then
-            # Preguntar por direccion IP y Mascara de red
-            if [[ $language == "ESP" ]]; then
-                read -p "[?] Ingrese la direccion IP a agregar a la tarjeta de red: " ipattachedseccondary
-                read -p "[?] Ingrese la mascara de red a agregar a la tarjeta de red: " ntmskattachedseccondary
-            elif [[ $language == "ENG" ]]; then
-                 read -p "[?] Enter the IP address to add to the network card: " ipattachedseccondary
-                 read -p "[?] Enter the network mask to add to the network card: " ntmskattachedseccondary
-            else
-                echo "[#] Idioma no registrado / Laguage not registered."
-                sudo bash "$program_files/function/language-registration.sh"
-            fi
-            # Aplicar red sin hacer saber al usuario
-            sudo netplan apply
-        else
-            # Avisar que no se aplicara ip ni mascara de red debido a la configuracion establecida para esta tarjeta de red
-            if [[ $language == "ESP" ]]; then
-                echo "[#] No se aplicara direccion ip manual ni mascara de red 'dhcp4=no'."
-            elif [[ $language == "ENG" ]]; then
-                echo "[#] No manual ip address or netmask 'dhcp4=no' will be applied."
-            else
-                echo "[#] Idioma no registrado / Laguage not registered."
-                sudo bash "$program_files/function/language-registration.sh"
-            fi
-            # Comentar configuracion IP y Mascara de red
-            # [REVISAR] - Buscar forma de unicamente comentar las lineas de la mascara de red a configurar (evitar configurar el resto por error)
-            # Aplicar red sin hacer saber al usuario
-            sudo netplan apply
-        fi
-        # Preguntar por gateway4:
-        if [[ $language == "ESP" ]]; then
-            read -p "[?] Ingrese una puerta de enlace para la tarjeta de red: " gatewayattachedseccondary
-        elif [[ $language == "ENG" ]]; then
-            read -p "[?] Enter a gateway for the network card: " gatewayattachedseccondary
-        else
-            echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$aune_bifurcation_route/language-registration.sh"
-        fi
-        # Aplicar cambios sin hacer saber al usuario
-        sudo netplan apply
-        # Preguntar por configurar otra tarjeta de red
-        if [[ $language == "ESP" ]]; then
-            read -p "[?] ¿Deseas configurar una nueva tarjeta de red? [s/n]: " addnwntcd
-        elif [[ $language == "ENG" ]]; then
-             read -p "[?] Do you want to configure a new network card? [y/n]: " addnwntcd
-        else
-            echo "[#] Idioma no registrado / Laguage not registered."
-            sudo bash "$aune_bifurcation_route/language-registration.sh"
-        fi
-    done
-    if [[ $addnwntcd == "n" || $addnwntcd == "N" ]]; then
-        if [[ $language == "ESP" ]]; then
-            echo "[#] Se ha cancelado la creacion de una nueva tarjeta de red."
-        elif [[ $language == "ENG" ]]; then
-            echo "[#] The creation of a new network card has been cancelled."
-        else
-            echo "[#] The creation of a new network card has been cancelled."
-        fi
-
-    elif [[ $addnwntcd == "" ]]; then
-        if [[ $language == "ESP" ]]; then
-            echo "[#] Se ha dejado el campo vacio."
-        elif [[ $language == "ENG" ]]; then
-            echo "[#] The field has been left empty."
-        else
-            echo "[#] The field has been left empty."
-        fi
-    fi
-}
-
 function aune-backup(){
     # Variables
     backup_dir="autonetplan-backups"
@@ -256,21 +141,75 @@ network:
 EOF"
 }
 
-function aune-networked-secondary(){
-    # Configuracion tajeta secundaria de red
-        if [[ $language == "ESP" ]]; then
-            echo -e "[\e[33m#\e[0m] Configuracion de red secundaria."
-        elif [[ $language == "ESP" ]]; then
-            echo -e "[\e[33m#\e[0m] Secondary network configuration."
+function new-network-card(){
+    if [[ $language == "ESP" ]]; then
+        echo "[#] Configurando una nueva tarjeta de red."
+        read -p "[?] Ingrese la interfaz de red a configurar: " nxtiface
+        echo "[#] Se ha seleccionado a configurar la interfaz '$nxtiface' para la configuracion."
+        # Se añade la linea al final del fichero de configuracion de red netplan
+        echo "$nxtiface:" >> "$network_dir"
+        while [[ $nxtipfigured != "s" || $nxtipfigured != "f" ]]; do
+            read -p "[?] Ingrese el tipo de configuracion deseado [(Estatico) s / f (Dinamico)]: " nxtipfigured
+        done
+        if [[ $nxtipfigured == "s" ]]; then
+            # IP Estatica
+            nxtipfigureddb="no"
+            # Agregar la configuracion estatica
+            echo "dhcp4: $nxtipfigureddb:" >> "$network_dir"
+            # Se continua con las preguntas
+            echo "[#] Se ha selccionado la configuracion estatica."
+            read -p "[?] Ingrese la direccion IP a establecer: " ipconfigurenxt
+            read -p "[?] Ingrese la mascara de red: " maskednxt
+            # Agregar los parametros guardados al fichero
+            echo "addresses: [$ipconfigurenxt/$maskednxt]" >> "$network_dir"
         else
-            echo -e "[\e[33m#\e[0m] Secondary network configuration."
+            # IP Dinamica
+            nxtipfigureddb="true"
+            # Agregar la configuracion dinamica
+            echo "dhcp4: $nxtipfigureddb:" >> "$network_dir"
+            echo "[#] Se ha selccionado la configuracion dinamica."
         fi
-            sudo cat <<EOF >> "$network_dir"
-    $ntinterface:
-      dhcp4: $dhcp4netwconfig
-      addresses: [$ipattachedseccondary/$ntmskattachedseccondary]
-      gateway4: $gatewayattachedseccondary
-EOF
+        read -p "[?] ¿Deseas agregar una puerta de enlace? [s/n]: " prtenlace
+        if [[ $prtenlace == "s" ]]; then
+            read -p "[?] Ingrese la puerta de enlace a agregar: " linkeddoornxt
+            echo "gateway4: $linkeddoornxt" >> "$network_dir"
+        else
+            echo "[#] Se ha denegado el ingreso de la puerta de enlace."
+        fi
+        echo "# Siguiente tarjeta de red" >> "$network_dir"
+        # Aplicar cambios
+        sudo netplan apply
+    else
+        echo "[#] Configuring a new network card."
+        read -p "[?] Enter the network interface to be configured: " nxtiface
+        echo "[#] You have selected to configure the interface '$nxtiface' for the configuration."
+        echo "$nxtiface:" >> "$network_dir"
+        while [[ $nxtipfigured != "s" || $nxtipfigured != "f" ]]; do
+            read -p "[?] Enter the desired configuration type [(Static) s / f (Dynamic)]: " nxtipfigured
+        done
+        if [[ $nxtipfigured == "s" ]]; then
+            nxtipfigureddb="no"
+            echo "dhcp4: $nxtipfigureddb:" >> "$network_dir"
+            echo "[#] The static configuration has been selected."
+            read -p "[?] Enter the IP address to be set: " ipconfigurenxt
+            read -p "[?] Enter the network mask: " maskednxt
+            echo "addresses: [$ipconfigurenxt/$maskednxt]" >> "$network_dir"
+        else
+            nxtipfigureddb="true"
+            echo "dhcp4: $nxtipfigureddb:" >> "$network_dir"
+            echo "[#] The dynamic configuration has been selected."
+        fi
+        read -p "[?] Do you want to add a gateway? [y/n]: " prtenlace
+        if [[ $prtenlace == "y" ]]; then
+            read -p "[?] Enter the gateway to add: " linkeddoornxt
+            echo "gateway4: $linkeddoornxt" >> "$network_dir"
+        else
+            echo "[#] Gateway login has been denied."
+        fi
+        echo "# Next netcard" >> "$network_dir"
+        # Aplicar cambios
+        sudo netplan apply
+    fi
 }
 
 function comment_line_dhcp_true(){
