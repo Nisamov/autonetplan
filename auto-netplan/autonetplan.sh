@@ -230,6 +230,24 @@ EOF"
         # Aplicar cambios
         sudo netplan apply
     fi
+
+    if [[ $language == "ESP" ]]; then
+        read -p "[?] Desea añadir una nueva tarjeta de red? [s/n]: " newtarjred
+        if [[ $newtarjred == "s" ]]; then
+            # Volver a llamar a funcion
+            new-network-card
+        else
+            echo "[#] No se agregara otra tarjeta de red."
+        fi
+    else
+        read -p "[?] Do you want to add a new network card? [y/n]: " newtarjred
+        if [[ $newtarjred == "s" ]]; then
+            # Volver a llamar a funcion
+            new-network-card
+        else
+            echo "[#] No additional network card will be added."
+        fi
+    fi
 }
 
 function comment_line_dhcp_true(){
