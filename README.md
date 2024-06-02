@@ -1,5 +1,8 @@
 <!-- Software creado por Andrés Ruslan Abadías Otal -->
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FNisamov%2Fautonetplan&count_bg=%23979E92&title_bg=%23787070&icon=powershell.svg&icon_color=%23C8C3C3&title=hits&edge_flat=true)](https://github.com/Nisamov/autonetplan)
+![GitHub Lastest Release](https://img.shields.io/github/v/release/Nisamov/autonetplan?style=for-the-badge&logo=github&color=orange)
+![GitHub Release Date](https://img.shields.io/github/release-date/Nisamov/autonetplan?display_date=published_at&style=for-the-badge&logo=github)
+![GitHub Release Size](https://img.shields.io/github/repo-size/Nisamov/autonetplan?style=for-the-badge&logo=github)
+![Github License](https://img.shields.io/badge/build-Apache%202.0-lightgray?style=for-the-badge&logo=github&label=License)
 
 ![Logo principal](public-storage/main.jpg)
 ![Separador](public-storage/separador.jpg)
