@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Por Andres Rulsan Abadias Otal
 
 #Copyright 2024 Andres Rulsan Abadias Otal
