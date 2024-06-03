@@ -1,0 +1,1 @@
+Se ha eliminado la verificacion de ficheros inecistentes
