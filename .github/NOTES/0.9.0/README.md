@@ -1,1 +1,1 @@
-Se ha eliminado la verificacion de ficheros inecistentes
+Se ha eliminado la verificacion de ficheros inexistentes (netplanapply.sh)

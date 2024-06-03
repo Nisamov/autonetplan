@@ -344,17 +344,6 @@ while [[ ! -d "$PROGRAM_FILES/function" ]]; do
         echo -e "[\e[31m#\e[0m] El fichero manual.sh no se ha clonado correctamente."
     fi
 
-    # netplanapply.sh
-    if [[ -f "$PROGRAM_FILES/function/netplanapply.sh" ]]; then
-        if [[ "$language" == "esp" ]]; then
-            echo "[#] El fichero netplanapply.sh clonado correctamente en '$PROGRAM_FILES/function/netplanapply.sh'."
-        elif [[ "$language" == "eng" ]]; then
-            echo "[#] Netplanapply.sh file successfully cloned to '$PROGRAM_FILES/function/netplanapply.sh'."
-        fi
-    else
-        echo -e "[\e[31m#\e[0m] El fichero netplanapply.sh no se ha clonado correctamente."
-    fi
-
     # uninstall.sh
     if [[ -f "$PROGRAM_FILES/function/uninstall.sh" ]]; then
         if [[ "$language" == "esp" ]]; then

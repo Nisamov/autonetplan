@@ -41,6 +41,8 @@ current_version=$(cat "$program_files/program-files/version")
 language=$(cat "$program_files/program-files/language.lg")
 # Auto actualizaciones del programa
 auto_update=$(grep "^autonetplan-update-program" "$program_config" | cut -d "=" -f2)
+# IP a color
+ip_colored=$(grep "^autonetplan-ip-colored" "$program_config" | cut -d "=" -f2)
 # Programas bifurcados del codigo original
 aune_bifurcation_route="/usr/local/sbin/auto-netplan/function"
 
@@ -281,7 +283,17 @@ function show_net_configuration(){
         else
             echo "[#] The network revision has been requested, showing..."
         fi
-        sudo ip a
+        if [[ $ip_colored == "true" ]];then
+            sudo ip -c a
+        elif [[ $ip_colored == "false" ]];then
+            sudo ip a
+        else
+            if [[ $language == "ESP" ]]; then
+                echo -e "[\e[31m#\e[0m] No se ha detectado la configuracion 'autonetplan-ip-colored'."
+            else
+                echo -e "[\e[31m#\e[0m] No 'autonetplan-ip-colored' configuration was detected."
+            fi
+        fi
     else
         # Se ha cancelado la vista previa
         if [[ $language == "ESP" ]]; then
