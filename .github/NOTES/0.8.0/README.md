@@ -4,7 +4,6 @@
 
 Se utiliza [ShellCheck](https://github.com/koalaman/shellcheck) para revisar la integridad de los scripts
 Se ha completado la traduccion al ingles
-Se ha corregido la pagina web (nav:top)
 
 ## Correcciones
 
@@ -18,3 +17,4 @@ Corrección del parámetro '-ntcd':
 Limpieza de código:
 - Se han eliminado líneas de código innecesarias y no utilizadas para mejorar la legibilidad y mantenibilidad del código.
 - Se han eliminado funciones mal programadas, optimizando así el rendimiento general del sistema.
+- Se ha corregido la pagina web (nav:top)
