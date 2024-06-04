@@ -572,7 +572,7 @@ if [[ $autone == "ok" && $autoconf == "ok" && $autodirfilesearch == "ok" ]]; the
 elif [[ $autone == "ok" ]]; then
     # Si este funciona al menos, enviar aviso de ok
     if [[ "$language" == "esp" ]]; then
-        echo -e "[\e[32m#\e[0m] El fichero autonetplan se ha econtrado en la ruta correcta, puede ser llamado mediante 'autoentplan <parametros>'."
+        echo -e "[\e[32m#\e[0m] El fichero autonetplan se ha encontrado en la ruta correcta, puede ser llamado mediante 'autoentplan <parametros>'."
     else
         echo -e "[\e[32m#\e[0m] The autonetplan file has been found in the correct path, it can be called by 'autoentplan <parameters>'."
     fi
