@@ -8,7 +8,7 @@ language=$(cat "$program_files/program-files/language.lg")
 # Verificar codigo de salida del software AutoNetplan
 
 # Llamar al software
-sudo bash "/usr/local/sbin/autonetplan"
+sudo bash "/usr/local/sbin/autonetplan" $1 $2 $3
 
 # Revisar codigo de salida
 # Output valor de salida
