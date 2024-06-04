@@ -18,6 +18,12 @@ if [ $? -eq 0 ]; then
     else
         echo -e "[\e[32m#\e[0m] Execution successfully completed."
     fi
+elif [ $? -eq 1 ]; then
+    if [[ $language == "ESP" ]]; then
+        echo -e "[\e[31m#\e[0m] Error de valores ingresados."
+    else
+        echo -e "[\e[31m#\e[0m] Entry of erroneous values."
+    fi
 elif [ $? -eq 2 ]; then
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[31m#\e[0m] Configuracion deshabilitada o inexistente."
