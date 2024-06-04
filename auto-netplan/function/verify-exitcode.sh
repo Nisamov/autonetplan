@@ -35,30 +35,30 @@ if [ $? -eq 0 ]; then
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[32m#\e[0m] Ejecucion finalizada correctamente."
         echo ""
-        echo -e "[\e[32m#\e[0m] Codigo de salida '$?'."
+        echo "[#] Codigo de salida '0'."
     else
         echo -e "[\e[32m#\e[0m] Execution successfully completed."
         echo ""
-        echo -e "[\e[32m#\e[0m] Exit code '$?'."
+        echo "[#] Exit code '0'."
     fi
 elif [ $? -eq 1 ]; then
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[31m#\e[0m] Error de valores ingresados."
         echo ""
-        echo -e "[\e[32m#\e[0m] Codigo de salida '$?'."
+        echo "[#] Codigo de salida '1'."
     else
         echo -e "[\e[31m#\e[0m] Entry of erroneous values."
         echo ""
-        echo -e "[\e[32m#\e[0m] Exit code '$?'."
+        echo "[#] Exit code '1'."
     fi
 elif [ $? -eq 2 ]; then
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[31m#\e[0m] Configuracion deshabilitada o inexistente."
         echo ""
-        echo -e "[\e[32m#\e[0m] Codigo de salida '$?'."
+        echo "[#] Codigo de salida '2'."
     else
         echo -e "[\e[31m#\e[0m] Disabled or non-existent configuration."
         echo ""
-        echo -e "[\e[32m#\e[0m] Exit code '$?'."
+        echo "[#] Exit code '2'."
     fi
 fi
