@@ -659,6 +659,9 @@ elif [[ $1 == "-ntf" || $1 == "--netfileenabled" ]]; then
 elif [[ $1 == "-clg" || $1 == "--changelanguage" ]]; then
     # Llamar a funcion de cambiar idioma
     sudo bash "$aune_bifurcation_route/change-language.sh"
+elif [[ $1 == "-excd" || $1 == "--exitcode" ]]; then
+    # Llamar al script de revision de salida
+    sudo bash "$aune_bifurcation_route/verify-exitcode.sh"
 elif [[ "$@" == "" ]]; then
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[31m#\e[0m] No se ha ingresado ningun valor, ingrese uno de los siguientes:"
@@ -680,6 +683,7 @@ elif [[ "$@" == "" ]]; then
     echo "-i     | --integrity"
     echo "-ntf   | --netfileenabled"
     echo "-clg   | --changelanguage"
+    echo "-excd  | --exitocde"
     if [[ $language == "ESP" ]]; then
         echo "[#] Para mas informacion, usa el comando autonetplan -h."
     elif [[ $language == "ENG" ]]; then
@@ -693,15 +697,15 @@ else
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[31m#\e[0m] Valor ingresado: $1 "
         echo -e "[\e[31m#\e[0m] El valor ingresado no es compatible con ninguno de los siguientes valores:"
-        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'"
+        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf', '-excd'"
     elif [[ $language == "ENG" ]]; then
         echo -e "[\e[31m#\e[0m] Entered value: $1 "
         echo -e "[\e[31m#\e[0m] Entered value is not compatible with none of the following values:"
-        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'"
+        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf', '-excd'"
     else
         echo -e "[\e[31m#\e[0m] Entered value: $1 "
         echo -e "[\e[31m#\e[0m] Entered value is not compatible with none of the following values:"
-        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf'"
+        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf', '-excd'"
     fi
     # Error por ingreso de valores erroneos
     exit 1

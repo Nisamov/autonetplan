@@ -14,6 +14,7 @@ Principales valores '$.1':
     -i     | --integrity        :: Mostrar integridad de los ficheros y directorios del programa
     -ntf   | --netfileenabled   :: Mostrar ruta de fichero de red establecido para la configuracion
     -clg   | --changelanguage   :: Cambiar el idioma definido en la instalacion
+    -excd  | --exitcode         :: Ejecucion y muestra de codigo de salida segun diferentes parametros
 
 Valores segunda categoría '$.2'
     -m     | --manual           :: Configuracion de red manual
