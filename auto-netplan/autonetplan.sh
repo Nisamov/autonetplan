@@ -706,18 +706,3 @@ else
     # Error por ingreso de valores erroneos
     exit 1
 fi
-
-# Output valor de salida
-if [ $? -eq 0 ]; then
-    if [[ $language == "ESP" ]]; then
-        echo -e "[\e[32m#\e[0m] Ejecucion finalizada correctamente."
-    else
-        echo -e "[\e[32m#\e[0m] Execution successfully completed."
-    fi
-elif [ $? -eq 1 ]; then
-    if [[ $language == "ESP" ]]; then
-        echo -e "[\e[31m#\e[0m] Ingreso de valores erroneos."
-    else
-        echo -e "[\e[31m#\e[0m] Entry of erroneous values."
-    fi
-fi

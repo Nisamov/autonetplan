@@ -2,6 +2,7 @@
 
 ## Contenido Agregado
 Configuracion "autonetplan-ip-colored" que permite enviar la IP a color, viene por defecto deshabilitada
+Creacion de script verificacion de codigos de salida
 
 ## Correcciones
 Se ha eliminado la verificacion de ficheros inexistentes (netplanapply.sh)

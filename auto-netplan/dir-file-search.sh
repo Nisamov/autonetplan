@@ -252,18 +252,3 @@ if [[ -f $program_config ]]; then
         exit 2
     fi
 fi
-
-# Output valor de salida
-if [ $? -eq 0 ]; then
-    if [[ $language == "ESP" ]]; then
-        echo -e "[\e[32m#\e[0m] Ejecucion finalizada correctamente."
-    else
-        echo -e "[\e[32m#\e[0m] Execution successfully completed."
-    fi
-elif [ $? -eq 2 ]; then
-    if [[ $language == "ESP" ]]; then
-        echo -e "[\e[31m#\e[0m] Configuracion deshabilitada o inexistente."
-    else
-        echo -e "[\e[31m#\e[0m] Disabled or non-existent configuration."
-    fi
-fi
