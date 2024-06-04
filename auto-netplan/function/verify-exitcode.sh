@@ -18,7 +18,7 @@ fi
 
 if [[ $language == "ESP" ]]; then
     read -p "[#] Ingrese primer parametro: " firstparam
-    read -p "[#] Ingrese segundo parametro: " secondtparam
+    read -p "[#] Ingrese segundo parametro: " secondparam
     read -p "[#] Ingrese tercer parametro: " thirdparam
 else
     read -p "[#] Enter first parameter: " firstparam
