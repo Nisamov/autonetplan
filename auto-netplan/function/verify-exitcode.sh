@@ -34,19 +34,31 @@ sudo bash "/usr/local/sbin/autonetplan" $firstparam $secondtparam $thirdparam
 if [ $? -eq 0 ]; then
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[32m#\e[0m] Ejecucion finalizada correctamente."
+        echo ""
+        echo -e "[\e[32m#\e[0m] Codigo de salida '$?'."
     else
         echo -e "[\e[32m#\e[0m] Execution successfully completed."
+        echo ""
+        echo -e "[\e[32m#\e[0m] Exit code '$?'."
     fi
 elif [ $? -eq 1 ]; then
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[31m#\e[0m] Error de valores ingresados."
+        echo ""
+        echo -e "[\e[32m#\e[0m] Codigo de salida '$?'."
     else
         echo -e "[\e[31m#\e[0m] Entry of erroneous values."
+        echo ""
+        echo -e "[\e[32m#\e[0m] Exit code '$?'."
     fi
 elif [ $? -eq 2 ]; then
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[31m#\e[0m] Configuracion deshabilitada o inexistente."
+        echo ""
+        echo -e "[\e[32m#\e[0m] Codigo de salida '$?'."
     else
         echo -e "[\e[31m#\e[0m] Disabled or non-existent configuration."
+        echo ""
+        echo -e "[\e[32m#\e[0m] Exit code '$?'."
     fi
 fi
