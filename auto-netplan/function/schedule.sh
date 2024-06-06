@@ -50,7 +50,7 @@ function changecrontime(){
             read -p "[?] his is the configuration you have entered '$confsetup', do you want to proceed? [y/n]: " conformed
         fi
 
-        while [[ $conformed != "s" || $conformed != "y" ]]; do
+        while [[ $conformed != "s" && $conformed != "y" ]]; do
             if [[ $language == "ESP" ]]; then
                 echo "[#] Ejemplo ingreso de parametros: 0 7 * * * (Ejecutar el script todos los días a las 7:00 AM)"
                 read -p "[#] Ingrese los parametros a ingresar, separados por 1 espacio: " confsetup
@@ -91,6 +91,8 @@ if [[ $1 == "backup" ]]; then
     else
         echo "[#] 'Backup' mode selected."
     fi
+    # Llamar a la funcion changecrontime
+    changecrontime
 elif [[ $1 == "update" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Se ha seleccionado 'update' como actividad programada."
