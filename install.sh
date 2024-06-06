@@ -429,17 +429,17 @@ else
 fi
 
 # Verificar si la ruta de schedules esta creada
-if [[ -d "$PROGRAM_FILES/progra-file/autonetplan-schedule" ]]; then
+if [[ -d "$PROGRAM_FILES/program-files/autonetplan-schedule" ]]; then
     if [[ "$language" == "esp" ]]; then
         echo "[#] Ruta de procesos existente."
     else
         echo "[#] Existing process route."
     fi
 else
-    while [[ ! -d "$PROGRAM_FILES/progra-file/autonetplan-schedule" ]]; do
+    while [[ ! -d "$PROGRAM_FILES/program-files/autonetplan-schedule" ]]; do
         # Crear ruta
-        sudo mkdir "$PROGRAM_FILES/progra-file/autonetplan-schedule"
-        if [[ -d "$PROGRAM_FILES/progra-file/autonetplan-schedule" ]]; then
+        sudo mkdir "$PROGRAM_FILES/program-files/autonetplan-schedule"
+        if [[ -d "$PROGRAM_FILES/program-files/autonetplan-schedule" ]]; then
             if [[ "$language" == "esp" ]]; then
                 echo "[#] Ruta de procesos creada exitosamente."
             else
