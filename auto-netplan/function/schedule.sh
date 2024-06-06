@@ -96,8 +96,11 @@ elif [[ $2 == "update" ]]; then
         echo "[#] Se ha seleccionado 'update' como actividad programada."
         echo "[#] El tiempo por defecto establecido para cron es: $opcionacdt."
     else
-
+        echo "[#] 'update' has been selected as a scheduled activity."
+        echo "[#] The default time set for cron is: $opcionacdt."
     fi
+    # Llamar a la funcion changecrontime
+    changecrontime
 fi
 
 
