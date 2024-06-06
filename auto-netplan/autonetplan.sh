@@ -662,6 +662,16 @@ elif [[ $1 == "-clg" || $1 == "--changelanguage" ]]; then
 elif [[ $1 == "-excd" || $1 == "--exitcode" ]]; then
     # Llamar al script de revision de salida
     sudo bash "$aune_bifurcation_route/verify-exitcode.sh"
+elif [[ $1 == "-s" || $1 == "--schedule" ]]; then
+    # Programar acciones con cron
+    # Opciones:
+    # backup, update
+    # Backup permitira realizar copias constantes cada x tiempo
+    # Update realizara busquedas para actualizar el software cada x tiempo
+    # Ejemplo de uso:
+    # --schedule backup 2024-06-10 02:00
+    # --schedule update 2024-06-10 02:00
+
 elif [[ "$@" == "" ]]; then
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[31m#\e[0m] No se ha ingresado ningun valor, ingrese uno de los siguientes:"

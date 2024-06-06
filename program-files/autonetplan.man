@@ -29,7 +29,8 @@ Principales parámetros '$.1':
     -ntf   | --netfileenabled   :: Mostrar ruta de fichero de red establecido para la configuracion
     -clg   | --changelanguage   :: Cambiar el idioma definido en la instalacion
     -excd  | --exitcode         :: Ejecucion y muestra de codigo de salida segun diferentes parametros
-
+    -s     | --schedule         :: Programar acciones con cron
+    
 Parámetros segunda categoría '$.2'
     -m     | --manual           :: Configuracion de red manual
     -a     | --automatic        :: Configuracion de red automatica
