@@ -83,7 +83,7 @@ function changecrontime(){
 }
 
 
-if [[ $2 == "backup" ]]; then
+if [[ $1 == "backup" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Se ha seleccionado 'backup' como actividad programada."
         # Leer fichero de configuracion para saber cada cuanto tiene que realizar estas actividades
@@ -91,7 +91,7 @@ if [[ $2 == "backup" ]]; then
     else
         echo "[#] 'Backup' mode selected."
     fi
-elif [[ $2 == "update" ]]; then
+elif [[ $1 == "update" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Se ha seleccionado 'update' como actividad programada."
         echo "[#] El tiempo por defecto establecido para cron es: $opcionacdt."
