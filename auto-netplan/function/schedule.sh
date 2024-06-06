@@ -27,7 +27,7 @@ if [[ $2 == "backup" ]]; then
         echo "[#] Se ha seleccionado 'backup' como actividad programada."
         # Leer fichero de configuracion para saber cada cuanto tiene que realizar estas actividades
     else
-
+        echo "[#] 'Backup' mode selected."
     fi
 elif [[ $2 == "update" ]]; then
 

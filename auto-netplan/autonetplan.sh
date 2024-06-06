@@ -29,20 +29,32 @@ work_dir="/usr/local/sbin"
 program_files="/usr/local/sbin/auto-netplan"
 # Fichero autonetplan del directorio autoneconf renombrado como autonetplan
 program_config="/etc/autonetplan/autonetplan.conf"
-# Revisar dentro del fichero la ruta de configuracion de red
-network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -d "=" -f2)
 # Ruta de programa revision integridad de autonetplan
 integrity_program="/usr/local/sbin/auto-netplan/program-files/dir-file-search.sh"
 # Ruta de ultima version
 current_version=$(cat "$program_files/program-files/version")
 # Idioma del programa
 language=$(cat "$program_files/program-files/language.lg")
+# Programas bifurcados del codigo original
+aune_bifurcation_route="/usr/local/sbin/auto-netplan/function"
+
+
+# Variables almacenamiento de datos del fichero de configuracion
+
+# Revisar dentro del fichero la ruta de configuracion de red
+network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -d "=" -f2)
 # Auto actualizaciones del programa
 auto_update=$(grep "^autonetplan-update-program" "$program_config" | cut -d "=" -f2)
 # IP a color
 ip_colored=$(grep "^autonetplan-ip-colored" "$program_config" | cut -d "=" -f2)
-# Programas bifurcados del codigo original
-aune_bifurcation_route="/usr/local/sbin/auto-netplan/function"
+# Actualizar paquetes
+opcionaau=$(grep "^autonetplan-automate-update" "$program_config" | cut -d "=" -f2)
+# Configuracion de schedule - tiempo configuracion de tareas automaticas
+opcionacdt=$(grep "^autonetplan-cron-default-time" "$program_config" | cut -d "=" -f2)
+# Revisar en configuracion si autonetplan-formatted-on-call es true o false
+opcionafoc=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
+# Revisar en configuracion si autonetplan-automate-backup es true o false
+opcionaab=$(grep "^autonetplan-automate-backup" "$program_config" | cut -d "=" -f2)
 
 function aune-backup(){
     # Variables
@@ -324,10 +336,15 @@ if [[ $1 == "-d" || $1 == "--debug" ]]; then
     echo -e "[\e[33mDEBUG\e[0m] network_dir=$network_dir"
     echo -e "[\e[33mDEBUG\e[0m] integrity_program=$integrity_program"
     echo -e "[\e[33mDEBUG\e[0m] current_version=$current_version"
+    echo -e "[\e[33mDEBUG\e[0m] formated_on_call=$opcionafoc"
     echo -e "[\e[33mDEBUG\e[0m] language=$language"
     echo -e "[\e[33mDEBUG\e[0m] auto_update=$auto_update"
+    echo -e "[\e[33mDEBUG\e[0m] auto_apt_update=$opcionaau"
     echo -e "[\e[33mDEBUG\e[0m] aune_bifurcation_route=$aune_bifurcation_route"
     echo -e "[\e[33mDEBUG\e[0m] program_config=$program_config"
+    echo -e "[\e[33mDEBUG\e[0m] colored_ip=$ip_colored"
+    echo -e "[\e[33mDEBUG\e[0m] cron_time_conf=$opcionacdt"
+    echo -e "[\e[33mDEBUG\e[0m] auto_backup=$opcionaab"
 
 elif [[ $1 == "-h" || $1 == "--help" ]]; then
     if [[ $auto_update == "true" ]]; then
@@ -391,8 +408,6 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         sudo bash "$aune_bifurcation_route/auto-update.sh"
     fi
     # Revisar en configuracion si autonetplan-automate-update es true o false
-    # Actualizar paquetes
-    opcionaau=$(grep "^autonetplan-automate-update" "$program_config" | cut -d "=" -f2)
     # Si es true - realizar descarga de paquetes
     if [[ "$opcionaau" == "true" ]]; then
         # Se descargar paquetes
@@ -430,8 +445,6 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
         sudo nano "$network_dir"
     elif [[ $2 == "-a" || $2 == "--automatic" ]]; then
         # Configuracion automatica
-        # Revisar en configuracion si autonetplan-formatted-on-call es true o false
-        opcionafoc=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=" -f2)
         # Comprobar si la opcion esta establecida en true o false
         if [[ "$opcionafoc" == "true" ]]; then
             # Se limpia el contenido de la variable $network_dir
@@ -569,8 +582,6 @@ elif [[ $1 == "-x" || $1 == "--execute" ]]; then
                 # Llamar a la funcion show_net_configuration
                 show_net_configuration
                 # Realizar copia de seguridad si en el fichero de configuracion esta indicado como true
-                # Revisar en configuracion si autonetplan-automate-update es true o false
-                opcionaab=$(grep "^autonetplan-automate-backup" "$program_config" | cut -d "=" -f2)
                 # Si es true - realizar copia de seguridad
                 if [[ "$opcionaab" == "true" ]]; then
                     # Llamar a la funcion aune-backup
@@ -671,9 +682,6 @@ elif [[ $1 == "-s" || $1 == "--schedule" ]]; then
     # Ejemplo de uso:
     # --schedule backup 2024-06-10 02:00
     # --schedule update 2024-06-10 02:00
-    opcionacdt=$(grep "^autonetplan-cron-default-time" "$program_config" | cut -d "=" -f2)
-    # Mostrar contenido almacenado en variable
-    echo "$opcionacdt"
     # Llamar al script de schedules - $2: opcion | $3: fecha | $4: hora
     sudo bash "$aune_bifurcation_route/schedule.sh" $2 $3 $4 $5 $6
 
