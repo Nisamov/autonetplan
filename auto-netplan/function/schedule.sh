@@ -21,7 +21,7 @@ program_files="/usr/local/sbin/auto-netplan"
 # Idioma del programa
 language=$(cat "$program_files/program-files/language.lg")
 # Ruta cron
-cronrute="/tmp/crontab.fJIfht/crontab"
+cronrute="/etc/crontab"
 # Fichero autonetplan del directorio autoneconf renombrado como autonetplan
 program_config="/etc/autonetplan/autonetplan.conf"
 # Configuracion de schedule - tiempo configuracion de tareas automaticas
