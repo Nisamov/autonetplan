@@ -671,6 +671,11 @@ elif [[ $1 == "-s" || $1 == "--schedule" ]]; then
     # Ejemplo de uso:
     # --schedule backup 2024-06-10 02:00
     # --schedule update 2024-06-10 02:00
+    opcionacdt=$(grep "^autonetplan-cron-default-time" "$program_config" | cut -d "=" -f2)
+    # Mostrar contenido almacenado en variable
+    echo "$opcionacdt"
+    # Llamar al script de schedules - $2: opcion | $3: fecha | $4: hora
+    sudo bash "$aune_bifurcation_route/schedule.sh" $2 $3 $4 $5 $6
 
 elif [[ "$@" == "" ]]; then
     if [[ $language == "ESP" ]]; then

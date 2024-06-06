@@ -396,34 +396,67 @@ else
         echo -e "[\e[31m#\e[0m] The file dir-file-search.sh does not exist, creating..."
     fi
     # Si el archivo no existe, intentar copiarlo y renombrarlo
-    sudo cp "$SCRIPT_DIR/auto-netplan/dir-file-search.sh" "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
-    if [[ -f "$INSTALL_DIR/autonetplan" ]]; then
-        # Indicar existencia de fichero
-        if [[ "$language" == "esp" ]]; then
-            echo "[#] El fichero de integridad ha sido creado existosamente"
+    while [[ ! -f "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh" ]]; do
+        sudo cp "$SCRIPT_DIR/auto-netplan/dir-file-search.sh" "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
+        if [[ -f "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh" ]]; then
+            # Indicar existencia de fichero
+            if [[ "$language" == "esp" ]]; then
+                echo "[#] El fichero de integridad ha sido creado existosamente"
+            else
+                echo "[#] The integrity file has been successfully created."
+            fi
+            # Dar permisos de ejecución al script de integridad
+            sudo chmod +x "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
+            # Mensaje tras otorgar correctamente los permisos
+            if [[ "$language" == "esp" ]]; then
+                echo "[#] Permisos necesarios otorgados al fichero de integridad correctamente"
+            else
+                echo "[#] Necessary permissions granted to the integrity file successfully".
+            fi
         else
-            echo "[#] The integrity file has been successfully created."
+            # Mensaje si la copia no se realizó correctamente
+            if [[ "$language" == "esp" ]]; then
+                echo -e "[\e[31m#\e[0m] No se ha copiado el script de integridad correctamente, intentando de nuevo..."
+                # Espera 1 segundo antes de intentar de nuevo
+                sleep 1
+            else
+                echo -e "[\e[31m#\e[0m] Failed to copy integrity script successfully, try again..."
+                # wait 1 second before trying again
+                sleep 1
+            fi
         fi
-        # Dar permisos de ejecución al script de integridad
-        sudo chmod +x "$INSTALL_DIR/auto-netplan/program-files/dir-file-search.sh"
-        # Mensaje tras otorgar correctamente los permisos
-        if [[ "$language" == "esp" ]]; then
-            echo "[#] Permisos necesarios otorgados al fichero de integridad correctamente"
-        else
-            echo "[#] Necessary permissions granted to the integrity file successfully".
-        fi
+    done
+fi
+
+# Verificar si la ruta de schedules esta creada
+if [[ -d "$PROGRAM_FILES/progra-file/autonetplan-schedule" ]]; then
+    if [[ "$language" == "esp" ]]; then
+        echo "[#] Ruta de procesos existente."
     else
-        # Mensaje si la copia no se realizó correctamente
-        if [[ "$language" == "esp" ]]; then
-            echo -e "[\e[31m#\e[0m] No se ha copiado el script de integridad correctamente, intentando de nuevo..."
-            # Espera 1 segundo antes de intentar de nuevo
-            sleep 1
-        else
-            echo -e "[\e[31m#\e[0m] Failed to copy integrity script successfully, try again..."
-            # wait 1 second before trying again
-            sleep 1
-        fi
+        echo "[#] Existing process route."
     fi
+else
+    while [[ ! -d "$PROGRAM_FILES/progra-file/autonetplan-schedule" ]]; do
+        # Crear ruta
+        sudo mkdir "$PROGRAM_FILES/progra-file/autonetplan-schedule"
+        if [[ -d "$PROGRAM_FILES/progra-file/autonetplan-schedule" ]]; then
+            if [[ "$language" == "esp" ]]; then
+                echo "[#] Ruta de procesos creada exitosamente."
+            else
+                echo "[#] Process route successfully created."
+            fi
+        else
+            if [[ "$language" == "esp" ]]; then
+                echo -e "[\e[31m#\e[0m] Ruta de procesos inexistente, creando..."
+                # wait 1 second before trying again
+                sleep 1
+            else
+                echo -e "[\e[31m#\e[0m] Nonexistent process route, creating..."
+                # wait 1 second before trying again
+                sleep 1
+            fi
+        fi
+    done
 fi
 
 # Funcion pausa
