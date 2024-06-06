@@ -40,7 +40,7 @@ function changecrontime(){
             echo "[#] Ejemplo ingreso de parametros: 0 7 * * * (Ejecutar el script todos los días a las 7:00 AM)"
             read -p "[#] Ingrese los parametros a ingresar, separados por 1 espacio: " confsetup
         else
-            echo "[#] Example of parameter input: 0 7 * * * * (Execute the script every day at 7:00 AM)"
+            echo "[#] Example of parameter input: 0 7 * * * (Execute the script every day at 7:00 AM)"
             read -p "[#] Enter the parameters to be entered, separated by 1 space: " confsetup
         fi
 
@@ -55,7 +55,7 @@ function changecrontime(){
                 echo "[#] Ejemplo ingreso de parametros: 0 7 * * * (Ejecutar el script todos los días a las 7:00 AM)"
                 read -p "[#] Ingrese los parametros a ingresar, separados por 1 espacio: " confsetup
             else
-                echo "[#] Example of parameter input: 0 7 * * * * (Execute the script every day at 7:00 AM)"
+                echo "[#] Example of parameter input: 0 7 * * * (Execute the script every day at 7:00 AM)"
                 read -p "[#] Enter the parameters to be entered, separated by 1 space: " confsetup
             fi
 
@@ -106,6 +106,8 @@ elif [[ $1 == "update" ]]; then
 fi
 
 
-sudo bash -c "cat <<EOF >> '$cronrute'
+# NO TOCAR!!!
 
-EOF"
+#sudo bash -c "cat <<EOF >> '$cronrute'
+#
+#EOF"
