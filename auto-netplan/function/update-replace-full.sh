@@ -141,6 +141,21 @@ if [[ -f "/usr/local/sbin/autonetplan" ]]; then
     sudo cp "$nwvsn/auto-netplan/autonetplan.sh" "/usr/local/sbin/autonetplan"
     # Otorgar permisos
     sudo chmod 777 "/usr/local/sbin/autonetplan"
+    # Intentar otorgar permisos
+    if sudo chmod 777 "/usr/local/sbin/autonetplan"; then
+        if [[ $language == "ESP" ]]; then
+            echo "[#] Permisos aplicados correctamente."
+        else
+            echo "[#] Permits applied correctly."
+        fi
+    else
+        if [[ $language == "ESP" ]]; then
+            echo "[#] Error al aplicar permisos."
+        else
+            echo "[#] Error when applying permissions."
+        fi
+        exit 1
+    fi
 fi
 
 # Finalizacion de actualizacion
