@@ -138,9 +138,9 @@ if [[ -f "/usr/local/sbin/autonetplan" ]]; then
     # Eliminar fichero local
     sudo rm "/usr/local/sbin/autonetplan"
     # Copiar fichero descargado a ruta indicada
-    sudo cp "$nwvsn/auto-netplan/autonetplan.sh" "/usr/local/sbin/autonetplan.sh"
-    # Renombrar fichero
-    sudo mv "/usr/local/sbin/autonetplan.sh" "/usr/local/sbin/autonetplan"
+    sudo cp "$nwvsn/auto-netplan/autonetplan.sh" "/usr/local/sbin/autonetplan"
+    # Otorgar permisos
+    sudo chmod 777 "/usr/local/sbin/autonetplan"
 fi
 
 # Finalizacion de actualizacion
