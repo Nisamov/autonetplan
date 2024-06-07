@@ -68,5 +68,8 @@ while [[ ! -d "$temp_cloned" ]]; do
     fi
 done
 
+# Aplicar permisos
+sudo chmod -R 755 "$temp_cloned"
+
 # Al sustituir ficheros, se borraran las configuraciones, regresando a las estandar
 sudo rm -rf "/usr/local/sbin/auto-netplan/temp"
