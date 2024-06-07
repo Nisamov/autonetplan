@@ -27,6 +27,11 @@ program_config="/etc/autonetplan/autonetplan.conf"
 # Configuracion de schedule - tiempo configuracion de tareas automaticas
 opcionacdt=$(grep "^autonetplan-cron-default-time" "$program_config" | cut -d "=" -f2)
 
+
+# Backup
+backup-file="/usr/local/sbin/auto-netplan/function/backup.sh"
+update-file="/usr/local/sbin/auto-netplan/program-files/auneupdate.sh"
+
 function changecrontime(){
     # Cambiar configuracion de cron
     if [[ $language == "ESP" ]]; then
@@ -83,7 +88,7 @@ function changecrontime(){
 }
 
 
-if [[ $1 == "backup" ]]; then
+if [[ $1 == "-b" || $1 == "--backup" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Se ha seleccionado 'backup' como actividad programada."
         # Leer fichero de configuracion para saber cada cuanto tiene que realizar estas actividades
@@ -93,7 +98,15 @@ if [[ $1 == "backup" ]]; then
     fi
     # Llamar a la funcion changecrontime
     changecrontime
-elif [[ $1 == "update" ]]; then
+
+    # Cambiar contenido "autonetplan-cron-default-time" por los parametros ingresados (reemplazar):
+    # autonetplan-cron-default-time=$confsetup $backup-file
+    sudo bash -c "cat <<EOF >> '$cronrute'
+
+EOF"
+
+
+elif [[ $1 == "-u" || $1 == "--update"]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Se ha seleccionado 'update' como actividad programada."
         echo "[#] El tiempo por defecto establecido para cron es: $opcionacdt."
@@ -104,10 +117,3 @@ elif [[ $1 == "update" ]]; then
     # Llamar a la funcion changecrontime
     changecrontime
 fi
-
-
-# NO TOCAR!!!
-
-#sudo bash -c "cat <<EOF >> '$cronrute'
-#
-#EOF"
