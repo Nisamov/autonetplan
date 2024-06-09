@@ -76,9 +76,14 @@ function changecrontime(){
                 echo "[#] Configuring configuration file..."
             fi
             # Cambiar contenido de $opcionacdt por el definido previamente
-            # Usar sed para buscar y reemplazar la línea
-            sed -i "s/^autonetplan-cron-default-time=.*/$confsetup/" "$program_config"
-
+            # Usar sed para buscar y reemplazar la línea segun la opcion elegida
+            if [[ $1 == "-b" || $1 == "--backup" ]]; then
+                sed -i "s/^autonetplan-cron-default-time=.*/$confsetup/ $backup_file" "$program_config"
+            elif [[ $1 == "-u" || $1 == "--update" ]]; then
+                sed -i "s/^autonetplan-cron-default-time=.*/$confsetup/ $update_file" "$program_config"
+            else
+                sed -i "s/^autonetplan-cron-default-time=.*/$confsetup/" "$program_config"
+            fi
 
     # Si no se desea cambiar la configuracion establecido en el .conf
     else
@@ -101,13 +106,6 @@ if [[ $1 == "-b" || $1 == "--backup" ]]; then
     fi
     # Llamar a la funcion changecrontime
     changecrontime
-
-    # Cambiar contenido "autonetplan-cron-default-time" por los parametros ingresados (reemplazar):
-    # autonetplan-cron-default-time=$confsetup $backup-file
-    sudo bash -c "cat <<EOF >> '$cronrute'
-
-EOF"
-
 
 elif [[ $1 == "-u" || $1 == "--update" ]]; then
     if [[ $language == "ESP" ]]; then
