@@ -109,7 +109,7 @@ if [[ $1 == "-b" || $1 == "--backup" ]]; then
 EOF"
 
 
-elif [[ $1 == "-u" || $1 == "--update"]]; then
+elif [[ $1 == "-u" || $1 == "--update" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Se ha seleccionado 'update' como actividad programada."
         echo "[#] El tiempo por defecto establecido para cron es: $opcionacdt."
