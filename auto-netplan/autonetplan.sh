@@ -56,8 +56,6 @@ opcionafoc=$(grep "^autonetplan-formatted-on-call" "$program_config" | cut -d "=
 # Revisar en configuracion si autonetplan-automate-backup es true o false
 opcionaab=$(grep "^autonetplan-automate-backup" "$program_config" | cut -d "=" -f2)
 
-function aune-backup(){
-
 function aune-networked(){
     # Configuracion de red por autonetplan
     if [[ $language == "ESP" ]]; then
