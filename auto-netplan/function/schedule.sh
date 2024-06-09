@@ -76,6 +76,9 @@ function changecrontime(){
                 echo "[#] Configuring configuration file..."
             fi
             # Cambiar contenido de $opcionacdt por el definido previamente
+            # Usar sed para buscar y reemplazar la línea
+            sed -i "s/^autonetplan-cron-default-time=.*/$confsetup/" "$program_config"
+
 
     # Si no se desea cambiar la configuracion establecido en el .conf
     else
