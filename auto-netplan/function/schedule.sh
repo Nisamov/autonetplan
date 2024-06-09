@@ -118,3 +118,11 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
     # Llamar a la funcion changecrontime
     changecrontime
 fi
+
+
+
+## Seccion de prueba para cron
+
+#sudo bash -c "cat <<EOF >> '$cronrute'
+#
+#EOF"
