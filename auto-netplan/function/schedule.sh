@@ -29,8 +29,8 @@ opcionacdt=$(grep "^autonetplan-cron-default-time" "$program_config" | cut -d "=
 
 
 # Backup
-backup-file="/usr/local/sbin/auto-netplan/function/backup.sh"
-update-file="/usr/local/sbin/auto-netplan/program-files/auneupdate.sh"
+backup_file="/usr/local/sbin/auto-netplan/function/backup.sh"
+update_file="/usr/local/sbin/auto-netplan/program-files/auneupdate.sh"
 
 function changecrontime(){
     # Cambiar configuracion de cron
