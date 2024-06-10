@@ -3,7 +3,7 @@
 ## Contenido Agregado
 Configuracion "autonetplan-ip-colored" que permite enviar la IP a color, viene por defecto deshabilitada
 Creacion de script verificacion de codigos de salida
-Nuevo parametro "--schedule", permite programar tareras
+Nuevo parametro "--schedule", permite programar tareas
 Ejemplo de correcto funcionamiento en cron y temporizadores
 
 ## Correcciones

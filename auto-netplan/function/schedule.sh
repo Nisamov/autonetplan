@@ -33,8 +33,23 @@ backup_file="/usr/local/sbin/auto-netplan/function/backup.sh"
 update_file="/usr/local/sbin/auto-netplan/program-files/auneupdate.sh"
 
 
-
-
+function manualeditionconf(){
+    if [[ $language == "ESP" ]]; then
+        read -p "[?] ¿Desea editar la configuracion establecida? [s/n]: " confmancambio
+        if [[ $confmancambio == "s" || $confmancambio == "S" ]]; then
+            sudo nano "$program_config"   
+        else
+            echo "[#] Se ha denegado la edicion."
+        fi
+    else
+        read -p "[?] You want to edit the configuration set? [y/n]: " confmancambio
+        if [[ $confmancambio == "y" || $confmancambio == "Y" ]]; then
+            sudo nano "$program_config"
+        else
+            echo "[#] The edition has been denied."
+        fi
+    fi
+}
 
 if [[ $1 == "-b" || $1 == "--backup" ]]; then
     if [[ $language == "ESP" ]]; then
@@ -44,6 +59,7 @@ if [[ $1 == "-b" || $1 == "--backup" ]]; then
     else
         echo "[#] 'Backup' mode selected."
     fi
+    manualeditionconf
 
 
 elif [[ $1 == "-u" || $1 == "--update" ]]; then
@@ -54,6 +70,7 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
         echo "[#] 'update' has been selected as a scheduled activity."
         echo "[#] The default time set for cron is: $opcionacdt."
     fi
+    manualeditionconf
 fi
 
 
