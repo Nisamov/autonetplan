@@ -84,16 +84,16 @@ function changecrontime(){
             # Reemplaza autonetplan-cron-default-time= con unicamente los digitos ingresados, corregir
             # No poner la ruta segun si es backup, etc
 
-            if [[ $1 == "-b" || $1 == "--backup" ]]; then
-                sed -i "s/^autonetplan-cron-default-time=.*/$confsetup $backup_file/" "$program_config"
-                echo "$confsetup $backup_file en el fichero $program_config"
-            elif [[ $1 == "-u" || $1 == "--update" ]]; then
-                sed -i "s/^autonetplan-cron-default-time=.*/$confsetup $update_file/" "$program_config"
-                echo "$confsetup $update_file en el fichero $program_config"
-            else
-                sed -i "s/^autonetplan-cron-default-time=.*/$confsetup/" "$program_config"
-                echo "$confsetup en el fichero $program_config"
-            fi
+        if [[ $1 == "-b" || $1 == "--backup" ]]; then
+            sed -i "s|^autonetplan-cron-default-time=.*|$prefixed_confsetup $backup_file|" "$program_config"
+            echo "$prefixed_confsetup $backup_file en el fichero $program_config"
+        elif [[ $1 == "-u" || $1 == "--update" ]]; then
+            sed -i "s|^autonetplan-cron-default-time=.*|$prefixed_confsetup $update_file|" "$program_config"
+            echo "$prefixed_confsetup $update_file en el fichero $program_config"
+        else
+            sed -i "s|^autonetplan-cron-default-time=.*|$prefixed_confsetup|" "$program_config"
+            echo "$prefixed_confsetup en el fichero $program_config"
+        fi
 
     # Si no se desea cambiar la configuracion establecido en el .conf
     else
