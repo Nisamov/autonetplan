@@ -32,78 +32,8 @@ opcionacdt=$(grep "^autonetplan-cron-default-time" "$program_config" | cut -d "=
 backup_file="/usr/local/sbin/auto-netplan/function/backup.sh"
 update_file="/usr/local/sbin/auto-netplan/program-files/auneupdate.sh"
 
-confsetup="autonetplan-cron-default-time=$confsetup"
 
-function changecrontime(){
-    # Cambiar configuracion de cron
-    if [[ $language == "ESP" ]]; then
-        read -p "[?] Deseas cambiar la configuracion y los periodos de tiempo? [s/n]: " confmodify
-    else
-        read -p "[?] Do you want to change the settings and time periods? [y/n]: " confmodify
-    fi
 
-    if [[ $confmodify == "s" || $confmodify == "y" ]]; then
-        if [[ $language == "ESP" ]]; then
-            echo "[#] Ejemplo ingreso de parametros: 0 7 * * * (Ejecutar el script todos los días a las 7:00 AM)"
-            read -p "[#] Ingrese los parametros a ingresar, separados por 1 espacio: " confsetup
-        else
-            echo "[#] Example of parameter input: 0 7 * * * (Execute the script every day at 7:00 AM)"
-            read -p "[#] Enter the parameters to be entered, separated by 1 space: " confsetup
-        fi
-
-        if [[ $language == "ESP" ]]; then
-            read -p "[?] Esta es la configuracion que has ingresado '$confsetup', deseas proceder? [s/n]: " conformed
-        else
-            read -p "[?] his is the configuration you have entered '$confsetup', do you want to proceed? [y/n]: " conformed
-        fi
-
-        while [[ $conformed != "s" && $conformed != "y" ]]; do
-            if [[ $language == "ESP" ]]; then
-                echo "[#] Ejemplo ingreso de parametros: 0 7 * * * (Ejecutar el script todos los días a las 7:00 AM)"
-                read -p "[#] Ingrese los parametros a ingresar, separados por 1 espacio: " confsetup
-            else
-                echo "[#] Example of parameter input: 0 7 * * * (Execute the script every day at 7:00 AM)"
-                read -p "[#] Enter the parameters to be entered, separated by 1 space: " confsetup
-            fi
-
-            if [[ $language == "ESP" ]]; then
-                read -p "[?] Esta es la configuracion que has ingresado '$confsetup', deseas proceder? [s/n]: " conformed
-            else
-                read -p "[?] his is the configuration you have entered '$confsetup', do you want to proceed? [y/n]: " conformed
-            fi
-        done
-            if [[ $language == "ESP" ]]; then
-                echo "[#] Configurando fichero de configuracion..."
-            else
-                echo "[#] Configuring configuration file..."
-            fi
-            # Cambiar contenido de $opcionacdt por el definido previamente
-            # Usar sed para buscar y reemplazar la línea segun la opcion elegida
-
-            #! PROBLEMAS:
-            # Reemplaza autonetplan-cron-default-time= con unicamente los digitos ingresados, corregir
-            # No poner la ruta segun si es backup, etc
-
-        if [[ $1 == "-b" || $1 == "--backup" ]]; then
-            sed -i "s|^autonetplan-cron-default-time=.*|$prefixed_confsetup $backup_file|" "$program_config"
-            echo "$prefixed_confsetup $backup_file en el fichero $program_config"
-        elif [[ $1 == "-u" || $1 == "--update" ]]; then
-            sed -i "s|^autonetplan-cron-default-time=.*|$prefixed_confsetup $update_file|" "$program_config"
-            echo "$prefixed_confsetup $update_file en el fichero $program_config"
-        else
-            sed -i "s|^autonetplan-cron-default-time=.*|$prefixed_confsetup|" "$program_config"
-            echo "$prefixed_confsetup en el fichero $program_config"
-        fi
-
-    # Si no se desea cambiar la configuracion establecido en el .conf
-    else
-        if [[ $language == "ESP" ]]; then
-            echo "[#] Se ha dejado la configuracion por defecto."
-        else
-            echo "[#] The default configuration has been left."
-        fi
-    fi
-}
 
 
 if [[ $1 == "-b" || $1 == "--backup" ]]; then
@@ -114,8 +44,7 @@ if [[ $1 == "-b" || $1 == "--backup" ]]; then
     else
         echo "[#] 'Backup' mode selected."
     fi
-    # Llamar a la funcion changecrontime
-    changecrontime
+
 
 elif [[ $1 == "-u" || $1 == "--update" ]]; then
     if [[ $language == "ESP" ]]; then
@@ -125,12 +54,10 @@ elif [[ $1 == "-u" || $1 == "--update" ]]; then
         echo "[#] 'update' has been selected as a scheduled activity."
         echo "[#] The default time set for cron is: $opcionacdt."
     fi
-    # Llamar a la funcion changecrontime
-    changecrontime
 fi
 
 
-
+# SE HA ELIMINADO LA POSIBILIDAD DE CAMBIAR LA CONFIGURACION EN DIRECTO (PUES NO SE CONOCE EL METODO PARA PODER LLEVAR A CABO ESTA ACCION, PARA ELLO SE LEERA LA CONFIGURACION UNICAMENTE)
 ## Seccion de prueba para cron
 
 #sudo bash -c "cat <<EOF >> '$cronrute'
