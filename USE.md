@@ -16,7 +16,7 @@ autonetplan $1 $2 $3 $4 $5 $6
 ├── $1	            -ntf	--netfileenabled	Mostrar ruta de fichero de red establecido	        autonetplan -ntf
 ├── $1	            -clg	--changelanguage	Cambiar el idioma del software	                    autonetplan -clg
 ├── $1	            -excd	--exitcode	        Mostrar código de salida por ejecución de prueba	autonetplan -excd
-├── $1	            -s	    --chedule	        Programar acciones	                                autonetplan -s
+├── $1	            -s	    --schedule	        Programar acciones	                                autonetplan -s
 │   ├── $2          -b      --backup            Programar copias de seguridad                       autonetplan -s -b
 │   └── $2          -u      --update            Programar actualizaciones                           autonetplan -s -u
 └── $1	            -x	    --execute	        Continuación con la ejecución	                    autonetplan -x
@@ -58,4 +58,58 @@ autonetplan -b
 **Update:** Actualizar el software
 ```sh
 autonetplan -u
+```
+**Version:** Mostrar versión del software
+```sh
+autonetplan -v
+```
+**Manual:** Mostrar instrucciones y config avanzada
+```sh
+autonetplan -m
+```
+**Integrity:** Revisar integridad del software
+> [!] Las siguientes configuraciones deben encontrarse en 'true' segun lo que se desee buscar, la ruta de la configuracion es: /etc/autonetplan/autonetplan.conf
+```conf
+# Esta opcion habilita la investigacion de las siguientes dos
+autonetplan-enable-search=true
+# Esta opcion realiza la busqueda de ficheros
+autonetplan-file-existence=true
+# Esta opcion realiza la busqueda de directorios
+autonetplan-directory-existence=true
+```
+```sh 
+autonetplan -i
+```
+**Netfileenabled:** Mostrar ruta de fichero de red establecido
+```sh
+autonetplan -ntf
+```
+**Changelanguage:** Cambiar el idioma del software
+```sh
+autonetplan -clg
+```
+**Exitcode:** Mostrar código de salida por ejecución de prueba
+```sh
+autonetplan -excd
+```
+**Schedule:** Programar acciones
+> [!] Esta opcion no realizara ninguna accion si se hace sola, es necesario ingresar mas parametros para realizar tareas mas especificas
+```sh
+autonetplan -s
+```
+```sh
+# Programar copias de seguridad
+autonetplan -s -b
+# Programar revision por actualizacion del software
+autonetplan -s -u
+```
+**Execute:** Continuación con la ejecución
+```sh
+autonetplan -x
+```
+```sh
+# Configuración de red manual
+autonetplan -x -m
+# Configuración de red automática
+autonetplan -x -a
 ```
