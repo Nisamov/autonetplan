@@ -79,4 +79,4 @@ fi
 sudo bash -c "cat <<EOF >> '$cronrute'
 # AutoNetplan cron use
 $opcionacdt
-#EOF"
+EOF"
