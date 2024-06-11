@@ -80,3 +80,9 @@ sudo bash -c "cat <<EOF >> '$cronrute'
 # AutoNetplan cron use
 $opcionacdt
 EOF"
+
+if [[ $language == "ESP" ]]; then
+    echo "[#] Configuracion aplicada en '$cronrute'."
+else
+    echo "[#] Configuration applied in '$cronrute'."
+fi
