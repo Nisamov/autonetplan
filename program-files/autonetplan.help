@@ -20,6 +20,8 @@ Principales valores '$.1':
 Valores segunda categoría '$.2'
     -m     | --manual           :: Configuracion de red manual
     -a     | --automatic        :: Configuracion de red automatica
+    -b     | --backup           :: Programar copias de seguridad
+    -u     | --update           :: Programar actualizaciones
 
 Valores tercera categoria '$.3'
     -iface | --interface        :: Interfaz de red a usar

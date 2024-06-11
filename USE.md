@@ -1,19 +1,3 @@
-[Manual AutoNetplan]
-
-[Introduccion al programa]:
-AutoNetplan es un programa que permite configurar de manera rapida y segura la red del equipo por medio de netplan.
-Este programa cuenta con varios procesos:
-    Proceso1: Instalacion
-        Durante la instalacion, este programa clona ficheros dentro del equipo, bien sea creando rutas o usando rutas ya existentes.
-        Esta hecho para ser usado mediante ingreso directo de los parámetros, para posteriormente solicitar el valor a trabajar.
-    Proceso2: Limpieza de clonacion
-        Para limpiar el equipo, el programa trae consigo un pequeño script que elimina el contenido clonado del repositorio publico, es posible cancelar este proceso.
-    Proceso3: Utilizacion de programa
-        Para llamar al program es necesario usar el comando "autonetplan" seguido de varios parámetros, siendo algunos de estos innecesarios a la hora de su ejecicion.
-
-Tras usar el programa, es posible que pueda dar problemas siempre y cuando no se haya leido con antelacion la documentacion ofrecida.
-
-[Estructura y uso de los comandos]:
 autonetplan $1 $2 $3 $4 $5 $6
 ├── $1	    -d	    --debug             Modo de prueba del software	                        autonetplan -d
 ├── $1	    -h	    --help	            Mostrar ayuda rápida del programa	                autonetplan -h
@@ -40,8 +24,3 @@ autonetplan $1 $2 $3 $4 $5 $6
     ├── $5	-lnkd	--linkeddoor	    Puerta de enlace para el cliente	                autonetplan -x -a -iface -s -lnkd
     ├── $5	-ntcd	--networkcard	    Configurar otra tarjeta de red sin puerta de enlace	autonetplan -x -a iface -s -ntcd
     └── $6	-ntcd	--networkcard	    Configurar otra tarjeta de red	                    autonetplan -x -a iface -s -lnkd -ntcd
-
-[Ubicaciones de ficheros del programa]:
-Ubicacion de llamada al programa: /usr/local/sbin/autonetplan (codigo .sh sin extension).
-Ubicacion de fichero del programa: /usr/local/sbin/auto-netplan/*
-Ubicacion de configuracion del programa: /etc/autonetplan/autonetplan.conf
