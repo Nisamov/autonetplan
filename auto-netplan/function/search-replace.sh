@@ -21,7 +21,7 @@ new_config="/usr/local/sbin/auto-netplan/temp/auneconf/autonetplan.conf"
 
 program_files="/usr/local/sbin/auto-netplan"
 # Idioma del programa
-language=$(cat $program_files/program-files/language.lg)
+language=$(cat "$program_files/program-files/language.lg")
 
 # Función para actualizar el valor en el nuevo fichero
 update_config_value() {
@@ -53,7 +53,9 @@ while IFS='=' read -r key value; do
         "file-existence-language-file" | \
         "file-existence-update-file" | \
         "dir-existence-config-dir" | \
-        "dir-existence-program-files-dir")
+        "dir-existence-program-files-dir" | \
+        "autonetplan-ip-colored" | \
+        "autonetplan-cron-default-time")
             # Eliminar espacios en blanco al final de value
             value=$(echo "$value" | sed 's/[[:space:]]*$//')
             if [[ $languag == "ESP" ]]; then
@@ -66,7 +68,7 @@ while IFS='=' read -r key value; do
             update_config_value "$key" "$value"
             ;;
     esac
-done < <(grep -E '^(autonetplan-netplan-route-config|autonetplan-formatted-on-call|autonetplan-prevent-purge-on-mistake|autonetplan-automate-backup|autonetplan-update-program|autonetplan-automate-update|autonetplan-enable-search|autonetplan-file-existence|autonetplan-directory-existence|file-existence-config-file|file-existence-autonetplansh-file|file-existence-license-file|file-existence-version-file|file-existence-language-file|file-existence-update-file|dir-existence-config-dir|dir-existence-program-files-dir)=' "$old_config")
+done < <(grep -E '^(autonetplan-netplan-route-config|autonetplan-formatted-on-call|autonetplan-prevent-purge-on-mistake|autonetplan-automate-backup|autonetplan-update-program|autonetplan-automate-update|autonetplan-enable-search|autonetplan-file-existence|autonetplan-directory-existence|file-existence-config-file|file-existence-autonetplansh-file|file-existence-license-file|file-existence-version-file|file-existence-language-file|file-existence-update-file|dir-existence-config-dir|dir-existence-program-files-dir|autonetplan-ip-colored|autonetplan-cron-default-time)=' "$old_config")
 
 if [[ $languag == "ESP" ]]; then
     echo "[#] Ajustes del fichero de configuracion guardados correctamente."

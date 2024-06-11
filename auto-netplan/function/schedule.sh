@@ -55,9 +55,10 @@ if [[ $1 == "-b" || $1 == "--backup" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Se ha seleccionado 'backup' como actividad programada."
         # Leer fichero de configuracion para saber cada cuanto tiene que realizar estas actividades
-        echo "[#] El tiempo por defecto establecido para cron es: $opcionacdt."
+        echo "[#] Configuracion establecida para cron es: $opcionacdt."
     else
         echo "[#] 'Backup' mode selected."
+        echo "[#] The configuration set for cron is: $opcionacdt."
     fi
     manualeditionconf
 
@@ -65,18 +66,17 @@ if [[ $1 == "-b" || $1 == "--backup" ]]; then
 elif [[ $1 == "-u" || $1 == "--update" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Se ha seleccionado 'update' como actividad programada."
-        echo "[#] El tiempo por defecto establecido para cron es: $opcionacdt."
+        echo "[#] Configuracion establecida para cron es: $opcionacdt."
     else
         echo "[#] 'update' has been selected as a scheduled activity."
-        echo "[#] The default time set for cron is: $opcionacdt."
+        echo "[#] The configuration set for cron is: $opcionacdt."
     fi
     manualeditionconf
 fi
 
+# Usar el contenido de $opcionacdt pasarlo a $cronrute
 
-# SE HA ELIMINADO LA POSIBILIDAD DE CAMBIAR LA CONFIGURACION EN DIRECTO (PUES NO SE CONOCE EL METODO PARA PODER LLEVAR A CABO ESTA ACCION, PARA ELLO SE LEERA LA CONFIGURACION UNICAMENTE)
-## Seccion de prueba para cron
-
-#sudo bash -c "cat <<EOF >> '$cronrute'
-#
+sudo bash -c "cat <<EOF >> '$cronrute'
+# AutoNetplan cron use
+$opcionacdt
 #EOF"
