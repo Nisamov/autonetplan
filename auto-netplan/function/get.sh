@@ -5,9 +5,6 @@ program_files="/usr/local/sbin/auto-netplan"
 # Idioma del programa
 language=$(cat "$program_files/program-files/language.lg")
 
-echo "$1"
-echo "$2"
-
 if [[ "$1" == "-v" || "$1" == "--version" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "test"

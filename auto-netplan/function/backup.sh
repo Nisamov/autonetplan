@@ -6,6 +6,8 @@ program_files="/usr/local/sbin/auto-netplan"
 language=$(cat "$program_files/program-files/language.lg")
 # Ruta de las copias
 backup_dir="autonetplan-backups"
+# Fichero autonetplan del directorio autoneconf renombrado como autonetplan
+program_config="/etc/autonetplan/autonetplan.conf"
 # Revisar dentro del fichero la ruta de configuracion de red
 network_dir=$(grep "^autonetplan-netplan-route-config" "$program_config" | cut -d "=" -f2)
 
