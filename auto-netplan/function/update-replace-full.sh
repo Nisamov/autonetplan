@@ -52,7 +52,7 @@ if [[ -f "$nwvsn/auneconf/autonetplan.conf" ]]; then
 fi
 
 # Comprobar fichero de manual
-if [[ -f "$nwvsn/program-files/autonetplan_man.md" ]]; then
+if [[ -f "$nwvsn/program-files/autonetplan.man" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Actualizando fichero de manual..."
     elif [[ $language == "ENG" ]]; then
@@ -61,13 +61,13 @@ if [[ -f "$nwvsn/program-files/autonetplan_man.md" ]]; then
         echo "[#] Updating manual file..."
     fi
     # Eliminar fichero manual local
-    sudo rm "$program_files/program-files/autonetplan_man.md"
+    sudo rm "$program_files/program-files/autonetplan.man"
     # Copiar fichero descargado a ruta indicada
-    sudo cp "$nwvsn/program-files/autonetplan_man.md" "$program_files/program-files/autonetplan_man.md"
+    sudo cp "$nwvsn/program-files/autonetplan.man" "$program_files/program-files/autonetplan.man"
 fi
 
 # Comprobar fichero de help
-if [[ -f "$nwvsn/program-files/autonetplan_help.md" ]]; then
+if [[ -f "$nwvsn/program-files/autonetplan.help" ]]; then
     if [[ $language == "ESP" ]]; then
         echo "[#] Actualizando fichero de ayuda..."
     elif [[ $language == "ENG" ]]; then
@@ -76,9 +76,9 @@ if [[ -f "$nwvsn/program-files/autonetplan_help.md" ]]; then
         echo "[#] Updating help file..."
     fi
     # Eliminar fichero local
-    sudo rm "$program_files/program-files/autonetplan_help.md"
+    sudo rm "$program_files/program-files/autonetplan.help"
     # Copiar fichero descargado a ruta indicada
-    sudo cp "$nwvsn/program-files/autonetplan_help.md" "$program_files/program-files/autonetplan_help.md"
+    sudo cp "$nwvsn/program-files/autonetplan.help" "$program_files/program-files/autonetplan.help"
 fi
 
 # Comprobar directorio de function

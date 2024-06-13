@@ -23,9 +23,9 @@ aune_bifurcation_route="/usr/local/sbin/auto-netplan/function"
 
 function aune-help(){
     # Comprobar que el fichero existe
-    if [[ -f "$program_files/program-files/autonetplan_help.md" ]]; then
+    if [[ -f "$program_files/program-files/autonetplan.help" ]]; then
         # Mostrar fichero con posibilidad de subir o bajar en la lectura
-        sudo less "$program_files/program-files/autonetplan_help.md"
+        sudo less "$program_files/program-files/autonetplan.help"
     else
     # Aviso de problema (no crear fichero - tiempo innecesario)
         if [[ $language == "ESP" ]]; then
