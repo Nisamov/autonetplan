@@ -3,6 +3,9 @@
 ## Estructura y descripción de ordenes
 ```sh
 autonetplan $1 $2 $3 $4 $5 $6
+├── $1              -g      --get               Obtener version mas reciente del software           autonetplan -g
+│   ├── $2          -v      --version           Obtener version en especifico                       autonetplan -g -v
+│   └── $2          -l      --lastest           Obtener version mas reciente del software           autonetplan -g -l
 ├── $1	            -d	    --debug             Modo de prueba del software	                        autonetplan -d
 ├── $1	            -h	    --help	            Mostrar ayuda rápida del programa	                autonetplan -h
 ├── $1	            -p	    --ping	            Confirmar si el programa recibe las peticiones	    autonetplan -p
