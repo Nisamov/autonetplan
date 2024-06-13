@@ -1,4 +1,4 @@
-# Apuntes Para Version 0.8.0
+# Apuntes Para Version 0.9.0
 
 ## Contenido Agregado
 Configuracion "autonetplan-ip-colored" que permite enviar la IP a color, viene por defecto deshabilitada
