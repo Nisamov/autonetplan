@@ -5,6 +5,7 @@
 autonetplan $1 $2 $3 $4 $5 $6
 ├── $1              -g      --get               Obtener version mas reciente del software           autonetplan -g
 │   ├── $2          -v      --version           Obtener version en especifico                       autonetplan -g -v
+│   │   └── $3      -l      --list              Mostrar lista de todas las versiones del software   autoneptlan -g -v -l 
 │   └── $2          -l      --lastest           Obtener version mas reciente del software           autonetplan -g -l
 ├── $1	            -d	    --debug             Modo de prueba del software	                        autonetplan -d
 ├── $1	            -h	    --help	            Mostrar ayuda rápida del programa	                autonetplan -h
