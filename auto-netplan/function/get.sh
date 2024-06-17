@@ -19,7 +19,7 @@ if [[ "$1" == "-v" || "$1" == "--version" ]]; then
     echo "En pruebas"
 elif [[ "$1" == "-l" || "$1" == "--lastest" ]]; then
     # Crear ruta
-    sudo mkdir "$downloadrute_lookback"
+    sudo mkdir -r "$downloadrute_lookback"
     # Ultima version oficial
     sudo git clone -b "$latest_version" --single-branch "https://github.com/Nisamov/autonetplan" "$downloadrute_lookback"
 fi
