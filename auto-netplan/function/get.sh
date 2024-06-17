@@ -18,6 +18,8 @@ if [[ "$1" == "-v" || "$1" == "--version" ]]; then
     # Crear un menu de seleccion dodne el usuario pueda ver y seleccionar (no interactuable, pero si de ingresar texto)
     echo "En pruebas"
 elif [[ "$1" == "-l" || "$1" == "--lastest" ]]; then
+    # Crear ruta
+    sudo mkdir "$downloadrute_lookback"
     # Ultima version oficial
     sudo git clone -b "$latest_version" --single-branch "https://github.com/Nisamov/autonetplan" "$downloadrute_lookback"
 fi
