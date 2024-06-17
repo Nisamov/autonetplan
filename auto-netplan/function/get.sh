@@ -15,25 +15,9 @@ latest_version=$(echo "$latest_tag" | sed -n 's/v\?\([0-9]\+\.[0-9]\+\.[0-9]\+\)
 downloadrute_lookback="/home/$USER/autonetplan_$latest_version"
 
 if [[ "$1" == "-v" || "$1" == "--version" ]]; then
-    if [[ $language == "ESP" ]]; then
-        echo "test"
-    else
-        echo "test"
-    fi
+    # Crear un menu de seleccion dodne el usuario pueda ver y seleccionar (no interactuable, pero si de ingresar texto)
+    echo "En pruebas"
 elif [[ "$1" == "-l" || "$1" == "--lastest" ]]; then
-
-    # Clonar repo
-    git clone
-    # Preguntar donde guardar version con un read -p
-
-    if [[ $language == "ESP" ]]; then
     # Ultima version oficial
-    # Clonar lastest
-    # La ruta será una nueva, creada proximamente
-        sudo git clone -b "$latest_version" --single-branch "https://github.com/Nisamov/autonetplan" "$descargarutaversion"
-    # Supuesto resultado
-    # sudo git clone -b "0.9.0" --single-branch "https://github.com/Nisamov/autonetplan"
-    else
-        sudo git clone -b "$latest_version" --single-branch "https://github.com/Nisamov/autonetplan" "$descargarutaversion"
-    fi
+    sudo git clone -b "$latest_version" --single-branch "https://github.com/Nisamov/autonetplan" "$downloadrute_lookback"
 fi
