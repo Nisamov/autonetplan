@@ -10,9 +10,6 @@ response=$(curl -s https://api.github.com/repos/Nisamov/autonetplan/releases/lat
 latest_tag=$(echo "$response" | jq -r .tag_name)
 # Extraccion
 latest_version=$(echo "$latest_tag" | sed -n 's/v\?\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
-# Ruta de descarga ( Se ha seleccionado esta para tras la descarga, desinstalar el previo e instalar esa otra version, por lo tanto, no afectaria al programa recien descargado )
-# Ejemplo de como deberia quedar: /home/autonetplan/autonetplan_0.9.0 ( solo en descargas de ultima version )
-downloadrute_lookback="/home/$USER/autonetplan_$latest_version"
 
 if [[ "$1" == "-v" || "$1" == "--version" ]]; then
     # Crear un menu de seleccion dodne el usuario pueda ver y seleccionar (no interactuable, pero si de ingresar texto)
@@ -32,20 +29,23 @@ if [[ "$1" == "-v" || "$1" == "--version" ]]; then
     else
         read -p "[#] Enter the version to download (numeric characters): " dwnldversion
     fi
-        
+
     downloadrute_lookback_spfv="/home/$USER/autonetplan_$dwnldversion"
     mkdir "$downloadrute_lookback_spfv"
 
     # Podria hacerse comprobando manualmente todas las versiones pero seria demasiado codigo y comprobaciones innecesarias
 
 elif [[ "$1" == "-l" || "$1" == "--lastest" ]]; then
+    # Ruta de descarga ( Se ha seleccionado esta para tras la descarga, desinstalar el previo e instalar esa otra version, por lo tanto, no afectaria al programa recien descargado )
+    # Ejemplo de como deberia quedar: /home/autonetplan/autonetplan_0.9.0 ( solo en descargas de ultima version )
+    downloadrute_lookback="/home/$USER/autonetplan_$latest_version"
     # Crear ruta
-    mkdir -r "$downloadrute_lookback"
+    mkdir "$downloadrute_lookback"
     # Ultima version oficial
     git clone -b "$latest_version" --single-branch "https://github.com/Nisamov/autonetplan" "$downloadrute_lookback"
     if [[ $language == "ESP" ]]; then
-        echo "[#] El software ha sido descargado en $downloadrute_lookback."
+        echo "[#] El software ha sido descargado la ultima version en $downloadrute_lookback."
     else
-        echo "[#] Software installed in $downloadrute_lookback."
+        echo "[#] Software's lastes version installed in $downloadrute_lookback."
     fi
 fi
