@@ -12,28 +12,8 @@ latest_tag=$(echo "$response" | jq -r .tag_name)
 latest_version=$(echo "$latest_tag" | sed -n 's/v\?\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p')
 
 if [[ "$1" == "-v" || "$1" == "--version" ]]; then
-    # Crear un menu de seleccion dodne el usuario pueda ver y seleccionar (no interactuable, pero si de ingresar texto)
-    echo "| Version Selection : "
-    echo "9 | v.0.9.0"
-    echo "8 | v.0.8.0"
-    echo "7 | v.0.7.0"
-    echo "6 | v.0.6.0"
-    echo "5 | v.0.5.0"
-    echo "4 | v.0.4.0"
-    echo "3 | v.0.3.0"
-    echo "2 | v.0.2.0"
-    echo "1 | v.0.1.0"
-
-    if [[ $language == "ESP" ]]; then
-        read -p "[#] Ingrese la version a descargar (por caracter numerico): " dwnldversion
-    else
-        read -p "[#] Enter the version to download (numeric characters): " dwnldversion
-    fi
-
-    downloadrute_lookback_spfv="/home/$USER/autonetplan_$dwnldversion"
-    mkdir "$downloadrute_lookback_spfv"
-
-    # Podria hacerse comprobando manualmente todas las versiones pero seria demasiado codigo y comprobaciones innecesarias
+    # Pensar mas adelante
+    echo "Funcion no disponible"
 
 elif [[ "$1" == "-l" || "$1" == "--lastest" ]]; then
     # Ruta de descarga ( Se ha seleccionado esta para tras la descarga, desinstalar el previo e instalar esa otra version, por lo tanto, no afectaria al programa recien descargado )

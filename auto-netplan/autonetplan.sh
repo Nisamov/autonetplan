@@ -257,6 +257,7 @@ if [[ $1 == "-g" || $1 == "--get" ]]; then
     sudo bash "$aune_bifurcation_route/get.sh" $2
 
 elif [[ $1 == "-d" || $1 == "--debug" ]]; then
+
     echo -e "[\e[33mDEBUG\e[0m] network_dir=$network_dir"
     echo -e "[\e[33mDEBUG\e[0m] workdir=$work_dir"
     echo -e "[\e[33mDEBUG\e[0m] program_files=$program_files"
@@ -272,6 +273,28 @@ elif [[ $1 == "-d" || $1 == "--debug" ]]; then
     echo -e "[\e[33mDEBUG\e[0m] colored_ip=$ip_colored"
     echo -e "[\e[33mDEBUG\e[0m] cron_time_conf=$opcionacdt"
     echo -e "[\e[33mDEBUG\e[0m] auto_backup=$opcionaab"
+
+    # Mostrar mas informacion
+    if [[ $language == "ESP" ]]; then
+        read -p "[?] ¿Mostrar mas contenido? [s/n]: " contentpshow
+    else
+        read -p "[?] Show more content [y/n]: " contentpshow
+    fi
+
+    if [[ $contentpshow == "s" || $contentpshow == "y" ]]; then
+        echo "Coming Soon :)"
+        # Declarar variables
+
+        # Mostrar contenido de variables
+
+        # Fin
+    else
+        if [[ $language == "ESP" ]]; then
+            echo "[#] Se ha cancelado la muestra de mas informacion."
+        else
+            echo "[#] Cancelled extended information."
+        fi
+    fi
 
 elif [[ $1 == "-h" || $1 == "--help" ]]; then
     if [[ $auto_update == "true" ]]; then
@@ -615,11 +638,11 @@ elif [[ $1 == "-s" || $1 == "--schedule" ]]; then
 
 elif [[ "$@" == "" ]]; then
     if [[ $language == "ESP" ]]; then
-        echo -e "[\e[31m#\e[0m] No se ha ingresado ningun valor, ingrese uno de los siguientes:"
+        echo -e "[\e[31m#\e[0m] No se ha ingresado ningun valor, pruebe a ingresar uno de los siguientes:"
     elif [[ $language == "ENG" ]]; then
-        echo -e "[\e[31m#\e[0m] No value has been entered, enter one of the following:"
+        echo -e "[\e[31m#\e[0m] No value has been entered, try one of the following:"
     else
-        echo -e "[\e[31m#\e[0m] No value has been entered, enter one of the following:"
+        echo -e "[\e[31m#\e[0m] No value has been entered, try one of the following:"
     fi
     echo "-h     | --help "
     echo "-d     | --debug"
