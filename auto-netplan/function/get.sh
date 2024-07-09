@@ -13,6 +13,8 @@ latest_version=$(echo "$latest_tag" | sed -n 's/v\?\([0-9]\+\.[0-9]\+\.[0-9]\+\)
 
 if [[ "$1" == "-v" || "$1" == "--version" ]]; then
     # Pensar mas adelante
+
+    # Mirar en github sobre versiones publicadas y dar a elegir entre las descargas
     echo "Funcion no disponible"
 
 elif [[ "$1" == "-l" || "$1" == "--lastest" ]]; then

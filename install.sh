@@ -459,20 +459,21 @@ else
     done
 fi
 
-# Funcion pausa
+# Función pausa
 function pause(){
-   read -p "$*"
+   read -n 1 -s -r -p "$*"
 }
-#Espacio diferencial de texto
+# Espacio diferencial de texto
 echo ""
-# Llamada a funcion previa
+# Llamada a función previa
 if [[ "$language" == "esp" ]]; then
-    pause '[/] Presione enter para continuar...'
+    pause '[/] Presione cualquier tecla para continuar...'
 else
-    pause '[/] Press enter to continue...'
+    pause '[/] Press any key to continue...'
 fi
 # Limpiar consola
 clear
+
 # Mensaje muestra de licencia
 sudo less LICENSE.txt
 # Limpiar consola
