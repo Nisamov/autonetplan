@@ -252,10 +252,6 @@ function show_net_file_configuration_enabled(){
     fi
 }
 
-if [[ $1 == "-g" || $1 == "--get" ]]; then
-    # Llamar al codigo de obtencion de versiones
-    sudo bash "$aune_bifurcation_route/get.sh" $2
-
 elif [[ $1 == "-d" || $1 == "--debug" ]]; then
 
     echo -e "[\e[33mDEBUG\e[0m] network_dir=$network_dir"
