@@ -6,6 +6,7 @@ Esta version es la revision final agregando caracteristicas nuevas al software y
 
 ## Contenido Agregado
 Opcion de descarga de version en especifico x version y por descarga directa (por agregar)
+Nuevo fichero de revision y ampliacion del analisis DEBUG
 
 ## Correcciones
 Corrección en el output Debug por contenido duplicado

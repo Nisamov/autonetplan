@@ -51,3 +51,10 @@ opcionaab=$(grep "^autonetplan-automate-backup" "$program_config" | cut -d "=" -
 # Limpieza de consola
 clear
 
+# Ejemplo de mustra:
+# [DEBUG] [good] [variable name] [variable content]
+# [DEBUG] [error] [variable name] [variable content]
+
+# [DEBUG] [good] work_dir == "/usr/local/sbin"
+#|------| |----| |------|    |----------------|
+# Amarillo verde amarillo     blanco
