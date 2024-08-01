@@ -70,7 +70,7 @@ equal="=="
 not_equal="!="
 
 if [[ -d $program_files ]]; then
-    echo "$yellow_debug $green_good program_files $equal $program_files"
+    echo -e "$yellow_debug $green_good program_files $equal $program_files"
 else
-    echo "$yellow_debug $red_error program_files $not_equal $program_files"
+    echo -e "$yellow_debug $red_error program_files $not_equal $program_files"
 fi
