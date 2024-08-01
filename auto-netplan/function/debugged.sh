@@ -57,7 +57,7 @@ clear
 
 # [DEBUG] [good] work_dir == "/usr/local/sbin"
 #|------| |----| |------|    |----------------|
-# Amarillo verde amarillo     blanco
+# Amarillo verde blanco        blanco
 
 #   [\e[31m#\e[0m] >> # rojo
 #   [\e[33m!\e[0m] >> ! amarillo
@@ -73,4 +73,16 @@ if [[ -d $program_files ]]; then
     echo -e "$yellow_debug $green_good program_files $equal $program_files"
 else
     echo -e "$yellow_debug $red_error program_files $not_equal $program_files"
+fi
+
+if [[ -f $program_config ]]: then
+    echo -e "$yellow_debug $green_good program_config $equal $program_config"
+else
+    echo -e "$yellow_debug $red_error program_config $not_equal $program_config"
+fi
+
+if [[ -f $integrity_program ]]; then
+    echo -e "$yellow_debug $green_good integrity_program $equal $integrity_program"
+else
+    echo -e "$yellow_debug $red_error integrity_program $not_equal $integrity_program"
 fi
