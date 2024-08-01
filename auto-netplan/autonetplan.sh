@@ -277,7 +277,6 @@ if [[ $1 == "-d" || $1 == "--debug" ]]; then
     fi
 
     if [[ $contentpshow == "s" || $contentpshow == "y" ]]; then
-        echo "Coming Soon :)"
         # Llamada al programa debugged.sh
         sudo bash "$aune_bifurcation_route/debugged.sh"
 

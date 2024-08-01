@@ -17,8 +17,8 @@
 # Este codigo permite revisar y mostrar informacion mas detallada del estado debug
 
 # Declaracion variable directorio de configuracion netplan
-# Ruta de programa
-work_dir="/usr/local/sbin"
+# Rutas importantes a revisar con debug, cuentan con doble vairbale para revisar el ocrrecto funcionamiento
+
 # Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
 # Fichero autonetplan del directorio autoneconf renombrado como autonetplan
@@ -58,3 +58,19 @@ clear
 # [DEBUG] [good] work_dir == "/usr/local/sbin"
 #|------| |----| |------|    |----------------|
 # Amarillo verde amarillo     blanco
+
+#   [\e[31m#\e[0m] >> # rojo
+#   [\e[33m!\e[0m] >> ! amarillo
+#   [\e[32m#\e[0m] >> # verde
+
+yellow_debug="[\e[33mDEBUG\e[0m]"
+green_good="[\e[32mGood\e[0m]"
+red_error="[\e[31mError\e[0m]"
+equal="=="
+not_equal="!="
+
+if [[ -d $program_files ]]; then
+    echo "$yellow_debug $green_good program_files $equal $program_files"
+else
+    echo "$yellow_debug $red_error program_files $not_equal $program_files"
+fi
