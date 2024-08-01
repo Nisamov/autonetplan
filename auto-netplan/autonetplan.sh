@@ -38,7 +38,6 @@ language=$(cat "$program_files/program-files/language.lg")
 # Programas bifurcados del codigo original
 aune_bifurcation_route="/usr/local/sbin/auto-netplan/function"
 
-
 # Variables almacenamiento de datos del fichero de configuracion
 
 # Revisar dentro del fichero la ruta de configuracion de red
@@ -279,11 +278,9 @@ if [[ $1 == "-d" || $1 == "--debug" ]]; then
 
     if [[ $contentpshow == "s" || $contentpshow == "y" ]]; then
         echo "Coming Soon :)"
-        # Declarar variables
+        # Llamada al programa debugged.sh
+        sudo bash "$aune_bifurcation_route/debugged.sh"
 
-        # Mostrar contenido de variables
-
-        # Fin
     else
         if [[ $language == "ESP" ]]; then
             echo "[#] Se ha cancelado la muestra de mas informacion."
