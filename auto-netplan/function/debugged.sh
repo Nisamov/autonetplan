@@ -75,7 +75,7 @@ else
     echo -e "$yellow_debug $red_error program_files $not_equal $program_files"
 fi
 
-if [[ -f $program_config ]]: then
+if [[ -f $program_config ]]; then
     echo -e "$yellow_debug $green_good program_config $equal $program_config"
 else
     echo -e "$yellow_debug $red_error program_config $not_equal $program_config"
