@@ -252,7 +252,7 @@ function show_net_file_configuration_enabled(){
     fi
 }
 
-elif [[ $1 == "-d" || $1 == "--debug" ]]; then
+if [[ $1 == "-d" || $1 == "--debug" ]]; then
 
     echo -e "[\e[33mDEBUG\e[0m] network_dir=$network_dir"
     echo -e "[\e[33mDEBUG\e[0m] workdir=$work_dir"
