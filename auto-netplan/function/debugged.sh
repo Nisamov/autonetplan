@@ -102,17 +102,17 @@ fi
     #|------| |----|  |-----|    |----------------------------|
     # Amarillo verde bandera eng        blanco
 
-yellow_is="[\e[33mS\e[0m]"
-red_ie="[\e[31mE\e[0m]"
-red_ip="[\e[31mP\e[0m]"
-blue_ig="[\e[34mG\e[0m]"
-white_in="[\e[37mN\e[0m]"
+yellow_is="\e[33mS\e[0m"
+red_ie="\e[31mE\e[0m"
+red_ip="\e[31mP\e[0m"
+blue_ig="\e[34mG\e[0m"
+white_in="\e[37mN\e[0m"
 
 if [[ $language == "ESP" ]]; then
-    echo -e "$yellow_debug $green_good $red_ie$yellow_is$red_ip language $equal $language"
+    echo -e "$yellow_debug $green_good [${red_ie}${yellow_is}${red_ip}] language $equal $language"
 elif [[ $language == "ENG" ]]; then
     # Referencia a la bandera de inlgaterra - rojo blanco azul
-    echo -e "$yellow_debug $green_good $red_ie$white_in$blue_ig current_version $equal $language"
+    echo -e "$yellow_debug $green_good [${red_ie}${white_in}${blue_ig}] current_version $equal $language"
 else
     echo -e "$yellow_debug $red_error language $not_equal $language | [\e[31mNot set\e[0m]"
 fi
