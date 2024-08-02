@@ -86,3 +86,33 @@ if [[ -f $integrity_program ]]; then
 else
     echo -e "$yellow_debug $red_error integrity_program $not_equal $integrity_program"
 fi
+
+if [[ -f $current_version ]]; then
+    echo -e "$yellow_debug $green_good current_version $equal $current_version"
+else
+    echo -e "$yellow_debug $red_error current_version $not_equal $current_version"
+fi
+
+
+    # Formato de display diferente
+    # [DEBUG] [good]   [ESP]     work_dir == "/usr/local/sbin"
+    #|------| |----|  |-----|    |----------------------------|
+    # Amarillo verde bandera esp        blanco
+    # [DEBUG] [good]   [ENG]     work_dir == "/usr/local/sbin"
+    #|------| |----|  |-----|    |----------------------------|
+    # Amarillo verde bandera eng        blanco
+
+yellow_is="[\e[33mS\e[0m]"
+red_ie="[\e[31mE\e[0m]"
+red_ip="[\e[31mP\e[0m]"
+blue_ig="[\e[34mG\e[0m]"
+white_in="[\e[37mN\e[0m]"
+
+if [[ $language == "ESP" ]]; then
+    echo -e "$yellow_debug $green_good $red_ie$yellow_is$red_ip language $equal $language"
+elif [[ $language == "ENG" ]]; then
+    # Referencia a la bandera de inlgaterra - rojo blanco azul
+    echo -e "$yellow_debug $green_good $red_ie$white_in$blue_ig current_version $equal $language"
+else
+    echo -e "$yellow_debug $red_error language $not_equal $language | [\e[31mNot set\e[0m]"
+fi
