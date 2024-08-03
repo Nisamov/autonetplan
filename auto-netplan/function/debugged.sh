@@ -118,3 +118,9 @@ elif [[ $language == "ENG" ]]; then
 else
     echo -e "$yellow_debug $red_error language $not_equal $language | [\e[31mNot set\e[0m]"
 fi
+
+if [[ -d $aune_bifurcation_route ]]; then
+    echo -e "$yellow_debug $green_good aune_bifurcation_route $equal $aune_bifurcation_route"
+else
+    echo -e "$yellow_debug $red_error aune_bifurcation_route $not_equal $aune_bifurcation_route | [\e[31mNot exist\e[0m]"
+fi
