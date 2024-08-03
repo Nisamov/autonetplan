@@ -89,11 +89,12 @@ fi
 
 # Simplemente sirve para comparar que exista el fichero, no la version, pues esta puede variar
 if [[ $current_version == $current_version ]]; then
-    echo -e "$yellow_debug $green_good current_version $equal $current_version"
-else
-    echo -e "$yellow_debug $red_error current_version $not_equal $current_version"
+    if [[ -f "$program_files/program-files/version" ]]; then
+        echo -e "$yellow_debug $green_good current_version $equal $current_version"
+    else
+        echo -e "$yellow_debug $red_error current_version $not_equal $current_version"
+    fi
 fi
-
 
     # Formato de display diferente
     # [DEBUG] [good]   [ESP]     work_dir == "/usr/local/sbin"
