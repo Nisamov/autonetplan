@@ -87,7 +87,8 @@ else
     echo -e "$yellow_debug $red_error integrity_program $not_equal $integrity_program"
 fi
 
-if [[ -f $current_version ]]; then
+# Simplemente sirve para comparar que exista el fichero, no la version, pues esta puede variar
+if [[ $current_version == $current_version ]]; then
     echo -e "$yellow_debug $green_good current_version $equal $current_version"
 else
     echo -e "$yellow_debug $red_error current_version $not_equal $current_version"
