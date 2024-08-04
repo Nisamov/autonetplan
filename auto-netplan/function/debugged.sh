@@ -110,7 +110,7 @@ red_ie="\e[31mE\e[0m"
 red_ip="\e[31mP\e[0m"
 blue_ig="\e[34mG\e[0m"
 white_in="\e[37mN\e[0m"
-yellow_beware="[\e[33m⚠\e[0m]"
+yellow_beware="[\e[33m!!\e[0m]" # Simbolos que advierten al usuario que podria estar viendo una ruta incorrecta (pues no depende del software escribirla, sino del propio usuario)
 
 if [[ $language == "ESP" ]]; then
     echo -e "$yellow_debug $green_good [${red_ie}${yellow_is}${red_ip}] language $equal $language"
@@ -132,4 +132,10 @@ if [[ -n $network_dir ]]; then
     echo -e "$yellow_debug $green_good $yellow_beware network_dir $equal $network_dir"
 else
     echo -e "$yellow_debug $red_error anetwork_dir $not_equal $network_dir | [\e[31mNot exist\e[0m]"
+fi
+
+if [[ -n $auto_update ]]; then
+    echo -e "$yellow_debug $green_good $yellow_beware auto_update $equal $auto_update"
+else
+    echo -e "$yellow_debug $red_error auto_update $not_equal $auto_update | [\e[31mNot exist\e[0m]"
 fi
