@@ -16,14 +16,14 @@ echo "Andrés Ruslan Abadías Otal"
 
 echo ""
 # Software usado
-echo -e "${YELLOW}Software Usado Durante el Desarrollo:"
+echo -e "${YELLOW}Software Usado Durante el Desarrollo:${NC}"
 echo "Traducción: DeepL"
 echo "   https://www.deepl.com/es/translator"
 echo "Revisión de Código: ShellCheck"
 echo "   https://github.com/koalaman/shellcheck"
 
 # Agradecimientos especiales
-echo -e "${YELLOW}Agradecimientos especiales:"
+echo -e "${YELLOW}Agradecimientos especiales:${NC}"
 echo "- Diego García"
 
 echo ""
