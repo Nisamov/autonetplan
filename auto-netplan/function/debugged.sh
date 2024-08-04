@@ -139,3 +139,13 @@ if [[ -n $auto_update ]]; then
 else
     echo -e "$yellow_debug $red_error auto_update $not_equal $auto_update | [\e[31mNot exist\e[0m]"
 fi
+
+if [[ -n $ip_colored ]]; then
+    if [[ $ip_colored == "true" ]]; then
+        echo -e "$yellow_debug $green_good $yellow_beware ip_colored $equal $ip_colored"
+    elif [[ $ip_colored == "false" ]]; then
+        echo -e "$yellow_debug $red_error ip_colored $not_equal $ip_colored [\e[33mService Unabled\e[0m]"
+    fi
+else
+    echo -e "$yellow_debug $red_error ip_colored $not_equal $ip_colored | [\e[31mNot exist\e[0m]"
+fi
