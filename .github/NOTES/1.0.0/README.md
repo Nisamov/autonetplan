@@ -9,6 +9,7 @@ Es posible que se añada una nueva opcion a la configuracion que permita poner l
 ## Contenido Agregado
 Opcion de descarga de version en especifico x version y por descarga directa (por agregar)
 Nuevo fichero de revision y ampliacion del analisis DEBUG
+Nuevo comando `-c | --credits`, este muestra los nombres de los desarrolladores y programas usados durante la elaboracion de este proyecto
 
 ## Correcciones
 Corrección en el output Debug por contenido duplicado

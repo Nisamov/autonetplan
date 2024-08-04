@@ -251,7 +251,11 @@ function show_net_file_configuration_enabled(){
     fi
 }
 
-if [[ $1 == "-d" || $1 == "--debug" ]]; then
+if [[ $1 == "-c" || $1 == "--credits" ]]; then
+    # Llamada al programa credits.sh
+    sudo bash "$aune_bifurcation_route/credits.sh"
+
+elif [[ $1 == "-d" || $1 == "--debug" ]]; then
 
     echo -e "[\e[33mDEBUG\e[0m] network_dir=$network_dir"
     echo -e "[\e[33mDEBUG\e[0m] workdir=$work_dir"
@@ -663,15 +667,15 @@ else
     if [[ $language == "ESP" ]]; then
         echo -e "[\e[31m#\e[0m] Valor ingresado: $1 "
         echo -e "[\e[31m#\e[0m] El valor ingresado no es compatible con ninguno de los siguientes valores:"
-        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf', '-excd'"
+        echo "'-c', '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf', '-excd'"
     elif [[ $language == "ENG" ]]; then
         echo -e "[\e[31m#\e[0m] Entered value: $1 "
         echo -e "[\e[31m#\e[0m] Entered value is not compatible with none of the following values:"
-        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf', '-excd'"
+        echo "'-c', '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf', '-excd'"
     else
         echo -e "[\e[31m#\e[0m] Entered value: $1 "
         echo -e "[\e[31m#\e[0m] Entered value is not compatible with none of the following values:"
-        echo "'-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf', '-excd'"
+        echo "'-c', '-d', '-h', '-p', '-u', '-v', '-i', '-r', '-b', '-l', '-m', '-x', '-ntf', '-excd'"
     fi
     # Error por ingreso de valores erroneos
     exit 1
