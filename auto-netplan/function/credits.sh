@@ -4,9 +4,10 @@
 
 # Variables
 YELLOW='\033[1;33m'
+NC='\033[0m'
 
 # Título
-echo -e "${YELLOW}Créditos del Desarrollo del Software"
+echo -e "${YELLOW}Créditos del Desarrollo del Software${NC}"
 
 # Desarrolladores
 echo "Desarrolladores:"
@@ -19,8 +20,8 @@ echo "Revisión de Código: ShellCheck"
 echo "   https://github.com/koalaman/shellcheck"
 
 # Agradecimientos especiales
-echo -e "Agradecimientos especiales:"
-echo -e "- Diego García"
+echo "Agradecimientos especiales:"
+echo "- Diego García"
 
 # Mensaje final
 echo "Gracias por usar AutoNetplan!"
