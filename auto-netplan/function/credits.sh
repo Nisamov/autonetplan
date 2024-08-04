@@ -6,13 +6,17 @@
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
+# Limpieza de consola y salto
+clear
+echo ""
+
 # Título
 echo -e "${YELLOW}Créditos del Desarrollo del Software${NC}"
 echo ""
 
 # Desarrolladores
 echo "Desarrolladores:"
-echo "Andrés Ruslan Abadías Otal"
+echo "  Andrés Ruslan Abadías Otal"
 
 echo ""
 # Software usado
@@ -30,3 +34,4 @@ echo ""
 # Mensaje final
 echo "Gracias por usar AutoNetplan!"
 echo "-----------------------------"
+echo ""
