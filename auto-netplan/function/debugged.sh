@@ -89,12 +89,10 @@ else
 fi
 
 # Simplemente sirve para comparar que exista el fichero, no la version, pues esta puede variar
-if [[ $current_version == $current_version ]]; then
-    if [[ -f "$program_files/program-files/version" ]]; then
-        echo -e "$yellow_debug $green_good current_version $equal $current_version"
-    else
-        echo -e "$yellow_debug $red_error current_version $not_equal $current_version"
-    fi
+if [[ -f "$program_files/program-files/version" ]]; then
+    echo -e "$yellow_debug $green_good current_version $equal $current_version"
+else
+    echo -e "$yellow_debug $red_error current_version $not_equal $current_version  | [\e[31mNot exist\e[0m]"
 fi
 
     # Formato de display diferente
@@ -118,7 +116,7 @@ elif [[ $language == "ENG" ]]; then
     # Referencia a la bandera de inlgaterra - rojo blanco azul
     echo -e "$yellow_debug $green_good [${red_ie}${white_in}${blue_ig}] current_version $equal $language"
 else
-    echo -e "$yellow_debug $red_error language $not_equal $language | [\e[31mNot set\e[0m]"
+    echo -e "$yellow_debug $red_error language $not_equal $language | [\e[31mNot exist\e[0m]"
 fi
 
 if [[ -d $aune_bifurcation_route ]]; then
