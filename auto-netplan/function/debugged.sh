@@ -18,6 +18,7 @@
 
 # Declaracion variable directorio de configuracion netplan
 # Rutas importantes a revisar con debug, cuentan con doble vairbale para revisar el ocrrecto funcionamiento
+# Muchas de estas rutas son absurdas, siendo que no funcionarian muchas cosas si no existieran, pero siempre viene bien tener la ruta, por ende estan colocadas
 
 # Ruta de ficheros del programa
 program_files="/usr/local/sbin/auto-netplan"
@@ -109,6 +110,7 @@ red_ie="\e[31mE\e[0m"
 red_ip="\e[31mP\e[0m"
 blue_ig="\e[34mG\e[0m"
 white_in="\e[37mN\e[0m"
+yellow_beware="[\e[33mBeware Of Possible Wrong Routes\e[0m]"
 
 if [[ $language == "ESP" ]]; then
     echo -e "$yellow_debug $green_good [${red_ie}${yellow_is}${red_ip}] language $equal $language"
@@ -123,4 +125,11 @@ if [[ -d $aune_bifurcation_route ]]; then
     echo -e "$yellow_debug $green_good aune_bifurcation_route $equal $aune_bifurcation_route"
 else
     echo -e "$yellow_debug $red_error aune_bifurcation_route $not_equal $aune_bifurcation_route | [\e[31mNot exist\e[0m]"
+fi
+
+# Mostrar contenido de variable y revisar que no esté vacía
+if [[ -n $network_dir ]]; then
+    echo -e "$yellow_debug $green_good network_dir $equal $network_dir $yellow_beware"
+else
+    echo -e "$yellow_debug $red_error anetwork_dir $not_equal $network_dir | [\e[31mNot exist\e[0m]"
 fi
