@@ -13,16 +13,19 @@ echo -e "${YELLOW}Créditos del Desarrollo del Software${NC}"
 echo "Desarrolladores:"
 echo "Andrés Ruslan Abadías Otal"
 
+echo ""
 # Software usado
+echo "${YELLOW}Software Usado Durante el Desarrollo:"
 echo "Traducción: DeepL"
 echo "   https://www.deepl.com/es/translator"
 echo "Revisión de Código: ShellCheck"
 echo "   https://github.com/koalaman/shellcheck"
 
 # Agradecimientos especiales
-echo "Agradecimientos especiales:"
+echo "${YELLOW}Agradecimientos especiales:"
 echo "- Diego García"
 
+echo ""
 # Mensaje final
 echo "Gracias por usar AutoNetplan!"
 echo "-----------------------------"
