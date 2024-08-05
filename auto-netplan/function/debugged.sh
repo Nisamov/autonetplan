@@ -147,3 +147,13 @@ if [[ -n $ip_colored ]]; then
 else
     echo -e "$yellow_debug $red_error ip_colored $not_equal $ip_colored | [\e[31mNot exist\e[0m]"
 fi
+
+if [[ -n $opcionaau ]]; then
+    if [[ $opcionaau == "true" ]]; then
+        echo -e "$yellow_debug $green_good $yellow_beware opcionaau $equal $opcionaau"
+    elif [[ $opcionaau == "false" ]]; then
+        echo -e "$yellow_debug $red_error opcionaau $not_equal $opcionaau [\e[33mService Unabled\e[0m]"
+    fi
+else
+    echo -e "$yellow_debug $red_error opcionaau $not_equal $opcionaau | [\e[31mNot exist\e[0m]"
+fi
