@@ -157,3 +157,29 @@ if [[ -n $opcionaau ]]; then
 else
     echo -e "$yellow_debug $red_error opcionaau $not_equal $opcionaau | [\e[31mNot exist\e[0m]"
 fi
+
+if [[ -n $opcionacdt ]]; then
+    echo -e "$yellow_debug $green_good $yellow_beware opcionacdtu $equal $opcionacdt"
+else
+    echo -e "$yellow_debug $red_error opcionacdt $not_equal $opcionacdt | [\e[31mNot exist\e[0m]"
+fi
+
+if [[ -n $opcionafo ]]; then
+    if [[ $opcionafo == "true" ]]; then
+        echo -e "$yellow_debug $green_good $yellow_beware opcionafo $equal $opcionafo"
+    elif [[ $opcionafo == "false" ]]; then
+        echo -e "$yellow_debug $red_error opcionafo $not_equal $opcionafo [\e[33mService Unabled\e[0m]"
+    fi
+else
+    echo -e "$yellow_debug $red_error opcionafo $not_equal $opcionafo | [\e[31mNot exist\e[0m]"
+fi
+
+if [[ -n $opcionaab ]]; then
+    if [[ $opcionaab == "true" ]]; then
+        echo -e "$yellow_debug $green_good $yellow_beware opcionaab $equal $opcionaab"
+    elif [[ $oopcionaab == "false" ]]; then
+        echo -e "$yellow_debug $red_error opcionaab $not_equal $opcionaab [\e[33mService Unabled\e[0m]"
+    fi
+else
+    echo -e "$yellow_debug $red_error opcionaab $not_equal $opcionaab | [\e[31mNot exist\e[0m]"
+fi
