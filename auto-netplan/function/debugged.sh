@@ -142,7 +142,7 @@ if [[ -n $ip_colored ]]; then
     if [[ $ip_colored == "true" ]]; then
         echo -e "$yellow_debug $green_good $yellow_beware ip_colored $equal $ip_colored"
     elif [[ $ip_colored == "false" ]]; then
-        echo -e "$yellow_debug $red_error ip_colored $not_equal $ip_colored [\e[33mService Unabled\e[0m]"
+        echo -e "$yellow_debug $red_error $yellow_beware ip_colored $not_equal $ip_colored [\e[33mService Unabled\e[0m]"
     fi
 else
     echo -e "$yellow_debug $red_error ip_colored $not_equal $ip_colored | [\e[31mNot exist\e[0m]"
@@ -152,7 +152,7 @@ if [[ -n $opcionaau ]]; then
     if [[ $opcionaau == "true" ]]; then
         echo -e "$yellow_debug $green_good $yellow_beware opcionaau $equal $opcionaau"
     elif [[ $opcionaau == "false" ]]; then
-        echo -e "$yellow_debug $red_error opcionaau $not_equal $opcionaau [\e[33mService Unabled\e[0m]"
+        echo -e "$yellow_debug $red_error $yellow_beware opcionaau $not_equal $opcionaau [\e[33mService Unabled\e[0m]"
     fi
 else
     echo -e "$yellow_debug $red_error opcionaau $not_equal $opcionaau | [\e[31mNot exist\e[0m]"
@@ -168,7 +168,7 @@ if [[ -n $opcionafoc ]]; then
     if [[ $opcionafoc == "true" ]]; then
         echo -e "$yellow_debug $green_good $yellow_beware opcionafoc $equal $opcionafoc"
     elif [[ $opcionafoc == "false" ]]; then
-        echo -e "$yellow_debug $red_error opcionafoc $not_equal $opcionafoc [\e[33mService Unabled\e[0m]"
+        echo -e "$yellow_debug $red_error $yellow_beware opcionafoc $not_equal $opcionafoc [\e[33mService Unabled\e[0m]"
     fi
 else
     echo -e "$yellow_debug $red_error opcionafoc $not_equal $opcionafoc | [\e[31mNot exist\e[0m]"
@@ -178,7 +178,7 @@ if [[ -n $opcionaab ]]; then
     if [[ $opcionaab == "true" ]]; then
         echo -e "$yellow_debug $green_good $yellow_beware opcionaab $equal $opcionaab"
     elif [[ $oopcionaab == "false" ]]; then
-        echo -e "$yellow_debug $red_error opcionaab $not_equal $opcionaab [\e[33mService Unabled\e[0m]"
+        echo -e "$yellow_debug $red_error $yellow_beware opcionaab $not_equal $opcionaab [\e[33mService Unabled\e[0m]"
     fi
 else
     echo -e "$yellow_debug $red_error opcionaab $not_equal $opcionaab | [\e[31mNot exist\e[0m]"
