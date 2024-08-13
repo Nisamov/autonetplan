@@ -1,6 +1,7 @@
 # Apuntes Para Version 1.0.0
 
 Esta version es la revision final agregando caracteristicas nuevas al software y corrigiendo errores relevantes.
+Mas adelante es posible que reciba actualizaciones
 
 ## Contenido Agregado
 Opcion de descarga de version en especifico x version y por descarga directa (por agregar)
