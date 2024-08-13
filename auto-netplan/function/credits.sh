@@ -16,7 +16,7 @@ echo ""
 
 # Desarrolladores
 echo "Desarrolladores:"
-echo "  Andrés Ruslan Abadías Otal"
+echo "  Andrés Ruslan Abadías Otal | github/Nisamov"
 
 echo ""
 # Software usado
@@ -28,7 +28,7 @@ echo "   https://github.com/koalaman/shellcheck"
 
 # Agradecimientos especiales
 echo -e "${YELLOW}Agradecimientos especiales:${NC}"
-echo "- Diego García"
+echo "- Diego García Castán"
 
 echo ""
 # Mensaje final
